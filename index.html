@@ -14,22 +14,40 @@
         rel="stylesheet">
     <style>
         :root {
-            --ivory: #F8F2E3;
-            --parchment: #EFE5CC;
-            --cream: #FAF7EF;
-            --gold: #B8912A;
-            --gold-lt: #D4A843;
-            --gold-pale: #E8C97A;
-            --terracotta: #C0573A;
-            --terra-lt: #D9755A;
-            --sage: #3F6138;
-            --sage-lt: #5A8052;
-            --espresso: #2C1A0E;
-            --midnight: #12100E;
-            --warm-gray: #7A6C5E;
+            /* Новые цвета из брендбука / логотипа */
+            --ivory: #FDF9F1;
+            /* Светлый фон */
+            --parchment: #F3EBE1;
+            /* Вторичный светлый фон */
+            --cream: #FFF;
+            /* Чисто белый для контраста */
+            --gold: #D4A353;
+            /* Золотой из логотипа */
+            --gold-lt: #E2B873;
+            /* Светлый золотой */
+            --gold-pale: #F0D4A3;
+            /* Очень светлый золотой */
+
+            --marsala: #7A2833;
+            /* Главный акцент (Ягодный/Бордо) */
+            --marsala-lt: #9A3845;
+            --marsala-dk: #5A1C25;
+
+            --terracotta: #D46A43;
+            /* Для бейджей NEW */
+            --sage: #4A6347;
+            /* Зелень */
+
+            --espresso: #2D1A1E;
+            /* Почти черный с теплым оттенком */
+            --midnight: #1A0D11;
+            /* Совсем черный, подвал */
+            --warm-gray: #8A7A7E;
+            /* Текст описаний */
+
             --font-h: 'Cormorant Garamond', serif;
             --font-b: 'Jost', sans-serif;
-            --pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cg fill='none' stroke='rgba(184,145,42,0.08)' stroke-width='1'%3E%3Cpolygon points='50,5 93,27.5 93,72.5 50,95 7,72.5 7,27.5'/%3E%3Cpolygon points='50,18 80,34 80,66 50,82 20,66 20,34'/%3E%3Ccircle cx='50' cy='50' r='16'/%3E%3Cline x1='50' y1='5' x2='50' y2='18'/%3E%3Cline x1='50' y1='82' x2='50' y2='95'/%3E%3Cline x1='7' y1='27.5' x2='20' y2='34'/%3E%3Cline x1='80' y1='66' x2='93' y2='72.5'/%3E%3Cline x1='7' y1='72.5' x2='20' y2='66'/%3E%3Cline x1='80' y1='34' x2='93' y2='27.5'/%3E%3C/g%3E%3C/svg%3E")
+            --pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cg fill='none' stroke='rgba(122,40,51,0.08)' stroke-width='1'%3E%3Cpolygon points='50,5 93,27.5 93,72.5 50,95 7,72.5 7,27.5'/%3E%3Cpolygon points='50,18 80,34 80,66 50,82 20,66 20,34'/%3E%3Ccircle cx='50' cy='50' r='16'/%3E%3Cline x1='50' y1='5' x2='50' y2='18'/%3E%3Cline x1='50' y1='82' x2='50' y2='95'/%3E%3Cline x1='7' y1='27.5' x2='20' y2='34'/%3E%3Cline x1='80' y1='66' x2='93' y2='72.5'/%3E%3Cline x1='7' y1='72.5' x2='20' y2='66'/%3E%3Cline x1='80' y1='34' x2='93' y2='27.5'/%3E%3C/g%3E%3C/svg%3E")
         }
 
         *,
@@ -198,7 +216,8 @@
             justify-content: space-between;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 24px
+            padding: 0 24px;
+            position: relative;
         }
 
         .nav-logo {
@@ -225,7 +244,10 @@
         .nav-links {
             display: flex;
             gap: 28px;
-            list-style: none
+            list-style: none;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
         }
 
         .nav-links a {
@@ -283,8 +305,8 @@
             position: absolute;
             top: -4px;
             right: -6px;
-            background: var(--terracotta);
-            color: #fff;
+            background: var(--gold);
+            color: var(--espresso);
             font-size: 9px;
             width: 16px;
             height: 16px;
@@ -365,7 +387,7 @@
         /* HERO */
         #hero {
             min-height: 100vh;
-            background-image: var(--pattern), linear-gradient(150deg, #0E0B05 0%, #1A1208 50%, #2A1A08 100%);
+            background-image: var(--pattern), linear-gradient(150deg, #1A080F 0%, #3D0F1B 50%, #5A1220 100%);
             background-size: 100px 100px, cover;
             display: flex;
             align-items: center;
@@ -381,7 +403,7 @@
             position: absolute;
             width: 600px;
             height: 600px;
-            background: radial-gradient(ellipse, rgba(184, 145, 42, .12) 0%, transparent 70%);
+            background: radial-gradient(ellipse, rgba(123, 26, 44, .15) 0%, transparent 70%);
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
@@ -499,7 +521,7 @@
 
         /* TICKER */
         .ticker-wrap {
-            background: var(--gold);
+            background: var(--marsala);
             padding: 12px 0;
             overflow: hidden;
             white-space: nowrap
@@ -542,7 +564,7 @@
 
         .categories-grid {
             display: grid;
-            grid-template-columns: repeat(8, 1fr);
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
             gap: 12px;
             margin-top: 48px
         }
@@ -827,6 +849,13 @@
             border-bottom: 1px solid var(--parchment)
         }
 
+        .cart-footer-actions {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
         .cart-header h3 {
             font-family: var(--font-h);
             font-size: 24px
@@ -840,16 +869,18 @@
         .cart-body {
             flex: 1;
             overflow-y: auto;
-            padding: 16px 24px
+            padding: 16px 24px;
+            display: flex;
+            flex-direction: column;
         }
 
         .cart-empty {
+            flex: 1;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             gap: 16px;
-            padding: 60px 0;
             color: var(--warm-gray);
             text-align: center
         }
@@ -1356,52 +1387,103 @@
             background: var(--cream)
         }
 
-        .loc-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
+        .loc-banner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #fff;
+            padding: 40px;
+            border-radius: 4px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            margin-top: 32px;
+            flex-wrap: wrap;
             gap: 24px;
-            margin-top: 32px
+        }
+
+        .lb-info {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .lb-phone {
+            font-family: var(--font-h);
+            font-size: 32px;
+            color: var(--gold);
+            text-decoration: none;
+            letter-spacing: 0.5px;
+            font-weight: 400;
+        }
+
+        .lb-details {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .lb-details p {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+            color: var(--warm-gray);
+            margin: 0;
+        }
+
+        .lb-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 16px;
+            height: 16px;
+        }
+
+        .lb-actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .lb-actions .btn-gold {
+            padding: 14px 28px;
+            font-size: 11px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .lb-actions .btn-outline {
+            padding: 14px 28px;
+            font-size: 11px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-color: var(--parchment);
+            color: var(--espresso);
         }
 
         @media(max-width:768px) {
-            .loc-grid {
-                grid-template-columns: 1fr
+            .loc-banner {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 24px;
             }
-        }
 
-        .loc-card {
-            background: var(--ivory);
-            border: 1px solid var(--parchment);
-            border-radius: 4px;
-            padding: 28px
-        }
+            .lb-actions {
+                width: 100%;
+                flex-direction: column;
+            }
 
-        .loc-card h3 {
-            font-family: var(--font-h);
-            font-size: 22px;
-            margin-bottom: 12px
-        }
-
-        .loc-card p {
-            font-size: 13px;
-            color: var(--warm-gray);
-            margin-bottom: 4px;
-            display: flex;
-            align-items: center;
-            gap: 8px
-        }
-
-        .loc-btns {
-            display: flex;
-            gap: 12px;
-            margin-top: 16px
+            .lb-actions a {
+                width: 100%;
+                text-align: center;
+            }
         }
 
         .loc-map {
             margin-top: 32px;
             height: 300px;
             border-radius: 4px;
-            overflow: hidden
+            overflow: hidden;
+            border: 1px solid var(--parchment);
         }
 
         /* LOYALTY */
@@ -1697,6 +1779,41 @@
             fill: none;
             stroke-width: 1.5
         }
+
+        /* TOAST NOTIFICATION */
+        .toast {
+            position: fixed;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%) translateY(40px);
+            background: rgba(18, 16, 14, 0.95);
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 4px;
+            font-family: var(--font-b);
+            font-size: 14px;
+            font-weight: 500;
+            z-index: 1200;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(212, 163, 83, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            white-space: nowrap;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        .toast-icon {
+            color: var(--gold);
+            display: flex;
+        }
     </style>
 </head>
 
@@ -1708,24 +1825,12 @@
             <a class="nav-logo" href="#">
                 <svg width="32" height="32" viewBox="0 0 100 100">
                     <g transform="translate(50,50)">
-                        <ellipse cx="0" cy="-23" rx="5.5" ry="12" fill="#F8F2E3" opacity=".95" />
-                        <ellipse cx="0" cy="-23" rx="5.5" ry="12" fill="#F8F2E3" opacity=".85" transform="rotate(45)" />
-                        <ellipse cx="0" cy="-23" rx="5.5" ry="12" fill="#F8F2E3" opacity=".95" transform="rotate(90)" />
-                        <ellipse cx="0" cy="-23" rx="5.5" ry="12" fill="#F8F2E3" opacity=".85"
-                            transform="rotate(135)" />
-                        <ellipse cx="0" cy="-23" rx="5.5" ry="12" fill="#F8F2E3" opacity=".95"
-                            transform="rotate(180)" />
-                        <ellipse cx="0" cy="-23" rx="5.5" ry="12" fill="#F8F2E3" opacity=".85"
-                            transform="rotate(225)" />
-                        <ellipse cx="0" cy="-23" rx="5.5" ry="12" fill="#F8F2E3" opacity=".95"
-                            transform="rotate(270)" />
-                        <ellipse cx="0" cy="-23" rx="5.5" ry="12" fill="#F8F2E3" opacity=".85"
-                            transform="rotate(315)" />
-                        <circle r="9" fill="#B8912A" />
-                        <circle r="4" fill="#D4A843" />
+                        <ellipse cx="0" cy="-10" rx="8" ry="24" fill="#fff" opacity=".9" rx="8" />
+                        <circle cx="0" cy="18" r="14" fill="none" stroke="#fff" stroke-width="3" />
+                        <circle cx="0" cy="18" r="6" fill="#fff" opacity=".6" />
                     </g>
                 </svg>
-                Jasmin<span>.house</span></a>
+                JASMIN</a>
             <ul class="nav-links">
                 <li><a href="#menu">Меню</a></li>
                 <li><a href="#about">О нас</a></li>
@@ -1737,12 +1842,12 @@
                 <div class="lang-switch"><button class="lang-btn active" data-lang="ru">RU</button><button
                         class="lang-btn" data-lang="uz">UZ</button><button class="lang-btn" data-lang="en">EN</button>
                 </div>
-                <a href="tel:+998622270000" class="nav-phone">+998 62 227-00-00</a>
+                <a href="tel:+998919131111" class="nav-phone">+998 91 913 11 11</a>
                 <button class="cart-btn" id="cartToggle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="1.5">
-                        <circle cx="9" cy="21" r="1" />
-                        <circle cx="20" cy="21" r="1" />
-                        <path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6" />
+                        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <path d="M16 10a4 4 0 0 1-8 0"></path>
                     </svg><span class="cart-badge" id="cartCount">0</span></button>
                 <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
             </div>
@@ -1758,30 +1863,10 @@
     <section id="hero">
         <div class="hero-content">
             <p class="hero-eyebrow">Ургенч · Хорезм · Узбекистан</p>
-            <svg class="hero-logo-svg" width="90" height="90" viewBox="0 0 100 100">
-                <circle cx="50" cy="50" r="46" fill="none" stroke="rgba(184,145,42,0.35)" stroke-width="0.8" />
-                <polygon points="50,8 54,44 90,47 54,50 50,86 46,50 10,47 46,44" fill="none"
-                    stroke="rgba(184,145,42,0.45)" stroke-width="1" />
-                <g transform="translate(50,50)">
-                    <ellipse cx="0" cy="-23" rx="5.5" ry="12" fill="#F8F2E3" opacity=".95" />
-                    <ellipse cx="0" cy="-23" rx="5.5" ry="12" fill="#F8F2E3" opacity=".85" transform="rotate(45)" />
-                    <ellipse cx="0" cy="-23" rx="5.5" ry="12" fill="#F8F2E3" opacity=".95" transform="rotate(90)" />
-                    <ellipse cx="0" cy="-23" rx="5.5" ry="12" fill="#F8F2E3" opacity=".85" transform="rotate(135)" />
-                    <ellipse cx="0" cy="-23" rx="5.5" ry="12" fill="#F8F2E3" opacity=".95" transform="rotate(180)" />
-                    <ellipse cx="0" cy="-23" rx="5.5" ry="12" fill="#F8F2E3" opacity=".85" transform="rotate(225)" />
-                    <ellipse cx="0" cy="-23" rx="5.5" ry="12" fill="#F8F2E3" opacity=".95" transform="rotate(270)" />
-                    <ellipse cx="0" cy="-23" rx="5.5" ry="12" fill="#F8F2E3" opacity=".85" transform="rotate(315)" />
-                    <circle r="9" fill="#B8912A" />
-                    <circle r="4" fill="#D4A843" />
-                </g>
-            </svg>
-            <h1 class="hero-title">Jasmin<em>.house</em></h1>
-            <p class="hero-sub">Кофейня · Кондитерская · Гостеприимство</p>
+            <h1 class="hero-title">JASMIN</h1>
+            <p class="hero-sub">Cafe · Bakery · Gelateria</p>
             <div class="hero-btns"><a href="#menu" class="btn-gold">Смотреть меню</a><a href="#about"
                     class="btn-outline-light">О нас</a></div>
-        </div>
-        <div class="hero-scroll"><span>Scroll</span>
-            <div class="scroll-line"></div>
         </div>
     </section>
 
@@ -1816,19 +1901,21 @@
             <h3>Корзина</h3><button id="cartClose">✕</button>
         </div>
         <div class="cart-body">
-            <div class="cart-empty" id="cartEmpty"><svg width="48" height="48" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="1">
-                    <circle cx="9" cy="21" r="1" />
-                    <circle cx="20" cy="21" r="1" />
-                    <path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6" />
+            <div class="cart-empty" id="cartEmpty"><svg width="56" height="56" viewBox="0 0 24 24" fill="none"
+                    stroke="var(--gold)" stroke-width="0.8">
+                    <rect x="5" y="8" width="14" height="12" rx="1" />
+                    <path d="M8 8V6a4 4 0 0 1 8 0v2" />
                 </svg>
                 <p>Ваша корзина пуста</p><a href="#menu" class="btn-gold" onclick="closeCart()">Перейти в меню</a>
             </div>
             <div id="cartItems"></div>
         </div>
         <div class="cart-footer" id="cartFooter" style="display:none">
-            <div class="cart-total"><span>Итого</span><span id="cartTotal">0 сум</span></div><button class="btn-gold"
-                style="width:100%">Оформить заказ</button>
+            <div class="cart-total"><span>Итого</span><span id="cartTotal">0 сум</span></div>
+            <div class="cart-footer-actions">
+                <button class="btn-outline" onclick="clearCart()">Очистить</button>
+                <button class="btn-gold">Оформить заказ</button>
+            </div>
         </div>
     </div>
 
@@ -1884,23 +1971,23 @@
                         <div class="about-circle-center">
                             <svg width="60" height="60" viewBox="0 0 100 100">
                                 <g transform="translate(50,50)">
-                                    <ellipse cx="0" cy="-23" rx="5.5" ry="12" fill="#F8F2E3" opacity=".9" />
-                                    <ellipse cx="0" cy="-23" rx="5.5" ry="12" fill="#F8F2E3" opacity=".8"
+                                    <ellipse cx="0" cy="-23" rx="5.5" ry="12" fill="#FDF9F1" opacity=".9" />
+                                    <ellipse cx="0" cy="-23" rx="5.5" ry="12" fill="#FDF9F1" opacity=".8"
                                         transform="rotate(45)" />
-                                    <ellipse cx="0" cy="-23" rx="5.5" ry="12" fill="#F8F2E3" opacity=".9"
+                                    <ellipse cx="0" cy="-23" rx="5.5" ry="12" fill="#FDF9F1" opacity=".9"
                                         transform="rotate(90)" />
-                                    <ellipse cx="0" cy="-23" rx="5.5" ry="12" fill="#F8F2E3" opacity=".8"
+                                    <ellipse cx="0" cy="-23" rx="5.5" ry="12" fill="#FDF9F1" opacity=".8"
                                         transform="rotate(135)" />
-                                    <ellipse cx="0" cy="-23" rx="5.5" ry="12" fill="#F8F2E3" opacity=".9"
+                                    <ellipse cx="0" cy="-23" rx="5.5" ry="12" fill="#FDF9F1" opacity=".9"
                                         transform="rotate(180)" />
-                                    <ellipse cx="0" cy="-23" rx="5.5" ry="12" fill="#F8F2E3" opacity=".8"
+                                    <ellipse cx="0" cy="-23" rx="5.5" ry="12" fill="#FDF9F1" opacity=".8"
                                         transform="rotate(225)" />
-                                    <ellipse cx="0" cy="-23" rx="5.5" ry="12" fill="#F8F2E3" opacity=".9"
+                                    <ellipse cx="0" cy="-23" rx="5.5" ry="12" fill="#FDF9F1" opacity=".9"
                                         transform="rotate(270)" />
-                                    <ellipse cx="0" cy="-23" rx="5.5" ry="12" fill="#F8F2E3" opacity=".8"
+                                    <ellipse cx="0" cy="-23" rx="5.5" ry="12" fill="#FDF9F1" opacity=".8"
                                         transform="rotate(315)" />
-                                    <circle r="9" fill="#2C1A0E" />
-                                    <circle r="4" fill="#B8912A" />
+                                    <circle r="9" fill="#2D1A1E" />
+                                    <circle r="4" fill="#D4A353" />
                                 </g>
                             </svg>
                         </div>
@@ -1955,15 +2042,35 @@
             <p class="section-label" style="text-align:center">Франшиза</p>
             <h2 class="section-title" style="text-align:center;color:#fff">Откройте Jasmin.house в вашем городе</h2>
             <div class="fran-cards">
-                <div class="franchise-card"><span class="fc-icon">🏷️</span>
+                <div class="franchise-card"><span class="fc-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--gold)"
+                            stroke-width="1.5">
+                            <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z">
+                            </path>
+                            <line x1="7" y1="7" x2="7.01" y2="7"></line>
+                        </svg>
+                    </span>
                     <h3>Готовый бренд</h3>
                     <p>Узнаваемый стиль, дизайн-проект интерьера, все брендированные материалы для запуска</p>
                 </div>
-                <div class="franchise-card"><span class="fc-icon">🎓</span>
+                <div class="franchise-card"><span class="fc-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--gold)"
+                            stroke-width="1.5">
+                            <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                            <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+                        </svg>
+                    </span>
                     <h3>Обучение</h3>
                     <p>Полный курс для бариста и кондитеров с сертификацией и стажировкой в действующей точке</p>
                 </div>
-                <div class="franchise-card"><span class="fc-icon">💬</span>
+                <div class="franchise-card"><span class="fc-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--gold)"
+                            stroke-width="1.5">
+                            <path
+                                d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z">
+                            </path>
+                        </svg>
+                    </span>
                     <h3>Поддержка 24/7</h3>
                     <p>Личный менеджер, маркетинговая поддержка и операционная помощь на каждом этапе</p>
                 </div>
@@ -1998,31 +2105,20 @@
         <div class="container">
             <p class="section-label">Локации</p>
             <h2 class="section-title">Найдите нас</h2>
-            <div class="loc-grid">
-                <div class="loc-card">
-                    <h3>Jasmin.house — Центральный</h3>
-                    <p>📍 г. Ургенч, ул. Аль-Хорезми 14</p>
-                    <p>🕐 Ежедневно 08:00 – 22:00</p>
-                    <p>📞 +998 62 227-00-00</p>
-                    <div class="loc-btns"><a href="tel:+998622270000" class="btn-gold"
-                            style="padding:10px 20px;font-size:10px">Позвонить</a><a href="https://maps.google.com"
-                            target="_blank" class="btn-outline" style="padding:10px 20px;font-size:10px">Открыть
-                            карту</a></div>
+            <div class="loc-banner">
+                <div class="lb-info">
+                    <a href="tel:+998919131111" class="lb-phone">+998 91 913 11 11</a>
+                    <div class="lb-details">
+                        <p><span class="lb-icon">📍</span> г. Ургенч, ул. Куна Ургенч, 5</p>
+                        <p><span class="lb-icon">🕐</span> Ежедневно 09:00 – 23:00</p>
+                    </div>
                 </div>
-                <div class="loc-card">
-                    <h3>Jasmin.house — Новый</h3>
-                    <p>📍 г. Ургенч, ул. Беруни 42</p>
-                    <p>🕐 Ежедневно 08:00 – 22:00</p>
-                    <p>📞 +998 62 227-01-01</p>
-                    <div class="loc-btns"><a href="tel:+998622270101" class="btn-gold"
-                            style="padding:10px 20px;font-size:10px">Позвонить</a><a href="https://maps.google.com"
-                            target="_blank" class="btn-outline" style="padding:10px 20px;font-size:10px">Открыть
-                            карту</a></div>
+                <div class="lb-actions">
+                    <a href="tel:+998919131111" class="btn-gold">ПОЗВОНИТЬ</a>
+                    <a href="https://yandex.uz/maps/org/27071335605/?ll=60.621953%2C41.559103&z=18.2" target="_blank"
+                        class="btn-outline">Yandex Maps</a>
                 </div>
             </div>
-            <div class="loc-map"><iframe
-                    src="https://www.openstreetmap.org/export/embed.html?bbox=60.58%2C41.53%2C60.66%2C41.57&layer=mapnik"
-                    width="100%" height="300" style="border:0;border-radius:4px" loading="lazy"></iframe></div>
         </div>
     </section>
 
@@ -2030,14 +2126,32 @@
     <section id="loyalty">
         <div class="container">
             <div class="loyalty-inner">
-                <div class="loyalty-icon">🎁</div>
+                <div class="loyalty-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5">
+                        <path
+                            d="M20 12v8a2 2 0 01-2 2H6a2 2 0 01-2-2v-8M4 6h16v6H4zM12 22V6M12 6c-2.5-3.5-6-3-6-3s0 3.5 6 3c2.5-3.5 6-3 6-3s0 3.5-6 3" />
+                    </svg>
+                </div>
                 <div class="loyalty-text">
                     <h3>Программа лояльности</h3>
                     <p>Копите баллы с каждым заказом. 1 000 сум = 1 балл. Тратьте баллы на любой заказ! Скачайте
                         приложение и начните копить уже сегодня.</p>
                 </div>
-                <div class="loyalty-btns"><a href="#" class="store-btn">🍎 App Store</a><a href="#" class="store-btn">▶️
-                        Google Play</a></div>
+                <div class="loyalty-btns">
+                    <a href="#" class="store-btn">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M16.365 14.384c-.015-3.076 2.511-4.544 2.628-4.616-1.428-2.088-3.64-2.376-4.412-2.42-1.896-.192-3.704 1.116-4.672 1.116-.968 0-2.46-1.096-4.004-1.064-2.008.028-3.86 1.168-4.888 2.96-2.092 3.624-.536 8.984 1.504 11.932 1.004 1.448 2.188 3.064 3.752 3.004 1.5-.06 2.068-.968 3.884-.968 1.8 0 2.324.968 3.904.936 1.616-.032 2.632-1.48 3.62-2.924 1.152-1.68 1.628-3.3 1.652-3.388-.036-.016-3.156-1.212-3.172-4.86M14.933 5.092c.832-1.008 1.392-2.412 1.24-3.816-1.208.048-2.676.804-3.536 1.816-.764.888-1.436 2.324-1.256 3.692 1.352.104 2.72-.684 3.552-1.692" />
+                        </svg>
+                        App Store
+                    </a>
+                    <a href="#" class="store-btn">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M4 2v20l17-10L4 2z" />
+                        </svg>
+                        Google Play
+                    </a>
+                </div>
             </div>
         </div>
     </section>
@@ -2059,8 +2173,8 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">
-                    <div class="footer-logo">Jasmin<span>.house</span></div>
-                    <p>Кофейня и кондитерская в сердце Хорезма. Дом, куда хочется возвращаться.</p>
+                    <div class="footer-logo">JASMIN</div>
+                    <p>Cafe · Bakery · Gelateria в сердце Хорезма. Дом, куда хочется возвращаться.</p>
                     <div class="footer-socials">
                         <a href="https://instagram.com/jasminhouse_uz" target="_blank"><svg viewBox="0 0 24 24">
                                 <rect x="2" y="2" width="20" height="20" rx="5" />
@@ -2089,16 +2203,17 @@
                     <ul>
                         <li><a href="#menu">Кофе</a></li>
                         <li><a href="#menu">Десерты</a></li>
+                        <li><a href="#menu">Джелато</a></li>
                         <li><a href="#menu">Торты</a></li>
                         <li><a href="#menu">Выпечка</a></li>
                     </ul>
                 </div>
-                <div class="footer-col">
+                <div class="footer-col" id="footerContacts">
                     <h4>Контакты</h4>
                     <ul>
-                        <li>📍 г. Ургенч, ул. Аль-Хорезми 14</li>
-                        <li>📞 +998 62 227-00-00</li>
-                        <li>🕐 Ежедневно 08:00 – 22:00</li>
+                        <li>📍 г. Ургенч, ул. Куна Ургенч, 5</li>
+                        <li>📞 +998 91 913 11 11</li>
+                        <li>🕐 Ежедневно 09:00 – 23:00</li>
                         <li>✉️ info@jasmin.house</li>
                     </ul>
                 </div>
@@ -2107,15 +2222,15 @@
         <div class="footer-bottom">
             <svg width="40" height="40" viewBox="0 0 100 100" style="margin-bottom:8px;opacity:.3">
                 <g transform="translate(50,50)">
-                    <ellipse cx="0" cy="-23" rx="5.5" ry="12" fill="#F8F2E3" opacity=".6" />
-                    <ellipse cx="0" cy="-23" rx="5.5" ry="12" fill="#F8F2E3" opacity=".5" transform="rotate(45)" />
-                    <ellipse cx="0" cy="-23" rx="5.5" ry="12" fill="#F8F2E3" opacity=".6" transform="rotate(90)" />
-                    <ellipse cx="0" cy="-23" rx="5.5" ry="12" fill="#F8F2E3" opacity=".5" transform="rotate(135)" />
-                    <ellipse cx="0" cy="-23" rx="5.5" ry="12" fill="#F8F2E3" opacity=".6" transform="rotate(180)" />
-                    <ellipse cx="0" cy="-23" rx="5.5" ry="12" fill="#F8F2E3" opacity=".5" transform="rotate(225)" />
-                    <ellipse cx="0" cy="-23" rx="5.5" ry="12" fill="#F8F2E3" opacity=".6" transform="rotate(270)" />
-                    <ellipse cx="0" cy="-23" rx="5.5" ry="12" fill="#F8F2E3" opacity=".5" transform="rotate(315)" />
-                    <circle r="6" fill="#B8912A" opacity=".4" />
+                    <ellipse cx="0" cy="-23" rx="5.5" ry="12" fill="#FDF9F1" opacity=".6" />
+                    <ellipse cx="0" cy="-23" rx="5.5" ry="12" fill="#FDF9F1" opacity=".5" transform="rotate(45)" />
+                    <ellipse cx="0" cy="-23" rx="5.5" ry="12" fill="#FDF9F1" opacity=".6" transform="rotate(90)" />
+                    <ellipse cx="0" cy="-23" rx="5.5" ry="12" fill="#FDF9F1" opacity=".5" transform="rotate(135)" />
+                    <ellipse cx="0" cy="-23" rx="5.5" ry="12" fill="#FDF9F1" opacity=".6" transform="rotate(180)" />
+                    <ellipse cx="0" cy="-23" rx="5.5" ry="12" fill="#FDF9F1" opacity=".5" transform="rotate(225)" />
+                    <ellipse cx="0" cy="-23" rx="5.5" ry="12" fill="#FDF9F1" opacity=".6" transform="rotate(270)" />
+                    <ellipse cx="0" cy="-23" rx="5.5" ry="12" fill="#FDF9F1" opacity=".5" transform="rotate(315)" />
+                    <circle r="6" fill="#D4A353" opacity=".4" />
                 </g>
             </svg>
             <br>© 2022–2026 Jasmin.house — Ургенч, Хорезм, Узбекистан
@@ -2131,10 +2246,10 @@
             <button class="bb-tab" data-target="#menu"><svg viewBox="0 0 24 24">
                     <path d="M4 6h16M4 12h16M4 18h16" />
                 </svg>Меню</button>
-            <button class="bb-tab" id="bbCart"><svg viewBox="0 0 24 24">
-                    <circle cx="9" cy="21" r="1" />
-                    <circle cx="20" cy="21" r="1" />
-                    <path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6" />
+            <button class="bb-tab" id="bbCart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <path d="M16 10a4 4 0 0 1-8 0"></path>
                 </svg>Корзина</button>
             <button class="bb-tab" data-target="#about"><svg viewBox="0 0 24 24">
                     <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
@@ -2197,15 +2312,23 @@
                 { name: "Даниш кофейный", desc: "Слоёное тесто, кофейный крем, карамелизованные орехи", weight: "85 г", price: 30000, badge: "Новинка" },
                 { name: "Чизкейк «Жасмин»", desc: "Мусс из жасмина, зеркальная глазурь", weight: "1.0 кг", price: 520000, badge: "Новинка" },
                 { name: "Лимонад Жасмин-Личи", desc: "Жасмин, личи, лайм, мята", weight: "400 мл", price: 26000, badge: "Новинка" }
+            ],
+            gelato: [
+                { name: "Джелато Фисташка", desc: "Настоящая сицилийская фисташка Бронте, сливки 33%", weight: "1 шарик", price: 18000, badge: "Хит" },
+                { name: "Джелато Страчателла", desc: "Нежный фиор ди латте с хлопьями тёмного шоколада", weight: "1 шарик", price: 16000, badge: null },
+                { name: "Сорбет Манго-Маракуйя", desc: "Свежие тропические фрукты, без молока, веганский", weight: "1 шарик", price: 15000, badge: null },
+                { name: "Джелато Карамель-Пекан", desc: "Солёная карамель, орехи пекан, сливочная база", weight: "1 шарик", price: 18000, badge: "Новинка" },
+                { name: "Джелато Жасмин", desc: "Авторский вкус: жасминовый чай, сливки, мёд", weight: "1 шарик", price: 20000, badge: "Хит" },
+                { name: "Сет 3 шарика", desc: "Выберите любые 3 вкуса из витрины + вафельный рожок", weight: "3 шарика", price: 45000, badge: null }
             ]
         };
 
         const CARD_COLORS = [
-            'linear-gradient(135deg,#2C1A0E,#4A2E18)',
-            'linear-gradient(135deg,#1A3518,#2D5228)',
-            'linear-gradient(135deg,#6B2D1A,#C0573A)',
-            'linear-gradient(135deg,#3D2E10,#B8912A)',
-            'linear-gradient(135deg,#1A1208,#2C1A0E)'
+            'linear-gradient(135deg,#2D1A1E,#4A2E35)',
+            'linear-gradient(135deg,#4A6347,#2D4A2F)',
+            'linear-gradient(135deg,#7A2833,#5A1C25)',
+            'linear-gradient(135deg,#D4A353,#9A7033)',
+            'linear-gradient(135deg,#1A0D11,#2D1A1E)'
         ];
 
         const TABS = [
@@ -2216,6 +2339,7 @@
             { id: 'pastry', label: 'Выпечка', svg: '<path d="M4 19c0-4 4-7 8-7s8 3 8 7"/><path d="M4 19h16"/><path d="M8 12c-1-2 0-5 4-6 4 1 5 4 4 6"/>' },
             { id: 'breakfast', label: 'Завтраки', svg: '<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="2"/>' },
             { id: 'cold', label: 'Холодные', svg: '<path d="M12 2v20"/><path d="M8 4l4 4 4-4"/><path d="M8 20l4-4 4 4"/><path d="M2 12h20"/><path d="M4 8l4 4-4 4"/><path d="M20 8l-4 4 4 4"/>' },
+            { id: 'gelato', label: 'Джелато', svg: '<path d="M12 2C8 2 5 5 5 9h14c0-4-3-7-7-7z"/><path d="M5 9l3 13h8l3-13"/><line x1="12" y1="9" x2="12" y2="22"/>' },
             { id: 'new', label: 'Новинки ✦', svg: '<polygon points="12,2 15,9 22,9 17,14 19,22 12,17 5,22 7,14 2,9 9,9"/>' }
         ];
 
@@ -2256,7 +2380,7 @@
         }
 
         /* ===== TICKER ===== */
-        const tickerItems = ['☕ Specialty Coffee', 'Авторские десерты', 'Жасмин Хорезма', 'Шёлковый путь', 'Ургенч', 'Свежая выпечка', 'Открыто 08:00–22:00'];
+        const tickerItems = ['☕ Specialty Coffee', 'Авторские десерты', '🍦 Gelato', 'Жасмин Хорезма', 'Шёлковый путь', 'Ургенч', 'Свежая выпечка', 'Открыто 08:00–22:00'];
         const tickerHTML = tickerItems.map(t => `<span>${t}</span><span class="ticker-dot">✦</span>`).join('');
         document.getElementById('tickerTrack').innerHTML = (tickerHTML + ' ').repeat(3);
 
@@ -2292,13 +2416,34 @@
         /* ===== CART ===== */
         let cart = JSON.parse(localStorage.getItem('jh_cart') || '[]');
         function saveCart() { localStorage.setItem('jh_cart', JSON.stringify(cart)); }
+        function showToast(name) {
+            let t = document.getElementById('toast');
+            if (!t) {
+                t = document.createElement('div');
+                t.id = 'toast';
+                t.className = 'toast';
+                t.innerHTML = `<div class="toast-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 6L9 17l-5-5"></path>
+                    </svg>
+                </div>
+                <div class="toast-text"></div>`;
+                document.body.appendChild(t);
+            }
+            document.querySelector('.toast-text').textContent = name + ' в корзине';
+            t.classList.add('show');
+            if (t.timer) clearTimeout(t.timer);
+            t.timer = setTimeout(() => t.classList.remove('show'), 2500);
+        }
         function addToCart(name, price) {
             const ex = cart.find(i => i.name === name);
             if (ex) ex.qty++; else cart.push({ name, price, qty: 1 });
             saveCart(); updateCartUI();
             const b = document.getElementById('cartCount'); b.style.transform = 'scale(1.5)'; setTimeout(() => b.style.transform = 'scale(1)', 300);
+            showToast(name);
         }
         function removeFromCart(name) { cart = cart.filter(i => i.name !== name); saveCart(); updateCartUI(); }
+        function clearCart() { cart = []; saveCart(); updateCartUI(); }
         function changeQty(name, d) { const it = cart.find(i => i.name === name); if (!it) return; it.qty += d; if (it.qty <= 0) removeFromCart(name); else { saveCart(); updateCartUI(); } }
         function updateCartUI() {
             const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
@@ -2312,8 +2457,16 @@
     <div class="ci-controls"><button onclick="changeQty('${i.name.replace(/'/g, "\\'")}', -1)">−</button><span>${i.qty}</span><button onclick="changeQty('${i.name.replace(/'/g, "\\'")}', 1)">+</button></div>
     <button class="ci-remove" onclick="removeFromCart('${i.name.replace(/'/g, "\\'")}')">✕</button></div>`).join('');
         }
-        function openCart() { document.getElementById('cartDrawer').classList.add('open'); document.getElementById('cartOverlay').classList.add('open'); }
-        function closeCart() { document.getElementById('cartDrawer').classList.remove('open'); document.getElementById('cartOverlay').classList.remove('open'); }
+        function openCart() {
+            document.getElementById('cartDrawer').classList.add('open');
+            document.getElementById('cartOverlay').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeCart() {
+            document.getElementById('cartDrawer').classList.remove('open');
+            document.getElementById('cartOverlay').classList.remove('open');
+            document.body.style.overflow = '';
+        }
         document.getElementById('cartToggle').addEventListener('click', openCart);
         document.getElementById('cartClose').addEventListener('click', closeCart);
         document.getElementById('cartOverlay').addEventListener('click', closeCart);
@@ -2334,7 +2487,7 @@
         document.getElementById('bsNext').addEventListener('click', () => bsTrack.scrollBy({ left: 300, behavior: 'smooth' }));
 
         /* ===== INSTAGRAM ===== */
-        const igColors = ['linear-gradient(135deg,#2C1A0E,#4A2E18)', 'linear-gradient(135deg,#1A3518,#2D5228)', 'linear-gradient(135deg,#6B2D1A,#C0573A)', 'linear-gradient(135deg,#3D2E10,#B8912A)', 'linear-gradient(135deg,#B8912A,#C0573A)', 'linear-gradient(135deg,#1A1208,#3F6138)'];
+        const igColors = ['linear-gradient(135deg,#2D1A1E,#4A2E35)', 'linear-gradient(135deg,#4A6347,#2D4A2F)', 'linear-gradient(135deg,#7A2833,#5A1C25)', 'linear-gradient(135deg,#D4A353,#9A7033)', 'linear-gradient(135deg,#D4A353,#7A2833)', 'linear-gradient(135deg,#1A0D11,#4A6347)'];
         const igGrid = document.getElementById('igGrid');
         igColors.forEach(c => { igGrid.innerHTML += `<a class="ig-tile" href="https://instagram.com/jasminhouse_uz" target="_blank" style="background:${c};background-image:var(--pattern),${c}"><div class="ig-overlay"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5"/></svg></div></a>`; });
 
