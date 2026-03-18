@@ -1,0 +1,3067 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Jasmin Bakery — пекарня и кондитерская в Ургенче. Торты на заказ, свежая выпечка, восточные сладости. С 2016 года.">
+    <meta name="theme-color" content="#0D0303">
+    <title>Jasmin Bakery — Пекарня & Кондитерская, Ургенч</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&display=swap"
+        rel="stylesheet">
+    <link rel="preload" href="jb_logo_v1_gold.svg" as="image" type="image/svg+xml">
+    <script>history.scrollRestoration = 'manual'; window.scrollTo(0, 0);</script>
+    <style>
+        /* ═══════════════════════════════════
+   DESIGN TOKENS
+═══════════════════════════════════ */
+        :root {
+            --burg: #8A2A29;
+            --burg-dk: #5C1A1A;
+            --burg-md: #A33535;
+            --maroon: #3D1515;
+            --deep: #1E0808;
+            --void: #0D0303;
+
+            --gold: #F7AA4F;
+            --gold-lt: #F9BD73;
+            --gold-pl: #FBD199;
+            --gold-dk: #C4862A;
+
+            --cream: #FFEFD9;
+            --parch: #F0DFC0;
+            --ivory: #FFF8F0;
+            --muted: #785B3F;
+
+            --border: rgba(247, 170, 79, .14);
+            --border2: rgba(247, 170, 79, .08);
+            --glow: rgba(247, 170, 79, .15);
+            --shadow: 0 32px 80px rgba(0, 0, 0, .6);
+            --shadow-sm: 0 8px 32px rgba(0, 0, 0, .4);
+
+            --ease-spring: cubic-bezier(.16, 1, .3, 1);
+            --ease-smooth: cubic-bezier(.4, 0, .2, 1);
+        }
+
+        /* ═══════════════════════════════════
+   RESET
+═══════════════════════════════════ */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--void);
+            color: var(--cream);
+            overflow-x: hidden;
+            cursor: none
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none
+        }
+
+        button {
+            cursor: none;
+            border: none;
+            background: none;
+            font-family: 'Montserrat', sans-serif
+        }
+
+        img {
+            max-width: 100%;
+            display: block
+        }
+
+        ul {
+            list-style: none
+        }
+
+        /* ═══════════════════════════════════
+   SCROLLBAR
+═══════════════════════════════════ */
+        ::-webkit-scrollbar {
+            width: 3px
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--void)
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, var(--gold-dk), var(--gold));
+            border-radius: 2px
+        }
+
+        /* ═══════════════════════════════════
+   LOADER
+═══════════════════════════════════ */
+        body.loading {
+            overflow: hidden
+        }
+
+        #loader {
+            position: fixed;
+            inset: 0;
+            z-index: 9000;
+            background: var(--void);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        #loader.out .ld-curtain-l {
+            transform: translateX(-100%)
+        }
+
+        #loader.out .ld-curtain-r {
+            transform: translateX(100%)
+        }
+
+        #loader.out .ld-center {
+            opacity: 0;
+            transform: scale(1.3)
+        }
+
+        .ld-curtain-l,
+        .ld-curtain-r {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 50%;
+            background: var(--void);
+            z-index: 2;
+            transition: transform 1s cubic-bezier(.77, 0, .18, 1);
+            will-change: transform;
+        }
+
+        .ld-curtain-l {
+            left: 0
+        }
+
+        .ld-curtain-r {
+            right: 0
+        }
+
+        .ld-center {
+            position: relative;
+            z-index: 3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: opacity .6s ease, transform .6s ease;
+        }
+
+        .ld-ring-wrap {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ld-ring {
+            position: absolute;
+            inset: 0;
+        }
+
+        .ld-ring circle {
+            fill: none;
+            stroke-width: 1;
+            stroke-linecap: round;
+        }
+
+        .ld-ring-bg {
+            stroke: rgba(247, 170, 79, .08)
+        }
+
+        .ld-ring-fill {
+            stroke: url(#ldGrad);
+            stroke-dasharray: 565;
+            stroke-dashoffset: 565;
+            transform: rotate(-90deg);
+            transform-origin: center;
+            transition: stroke-dashoffset 2s cubic-bezier(.4, 0, .2, 1);
+        }
+
+        .ld-ring-glow {
+            position: absolute;
+            inset: -20px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(247, 170, 79, .06) 0%, transparent 70%);
+            animation: ldGlow 2.5s ease-in-out infinite;
+        }
+
+        .ld-logo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            height: 110px;
+            width: auto;
+            opacity: 0;
+            animation: ldZoomIn .8s .15s cubic-bezier(.16, 1, .3, 1) forwards;
+            filter: drop-shadow(0 0 30px rgba(247, 170, 79, .2));
+        }
+
+        .ld-particles {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .ld-p {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            border-radius: 50%;
+            background: var(--gold);
+            opacity: 0;
+        }
+
+        .ld-pct {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            font-weight: 300;
+            letter-spacing: .3em;
+            color: rgba(247, 170, 79, .4);
+            margin-top: 32px;
+            opacity: 0;
+            animation: ldFadeIn .4s .5s ease forwards;
+        }
+
+        .ld-pct span {
+            color: var(--gold);
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        @keyframes ldZoomIn {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(.7);
+                filter: blur(10px) drop-shadow(0 0 30px rgba(247, 170, 79, .2))
+            }
+
+            100% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+                filter: blur(0) drop-shadow(0 0 30px rgba(247, 170, 79, .3))
+            }
+        }
+
+        @keyframes ldGlow {
+
+            0%,
+            100% {
+                opacity: .3;
+                transform: scale(.9)
+            }
+
+            50% {
+                opacity: .7;
+                transform: scale(1.1)
+            }
+        }
+
+        @keyframes ldFadeIn {
+            to {
+                opacity: 1
+            }
+        }
+
+        @keyframes ldFloat {
+            0% {
+                transform: translateY(100vh);
+                opacity: 0
+            }
+
+            10% {
+                opacity: 1
+            }
+
+            90% {
+                opacity: 1
+            }
+
+            100% {
+                transform: translateY(-20vh);
+                opacity: 0
+            }
+        }
+
+        @media(max-width:480px) {
+            .ld-ring-wrap {
+                width: 160px;
+                height: 160px
+            }
+
+            .ld-logo {
+                height: 80px
+            }
+
+            .ld-pct {
+                margin-top: 24px;
+                font-size: 10px
+            }
+
+            .ld-pct span {
+                font-size: 11px
+            }
+        }
+
+        @media(max-width:360px) {
+            .ld-ring-wrap {
+                width: 130px;
+                height: 130px
+            }
+
+            .ld-logo {
+                height: 65px
+            }
+
+            .ld-pct {
+                margin-top: 20px
+            }
+        }
+
+        /* ═══════════════════════════════════
+   CURSOR
+═══════════════════════════════════ */
+        #cur,
+        #cur-r {
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 8999;
+            will-change: transform
+        }
+
+        #cur {
+            width: 22px;
+            height: 22px;
+            filter: drop-shadow(0 0 6px rgba(247,170,79,.5));
+            transition: transform .1s, width .25s, height .25s, opacity .25s;
+        }
+
+        #cur svg {
+            width: 100%;
+            height: 100%;
+            transition: transform .3s var(--ease-spring);
+        }
+
+        #cur-r {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px dashed rgba(247,170,79,.3);
+            transition: transform .5s var(--ease-spring), width .3s, height .3s, border-color .3s, opacity .3s;
+            animation: curSpin 8s linear infinite;
+        }
+
+        @keyframes curSpin {
+            to { rotate: 360deg }
+        }
+
+        @media(max-width:1023px) {
+            #cur, #cur-r { display: none !important }
+            *, *::before, *::after { cursor: auto !important }
+        }
+
+        body.hover-mode #cur {
+            width: 32px;
+            height: 32px;
+            filter: drop-shadow(0 0 12px rgba(247,170,79,.6));
+        }
+
+        body.hover-mode #cur svg {
+            transform: rotate(45deg) scale(1.1);
+        }
+
+        body.hover-mode #cur-r {
+            width: 52px;
+            height: 52px;
+            border-color: rgba(247,170,79,.5);
+            border-style: solid;
+            animation-duration: 4s;
+        }
+
+        /* ═══════════════════════════════════
+   KEYFRAMES
+═══════════════════════════════════ */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(32px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0
+            }
+
+            to {
+                opacity: 1
+            }
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg)
+            }
+
+            50% {
+                transform: translateY(-14px) rotate(2deg)
+            }
+        }
+
+        @keyframes ticker {
+            from {
+                transform: translateX(0)
+            }
+
+            to {
+                transform: translateX(-50%)
+            }
+        }
+
+        @keyframes shimmer {
+
+            0%,
+            100% {
+                opacity: .5
+            }
+
+            50% {
+                opacity: 1
+            }
+        }
+
+        @keyframes pulseDot {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 1
+            }
+
+            50% {
+                transform: scale(1.2);
+                opacity: .6
+            }
+        }
+
+        @keyframes rotateSlow {
+            to {
+                transform: rotate(360deg)
+            }
+        }
+
+        @keyframes glowPulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 20px rgba(247, 170, 79, .2)
+            }
+
+            50% {
+                box-shadow: 0 0 40px rgba(247, 170, 79, .5)
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(120%);
+                opacity: 0
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1
+            }
+        }
+
+        @keyframes toastOut {
+            to {
+                transform: translateX(120%);
+                opacity: 0
+            }
+        }
+
+        /* ═══════════════════════════════════
+   REVEAL
+═══════════════════════════════════ */
+        .rv {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity .9s var(--ease-spring), transform .9s var(--ease-spring)
+        }
+
+        .rv.on {
+            opacity: 1;
+            transform: translateY(0)
+        }
+
+        .rv-l {
+            opacity: 0;
+            transform: translateX(-28px);
+            transition: opacity .9s var(--ease-spring), transform .9s var(--ease-spring)
+        }
+
+        .rv-l.on {
+            opacity: 1;
+            transform: translateX(0)
+        }
+
+        .rv-r {
+            opacity: 0;
+            transform: translateX(28px);
+            transition: opacity .9s var(--ease-spring), transform .9s var(--ease-spring)
+        }
+
+        .rv-r.on {
+            opacity: 1;
+            transform: translateX(0)
+        }
+
+        .rv-s {
+            opacity: 0;
+            transform: scale(.95);
+            transition: opacity .9s var(--ease-spring), transform .9s var(--ease-spring)
+        }
+
+        .rv-s.on {
+            opacity: 1;
+            transform: scale(1)
+        }
+
+        .d1 {
+            transition-delay: .08s
+        }
+
+        .d2 {
+            transition-delay: .16s
+        }
+
+        .d3 {
+            transition-delay: .24s
+        }
+
+        .d4 {
+            transition-delay: .32s
+        }
+
+        .d5 {
+            transition-delay: .40s
+        }
+
+        .d6 {
+            transition-delay: .48s
+        }
+
+        /* ═══════════════════════════════════
+   LAYOUT
+═══════════════════════════════════ */
+        .wrap {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 64px
+        }
+
+        @media(max-width:768px) {
+            .wrap {
+                padding: 0 24px
+            }
+        }
+
+        @media(max-width:360px) {
+            .wrap {
+                padding: 0 16px
+            }
+        }
+
+        .sec {
+            padding: 128px 0;
+            contain: layout style paint;
+        }
+
+        @media(max-width:768px) {
+            .sec {
+                padding: 80px 0
+            }
+        }
+
+        @media(max-width:480px) {
+            .sec {
+                padding: 56px 0
+            }
+        }
+
+        .sec-label {
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: .5em;
+            text-transform: uppercase;
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 18px
+        }
+
+        .sec-label::before {
+            content: '';
+            width: 32px;
+            height: 1px;
+            background: linear-gradient(to right, var(--gold), transparent);
+            flex-shrink: 0
+        }
+
+        .sec-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(36px, 5vw, 60px);
+            font-weight: 600;
+            line-height: 1.08;
+            margin-bottom: 20px;
+            letter-spacing: -.02em
+        }
+
+        .sec-title em {
+            color: var(--gold);
+            font-style: italic
+        }
+
+        .sec-sub {
+            font-size: 14px;
+            font-weight: 300;
+            color: rgba(255, 239, 217, .45);
+            line-height: 1.85;
+            max-width: 480px
+        }
+
+        @media(max-width:480px) {
+            .sec-sub {
+                max-width: 100%;
+                font-size: 13px
+            }
+
+            .sec-label {
+                font-size: 9px;
+                gap: 12px;
+                margin-bottom: 14px
+            }
+        }
+
+        /* ═══════════════════════════════════
+   BUTTONS
+═══════════════════════════════════ */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 15px 38px;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: .35em;
+            text-transform: uppercase;
+            cursor: none;
+            transition: all .28s var(--ease-smooth);
+            position: relative;
+            overflow: hidden
+        }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(255, 255, 255, 0);
+            transition: background .25s
+        }
+
+        .btn:hover::after {
+            background: rgba(255, 255, 255, .08)
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-lt) 100%);
+            color: var(--void);
+            box-shadow: 0 4px 20px rgba(247, 170, 79, .3)
+        }
+
+        .btn-gold:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(247, 170, 79, .45)
+        }
+
+        .btn-gold:active {
+            transform: translateY(-1px)
+        }
+
+        .btn-outline {
+            border: 1px solid rgba(247, 170, 79, .45);
+            color: var(--gold);
+            background: transparent;
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px)
+        }
+
+        .btn-outline:hover {
+            background: linear-gradient(135deg, var(--gold), var(--gold-lt));
+            color: var(--void);
+            border-color: transparent;
+            box-shadow: 0 8px 24px rgba(247, 170, 79, .35);
+            transform: translateY(-2px)
+        }
+
+        .btn-dark {
+            background: rgba(255, 239, 217, .05);
+            color: var(--cream);
+            border: 1px solid rgba(255, 239, 217, .1);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px)
+        }
+
+        .btn-dark:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+            transform: translateY(-2px)
+        }
+
+        /* ═══════════════════════════════════
+   NAVBAR
+═══════════════════════════════════ */
+        #nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 500;
+            padding: 24px 64px;
+            transition: all .4s var(--ease-smooth);
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+
+        body.revealed #nav {
+            animation: navReveal .8s .6s cubic-bezier(.16, 1, .3, 1) forwards;
+        }
+
+        @keyframes navReveal {
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        #nav.s {
+            background: rgba(13, 3, 3, .82);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-bottom: 1px solid rgba(247, 170, 79, .1);
+            padding: 14px 64px;
+            box-shadow: 0 8px 40px rgba(0, 0, 0, .4);
+        }
+
+        .nav-in {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 32px
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0
+        }
+
+        .nav-logo:hover .nav-logo-icon {
+            transform: translateY(-3px) scale(1.05)
+        }
+
+        .nav-logo-icon {
+            transition: transform .4s var(--ease-spring)
+        }
+
+        .nav-logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: .04em;
+            color: var(--cream)
+        }
+
+        .nav-logo-text em {
+            color: var(--gold);
+            font-style: italic
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px
+        }
+
+        .nav-links a {
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: .28em;
+            text-transform: uppercase;
+            color: rgba(255, 239, 217, .35);
+            transition: color .22s;
+            position: relative
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: var(--gold);
+            transform: scaleX(0);
+            transition: transform .3s var(--ease-spring);
+            transform-origin: left
+        }
+
+        .nav-links a:hover {
+            color: var(--gold)
+        }
+
+        .nav-links a:hover::after {
+            transform: scaleX(1)
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 20px
+        }
+
+        .lang-switch {
+            display: flex;
+            gap: 4px;
+            align-items: center
+        }
+
+        .lang-btn {
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: .05em;
+            text-transform: uppercase;
+            color: rgba(255, 239, 217, .3);
+            padding: 4px 8px;
+            border-radius: 4px;
+            transition: all .22s;
+            background: none;
+            font-family: 'Montserrat', sans-serif
+        }
+
+        .lang-btn:hover {
+            color: rgba(255, 239, 217, .6)
+        }
+
+        .lang-btn.active {
+            color: var(--gold);
+            background: rgba(247, 170, 79, .1)
+        }
+
+        @keyframes bump {
+
+            0%,
+            100% {
+                transform: scale(1)
+            }
+
+            50% {
+                transform: scale(1.6)
+            }
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            padding: 4px
+        }
+
+        .hamburger span {
+            display: block;
+            width: 24px;
+            height: 1px;
+            background: var(--cream);
+            transition: all .35s var(--ease-spring)
+        }
+
+        @media(max-width:900px) {
+            .nav-links {
+                display: none
+            }
+
+            .hamburger {
+                display: flex
+            }
+
+            #nav {
+                padding: 18px 24px
+            }
+
+            #nav.s {
+                padding: 14px 24px
+            }
+        }
+
+        @media(max-width:480px) {
+            .nav-logo-text {
+                font-size: 18px
+            }
+
+            .nav-logo-icon {
+                height: 28px
+            }
+        }
+
+        /* mobile menu */
+        .mob-menu {
+            position: fixed;
+            inset: 0;
+            z-index: 490;
+            background: rgba(13, 3, 3, .96);
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 36px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .4s;
+        }
+
+        .mob-menu.open {
+            opacity: 1;
+            pointer-events: all
+        }
+
+        .mob-menu a {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 32px;
+            font-weight: 600;
+            color: rgba(255, 239, 217, .7);
+            letter-spacing: .04em;
+            transition: all .25s;
+            position: relative;
+        }
+
+        .mob-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: var(--gold);
+            transform: scaleX(0);
+            transition: transform .3s
+        }
+
+        .mob-menu a:hover {
+            color: var(--gold)
+        }
+
+        .mob-menu a:hover::after {
+            transform: scaleX(1)
+        }
+
+        @media(max-width:480px) {
+            .mob-menu {
+                gap: 28px
+            }
+
+            .mob-menu a {
+                font-size: 24px
+            }
+        }
+
+        /* ═══════════════════════════════════
+   HERO
+═══════════════════════════════════ */
+        #hero {
+            min-height: 100vh;
+            background: radial-gradient(ellipse 80% 70% at 50% 55%, #3D1515 0%, #1E0808 40%, var(--void) 80%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: scale(1.04);
+            transition: opacity 1.2s cubic-bezier(.4, 0, .2, 1), transform 1.4s cubic-bezier(.16, 1, .3, 1);
+        }
+
+        body.revealed #hero {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .hero-orb {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            filter: blur(100px);
+            opacity: 0;
+            transform: scale(.6);
+            transition: opacity 1.8s ease, transform 2s cubic-bezier(.16, 1, .3, 1);
+        }
+
+        body.revealed .hero-orb {
+            animation: float 6s ease-in-out infinite;
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .hero-orb-1 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(138, 42, 41, .2) 0%, transparent 70%);
+            top: -120px;
+            right: -200px;
+            transition-delay: .3s;
+        }
+
+        body.revealed .hero-orb-1 {
+            animation-delay: -2s;
+            animation-duration: 8s;
+        }
+
+        .hero-orb-2 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(247, 170, 79, .08) 0%, transparent 70%);
+            bottom: -100px;
+            left: -150px;
+            transition-delay: .5s;
+        }
+
+        body.revealed .hero-orb-2 {
+            animation-delay: -4s;
+            animation-duration: 10s;
+        }
+
+        .hero-vignette {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center, transparent 30%, rgba(10, 2, 2, .6) 100%);
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 2s ease .4s;
+        }
+
+        body.revealed .hero-vignette {
+            opacity: 1
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 0 24px;
+            max-width: 700px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hero-eyebrow,
+        .hero-title,
+        .hero-sub,
+        .hero-btns {
+            opacity: 0;
+            transform: translateY(50px) scale(.97);
+            filter: blur(8px);
+        }
+
+        body.revealed .hero-eyebrow {
+            animation: heroReveal .9s .4s cubic-bezier(.16, 1, .3, 1) forwards;
+        }
+
+        body.revealed .hero-title {
+            animation: heroReveal 1s .65s cubic-bezier(.16, 1, .3, 1) forwards;
+        }
+
+        body.revealed .hero-sub {
+            animation: heroReveal .8s .95s cubic-bezier(.16, 1, .3, 1) forwards;
+        }
+
+        body.revealed .hero-btns {
+            animation: heroReveal .8s 1.2s cubic-bezier(.16, 1, .3, 1) forwards;
+        }
+
+        @keyframes heroReveal {
+            0% {
+                opacity: 0;
+                transform: translateY(50px) scale(.97);
+                filter: blur(8px)
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                filter: blur(0)
+            }
+        }
+
+        .hero-eyebrow {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+            color: rgba(247, 170, 79, .5);
+            margin-bottom: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .hero-eyebrow::before,
+        .hero-eyebrow::after {
+            content: '';
+            width: 28px;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(247, 170, 79, .35))
+        }
+
+        .hero-eyebrow::after {
+            transform: scaleX(-1)
+        }
+
+        .hero-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(48px, 8vw, 96px);
+            font-weight: 700;
+            line-height: .95;
+            letter-spacing: -.02em;
+            color: var(--cream);
+            margin-bottom: 20px;
+        }
+
+        .hero-title em {
+            display: block;
+            color: var(--gold);
+            font-style: italic
+        }
+
+        .hero-sub {
+            font-size: clamp(13px, 1.8vw, 16px);
+            font-weight: 300;
+            letter-spacing: .18em;
+            color: rgba(255, 239, 217, .4);
+            font-style: italic;
+            margin-top: 12px;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        @media(max-width:768px) {
+            .hero-orb-1 {
+                width: 300px;
+                height: 300px;
+                right: -120px;
+                top: -60px
+            }
+
+            .hero-orb-2 {
+                width: 250px;
+                height: 250px;
+                left: -80px;
+                bottom: -60px
+            }
+
+            .hero-eyebrow {
+                font-size: 10px;
+                margin-bottom: 22px
+            }
+        }
+
+        @media(max-width:480px) {
+            .hero-orb-1 {
+                width: 200px;
+                height: 200px;
+                right: -80px;
+                top: -40px
+            }
+
+            .hero-orb-2 {
+                width: 150px;
+                height: 150px;
+                left: -50px;
+                bottom: -40px
+            }
+
+            .hero-eyebrow {
+                font-size: 9px;
+                gap: 8px;
+                margin-bottom: 18px
+            }
+
+            .hero-eyebrow::before,
+            .hero-eyebrow::after {
+                width: 20px
+            }
+
+            .hero-sub {
+                letter-spacing: .12em
+            }
+
+            .hero-btns {
+                gap: 12px;
+                width: 100%
+            }
+
+            .hero-btns .btn {
+                width: 100%;
+                justify-content: center
+            }
+        }
+
+        /* ═══════════════════════════════════
+   TICKER
+═══════════════════════════════════ */
+        .ticker-wrap {
+            background: linear-gradient(90deg, var(--gold-dk), var(--gold), var(--gold-lt), var(--gold), var(--gold-dk));
+            padding: 14px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            box-shadow: 0 0 40px rgba(247, 170, 79, .25);
+        }
+
+        .ticker-track {
+            display: inline-flex;
+            animation: ticker 36s linear infinite;
+            will-change: transform;
+        }
+
+        .t-item {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: .28em;
+            text-transform: uppercase;
+            color: var(--void);
+            padding: 0 36px
+        }
+
+        .t-dot {
+            color: rgba(20, 8, 8, .35);
+            font-size: 8px;
+            align-self: center
+        }
+
+        @media(max-width:768px) {
+            .ticker-wrap {
+                padding: 12px 0
+            }
+
+            .t-item {
+                padding: 0 20px;
+                font-size: 10px
+            }
+        }
+
+        @media(max-width:480px) {
+            .ticker-wrap {
+                padding: 10px 0
+            }
+
+            .t-item {
+                padding: 0 14px;
+                font-size: 9px;
+                letter-spacing: .2em
+            }
+        }
+
+        /* ═══════════════════════════════════
+   PROMO SLIDER
+═══════════════════════════════════ */
+        #promo {
+            overflow: hidden;
+            position: relative;
+            content-visibility: auto;
+            contain-intrinsic-size: auto 500px;
+        }
+
+        .promo-track {
+            display: flex;
+            transition: transform .65s var(--ease-smooth);
+            will-change: transform;
+        }
+
+        .promo-slide {
+            min-width: 100%;
+            padding: 110px 64px;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: center;
+            gap: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @media(max-width:900px) {
+            .promo-slide {
+                padding: 90px 40px;
+                gap: 40px
+            }
+        }
+
+        @media(max-width:768px) {
+            .promo-slide {
+                grid-template-columns: 1fr;
+                padding: 80px 24px;
+                gap: 32px
+            }
+        }
+
+        @media(max-width:480px) {
+            .promo-slide {
+                padding: 56px 20px;
+                gap: 24px
+            }
+
+            .promo-eyebrow {
+                font-size: 8px;
+                letter-spacing: .35em;
+                margin-bottom: 12px
+            }
+
+            .promo-text {
+                font-size: 13px;
+                margin-bottom: 28px;
+                max-width: 100%
+            }
+
+            .promo-dots {
+                padding: 20px 0
+            }
+        }
+
+        .promo-slide:nth-child(1) {
+            background: linear-gradient(135deg, #3D1515 0%, #8A2A29 100%)
+        }
+
+        .promo-slide:nth-child(2) {
+            background: linear-gradient(135deg, #0E2006 0%, #1A3010 50%, #2C4A1A 100%)
+        }
+
+        .promo-slide:nth-child(3) {
+            background: linear-gradient(135deg, #1E0808 0%, #3D1515 100%)
+        }
+
+        .promo-slide::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(255, 255, 255, .03) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .promo-eyebrow {
+            font-size: 9px;
+            font-weight: 600;
+            letter-spacing: .5em;
+            text-transform: uppercase;
+            color: rgba(247, 170, 79, .6);
+            margin-bottom: 16px
+        }
+
+        .promo-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(36px, 5.5vw, 64px);
+            font-weight: 700;
+            color: var(--cream);
+            line-height: .96;
+            margin-bottom: 24px
+        }
+
+        .promo-title em {
+            color: var(--gold);
+            font-style: italic
+        }
+
+        .promo-text {
+            font-size: 14px;
+            font-weight: 300;
+            color: rgba(255, 239, 217, .48);
+            line-height: 1.8;
+            margin-bottom: 40px;
+            max-width: 440px
+        }
+
+        .promo-big {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(80px, 14vw, 160px);
+            font-weight: 700;
+            color: rgba(247, 170, 79, .08);
+            line-height: 1;
+            flex-shrink: 0;
+            letter-spacing: -.03em;
+        }
+
+        .promo-dots {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            padding: 28px 0;
+            background: var(--void)
+        }
+
+        .pdot {
+            width: 28px;
+            height: 2px;
+            background: rgba(255, 239, 217, .1);
+            cursor: none;
+            transition: all .3s var(--ease-spring)
+        }
+
+        .pdot.active {
+            background: linear-gradient(90deg, var(--gold-dk), var(--gold));
+            width: 48px
+        }
+
+        /* ═══════════════════════════════════
+   ABOUT
+═══════════════════════════════════ */
+        #about {
+            background: var(--parch);
+            position: relative;
+            overflow: hidden;
+            content-visibility: auto;
+            contain-intrinsic-size: auto 800px;
+        }
+
+        #about::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(138, 42, 41, .08) 0%, transparent 70%);
+            pointer-events: none
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 90px;
+            align-items: center
+        }
+
+        @media(max-width:900px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 56px
+            }
+        }
+
+        .about-img-block {
+            position: relative
+        }
+
+        .about-img-main {
+            width: 100%;
+            aspect-ratio: 4/5;
+            background: linear-gradient(150deg, var(--burg-dk) 0%, var(--maroon) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-img-main::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cg fill='none' stroke='rgba(247,170,79,0.1)' stroke-width='0.8'%3E%3Cpolygon points='50,5 92,27 92,73 50,95 8,73 8,27'/%3E%3Cpolygon points='50,18 80,33 80,67 50,82 20,67 20,33'/%3E%3Ccircle cx='50' cy='50' r='14'/%3E%3C/g%3E%3C/svg%3E");
+            background-size: 100px 100px;
+        }
+
+        .about-img-main::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, .3) 100%)
+        }
+
+        .about-img-badge {
+            position: absolute;
+            bottom: -28px;
+            right: -28px;
+            width: 130px;
+            height: 130px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-lt) 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            box-shadow: 0 20px 50px rgba(247, 170, 79, .4);
+        }
+
+        .about-img-badge .num {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 44px;
+            font-weight: 700;
+            color: var(--void);
+            line-height: 1
+        }
+
+        .about-img-badge .lbl {
+            font-size: 8px;
+            font-weight: 600;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            color: rgba(20, 8, 8, .6);
+            text-align: center
+        }
+
+        .about-text {
+            font-size: 15px;
+            font-weight: 300;
+            color: rgba(20, 8, 8, .58);
+            line-height: 1.95;
+            margin-bottom: 44px
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            margin-bottom: 44px;
+            border: 1px solid rgba(138, 42, 41, .12);
+            border-radius: 2px;
+            overflow: hidden
+        }
+
+        .stat-item {
+            padding: 24px 28px;
+            border-right: 1px solid rgba(138, 42, 41, .1);
+            border-bottom: 1px solid rgba(138, 42, 41, .1);
+            transition: background .25s
+        }
+
+        .stat-item:hover {
+            background: rgba(138, 42, 41, .05)
+        }
+
+        .stat-item:nth-child(2n) {
+            border-right: none
+        }
+
+        .stat-item:nth-child(3),
+        .stat-item:nth-child(4) {
+            border-bottom: none
+        }
+
+        .stat-num {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 44px;
+            font-weight: 700;
+            color: var(--burg);
+            line-height: 1
+        }
+
+        .stat-lbl {
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            color: rgba(20, 8, 8, .35);
+            margin-top: 6px
+        }
+
+        @media(max-width:768px) {
+            .about-img-badge {
+                width: 100px;
+                height: 100px;
+                bottom: -20px;
+                right: -20px
+            }
+
+            .about-img-badge .num {
+                font-size: 36px
+            }
+
+            .about-img-badge .lbl {
+                font-size: 7px
+            }
+        }
+
+        @media(max-width:480px) {
+            .about-img-badge {
+                width: 80px;
+                height: 80px;
+                bottom: -14px;
+                right: -14px
+            }
+
+            .about-img-badge .num {
+                font-size: 28px
+            }
+
+            .about-text {
+                font-size: 14px;
+                margin-bottom: 32px
+            }
+
+            .about-stats {
+                grid-template-columns: 1fr;
+                margin-bottom: 32px
+            }
+
+            .stat-item {
+                padding: 18px 20px
+            }
+
+            .stat-item:nth-child(2n) {
+                border-right: none
+            }
+
+            .stat-item:nth-child(odd) {
+                border-right: none
+            }
+
+            .stat-item:nth-child(3) {
+                border-bottom: 1px solid rgba(138, 42, 41, .1)
+            }
+
+            .stat-num {
+                font-size: 32px
+            }
+        }
+
+        /* ═══════════════════════════════════
+   LOCATIONS
+═══════════════════════════════════ */
+        #locations {
+            background: var(--deep);
+            padding: 128px 0;
+            position: relative;
+            content-visibility: auto;
+            contain-intrinsic-size: auto 900px;
+        }
+
+        .loc-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3px;
+            margin-top: 64px
+        }
+
+        @media(max-width:768px) {
+            .loc-grid {
+                grid-template-columns: 1fr
+            }
+        }
+
+        .loc-card {
+            background: var(--maroon);
+            padding: 52px;
+            position: relative;
+            overflow: hidden;
+            transition: transform .3s var(--ease-spring);
+        }
+
+        .loc-card:hover {
+            transform: translateY(-4px)
+        }
+
+        .loc-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, rgba(247, 170, 79, .07) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .loc-num {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 90px;
+            font-weight: 700;
+            color: rgba(247, 170, 79, .06);
+            line-height: 1;
+            position: absolute;
+            top: 16px;
+            right: 28px;
+        }
+
+        .loc-tag {
+            font-size: 9px;
+            font-weight: 600;
+            letter-spacing: .4em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px
+        }
+
+        .loc-tag::before {
+            content: '';
+            width: 20px;
+            height: 1px;
+            background: var(--gold)
+        }
+
+        .loc-name {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--cream);
+            margin-bottom: 32px;
+            line-height: 1.15
+        }
+
+        .loc-rows {
+            display: flex;
+            flex-direction: column;
+            gap: 18px
+        }
+
+        .loc-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px
+        }
+
+        .loc-row svg {
+            width: 17px;
+            height: 17px;
+            stroke: var(--gold);
+            fill: none;
+            stroke-width: 1.5;
+            flex-shrink: 0;
+            margin-top: 2px
+        }
+
+        .loc-row-label {
+            font-size: 9px;
+            font-weight: 600;
+            letter-spacing: .25em;
+            text-transform: uppercase;
+            color: rgba(255, 239, 217, .25);
+            margin-bottom: 3px
+        }
+
+        .loc-row-val {
+            font-size: 13px;
+            font-weight: 300;
+            color: rgba(255, 239, 217, .65);
+            line-height: 1.5
+        }
+
+        .loc-map {
+            height: 190px;
+            background: linear-gradient(135deg, #1E0808, #2A1210);
+            margin-top: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            cursor: none;
+            border: 1px solid rgba(247, 170, 79, .08);
+            transition: border-color .25s;
+        }
+
+        .loc-map:hover {
+            border-color: rgba(247, 170, 79, .25)
+        }
+
+        .loc-map::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cg fill='none' stroke='rgba(247,170,79,0.07)' stroke-width='0.8'%3E%3Cpolygon points='50,5 92,27 92,73 50,95 8,73 8,27'/%3E%3Cpolygon points='50,18 80,33 80,67 50,82 20,67 20,33'/%3E%3Ccircle cx='50' cy='50' r='14'/%3E%3C/g%3E%3C/svg%3E");
+            background-size: 80px 80px;
+        }
+
+        .loc-map-pin {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px
+        }
+
+        .loc-map-pin svg {
+            width: 30px;
+            height: 30px;
+            stroke: var(--gold);
+            fill: rgba(247, 170, 79, .1);
+            stroke-width: 1.5;
+            animation: pulseDot 2.5s ease-in-out infinite
+        }
+
+        .loc-map-pin span {
+            font-size: 9px;
+            letter-spacing: .3em;
+            text-transform: uppercase;
+            color: rgba(247, 170, 79, .45)
+        }
+
+        @media(max-width:768px) {
+            .loc-card {
+                padding: 36px
+            }
+
+            .loc-grid {
+                margin-top: 48px
+            }
+
+            .loc-map {
+                height: 160px;
+                margin-top: 28px
+            }
+        }
+
+        @media(max-width:480px) {
+            .loc-card {
+                padding: 24px
+            }
+
+            .loc-num {
+                font-size: 60px;
+                right: 16px;
+                top: 10px
+            }
+
+            .loc-name {
+                font-size: 22px;
+                margin-bottom: 24px
+            }
+
+            .loc-grid {
+                margin-top: 36px
+            }
+
+            .loc-map {
+                height: 140px;
+                margin-top: 24px
+            }
+
+            .loc-tag {
+                font-size: 8px;
+                margin-bottom: 14px
+            }
+        }
+
+        /* ═══════════════════════════════════
+   INSTAGRAM
+═══════════════════════════════════ */
+        #atmosphere {
+            background: var(--deep);
+            padding: 120px 0;
+            content-visibility: auto;
+            contain-intrinsic-size: auto 700px;
+        }
+
+        .ig-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3px;
+            margin-top: 56px
+        }
+
+        .ig-tile {
+            aspect-ratio: 1;
+            position: relative;
+            overflow: hidden;
+            cursor: none
+        }
+
+        .ig-tile-bg {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform .5s var(--ease-smooth)
+        }
+
+        .ig-tile:hover .ig-tile-bg {
+            transform: scale(1.08)
+        }
+
+        .ig-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(20, 8, 8, .6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity .35s;
+            -webkit-backdrop-filter: blur(4px);
+            backdrop-filter: blur(4px);
+        }
+
+        .ig-tile:hover .ig-overlay {
+            opacity: 1
+        }
+
+        .ig-overlay svg {
+            width: 30px;
+            height: 30px;
+            stroke: var(--cream);
+            fill: none;
+            stroke-width: 1.5
+        }
+
+        @media(max-width:768px) {
+            #atmosphere {
+                padding: 80px 0
+            }
+
+            .ig-grid {
+                grid-template-columns: repeat(2, 1fr);
+                margin-top: 40px
+            }
+        }
+
+        @media(max-width:480px) {
+            #atmosphere {
+                padding: 56px 0
+            }
+
+            .ig-grid {
+                margin-top: 32px
+            }
+
+            .ig-overlay svg {
+                width: 24px;
+                height: 24px
+            }
+        }
+
+        /* ═══════════════════════════════════
+   FOOTER
+═══════════════════════════════════ */
+        #footer {
+            background: var(--void);
+            border-top: 1px solid rgba(247, 170, 79, .08);
+            padding: 88px 0 44px;
+            position: relative;
+            content-visibility: auto;
+            contain-intrinsic-size: auto 500px;
+        }
+
+        .footer-glow {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            pointer-events: none
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 1.6fr 1fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 72px
+        }
+
+        @media(max-width:900px) {
+            .footer-top {
+                grid-template-columns: 1fr 1fr;
+                gap: 44px
+            }
+        }
+
+        @media(max-width:480px) {
+            .footer-top {
+                grid-template-columns: 1fr
+            }
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 22px
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px
+        }
+
+        .footer-logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--cream)
+        }
+
+        .footer-logo-text em {
+            color: var(--gold);
+            font-style: italic
+        }
+
+        .footer-tagline {
+            font-size: 14px;
+            font-weight: 400;
+            font-style: italic;
+            color: rgba(255, 239, 217, .35);
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.7
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 12px
+        }
+
+        .soc-btn {
+            width: 38px;
+            height: 38px;
+            border: 1px solid rgba(255, 239, 217, .1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 239, 217, .35);
+            cursor: none;
+            transition: all .25s;
+        }
+
+        .soc-btn:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+            background: rgba(247, 170, 79, .08);
+            transform: translateY(-2px)
+        }
+
+        .footer-col-title {
+            font-size: 9px;
+            font-weight: 600;
+            letter-spacing: .4em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 24px
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px
+        }
+
+        .footer-links a {
+            font-size: 13px;
+            font-weight: 300;
+            color: rgba(255, 239, 217, .35);
+            transition: color .2s;
+            cursor: none;
+            position: relative;
+            display: inline-block
+        }
+
+        .footer-links a:hover {
+            color: var(--gold-lt)
+        }
+
+        .footer-contacts {
+            display: flex;
+            flex-direction: column;
+            gap: 14px
+        }
+
+        .footer-contact-item {
+            display: flex;
+            flex-direction: column;
+            gap: 3px
+        }
+
+        .footer-contact-label {
+            font-size: 9px;
+            font-weight: 600;
+            letter-spacing: .25em;
+            text-transform: uppercase;
+            color: rgba(255, 239, 217, .18)
+        }
+
+        .footer-contact-val {
+            font-size: 13px;
+            font-weight: 300;
+            color: rgba(255, 239, 217, .45);
+            cursor: none;
+            transition: color .2s
+        }
+
+        .footer-contact-val:hover {
+            color: var(--gold-lt)
+        }
+
+        .footer-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid rgba(255, 239, 217, .05);
+            padding-top: 36px;
+            gap: 16px;
+            flex-wrap: wrap
+        }
+
+        .footer-copy {
+            font-size: 11px;
+            font-weight: 300;
+            color: rgba(255, 239, 217, .15)
+        }
+
+        .footer-made {
+            font-size: 11px;
+            font-weight: 300;
+            color: rgba(255, 239, 217, .1)
+        }
+
+        @media(max-width:768px) {
+            #footer {
+                padding: 56px 0 32px
+            }
+
+            .footer-top {
+                margin-bottom: 48px
+            }
+
+            .footer-bottom {
+                padding-top: 28px
+            }
+        }
+
+        @media(max-width:480px) {
+            #footer {
+                padding: 44px 0 24px
+            }
+
+            .footer-glow {
+                width: 100%
+            }
+
+            .footer-logo-text {
+                font-size: 22px
+            }
+
+            .footer-tagline {
+                font-size: 13px
+            }
+
+            .footer-top {
+                gap: 36px;
+                margin-bottom: 36px
+            }
+
+            .footer-col-title {
+                margin-bottom: 18px
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 8px;
+                padding-top: 24px
+            }
+        }
+
+        /* ═══════════════════════════════════
+   MOBILE NAV BAR
+═══════════════════════════════════ */
+        .mob-nav {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 400;
+            background: rgba(13, 3, 3, .95);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-top: 1px solid rgba(247, 170, 79, .1);
+            padding: 10px 0 max(10px, env(safe-area-inset-bottom));
+        }
+
+        @media(max-width:768px) {
+            .mob-nav {
+                display: flex
+            }
+        }
+
+        .mob-nav-items {
+            display: flex;
+            width: 100%
+        }
+
+        .mob-nav-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            padding: 8px 4px;
+            color: rgba(255, 239, 217, .3);
+            cursor: none;
+            transition: color .22s
+        }
+
+        .mob-nav-item:hover,
+        .mob-nav-item.active {
+            color: var(--gold)
+        }
+
+        .mob-nav-item svg {
+            width: 20px;
+            height: 20px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 1.5
+        }
+
+        .mob-nav-item span {
+            font-size: 8px;
+            font-weight: 600;
+            letter-spacing: .1em;
+            text-transform: uppercase
+        }
+
+        @media(max-width:768px) {
+            body.revealed {
+                padding-bottom: 70px
+            }
+        }
+
+        @media(max-width:480px) {
+            .mob-nav-item span {
+                font-size: 7px
+            }
+
+            .mob-nav-item svg {
+                width: 18px;
+                height: 18px
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- LOADER -->
+    <div id="loader">
+        <div class="ld-curtain-l"></div>
+        <div class="ld-curtain-r"></div>
+        <div class="ld-particles" id="ldParticles"></div>
+        <div class="ld-center">
+            <div class="ld-ring-wrap">
+                <div class="ld-ring-glow"></div>
+                <svg class="ld-ring" viewBox="0 0 200 200">
+                    <defs>
+                        <linearGradient id="ldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#C4862A" />
+                            <stop offset="100%" stop-color="#F7AA4F" />
+                        </linearGradient>
+                    </defs>
+                    <circle class="ld-ring-bg" cx="100" cy="100" r="90" />
+                    <circle class="ld-ring-fill" id="ldRing" cx="100" cy="100" r="90" />
+                </svg>
+                <img src="jb_logo_v1_gold.svg" alt="Jasmin Bakery" class="ld-logo" fetchpriority="high">
+            </div>
+            <p class="ld-pct"><span id="ldPct">0</span> %</p>
+        </div>
+    </div>
+
+    <!-- CURSORS -->
+    <div id="cur">
+        <svg viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="2.5" fill="#F7AA4F"/>
+            <ellipse cx="12" cy="5.5" rx="2.8" ry="4.5" fill="#F7AA4F" opacity=".85"/>
+            <ellipse cx="12" cy="18.5" rx="2.8" ry="4.5" fill="#F7AA4F" opacity=".85"/>
+            <ellipse cx="5.5" cy="12" rx="4.5" ry="2.8" fill="#F7AA4F" opacity=".85"/>
+            <ellipse cx="18.5" cy="12" rx="4.5" ry="2.8" fill="#F7AA4F" opacity=".85"/>
+            <ellipse cx="7.4" cy="7.4" rx="2.8" ry="4.5" transform="rotate(45 7.4 7.4)" fill="#F7AA4F" opacity=".7"/>
+            <ellipse cx="16.6" cy="16.6" rx="2.8" ry="4.5" transform="rotate(45 16.6 16.6)" fill="#F7AA4F" opacity=".7"/>
+            <ellipse cx="16.6" cy="7.4" rx="2.8" ry="4.5" transform="rotate(-45 16.6 7.4)" fill="#F7AA4F" opacity=".7"/>
+            <ellipse cx="7.4" cy="16.6" rx="2.8" ry="4.5" transform="rotate(-45 7.4 16.6)" fill="#F7AA4F" opacity=".7"/>
+        </svg>
+    </div>
+    <div id="cur-r"></div>
+
+
+
+    <!-- MOBILE MENU -->
+    <div class="mob-menu" id="mobMenu">
+        <a href="menu.html" onclick="closeMob()" data-i18n="nav_menu">Меню</a>
+        <a href="#about" onclick="closeMob()" data-i18n="nav_about">О нас</a>
+        <a href="#locations" onclick="closeMob()" data-i18n="nav_locations">Локации</a>
+        <a href="#atmosphere" onclick="closeMob()" data-i18n="ft_atm">Атмосфера</a>
+    </div>
+
+    <!-- NAV -->
+    <nav id="nav">
+        <div class="nav-in">
+            <a class="nav-logo" href="#">
+                <img src="jb_logo_v1_gold.svg" alt="Jasmin Bakery" class="nav-logo-icon" style="height:44px;width:auto"
+                    decoding="async">
+            </a>
+            <ul class="nav-links">
+                <li><a href="menu.html" data-i18n="nav_menu">Меню</a></li>
+                <li><a href="#about" data-i18n="nav_about">О нас</a></li>
+                <li><a href="#locations" data-i18n="nav_locations">Локации</a></li>
+                <li><a href="#atmosphere" data-i18n="ft_atm">Атмосфера</a></li>
+            </ul>
+            <div class="nav-right">
+                <div class="lang-switch" id="langSwitch">
+                    <button class="lang-btn active" data-lang="ru">RU</button>
+                    <button class="lang-btn" data-lang="uz">UZ</button>
+                    <button class="lang-btn" data-lang="en">EN</button>
+                </div>
+                <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section id="hero">
+        <div class="hero-orb hero-orb-1"></div>
+        <div class="hero-orb hero-orb-2"></div>
+        <div class="hero-vignette"></div>
+        <div class="hero-content">
+            <p class="hero-eyebrow" data-i18n="hero_eyebrow">Пекарня & Кондитерская · С 2016 года</p>
+            <h1 class="hero-title">Jasmin <em>Bakery</em></h1>
+            <p class="hero-sub" data-i18n="hero_sub">Всегда свежее, всегда сладкое!</p>
+            <div style="height:32px"></div>
+            <div class="hero-btns">
+                <a href="menu.html" class="btn btn-gold">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="8" y1="6" x2="21" y2="6" />
+                        <line x1="8" y1="12" x2="21" y2="12" />
+                        <line x1="8" y1="18" x2="21" y2="18" />
+                        <line x1="3" y1="6" x2="3.01" y2="6" />
+                        <line x1="3" y1="12" x2="3.01" y2="12" />
+                        <line x1="3" y1="18" x2="3.01" y2="18" />
+                    </svg>
+                    <span data-i18n="hero_btn_menu">Смотреть меню</span>
+                </a>
+                <a href="#about" class="btn btn-outline" data-i18n="hero_btn_about">О нас</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- TICKER -->
+    <div class="ticker-wrap">
+        <div class="ticker-track">
+            <span class="t-item">🎂 Jasmin Bakery</span><span class="t-dot">✦</span>
+            <span class="t-item">Торты на заказ</span><span class="t-dot">✦</span>
+            <span class="t-item">Har doim yangi, har doim shirin!</span><span class="t-dot">✦</span>
+            <span class="t-item">Восточные сладости</span><span class="t-dot">✦</span>
+            <span class="t-item">Ургенч · Узбекистан</span><span class="t-dot">✦</span>
+            <span class="t-item">Свежая выпечка</span><span class="t-dot">✦</span>
+            <span class="t-item">Открыто 08:00 – 22:00</span><span class="t-dot">✦</span>
+            <span class="t-item">🎂 Jasmin Bakery</span><span class="t-dot">✦</span>
+            <span class="t-item">Торты на заказ</span><span class="t-dot">✦</span>
+            <span class="t-item">Har doim yangi, har doim shirin!</span><span class="t-dot">✦</span>
+            <span class="t-item">Восточные сладости</span><span class="t-dot">✦</span>
+            <span class="t-item">Ургенч · Узбекистан</span><span class="t-dot">✦</span>
+            <span class="t-item">Свежая выпечка</span><span class="t-dot">✦</span>
+            <span class="t-item">Открыто 08:00 – 22:00</span><span class="t-dot">✦</span>
+        </div>
+    </div>
+
+
+    <!-- PROMO -->
+    <section id="promo">
+        <div class="promo-track" id="promoTrack">
+            <div class="promo-slide">
+                <div>
+                    <p class="promo-eyebrow" data-i18n="promo1_eye">Акция · Каждый день</p>
+                    <h3 class="promo-title" data-i18n="promo1_title" data-i18n-html="1">Happy Hour<br><em>14:00 –
+                            16:00</em></h3>
+                    <p class="promo-text" data-i18n="promo1_text">Скидка 15% на все напитки в счастливые часы. Уютная
+                        атмосфера, лучший кофе города.</p>
+                    <a href="menu.html" class="btn btn-gold" data-i18n="promo1_btn">Выбрать напиток</a>
+                </div>
+                <div class="promo-big">−15%</div>
+            </div>
+            <div class="promo-slide">
+                <div>
+                    <p class="promo-eyebrow" data-i18n="promo2_eye">Торты · На заказ</p>
+                    <h3 class="promo-title" data-i18n="promo2_title" data-i18n-html="1">Ваш идеальный<br><em>торт</em>
+                    </h3>
+                    <p class="promo-text" data-i18n="promo2_text">Торты любой сложности — свадебные, детские,
+                        праздничные. Свежие ингредиенты, авторский дизайн.</p>
+                    <a href="tel:+998956021100" class="btn btn-outline" data-i18n="promo2_btn">Позвонить</a>
+                </div>
+                <div class="promo-big">🎂</div>
+            </div>
+            <div class="promo-slide">
+                <div>
+                    <p class="promo-eyebrow" data-i18n="promo3_eye">Доставка · Ургенч</p>
+                    <h3 class="promo-title" data-i18n="promo3_title" data-i18n-html="1">Бесплатно<br><em>от 150 000
+                            сум</em></h3>
+                    <p class="promo-text" data-i18n="promo3_text">Быстрая доставка по Ургенчу. Горячий кофе и свежие
+                        десерты — прямо к вашей двери.</p>
+                    <a href="tel:+998956021100" class="btn btn-gold">+99895 602-11-00</a>
+                </div>
+                <div class="promo-big">0 сум</div>
+            </div>
+        </div>
+        <div class="promo-dots">
+            <button class="pdot active" data-i="0" aria-label="Слайд 1"></button>
+            <button class="pdot" data-i="1" aria-label="Слайд 2"></button>
+            <button class="pdot" data-i="2" aria-label="Слайд 3"></button>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="sec">
+        <div class="wrap">
+            <div class="about-grid">
+                <div class="about-img-block rv-l">
+                    <div class="about-img-main">
+                        <svg width="130" height="153" viewBox="0 0 48 56" fill="none"
+                            style="opacity:.35;filter:drop-shadow(0 0 40px rgba(247,170,79,0.3))">
+                            <path d="M14 22C14 10 34 10 34 22Z" fill="#F7AA4F" />
+                            <rect x="12" y="22" width="24" height="4" rx="2" fill="#C4862A" />
+                            <path d="M10 28H38V46C38 50.4 34.4 54 30 54H18C13.6 54 10 50.4 10 46Z" fill="#F7AA4F" />
+                            <line x1="10" y1="37" x2="38" y2="37" stroke="rgba(30,8,8,0.12)" stroke-width="0.8" />
+                            <line x1="10" y1="45" x2="38" y2="45" stroke="rgba(30,8,8,0.12)" stroke-width="0.8" />
+                            <path d="M28 32V44C28 48 25 50 22 50H19" stroke="#1E0808" stroke-width="3.5"
+                                stroke-linecap="round" fill="none" />
+                        </svg>
+                    </div>
+                    <div class="about-img-badge">
+                        <span class="num">9</span>
+                        <span class="lbl" data-i18n="about_badge" data-i18n-html="1">лет<br>с 2016</span>
+                    </div>
+                </div>
+                <div class="rv-r">
+                    <p class="sec-label" style="color:var(--burg)" data-i18n="about_label">О нас</p>
+                    <h2 class="sec-title" style="color:var(--void)" data-i18n="about_title" data-i18n-html="1">История
+                        <em style="color:var(--burg);font-style:italic">Jasmin</em>
+                    </h2>
+                    <p class="about-text" data-i18n="about_text" data-i18n-html="1">Jasmin Bakery ведёт свою историю с
+                        2016 года — тогда мы начинали как «Milliy shirinliklari». Сегодня мы — современная пекарня и
+                        кондитерская с узбекским сердцем и международным качеством.<br><br>Наши кондитеры создают торты,
+                        пирожные и восточные сладости, которые удивляют вкусом и остаются в памяти. Каждый десерт —
+                        авторский. Каждый рецепт — с душой.</p>
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <div class="stat-num">1</div>
+                            <div class="stat-lbl" data-i18n="stat1">Локация в Ургенче</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-num">40+</div>
+                            <div class="stat-lbl" data-i18n="stat2">Позиций в меню</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-num">500+</div>
+                            <div class="stat-lbl" data-i18n="stat3">Гостей в день</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-num">4.9</div>
+                            <div class="stat-lbl" data-i18n="stat4">Рейтинг в Google</div>
+                        </div>
+                    </div>
+                    <a href="#locations" class="btn btn-dark" style="color:var(--burg);border-color:rgba(138,42,41,.25)"
+                        data-i18n="about_btn">Найти нас →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- LOCATIONS -->
+    <section id="locations" class="sec">
+        <div class="wrap">
+            <p class="sec-label rv" data-i18n="loc_label">Локации</p>
+            <h2 class="sec-title rv" data-i18n="loc_title" data-i18n-html="1">Найдите нас<br><em>в Ургенче</em></h2>
+            <div class="loc-grid rv">
+                <div class="loc-card">
+                    <div class="loc-num">01</div>
+                    <div class="loc-tag">Основная локация</div>
+                    <div class="loc-name">Jasmin Bakery<br>Ургенч</div>
+                    <div class="loc-rows">
+                        <div class="loc-row"><svg viewBox="0 0 24 24">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                                <circle cx="12" cy="10" r="3" />
+                            </svg>
+                            <div class="loc-row-body">
+                                <div class="loc-row-label">Адрес</div>
+                                <div class="loc-row-val">Гурлан кўчаси (Amina do'kon), Ургенч</div>
+                            </div>
+                        </div>
+                        <div class="loc-row"><svg viewBox="0 0 24 24">
+                                <circle cx="12" cy="12" r="10" />
+                                <polyline points="12 6 12 12 16 14" />
+                            </svg>
+                            <div class="loc-row-body">
+                                <div class="loc-row-label">Часы работы</div>
+                                <div class="loc-row-val">08:00 – 22:00 · Без выходных</div>
+                            </div>
+                        </div>
+                        <div class="loc-row"><svg viewBox="0 0 24 24">
+                                <path
+                                    d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.63A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92v2z" />
+                            </svg>
+                            <div class="loc-row-body">
+                                <div class="loc-row-label">Телефон</div>
+                                <div class="loc-row-val">+99895 602-11-00</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="loc-map">
+                        <div class="loc-map-pin"><svg viewBox="0 0 24 24">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                                <circle cx="12" cy="10" r="3" />
+                            </svg><span>Открыть карту</span></div>
+                    </div>
+                </div>
+                <div class="loc-card">
+                    <div class="loc-num">02</div>
+                    <div class="loc-tag">Район</div>
+                    <div class="loc-name">Jasmin Bakery<br>Гурланский район</div>
+                    <div class="loc-rows">
+                        <div class="loc-row"><svg viewBox="0 0 24 24">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                                <circle cx="12" cy="10" r="3" />
+                            </svg>
+                            <div class="loc-row-body">
+                                <div class="loc-row-label">Адрес</div>
+                                <div class="loc-row-val">Гурланский район, Ургенч</div>
+                            </div>
+                        </div>
+                        <div class="loc-row"><svg viewBox="0 0 24 24">
+                                <circle cx="12" cy="12" r="10" />
+                                <polyline points="12 6 12 12 16 14" />
+                            </svg>
+                            <div class="loc-row-body">
+                                <div class="loc-row-label">Часы работы</div>
+                                <div class="loc-row-val">08:00 – 22:00 · Без выходных</div>
+                            </div>
+                        </div>
+                        <div class="loc-row"><svg viewBox="0 0 24 24">
+                                <path
+                                    d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.63A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92v2z" />
+                            </svg>
+                            <div class="loc-row-body">
+                                <div class="loc-row-label">Телефон</div>
+                                <div class="loc-row-val">+99895 602-11-00</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="loc-map">
+                        <div class="loc-map-pin"><svg viewBox="0 0 24 24">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                                <circle cx="12" cy="10" r="3" />
+                            </svg><span>Открыть карту</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ATMOSPHERE -->
+    <section id="atmosphere">
+        <div class="wrap">
+            <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:24px">
+                <div>
+                    <p class="sec-label rv" data-i18n="atm_label">Наша атмосфера</p>
+                    <h2 class="sec-title rv" data-i18n="atm_title" data-i18n-html="1">Загляните <em>к нам</em></h2>
+                </div>
+                <a href="https://instagram.com/jasmin.tort" target="_blank" rel="noopener" class="btn btn-outline rv">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                        <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" />
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                    </svg>
+                    @jasmin.tort
+                </a>
+            </div>
+            <div class="ig-grid rv">
+                <div class="ig-tile">
+                    <div class="ig-tile-bg"
+                        style="background:linear-gradient(135deg,#3D1515 0%,#8A2A29 100%);width:100%;height:100%;display:flex;align-items:center;justify-content:center">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(247,170,79,0.3)"
+                            stroke-width="1">
+                            <path d="M17 8h1a4 4 0 010 8h-1" />
+                            <path d="M3 8h14v9a4 4 0 01-4 4H7a4 4 0 01-4-4V8z" />
+                        </svg>
+                    </div>
+                    <div class="ig-overlay"><span
+                            style="font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--cream)">Уютный
+                            зал</span></div>
+                </div>
+                <div class="ig-tile">
+                    <div class="ig-tile-bg"
+                        style="background:linear-gradient(135deg,#2A1608 0%,#5A3018 100%);width:100%;height:100%;display:flex;align-items:center;justify-content:center">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(247,170,79,0.3)"
+                            stroke-width="1">
+                            <circle cx="12" cy="12" r="9" />
+                            <path d="M12 8v4l3 3" />
+                        </svg>
+                    </div>
+                    <div class="ig-overlay"><span
+                            style="font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--cream)">Свежая
+                            выпечка</span></div>
+                </div>
+                <div class="ig-tile">
+                    <div class="ig-tile-bg"
+                        style="background:linear-gradient(135deg,#1E0808 0%,#3D1515 100%);width:100%;height:100%;display:flex;align-items:center;justify-content:center">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(247,170,79,0.3)"
+                            stroke-width="1">
+                            <path d="M20 21v-8a2 2 0 00-2-2H6a2 2 0 00-2 2v8" />
+                            <path d="M4 21h16" />
+                            <path d="M8 11V7a4 4 0 018 0v4" />
+                        </svg>
+                    </div>
+                    <div class="ig-overlay"><span
+                            style="font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--cream)">Торты
+                            на заказ</span></div>
+                </div>
+                <div class="ig-tile">
+                    <div class="ig-tile-bg"
+                        style="background:linear-gradient(135deg,#0E1A06 0%,#1A2C10 100%);width:100%;height:100%;display:flex;align-items:center;justify-content:center">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(247,170,79,0.3)"
+                            stroke-width="1">
+                            <path
+                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                        </svg>
+                    </div>
+                    <div class="ig-overlay"><span
+                            style="font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--cream)">Восточные
+                            сладости</span></div>
+                </div>
+                <div class="ig-tile">
+                    <div class="ig-tile-bg"
+                        style="background:linear-gradient(135deg,#2C1A0E 0%,#785B3F 100%);width:100%;height:100%;display:flex;align-items:center;justify-content:center">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(247,170,79,0.3)"
+                            stroke-width="1">
+                            <path d="M4 4h16v2a8 8 0 01-16 0V4z" />
+                            <path d="M4 18h16M6 21h12" />
+                        </svg>
+                    </div>
+                    <div class="ig-overlay"><span
+                            style="font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--cream)">Чай
+                            и кофе</span></div>
+                </div>
+                <div class="ig-tile">
+                    <div class="ig-tile-bg"
+                        style="background:linear-gradient(135deg,#3D1515 0%,#5C1A1A 100%);width:100%;height:100%;display:flex;align-items:center;justify-content:center">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(247,170,79,0.3)"
+                            stroke-width="1">
+                            <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+                        </svg>
+                    </div>
+                    <div class="ig-overlay"><span
+                            style="font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--cream)">Тёплый
+                            приём</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="footer">
+        <div class="footer-glow"></div>
+        <div class="wrap">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <img src="jb_logo_v2_gold.svg" alt="Jasmin Bakery" style="height:70px;width:auto" loading="lazy"
+                            decoding="async">
+                    </div>
+                    <p class="footer-tagline">«Har doim yangi,<br>har doim shirin!»</p>
+                    <div class="footer-social">
+                        <a class="soc-btn" href="https://instagram.com/jasmin.tort" target="_blank" rel="noopener"
+                            aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="1.5">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                                <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" />
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                            </svg></a>
+                        <a class="soc-btn" href="https://t.me/addstickers/jasmin_sricker" target="_blank" rel="noopener"
+                            aria-label="Telegram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="1.5">
+                                <path d="M21 3L3 10.5l7 1L12 18l3-4 5 3 1-14z" />
+                            </svg></a>
+                        <a class="soc-btn" href="tel:+998956021100" aria-label="Позвонить"><svg width="16" height="16"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path
+                                    d="M22 16.92v3a2 2 0 01-2.18 2A19.79 19.79 0 013.07 9.8 2 2 0 012 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" />
+                            </svg></a>
+                    </div>
+                </div>
+                <div>
+                    <div class="footer-col-title" data-i18n="ft_nav">Навигация</div>
+                    <div class="footer-links">
+                        <a href="menu.html" data-i18n="nav_menu">Меню</a>
+                        <a href="#about" data-i18n="nav_about">О нас</a>
+                        <a href="#locations" data-i18n="nav_locations">Локации</a>
+                        <a href="#atmosphere" data-i18n="ft_atm">Атмосфера</a>
+                    </div>
+                </div>
+                <div>
+                    <div class="footer-col-title" data-i18n="ft_addr">Адреса</div>
+                    <div class="footer-contacts">
+                        <div class="footer-contact-item"><span class="footer-contact-label">Основной</span><span
+                                class="footer-contact-val">Гурлан кўчаси (Amina do'kon)</span></div>
+                        <div class="footer-contact-item"><span class="footer-contact-label">Район</span><span
+                                class="footer-contact-val">Гурланский район, Ургенч</span></div>
+                        <div class="footer-contact-item"><span class="footer-contact-label">Часы</span><span
+                                class="footer-contact-val">08:00 – 22:00</span></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="footer-col-title" data-i18n="ft_contacts">Контакты</div>
+                    <div class="footer-contacts">
+                        <div class="footer-contact-item"><span class="footer-contact-label">Телефон</span><a
+                                href="tel:+998956021100" class="footer-contact-val">+99895 602-11-00</a></div>
+                        <div class="footer-contact-item"><span class="footer-contact-label">Телефон 2</span><a
+                                href="tel:+998956021100" class="footer-contact-val">+99895 602-11-00</a></div>
+                        <div class="footer-contact-item"><span class="footer-contact-label">Instagram</span><a
+                                href="https://instagram.com/jasmin.tort" target="_blank" rel="noopener"
+                                class="footer-contact-val">@jasmin.tort</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span class="footer-copy" data-i18n="ft_copy">© 2025 Jasmin Bakery · Ургенч, Хорезм, Узбекистан</span>
+                <span class="footer-made" data-i18n="ft_rights">Все права защищены</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MOBILE NAV -->
+    <nav class="mob-nav">
+        <div class="mob-nav-items">
+            <a href="#" class="mob-nav-item active"><svg viewBox="0 0 24 24">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+                    <polyline points="9 22 9 12 15 12 15 22" />
+                </svg><span data-i18n="mob_home">Главная</span></a>
+            <a href="menu.html" class="mob-nav-item"><svg viewBox="0 0 24 24">
+                    <line x1="8" y1="6" x2="21" y2="6" />
+                    <line x1="8" y1="12" x2="21" y2="12" />
+                    <line x1="8" y1="18" x2="21" y2="18" />
+                    <line x1="3" y1="6" x2="3.01" y2="6" />
+                    <line x1="3" y1="12" x2="3.01" y2="12" />
+                    <line x1="3" y1="18" x2="3.01" y2="18" />
+                </svg><span data-i18n="nav_menu">Меню</span></a>
+            <a href="#locations" class="mob-nav-item"><svg viewBox="0 0 24 24">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                    <circle cx="12" cy="10" r="3" />
+                </svg><span data-i18n="mob_addr">Адреса</span></a>
+            <a href="#atmosphere" class="mob-nav-item"><svg viewBox="0 0 24 24">
+                    <path d="M4 4h16v2a8 8 0 01-16 0V4z" />
+                    <path d="M4 18h16M6 21h12" />
+                </svg><span data-i18n="ft_atm">Атмосфера</span></a>
+        </div>
+    </nav>
+
+    <script>
+        /* ═══════════════════════════════════
+           NAVBAR
+        ═══════════════════════════════════ */
+        const nav = document.getElementById('nav');
+        let scrollTicking = false;
+        window.addEventListener('scroll', () => {
+            if (!scrollTicking) {
+                requestAnimationFrame(() => { nav.classList.toggle('s', scrollY > 60); scrollTicking = false; });
+                scrollTicking = true;
+            }
+        }, { passive: true });
+        const ham = document.getElementById('hamburger'), mob = document.getElementById('mobMenu');
+        let mobOpen = false;
+        function closeMob() { mob.classList.remove('open'); mobOpen = false; ham.querySelector('span:nth-child(1)').style.transform = ''; ham.querySelector('span:nth-child(2)').style.opacity = '1'; ham.querySelector('span:nth-child(3)').style.transform = ''; }
+        ham.onclick = () => {
+            mobOpen = !mobOpen; mob.classList.toggle('open', mobOpen);
+            ham.querySelector('span:nth-child(1)').style.transform = mobOpen ? 'rotate(45deg) translateY(7px)' : '';
+            ham.querySelector('span:nth-child(2)').style.opacity = mobOpen ? '0' : '1';
+            ham.querySelector('span:nth-child(3)').style.transform = mobOpen ? 'rotate(-45deg) translateY(-7px)' : '';
+        };
+
+        /* ═══════════════════════════════════
+           PROMO
+        ═══════════════════════════════════ */
+        let pi = 0;
+        const pt = document.getElementById('promoTrack'), pds = document.querySelectorAll('.pdot');
+        function goPromo(i) { pi = i; pt.style.transform = `translateX(-${i * 100}%)`; pds.forEach((d, idx) => d.classList.toggle('active', idx === i)); }
+        pds.forEach(d => d.addEventListener('click', () => goPromo(+d.dataset.i)));
+        setInterval(() => goPromo((pi + 1) % 3), 5000);
+
+        /* ═══════════════════════════════════
+           CURSOR
+        ═══════════════════════════════════ */
+        const isTouch = matchMedia('(hover: none) and (pointer: coarse)').matches;
+        const cur = document.getElementById('cur'), curR = document.getElementById('cur-r');
+        if (isTouch) {
+            cur.style.display = 'none'; curR.style.display = 'none';
+            document.body.style.cursor = 'auto';
+        } else {
+            let mx = 0, my = 0, rx = 0, ry = 0;
+            document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cur.style.transform = `translate(${mx - 11}px,${my - 11}px)`; }, { passive: true });
+            (function loop() { rx += (mx - rx) * .11; ry += (my - ry) * .11; curR.style.transform = `translate(${rx - 18}px,${ry - 18}px)`; requestAnimationFrame(loop); })();
+            document.body.addEventListener('mouseenter', e => {
+                if (e.target.closest('a,button,.ig-tile,.loc-card,.soc-btn')) document.body.classList.add('hover-mode');
+            }, true);
+            document.body.addEventListener('mouseleave', e => {
+                if (e.target.closest('a,button,.ig-tile,.loc-card,.soc-btn')) document.body.classList.remove('hover-mode');
+            }, true);
+        }
+
+        /* ═══════════════════════════════════
+           SCROLL REVEAL
+        ═══════════════════════════════════ */
+        function observeCards() {
+            const io = new IntersectionObserver(entries => {
+                entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } });
+            }, { threshold: .06, rootMargin: '0px 0px -28px 0px' });
+            document.querySelectorAll('.rv,.rv-l,.rv-r,.rv-s').forEach(el => { if (!el.classList.contains('on')) io.observe(el); });
+        }
+        observeCards();
+
+        /* ═══════════════════════════════════
+           LOADER
+        ═══════════════════════════════════ */
+        document.body.classList.add('loading');
+
+        (function initLoader() {
+            const ring = document.getElementById('ldRing');
+            const pctEl = document.getElementById('ldPct');
+            const particles = document.getElementById('ldParticles');
+            const total = 565;
+            let pct = 0;
+
+            const frag = document.createDocumentFragment();
+            for (let i = 0; i < 20; i++) {
+                const p = document.createElement('div');
+                p.className = 'ld-p';
+                p.style.cssText = `left:${Math.random() * 100}%;animation:ldFloat ${3 + Math.random() * 4}s ${Math.random() * 3}s linear infinite;width:${1 + Math.random() * 2}px;height:${1 + Math.random() * 2}px`;
+                frag.appendChild(p);
+            }
+            particles.appendChild(frag);
+
+            function tick() {
+                pct += Math.random() * 8 + 2;
+                if (pct > 100) pct = 100;
+                ring.style.strokeDashoffset = total - (total * pct / 100);
+                pctEl.textContent = Math.round(pct);
+                if (pct < 100) {
+                    setTimeout(tick, 40 + Math.random() * 60);
+                } else {
+                    setTimeout(() => {
+                        document.getElementById('loader').classList.add('out');
+                        setTimeout(() => {
+                            document.body.classList.remove('loading');
+                            document.body.classList.add('revealed');
+                            document.getElementById('loader').style.display = 'none';
+                        }, 1000);
+                    }, 400);
+                }
+            }
+
+            window.addEventListener('load', () => { setTimeout(tick, 300) });
+        })();
+
+        /* ═══════════════════════════════════
+           i18n — TRANSLATIONS
+        ═══════════════════════════════════ */
+        const I18N = {
+            ru: {
+                nav_menu: 'Меню', nav_about: 'О нас', nav_locations: 'Локации',
+                hero_eyebrow: 'Пекарня & Кондитерская · С 2016 года',
+                hero_sub: 'Всегда свежее, всегда сладкое!',
+                hero_btn_menu: 'Смотреть меню', hero_btn_about: 'О нас',
+                cat_label: 'Выберите категорию',
+                cat_title: 'Наши <em style="color:var(--burg)">категории</em>',
+                cat_coffee: 'Кофе', cat_tea: 'Чай & Матча', cat_desserts: 'Десерты',
+                cat_cakes: 'Торты', cat_pastry: 'Выпечка', cat_breakfast: 'Завтраки',
+                cat_cold: 'Холодные', cat_new: 'Новинки ✦',
+                menu_label: 'Меню', menu_title: 'Откройте <em>вкус</em>',
+                promo1_eye: 'Акция · Каждый день',
+                promo1_title: 'Happy Hour<br><em>14:00 – 16:00</em>',
+                promo1_text: 'Скидка 15% на все напитки в счастливые часы. Уютная атмосфера, лучший кофе города.',
+                promo1_btn: 'Выбрать напиток',
+                promo2_eye: 'Торты · На заказ',
+                promo2_title: 'Ваш идеальный<br><em>торт</em>',
+                promo2_text: 'Торты любой сложности — свадебные, детские, праздничные. Свежие ингредиенты, авторский дизайн.',
+                promo2_btn: 'Позвонить',
+                promo3_eye: 'Доставка · Ургенч',
+                promo3_title: 'Бесплатно<br><em>от 150 000 сум</em>',
+                promo3_text: 'Быстрая доставка по Ургенчу. Горячий кофе и свежие десерты — прямо к вашей двери.',
+                about_label: 'О нас',
+                about_title: 'История <em style="color:var(--burg);font-style:italic">Jasmin</em>',
+                about_text: 'Jasmin Bakery ведёт свою историю с 2016 года — тогда мы начинали как «Milliy shirinliklari». Сегодня мы — современная пекарня и кондитерская с узбекским сердцем и международным качеством.<br><br>Наши кондитеры создают торты, пирожные и восточные сладости, которые удивляют вкусом и остаются в памяти. Каждый десерт — авторский. Каждый рецепт — с душой.',
+                about_badge: 'лет<br>с 2016',
+                stat1: 'Локация в Ургенче', stat2: 'Позиций в меню', stat3: 'Гостей в день', stat4: 'Рейтинг в Google',
+                about_btn: 'Найти нас →',
+                bs_label: 'Хиты продаж', bs_title: 'Гости <em>выбирают</em>',
+                loc_label: 'Локации', loc_title: 'Найдите нас<br><em>в Ургенче</em>',
+                atm_label: 'Наша атмосфера', atm_title: 'Загляните <em>к нам</em>',
+                ft_nav: 'Навигация', ft_addr: 'Адреса', ft_contacts: 'Контакты',
+                ft_hits: 'Хиты', ft_atm: 'Атмосфера',
+                ft_copy: '© 2025 Jasmin Bakery · Ургенч, Хорезм, Узбекистан',
+                ft_rights: 'Все права защищены',
+                cart_title: 'Корзина', cart_empty: 'Корзина пуста', cart_go_menu: 'Перейти в меню',
+                cart_total: 'Итого', cart_checkout: 'Оформить заказ',
+                mob_home: 'Главная', mob_addr: 'Адреса',
+            },
+            uz: {
+                nav_menu: 'Menyu', nav_about: 'Biz haqimizda', nav_locations: 'Manzillar',
+                hero_eyebrow: 'Novvoyxona & Qandolatxona · 2016-yildan',
+                hero_sub: 'Har doim yangi, har doim shirin!',
+                hero_btn_menu: 'Menyuni ko\'rish', hero_btn_about: 'Biz haqimizda',
+                cat_label: 'Kategoriyani tanlang',
+                cat_title: 'Bizning <em style="color:var(--burg)">kategoriyalar</em>',
+                cat_coffee: 'Qahva', cat_tea: 'Choy & Matcha', cat_desserts: 'Desertlar',
+                cat_cakes: 'Tortlar', cat_pastry: 'Pishiriqlar', cat_breakfast: 'Nonushta',
+                cat_cold: 'Sovuq ichimliklar', cat_new: 'Yangiliklar ✦',
+                menu_label: 'Menyu', menu_title: 'Ta\'mni <em>kashf eting</em>',
+                promo1_eye: 'Aksiya · Har kuni',
+                promo1_title: 'Happy Hour<br><em>14:00 – 16:00</em>',
+                promo1_text: 'Baxtli soatlarda barcha ichimliklar uchun 15% chegirma. Qulay muhit, shahardagi eng yaxshi qahva.',
+                promo1_btn: 'Ichimlik tanlash',
+                promo2_eye: 'Tortlar · Buyurtma',
+                promo2_title: 'Sizning ideal<br><em>tortingiz</em>',
+                promo2_text: 'Har qanday murakkablikdagi tortlar — to\'y, bolalar, bayram. Yangi ingredientlar, muallif dizayni.',
+                promo2_btn: 'Qo\'ng\'iroq qilish',
+                promo3_eye: 'Yetkazib berish · Urganch',
+                promo3_title: 'Bepul<br><em>150 000 so\'mdan</em>',
+                promo3_text: 'Urganch bo\'ylab tez yetkazib berish. Issiq qahva va yangi desertlar — eshigingizgacha.',
+                about_label: 'Biz haqimizda',
+                about_title: '<em style="color:var(--burg);font-style:italic">Jasmin</em> tarixi',
+                about_text: 'Jasmin Bakery o\'z tarixini 2016-yildan boshlaydi — o\'shanda biz «Milliy shirinliklari» sifatida ishni boshlagandik. Bugungi kunda biz — o\'zbek ruhi va xalqaro sifatga ega zamonaviy novvoyxona va qandolatxonamiz.<br><br>Bizning qandolatchilarimiz tortlar, pirojniylar va sharq shirinliklarini yaratishadi — ta\'mi hayratga soladi va xotirada qoladi. Har bir desert — mualliflik. Har bir retsept — jon bilan.',
+                about_badge: 'yil<br>2016-dan',
+                stat1: 'Urganchda manzil', stat2: 'Menyuda pozitsiya', stat3: 'Kuniga mehmon', stat4: 'Google reytingi',
+                about_btn: 'Bizni toping →',
+                bs_label: 'Eng ko\'p sotilganlar', bs_title: 'Mehmonlar <em>tanlaydi</em>',
+                loc_label: 'Manzillar', loc_title: 'Bizni toping<br><em>Urganchda</em>',
+                atm_label: 'Bizning muhit', atm_title: 'Bizga <em>tashrif buyuring</em>',
+                ft_nav: 'Navigatsiya', ft_addr: 'Manzillar', ft_contacts: 'Aloqa',
+                ft_hits: 'Hitlar', ft_atm: 'Muhit',
+                ft_copy: '© 2025 Jasmin Bakery · Urganch, Xorazm, O\'zbekiston',
+                ft_rights: 'Barcha huquqlar himoyalangan',
+                cart_title: 'Savat', cart_empty: 'Savat bo\'sh', cart_go_menu: 'Menyuga o\'tish',
+                cart_total: 'Jami', cart_checkout: 'Buyurtma berish',
+                mob_home: 'Bosh sahifa', mob_addr: 'Manzillar',
+            },
+            en: {
+                nav_menu: 'Menu', nav_about: 'About', nav_locations: 'Locations',
+                hero_eyebrow: 'Bakery & Confectionery · Since 2016',
+                hero_sub: 'Always fresh, always sweet!',
+                hero_btn_menu: 'View menu', hero_btn_about: 'About us',
+                cat_label: 'Choose a category',
+                cat_title: 'Our <em style="color:var(--burg)">categories</em>',
+                cat_coffee: 'Coffee', cat_tea: 'Tea & Matcha', cat_desserts: 'Desserts',
+                cat_cakes: 'Cakes', cat_pastry: 'Pastry', cat_breakfast: 'Breakfast',
+                cat_cold: 'Cold drinks', cat_new: 'New items ✦',
+                menu_label: 'Menu', menu_title: 'Discover <em>flavour</em>',
+                promo1_eye: 'Special · Every day',
+                promo1_title: 'Happy Hour<br><em>14:00 – 16:00</em>',
+                promo1_text: '15% off all drinks during happy hours. Cozy atmosphere, the best coffee in town.',
+                promo1_btn: 'Choose a drink',
+                promo2_eye: 'Cakes · Custom order',
+                promo2_title: 'Your perfect<br><em>cake</em>',
+                promo2_text: 'Cakes of any complexity — wedding, kids, holiday. Fresh ingredients, custom design.',
+                promo2_btn: 'Call us',
+                promo3_eye: 'Delivery · Urgench',
+                promo3_title: 'Free delivery<br><em>from 150,000 sum</em>',
+                promo3_text: 'Fast delivery across Urgench. Hot coffee and fresh desserts — right to your door.',
+                about_label: 'About us',
+                about_title: 'The story of <em style="color:var(--burg);font-style:italic">Jasmin</em>',
+                about_text: 'Jasmin Bakery traces its history back to 2016 — we started as "Milliy shirinliklari". Today we are a modern bakery and confectionery with an Uzbek heart and international quality.<br><br>Our pastry chefs create cakes, pastries and oriental sweets that amaze with taste and stay in memory. Every dessert is original. Every recipe is made with soul.',
+                about_badge: 'years<br>since 2016',
+                stat1: 'Location in Urgench', stat2: 'Menu items', stat3: 'Guests per day', stat4: 'Google rating',
+                about_btn: 'Find us →',
+                bs_label: 'Bestsellers', bs_title: 'Guests\' <em>choice</em>',
+                loc_label: 'Locations', loc_title: 'Find us<br><em>in Urgench</em>',
+                atm_label: 'Our atmosphere', atm_title: 'Come <em>visit us</em>',
+                ft_nav: 'Navigation', ft_addr: 'Addresses', ft_contacts: 'Contacts',
+                ft_hits: 'Hits', ft_atm: 'Atmosphere',
+                ft_copy: '© 2025 Jasmin Bakery · Urgench, Khorezm, Uzbekistan',
+                ft_rights: 'All rights reserved',
+                cart_title: 'Cart', cart_empty: 'Cart is empty', cart_go_menu: 'Go to menu',
+                cart_total: 'Total', cart_checkout: 'Place order',
+                mob_home: 'Home', mob_addr: 'Addresses',
+            }
+        };
+
+        let currentLang = localStorage.getItem('jb_lang') || 'ru';
+        const i18nEls = document.querySelectorAll('[data-i18n]');
+        const langBtns = document.querySelectorAll('.lang-btn');
+
+        function setLang(lang) {
+            currentLang = lang;
+            localStorage.setItem('jb_lang', lang);
+            document.documentElement.lang = lang === 'uz' ? 'uz' : lang === 'en' ? 'en' : 'ru';
+            const dict = I18N[lang];
+            i18nEls.forEach(el => {
+                const v = dict[el.dataset.i18n];
+                if (v !== undefined) {
+                    if (el.dataset.i18nHtml) el.innerHTML = v; else el.textContent = v;
+                }
+            });
+            langBtns.forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+        }
+
+        document.getElementById('langSwitch').addEventListener('click', e => {
+            const btn = e.target.closest('.lang-btn');
+            if (btn) setLang(btn.dataset.lang);
+        });
+
+        if (currentLang !== 'ru') setLang(currentLang);
+    </script>
+</body>
+
+</html>

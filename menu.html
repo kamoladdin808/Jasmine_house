@@ -1,0 +1,2120 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Меню Jasmin Bakery — кофе, чай, десерты, торты, выпечка, завтраки. Ургенч.">
+  <meta name="theme-color" content="#0D0303">
+  <title>Jasmin Bakery — Меню</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&display=swap"
+    rel="stylesheet">
+  <link rel="preload" href="jb_logo_v1_gold.svg" as="image" type="image/svg+xml">
+  <script>history.scrollRestoration = 'manual'; window.scrollTo(0, 0);</script>
+  <style>
+    :root {
+      --burg: #8A2A29;
+      --burg-dk: #5C1A1A;
+      --burg-md: #A33535;
+      --maroon: #3D1515;
+      --deep: #1E0808;
+      --void: #0D0303;
+      --gold: #F7AA4F;
+      --gold-lt: #F9BD73;
+      --gold-pl: #FBD199;
+      --gold-dk: #C4862A;
+      --cream: #FFEFD9;
+      --parch: #F0DFC0;
+      --ivory: #FFF8F0;
+      --muted: #785B3F;
+      --border: rgba(247, 170, 79, .14);
+      --border2: rgba(247, 170, 79, .08);
+      --glow: rgba(247, 170, 79, .15);
+      --shadow: 0 32px 80px rgba(0, 0, 0, .6);
+      --shadow-sm: 0 8px 32px rgba(0, 0, 0, .4);
+      --ease-spring: cubic-bezier(.16, 1, .3, 1);
+      --ease-smooth: cubic-bezier(.4, 0, .2, 1);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--void);
+      color: var(--cream);
+      overflow-x: hidden;
+      cursor: none
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none
+    }
+
+    button {
+      cursor: none;
+      border: none;
+      background: none;
+      font-family: 'Montserrat', sans-serif
+    }
+
+    img {
+      max-width: 100%;
+      display: block
+    }
+
+    ul {
+      list-style: none
+    }
+
+    ::-webkit-scrollbar {
+      width: 3px
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--void)
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(to bottom, var(--gold-dk), var(--gold));
+      border-radius: 2px
+    }
+
+    body.loading {
+      overflow: hidden
+    }
+
+    #loader {
+      position: fixed;
+      inset: 0;
+      z-index: 9000;
+      background: var(--void);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    #loader.out .ld-curtain-l {
+      transform: translateX(-100%)
+    }
+
+    #loader.out .ld-curtain-r {
+      transform: translateX(100%)
+    }
+
+    #loader.out .ld-center {
+      opacity: 0;
+      transform: scale(1.3)
+    }
+
+    .ld-curtain-l,
+    .ld-curtain-r {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 50%;
+      background: var(--void);
+      z-index: 2;
+      transition: transform 1s cubic-bezier(.77, 0, .18, 1);
+      will-change: transform;
+    }
+
+    .ld-curtain-l {
+      left: 0
+    }
+
+    .ld-curtain-r {
+      right: 0
+    }
+
+    .ld-center {
+      position: relative;
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: opacity .6s ease, transform .6s ease;
+    }
+
+    .ld-ring-wrap {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .ld-ring {
+      position: absolute;
+      inset: 0
+    }
+
+    .ld-ring circle {
+      fill: none;
+      stroke-width: 1;
+      stroke-linecap: round
+    }
+
+    .ld-ring-bg {
+      stroke: rgba(247, 170, 79, .08)
+    }
+
+    .ld-ring-fill {
+      stroke: url(#ldGrad);
+      stroke-dasharray: 565;
+      stroke-dashoffset: 565;
+      transform: rotate(-90deg);
+      transform-origin: center;
+      transition: stroke-dashoffset 2s cubic-bezier(.4, 0, .2, 1);
+    }
+
+    .ld-ring-glow {
+      position: absolute;
+      inset: -20px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(247, 170, 79, .06) 0%, transparent 70%);
+      animation: ldGlow 2.5s ease-in-out infinite;
+    }
+
+    .ld-logo {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      height: 110px;
+      width: auto;
+      opacity: 0;
+      animation: ldZoomIn .8s .15s cubic-bezier(.16, 1, .3, 1) forwards;
+      filter: drop-shadow(0 0 30px rgba(247, 170, 79, .2));
+    }
+
+    .ld-particles {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      z-index: 1
+    }
+
+    .ld-p {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      border-radius: 50%;
+      background: var(--gold);
+      opacity: 0;
+    }
+
+    .ld-pct {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 300;
+      letter-spacing: .3em;
+      color: rgba(247, 170, 79, .4);
+      margin-top: 32px;
+      opacity: 0;
+      animation: ldFadeIn .4s .5s ease forwards;
+    }
+
+    .ld-pct span {
+      color: var(--gold);
+      font-weight: 600;
+      font-size: 13px
+    }
+
+    @keyframes ldZoomIn {
+      0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(.7);
+        filter: blur(10px) drop-shadow(0 0 30px rgba(247, 170, 79, .2))
+      }
+
+      100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+        filter: blur(0) drop-shadow(0 0 30px rgba(247, 170, 79, .3))
+      }
+    }
+
+    @keyframes ldGlow {
+
+      0%,
+      100% {
+        opacity: .3;
+        transform: scale(.9)
+      }
+
+      50% {
+        opacity: .7;
+        transform: scale(1.1)
+      }
+    }
+
+    @keyframes ldFadeIn {
+      to {
+        opacity: 1
+      }
+    }
+
+    @keyframes ldFloat {
+      0% {
+        transform: translateY(100vh);
+        opacity: 0
+      }
+
+      10% {
+        opacity: 1
+      }
+
+      90% {
+        opacity: 1
+      }
+
+      100% {
+        transform: translateY(-20vh);
+        opacity: 0
+      }
+    }
+
+    .menu-page-head,
+    #menu,
+    .cat-tile,
+    .p-card {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity .8s ease, transform .8s ease;
+    }
+
+    body.revealed .menu-page-head {
+      opacity: 1;
+      transform: none;
+      transition-delay: .1s
+    }
+
+    body.revealed #menu {
+      opacity: 1;
+      transform: none;
+      transition-delay: .25s
+    }
+
+    body.revealed .cat-tile,
+    body.revealed .p-card {
+      opacity: 1;
+      transform: none
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(32px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0
+      }
+
+      to {
+        opacity: 1
+      }
+    }
+
+    @keyframes ticker {
+      from {
+        transform: translateX(0)
+      }
+
+      to {
+        transform: translateX(-50%)
+      }
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateX(120%);
+        opacity: 0
+      }
+
+      to {
+        transform: translateX(0);
+        opacity: 1
+      }
+    }
+
+    @keyframes toastOut {
+      to {
+        transform: translateX(120%);
+        opacity: 0
+      }
+    }
+
+    @keyframes bump {
+
+      0%,
+      100% {
+        transform: scale(1)
+      }
+
+      50% {
+        transform: scale(1.6)
+      }
+    }
+
+    .rv {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .9s var(--ease-spring), transform .9s var(--ease-spring)
+    }
+
+    .rv.on {
+      opacity: 1;
+      transform: translateY(0)
+    }
+
+    .rv-l {
+      opacity: 0;
+      transform: translateX(-28px);
+      transition: opacity .9s var(--ease-spring), transform .9s var(--ease-spring)
+    }
+
+    .rv-l.on {
+      opacity: 1;
+      transform: translateX(0)
+    }
+
+    .rv-r {
+      opacity: 0;
+      transform: translateX(28px);
+      transition: opacity .9s var(--ease-spring), transform .9s var(--ease-spring)
+    }
+
+    .rv-r.on {
+      opacity: 1;
+      transform: translateX(0)
+    }
+
+    .rv-s {
+      opacity: 0;
+      transform: scale(.95);
+      transition: opacity .9s var(--ease-spring), transform .9s var(--ease-spring)
+    }
+
+    .rv-s.on {
+      opacity: 1;
+      transform: scale(1)
+    }
+
+    .d1 {
+      transition-delay: .08s
+    }
+
+    .d2 {
+      transition-delay: .16s
+    }
+
+    .d3 {
+      transition-delay: .24s
+    }
+
+    .d4 {
+      transition-delay: .32s
+    }
+
+    .d5 {
+      transition-delay: .40s
+    }
+
+    .d6 {
+      transition-delay: .48s
+    }
+
+    .wrap {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 64px
+    }
+
+    @media(max-width:768px) {
+      .wrap {
+        padding: 0 24px
+      }
+    }
+
+    .sec {
+      padding: 128px 0
+    }
+
+    .sec-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .5em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 18px
+    }
+
+    .sec-label::before {
+      content: '';
+      width: 32px;
+      height: 1px;
+      background: linear-gradient(to right, var(--gold), transparent);
+      flex-shrink: 0
+    }
+
+    .sec-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(36px, 5vw, 60px);
+      font-weight: 600;
+      line-height: 1.08;
+      margin-bottom: 20px;
+      letter-spacing: -.02em
+    }
+
+    .sec-title em {
+      color: var(--gold);
+      font-style: italic
+    }
+
+    .sec-sub {
+      font-size: 14px;
+      font-weight: 300;
+      color: rgba(255, 239, 217, .45);
+      line-height: 1.85;
+      max-width: 480px
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 15px 38px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .35em;
+      text-transform: uppercase;
+      cursor: none;
+      transition: all .28s var(--ease-smooth);
+      position: relative;
+      overflow: hidden
+    }
+
+    .btn::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(255, 255, 255, 0);
+      transition: background .25s
+    }
+
+    .btn:hover::after {
+      background: rgba(255, 255, 255, .08)
+    }
+
+    .btn-gold {
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-lt) 100%);
+      color: var(--void);
+      box-shadow: 0 4px 20px rgba(247, 170, 79, .3)
+    }
+
+    .btn-gold:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(247, 170, 79, .45)
+    }
+
+    .btn-gold:active {
+      transform: translateY(-1px)
+    }
+
+    .btn-outline {
+      border: 1px solid rgba(247, 170, 79, .45);
+      color: var(--gold);
+      background: transparent;
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px)
+    }
+
+    .btn-outline:hover {
+      background: linear-gradient(135deg, var(--gold), var(--gold-lt));
+      color: var(--void);
+      border-color: transparent;
+      box-shadow: 0 8px 24px rgba(247, 170, 79, .35);
+      transform: translateY(-2px)
+    }
+
+    .btn-dark {
+      background: rgba(255, 239, 217, .05);
+      color: var(--cream);
+      border: 1px solid rgba(255, 239, 217, .1);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px)
+    }
+
+    .btn-dark:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      transform: translateY(-2px)
+    }
+
+    .lang-switch {
+      display: flex;
+      gap: 4px;
+      align-items: center
+    }
+
+    .lang-btn {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      color: rgba(255, 239, 217, .3);
+      padding: 4px 8px;
+      border-radius: 4px;
+      transition: all .22s;
+      background: none;
+      font-family: 'Montserrat', sans-serif
+    }
+
+    .lang-btn:hover {
+      color: rgba(255, 239, 217, .6)
+    }
+
+    .lang-btn.active {
+      color: var(--gold);
+      background: rgba(247, 170, 79, .1)
+    }
+
+    .cats-grid {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      gap: 10px;
+      position: relative
+    }
+
+    @media(max-width:900px) {
+      .cats-grid {
+        grid-template-columns: repeat(4, 1fr)
+      }
+    }
+
+    @media(max-width:480px) {
+      .cats-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px
+      }
+    }
+
+    .cat-tile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      padding: 26px 10px 22px;
+      background: rgba(255, 239, 217, .07);
+      border: 1px solid rgba(255, 239, 217, .1);
+      border-radius: 4px;
+      color: var(--cream);
+      cursor: none;
+      transition: all .3s var(--ease-spring);
+      position: relative;
+      overflow: hidden;
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+    }
+
+    .cat-tile::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--burg), var(--burg-md));
+      opacity: 0;
+      transition: opacity .3s;
+    }
+
+    .cat-tile:hover,
+    .cat-tile.active {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(138, 42, 41, .25);
+      border-color: transparent
+    }
+
+    .cat-tile:hover::before,
+    .cat-tile.active::before {
+      opacity: 1
+    }
+
+    .cat-tile:hover .cat-icon svg,
+    .cat-tile.active .cat-icon svg {
+      stroke: var(--gold-pl)
+    }
+
+    .cat-tile:hover span,
+    .cat-tile.active span {
+      color: var(--cream)
+    }
+
+    .cat-icon {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 1
+    }
+
+    .cat-icon svg {
+      width: 28px;
+      height: 28px;
+      stroke: rgba(255, 239, 217, .5);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: stroke .3s
+    }
+
+    .cat-tile span {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      text-align: center;
+      line-height: 1.3;
+      position: relative;
+      z-index: 1;
+      color: rgba(255, 239, 217, .6);
+      transition: color .3s
+    }
+
+    #menu {
+      background: var(--deep);
+      padding: 60px 0 120px;
+      position: relative;
+      contain: layout style paint;
+    }
+
+    #menu::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 40% at 50% 0%, rgba(138, 42, 41, .15) 0%, transparent 70%);
+      pointer-events: none
+    }
+
+    .menu-panel {
+      display: none;
+      animation: fadeIn .4s ease
+    }
+
+    .menu-panel.active {
+      display: block
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3px;
+      margin-top: 3px
+    }
+
+    @media(max-width:900px) {
+      .products-grid {
+        grid-template-columns: repeat(2, 1fr)
+      }
+    }
+
+    @media(max-width:520px) {
+      .products-grid {
+        grid-template-columns: 1fr
+      }
+    }
+
+    .p-card {
+      background: var(--maroon);
+      overflow: hidden;
+      cursor: none;
+      transition: transform .35s var(--ease-spring), box-shadow .35s;
+      position: relative;
+    }
+
+    .p-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, .5), 0 0 0 1px rgba(247, 170, 79, .1)
+    }
+
+    .p-card:hover .p-img-inner {
+      transform: scale(1.06)
+    }
+
+    .p-card:hover .btn-cart {
+      background: linear-gradient(135deg, var(--gold), var(--gold-lt));
+      color: var(--void);
+      border-color: transparent
+    }
+
+    .p-img-wrap {
+      height: 210px;
+      overflow: hidden;
+      position: relative
+    }
+
+    .p-img-inner {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform .5s var(--ease-smooth);
+      position: relative;
+    }
+
+    .p-img-inner::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cg fill='none' stroke='rgba(247,170,79,0.1)' stroke-width='0.7'%3E%3Cpolygon points='50,5 92,27 92,73 50,95 8,73 8,27'/%3E%3Cpolygon points='50,18 80,33 80,67 50,82 20,67 20,33'/%3E%3Ccircle cx='50' cy='50' r='14'/%3E%3C/g%3E%3C/svg%3E");
+      background-size: 80px 80px;
+      opacity: .5;
+    }
+
+    .p-img-inner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, .6) 0%, transparent 50%);
+      z-index: 1
+    }
+
+    .p-badge {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      z-index: 3;
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+    }
+
+    .badge-hit {
+      background: linear-gradient(135deg, var(--gold), var(--gold-lt));
+      color: var(--void);
+      box-shadow: 0 2px 12px rgba(247, 170, 79, .5)
+    }
+
+    .badge-new {
+      background: linear-gradient(135deg, var(--burg-md), var(--burg));
+      color: var(--cream);
+      box-shadow: 0 2px 12px rgba(138, 42, 41, .5)
+    }
+
+    .p-body {
+      padding: 22px 22px 18px;
+      position: relative
+    }
+
+    .p-name {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--cream);
+      margin-bottom: 7px;
+      line-height: 1.2
+    }
+
+    .p-desc {
+      font-size: 11px;
+      font-weight: 300;
+      color: rgba(255, 239, 217, .38);
+      line-height: 1.75;
+      margin-bottom: 16px
+    }
+
+    .p-foot {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 16px
+    }
+
+    .p-weight {
+      font-size: 10px;
+      color: rgba(255, 239, 217, .25);
+      letter-spacing: .06em
+    }
+
+    .p-price {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1
+    }
+
+    .btn-cart {
+      width: 100%;
+      padding: 12px;
+      background: rgba(247, 170, 79, .08);
+      color: var(--gold);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: .32em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border: 1px solid rgba(247, 170, 79, .18);
+      transition: all .28s var(--ease-smooth);
+      cursor: none;
+    }
+
+    .cart-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .75);
+      z-index: 600;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .4s;
+      -webkit-backdrop-filter: blur(6px);
+      backdrop-filter: blur(6px);
+    }
+
+    .cart-overlay.open {
+      opacity: 1;
+      pointer-events: all
+    }
+
+    .cart-drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 420px;
+      max-width: 100%;
+      background: linear-gradient(160deg, var(--deep) 0%, var(--void) 100%);
+      z-index: 601;
+      transform: translateX(110%);
+      transition: transform .45s var(--ease-spring);
+      display: flex;
+      flex-direction: column;
+      border-left: 1px solid rgba(247, 170, 79, .1);
+      box-shadow: -20px 0 80px rgba(0, 0, 0, .6);
+    }
+
+    .cart-drawer.open {
+      transform: translateX(0)
+    }
+
+    .cart-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 28px 32px;
+      border-bottom: 1px solid rgba(255, 239, 217, .06);
+      background: rgba(247, 170, 79, .03);
+    }
+
+    .cart-head h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--cream)
+    }
+
+    .cart-close {
+      width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255, 239, 217, .1);
+      color: rgba(255, 239, 217, .45);
+      cursor: none;
+      transition: all .22s;
+      font-size: 13px;
+    }
+
+    .cart-close:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: rgba(247, 170, 79, .08)
+    }
+
+    .cart-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 24px 32px
+    }
+
+    .cart-empty {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      height: 100%;
+      text-align: center
+    }
+
+    .cart-empty svg {
+      width: 60px;
+      height: 60px;
+      stroke: rgba(255, 239, 217, .12);
+      fill: none;
+      stroke-width: 1
+    }
+
+    .cart-empty p {
+      font-size: 14px;
+      font-weight: 300;
+      color: rgba(255, 239, 217, .28)
+    }
+
+    .cart-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 18px 0;
+      border-bottom: 1px solid rgba(255, 239, 217, .05);
+      animation: fadeIn .3s ease;
+    }
+
+    .ci-info {
+      flex: 1;
+      min-width: 0
+    }
+
+    .ci-name {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--cream);
+      margin-bottom: 4px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis
+    }
+
+    .ci-price {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--gold)
+    }
+
+    .ci-controls {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      flex-shrink: 0
+    }
+
+    .ci-controls button {
+      width: 30px;
+      height: 30px;
+      border: 1px solid rgba(255, 239, 217, .1);
+      color: rgba(255, 239, 217, .5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      cursor: none;
+      transition: all .2s;
+    }
+
+    .ci-controls button:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: rgba(247, 170, 79, .1)
+    }
+
+    .ci-controls span {
+      width: 34px;
+      text-align: center;
+      font-size: 13px;
+      color: var(--cream)
+    }
+
+    .ci-remove {
+      width: 26px;
+      height: 26px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255, 239, 217, .18);
+      font-size: 14px;
+      cursor: none;
+      transition: color .2s;
+      flex-shrink: 0
+    }
+
+    .ci-remove:hover {
+      color: var(--burg-md)
+    }
+
+    .cart-foot {
+      padding: 24px 32px;
+      border-top: 1px solid rgba(255, 239, 217, .06)
+    }
+
+    .cart-total-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 20px
+    }
+
+    .cart-total-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: rgba(255, 239, 217, .35)
+    }
+
+    .cart-total-val {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--gold)
+    }
+
+    #toast-container {
+      position: fixed;
+      top: 100px;
+      right: 24px;
+      z-index: 700;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      pointer-events: none
+    }
+
+    .toast {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 20px;
+      min-width: 280px;
+      background: rgba(20, 6, 8, .95);
+      border: 1px solid rgba(247, 170, 79, .25);
+      border-left: 3px solid var(--gold);
+      -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(20px);
+      animation: slideIn .4s var(--ease-spring);
+      box-shadow: 0 16px 48px rgba(0, 0, 0, .5);
+    }
+
+    .toast.out {
+      animation: toastOut .4s var(--ease-smooth) forwards
+    }
+
+    .toast-icon {
+      width: 32px;
+      height: 32px;
+      background: rgba(247, 170, 79, .1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0
+    }
+
+    .toast-icon svg {
+      width: 16px;
+      height: 16px;
+      stroke: var(--gold);
+      fill: none;
+      stroke-width: 2
+    }
+
+    .toast-body {
+      display: flex;
+      flex-direction: column
+    }
+
+    .toast-title {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      color: var(--cream);
+      margin-bottom: 2px
+    }
+
+    .toast-sub {
+      font-size: 11px;
+      font-weight: 300;
+      color: rgba(255, 239, 217, .45)
+    }
+
+    #cur,
+    #cur-r {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 8999;
+      will-change: transform
+    }
+
+    #cur {
+      width: 22px;
+      height: 22px;
+      filter: drop-shadow(0 0 6px rgba(247,170,79,.5));
+      transition: transform .1s, width .25s, height .25s, opacity .25s;
+    }
+
+    #cur svg {
+      width: 100%;
+      height: 100%;
+      transition: transform .3s var(--ease-spring);
+    }
+
+    #cur-r {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px dashed rgba(247,170,79,.3);
+      transition: transform .5s var(--ease-spring), width .3s, height .3s, border-color .3s, opacity .3s;
+      animation: curSpin 8s linear infinite;
+    }
+
+    @keyframes curSpin {
+      to { rotate: 360deg }
+    }
+
+    @media(max-width:1023px) {
+      #cur, #cur-r { display: none !important }
+      *, *::before, *::after { cursor: auto !important }
+    }
+
+    body.hover-mode #cur {
+      width: 32px;
+      height: 32px;
+      filter: drop-shadow(0 0 12px rgba(247,170,79,.6));
+    }
+
+    body.hover-mode #cur svg {
+      transform: rotate(45deg) scale(1.1);
+    }
+
+    body.hover-mode #cur-r {
+      width: 52px;
+      height: 52px;
+      border-color: rgba(247,170,79,.5);
+      border-style: solid;
+      animation-duration: 4s;
+    }
+
+    .prod-illu {
+      position: relative;
+      z-index: 2;
+      opacity: .55;
+      filter: drop-shadow(0 4px 16px rgba(0, 0, 0, .4))
+    }
+
+    .menu-page-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 64px;
+      background: rgba(30, 8, 8, .92);
+      -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 239, 217, .06);
+      position: sticky;
+      top: 0;
+      z-index: 500;
+    }
+
+    @media(max-width:768px) {
+      .menu-page-head {
+        padding: 18px 24px
+      }
+    }
+
+    .menu-page-back {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: rgba(255, 239, 217, .5);
+      transition: color .22s;
+      cursor: none;
+      background: none;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .menu-page-back:hover {
+      color: var(--gold)
+    }
+
+    .menu-page-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--cream)
+    }
+
+    .menu-page-title em {
+      color: var(--gold);
+      font-style: italic
+    }
+
+    .header-cart-btn {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border: 1px solid rgba(255, 239, 217, .12);
+      border-radius: 50%;
+      color: rgba(255, 239, 217, .5);
+      cursor: none;
+      transition: all .25s;
+      background: none;
+    }
+
+    .header-cart-btn:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: rgba(247, 170, 79, .08);
+    }
+
+    .cart-count {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      min-width: 18px;
+      height: 18px;
+      border-radius: 9px;
+      background: var(--burg);
+      color: var(--cream);
+      font-size: 9px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 4px;
+      opacity: 0;
+      transform: scale(0);
+      transition: all .25s var(--ease-spring);
+    }
+
+    .cart-count.show {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* ═══════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════ */
+    @media(max-width:360px) {
+      .wrap {
+        padding: 0 16px
+      }
+    }
+
+    @media(max-width:768px) {
+      .sec {
+        padding: 80px 0
+      }
+    }
+
+    @media(max-width:480px) {
+      .sec {
+        padding: 56px 0
+      }
+
+      .sec-sub {
+        max-width: 100%;
+        font-size: 13px
+      }
+
+      .sec-label {
+        font-size: 9px;
+        gap: 12px;
+        margin-bottom: 14px
+      }
+    }
+
+    @media(max-width:480px) {
+      .ld-ring-wrap {
+        width: 160px;
+        height: 160px
+      }
+
+      .ld-logo {
+        height: 80px
+      }
+
+      .ld-pct {
+        margin-top: 24px;
+        font-size: 10px
+      }
+
+      .ld-pct span {
+        font-size: 11px
+      }
+    }
+
+    @media(max-width:360px) {
+      .ld-ring-wrap {
+        width: 130px;
+        height: 130px
+      }
+
+      .ld-logo {
+        height: 65px
+      }
+
+      .ld-pct {
+        margin-top: 20px
+      }
+    }
+
+    @media(max-width:480px) {
+      .menu-page-head {
+        padding: 12px 12px;
+        gap: 8px
+      }
+
+      .menu-page-back {
+        font-size: 9px;
+        gap: 4px;
+        letter-spacing: .1em
+      }
+
+      .menu-page-back svg {
+        width: 12px;
+        height: 12px
+      }
+
+      .header-cart-btn {
+        width: 32px;
+        height: 32px
+      }
+
+      .header-cart-btn svg {
+        width: 16px;
+        height: 16px
+      }
+
+      .lang-btn {
+        font-size: 9px;
+        padding: 3px 5px
+      }
+
+      .lang-switch {
+        gap: 2px
+      }
+    }
+
+    @media(max-width:360px) {
+      .menu-page-head {
+        padding: 10px 10px
+      }
+
+      .menu-page-back {
+        font-size: 8px
+      }
+
+      .lang-btn {
+        font-size: 8px;
+        padding: 2px 4px
+      }
+
+      .header-cart-btn {
+        width: 30px;
+        height: 30px
+      }
+    }
+
+    @media(max-width:480px) {
+      .cats-grid {
+        grid-template-columns: repeat(3, 1fr)
+      }
+
+      .cat-tile {
+        padding: 18px 8px 16px;
+        gap: 8px
+      }
+
+      .cat-icon {
+        width: 32px;
+        height: 32px
+      }
+
+      .cat-icon svg {
+        width: 22px;
+        height: 22px
+      }
+
+      .cat-tile span {
+        font-size: 8px
+      }
+    }
+
+    @media(max-width:480px) {
+      #menu {
+        padding: 40px 0 80px
+      }
+
+      .p-img-wrap {
+        height: 180px
+      }
+
+      .p-body {
+        padding: 16px 16px 14px
+      }
+
+      .p-name {
+        font-size: 16px
+      }
+
+      .p-price {
+        font-size: 18px
+      }
+
+      .p-desc {
+        font-size: 10px
+      }
+
+      .btn-cart {
+        padding: 10px;
+        font-size: 8px;
+        letter-spacing: .25em
+      }
+    }
+
+    @media(max-width:520px) {
+      .cart-drawer {
+        width: 100%
+      }
+    }
+
+    @media(max-width:480px) {
+      .cart-head {
+        padding: 20px 20px
+      }
+
+      .cart-head h3 {
+        font-size: 18px
+      }
+
+      .cart-body {
+        padding: 16px 20px
+      }
+
+      .cart-foot {
+        padding: 20px 20px
+      }
+
+      .cart-total-val {
+        font-size: 22px
+      }
+
+      .cart-item {
+        gap: 12px;
+        padding: 14px 0
+      }
+
+      .ci-name {
+        font-size: 13px
+      }
+
+      .ci-price {
+        font-size: 16px
+      }
+    }
+
+    @media(max-width:360px) {
+      .cart-foot .btn {
+        width: 100%;
+        justify-content: center
+      }
+    }
+
+    @media(max-width:480px) {
+      #toast-container {
+        right: 16px;
+        left: 16px;
+        top: 80px
+      }
+
+      .toast {
+        min-width: auto;
+        width: 100%
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="loader">
+    <div class="ld-curtain-l"></div>
+    <div class="ld-curtain-r"></div>
+    <div class="ld-particles" id="ldParticles"></div>
+    <div class="ld-center">
+      <div class="ld-ring-wrap">
+        <div class="ld-ring-glow"></div>
+        <svg class="ld-ring" viewBox="0 0 200 200">
+          <defs>
+            <linearGradient id="ldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#C4862A" />
+              <stop offset="100%" stop-color="#F7AA4F" />
+            </linearGradient>
+          </defs>
+          <circle class="ld-ring-bg" cx="100" cy="100" r="90" />
+          <circle class="ld-ring-fill" id="ldRing" cx="100" cy="100" r="90" />
+        </svg>
+        <img src="jb_logo_v1_gold.svg" alt="Jasmin Bakery" class="ld-logo" fetchpriority="high">
+      </div>
+      <p class="ld-pct"><span id="ldPct">0</span> %</p>
+    </div>
+  </div>
+
+  <div id="toast-container"></div>
+
+  <div id="cur">
+    <svg viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="2.5" fill="#F7AA4F"/>
+      <ellipse cx="12" cy="5.5" rx="2.8" ry="4.5" fill="#F7AA4F" opacity=".85"/>
+      <ellipse cx="12" cy="18.5" rx="2.8" ry="4.5" fill="#F7AA4F" opacity=".85"/>
+      <ellipse cx="5.5" cy="12" rx="4.5" ry="2.8" fill="#F7AA4F" opacity=".85"/>
+      <ellipse cx="18.5" cy="12" rx="4.5" ry="2.8" fill="#F7AA4F" opacity=".85"/>
+      <ellipse cx="7.4" cy="7.4" rx="2.8" ry="4.5" transform="rotate(45 7.4 7.4)" fill="#F7AA4F" opacity=".7"/>
+      <ellipse cx="16.6" cy="16.6" rx="2.8" ry="4.5" transform="rotate(45 16.6 16.6)" fill="#F7AA4F" opacity=".7"/>
+      <ellipse cx="16.6" cy="7.4" rx="2.8" ry="4.5" transform="rotate(-45 16.6 7.4)" fill="#F7AA4F" opacity=".7"/>
+      <ellipse cx="7.4" cy="16.6" rx="2.8" ry="4.5" transform="rotate(-45 7.4 16.6)" fill="#F7AA4F" opacity=".7"/>
+    </svg>
+  </div>
+  <div id="cur-r"></div>
+
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <div class="cart-drawer" id="cartDrawer">
+    <div class="cart-head">
+      <h3 data-i18n="cart_title">Корзина</h3>
+      <button class="cart-close" id="cartClose">✕</button>
+    </div>
+    <div class="cart-body" id="cartBody">
+      <div class="cart-empty" id="cartEmpty">
+        <svg viewBox="0 0 24 24">
+          <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <path d="M16 10a4 4 0 01-8 0" />
+        </svg>
+        <p data-i18n="cart_empty">Корзина пуста</p>
+        <button class="btn btn-outline" onclick="closeCart()" data-i18n="cart_go_menu">Перейти в меню</button>
+      </div>
+      <div id="cartItems"></div>
+    </div>
+    <div class="cart-foot" id="cartFoot" style="display:none">
+      <div class="cart-total-row">
+        <span class="cart-total-label" data-i18n="cart_total">Итого</span>
+        <span class="cart-total-val" id="cartTotal">0 сум</span>
+      </div>
+      <div style="display:flex;gap:10px">
+        <button class="btn btn-gold" style="flex:1;padding:16px">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="20 6 9 17 4 12" />
+          </svg>
+          <span data-i18n="cart_checkout">Оформить заказ</span>
+        </button>
+        <button class="btn btn-outline" onclick="clearCart()" style="padding:16px 20px" data-i18n="cart_clear">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="3 6 5 6 21 6" />
+            <path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="menu-page-head">
+    <a class="menu-page-back" href="index.html">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="15 18 9 12 15 6" />
+      </svg>
+      <span data-i18n="menu_back">Главная</span>
+    </a>
+    <div style="display:flex;align-items:center;gap:16px">
+      <div class="lang-switch" id="langSwitch">
+        <button class="lang-btn active" data-lang="ru">RU</button>
+        <button class="lang-btn" data-lang="uz">UZ</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+      </div>
+      <button class="header-cart-btn" id="cartToggle" onclick="openCart()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <path d="M16 10a4 4 0 01-8 0" />
+        </svg>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+    </div>
+  </div>
+
+  <section id="menu">
+    <div class="wrap" style="position:relative;z-index:1">
+      <p class="sec-label rv" data-i18n="menu_label">Меню</p>
+      <h2 class="sec-title rv" data-i18n="menu_title" data-i18n-html="1">Откройте <em>вкус</em></h2>
+      <div class="cats-grid" style="margin:40px 0 56px">
+        <div class="cat-tile rv" data-tab="coffee">
+          <div class="cat-icon"><svg viewBox="0 0 24 24">
+              <path d="M17 8h1a4 4 0 010 8h-1" />
+              <path d="M3 8h14v9a4 4 0 01-4 4H7a4 4 0 01-4-4V8z" />
+              <line x1="6" y1="2" x2="6" y2="4" />
+              <line x1="10" y1="2" x2="10" y2="4" />
+              <line x1="14" y1="2" x2="14" y2="4" />
+            </svg></div><span data-i18n="cat_coffee">Кофе</span>
+        </div>
+        <div class="cat-tile rv d1" data-tab="tea">
+          <div class="cat-icon"><svg viewBox="0 0 24 24">
+              <path d="M4 4h16v2a8 8 0 01-16 0V4z" />
+              <path d="M8 4V2m4 2V2m4 2V2" />
+              <path d="M4 18h16M6 21h12" />
+            </svg></div><span data-i18n="cat_tea">Чай & Матча</span>
+        </div>
+        <div class="cat-tile rv d2" data-tab="desserts">
+          <div class="cat-icon"><svg viewBox="0 0 24 24">
+              <circle cx="12" cy="13" r="8" />
+              <path d="M12 5V3M5 13H3M21 13h-2M12 21v-2" />
+            </svg></div><span data-i18n="cat_desserts">Десерты</span>
+        </div>
+        <div class="cat-tile rv d3" data-tab="cakes">
+          <div class="cat-icon"><svg viewBox="0 0 24 24">
+              <path d="M20 21v-8a2 2 0 00-2-2H6a2 2 0 00-2 2v8" />
+              <path d="M4 21h16" />
+              <path d="M8 11V7a4 4 0 018 0v4" />
+              <line x1="4" y1="15" x2="20" y2="15" />
+            </svg></div><span data-i18n="cat_cakes">Торты</span>
+        </div>
+        <div class="cat-tile rv d4" data-tab="pastry">
+          <div class="cat-icon"><svg viewBox="0 0 24 24">
+              <path d="M3 11l19-9-9 19-2-8-8-2z" />
+            </svg></div><span data-i18n="cat_pastry">Выпечка</span>
+        </div>
+        <div class="cat-tile rv d5" data-tab="breakfast">
+          <div class="cat-icon"><svg viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="9" />
+              <path d="M12 8v4l3 3" />
+            </svg></div><span data-i18n="cat_breakfast">Завтраки</span>
+        </div>
+        <div class="cat-tile rv d4" data-tab="cold">
+          <div class="cat-icon"><svg viewBox="0 0 24 24">
+              <path d="M7 2h10l-1 14H8L7 2z" />
+              <path d="M5 7h14" />
+              <line x1="12" y1="16" x2="12" y2="22" />
+              <line x1="9" y1="22" x2="15" y2="22" />
+            </svg></div><span data-i18n="cat_cold">Холодные</span>
+        </div>
+        <div class="cat-tile rv d5" data-tab="newItems">
+          <div class="cat-icon"><svg viewBox="0 0 24 24">
+              <polygon
+                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+            </svg></div><span data-i18n="cat_new">Новинки ✦</span>
+        </div>
+      </div>
+      <div id="menuPanels">
+        <div class="menu-panel active" data-panel="coffee">
+          <div class="products-grid" id="grid-coffee"></div>
+        </div>
+        <div class="menu-panel" data-panel="tea">
+          <div class="products-grid" id="grid-tea"></div>
+        </div>
+        <div class="menu-panel" data-panel="desserts">
+          <div class="products-grid" id="grid-desserts"></div>
+        </div>
+        <div class="menu-panel" data-panel="cakes">
+          <div class="products-grid" id="grid-cakes"></div>
+        </div>
+        <div class="menu-panel" data-panel="pastry">
+          <div class="products-grid" id="grid-pastry"></div>
+        </div>
+        <div class="menu-panel" data-panel="breakfast">
+          <div class="products-grid" id="grid-breakfast"></div>
+        </div>
+        <div class="menu-panel" data-panel="cold">
+          <div class="products-grid" id="grid-cold"></div>
+        </div>
+        <div class="menu-panel" data-panel="newItems">
+          <div class="products-grid" id="grid-newItems"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <script>
+    document.body.classList.add('loading');
+
+    (function initLoader() {
+      const ring = document.getElementById('ldRing');
+      const pctEl = document.getElementById('ldPct');
+      const particles = document.getElementById('ldParticles');
+      const total = 565;
+      let pct = 0;
+
+      const frag = document.createDocumentFragment();
+      for (let i = 0; i < 20; i++) {
+        const p = document.createElement('div');
+        p.className = 'ld-p';
+        p.style.cssText = `left:${Math.random() * 100}%;animation:ldFloat ${3 + Math.random() * 4}s ${Math.random() * 3}s linear infinite;width:${1 + Math.random() * 2}px;height:${1 + Math.random() * 2}px`;
+        frag.appendChild(p);
+      }
+      particles.appendChild(frag);
+
+      function tick() {
+        pct += Math.random() * 10 + 3;
+        if (pct > 100) pct = 100;
+        ring.style.strokeDashoffset = total - (total * pct / 100);
+        pctEl.textContent = Math.round(pct);
+        if (pct < 100) {
+          setTimeout(tick, 30 + Math.random() * 50);
+        } else {
+          setTimeout(() => {
+            document.getElementById('loader').classList.add('out');
+            setTimeout(() => {
+              document.body.classList.remove('loading');
+              document.body.classList.add('revealed');
+              document.getElementById('loader').style.display = 'none';
+            }, 1000);
+          }, 300);
+        }
+      }
+
+      window.addEventListener('load', () => { setTimeout(tick, 200) });
+    })();
+
+    const MENU = {
+      coffee: [
+        { name: 'Эспрессо', desc: 'Моносорт, 100% арабика Эфиопия Иергачеффе', weight: '60 мл', price: 18000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
+        { name: 'Капучино «Жасмин»', desc: 'Сироп жасмина ручной работы, велюровая молочная пена', weight: '250 мл', price: 28000, badge: 'ХИТ', bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
+        { name: 'Раф «Шёлковый путь»', desc: 'Сливки 20%, кардамон, сушёная роза, фирменный купаж', weight: '300 мл', price: 32000, badge: 'ХИТ', bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
+        { name: 'Флэт Уайт', desc: 'Двойной рестретто, лёгкая микропена, молоко 3.5%', weight: '160 мл', price: 26000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
+        { name: 'Фисташковый Раф', desc: 'Фисташковая паста Bronte, сливки 33%, ваниль Бурбон', weight: '300 мл', price: 35000, badge: 'НОВИНКА', bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
+        { name: 'Матча Латте', desc: 'Церемониальная матча Grade A, овсяное молоко Oatly', weight: '300 мл', price: 30000, badge: null, bg: 'linear-gradient(160deg,#0E1A0A,#1A2C10)' },
+      ],
+      tea: [
+        { name: 'Чай с жасмином', desc: 'Белый китайский чай, живые бутоны жасмина, первый сбор', weight: '400 мл', price: 20000, badge: 'ХИТ', bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
+        { name: 'Масала', desc: 'Имбирь, кардамон, корица, гвоздика, Ассам, молоко', weight: '300 мл', price: 24000, badge: null, bg: 'linear-gradient(160deg,#3A1808,#5A2810)' },
+        { name: 'Матча Церемониальная', desc: 'Прямая поставка из Удзи, взбитается венчиком', weight: '200 мл', price: 28000, badge: null, bg: 'linear-gradient(160deg,#0A1A06,#142A0A)' },
+        { name: 'Ройбуш Апельсин', desc: 'Южноафриканский ройбуш, цедра апельсина, манго', weight: '400 мл', price: 22000, badge: null, bg: 'linear-gradient(160deg,#2A1606,#3D2008)' },
+        { name: 'Чай Хорезмский', desc: 'Зелёный чай, шиповник и местные травы, горный мёд', weight: '400 мл', price: 20000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
+      ],
+      desserts: [
+        { name: 'Тарт Жасминовый', desc: 'Лимонный крем патисьер, жасминовый ганаш Valrhona', weight: '130 г', price: 24000, badge: 'ХИТ', bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
+        { name: 'Эклер Карамель-Пекан', desc: 'Заварное тесто, карамельный крем, орехи пекан в тоффи', weight: '110 г', price: 20000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
+        { name: 'Макарон Ваниль-Роза', desc: 'Ганаш Бурбон и лепестков розы, миндальный дакуаз', weight: '45 г', price: 15000, badge: null, bg: 'linear-gradient(160deg,#4A1828,#6B2A3D)' },
+        { name: 'Панна-котта Жасмин', desc: 'Сливки 33%, настой жасминового чая, малиновое кули', weight: '180 г', price: 28000, badge: null, bg: 'linear-gradient(160deg,#1A1A2A,#2A2A3D)' },
+        { name: 'Тирамису Классик', desc: 'Маскарпоне Galbani, кофе Диемме, дамские пальчики', weight: '220 г', price: 32000, badge: null, bg: 'linear-gradient(160deg,#1A0E08,#2C1A10)' },
+        { name: 'Чизкейк Нью-Йорк', desc: 'Сыр Philadelphia, ваниль, сметанный корж, ягодный соус', weight: '200 г', price: 30000, badge: 'НОВИНКА', bg: 'linear-gradient(160deg,#2A1A10,#3D2A18)' },
+      ],
+      cakes: [
+        { name: 'Торт «Хорезм»', desc: 'Фисташковый дакуаз, мусс из розы, малиновое конфи. На 8–10 персон.', weight: '1.4 кг', price: 640000, badge: 'ХИТ', bg: 'linear-gradient(160deg,#1A2A10,#2C4020)' },
+        { name: 'Торт «Шёлковый путь»', desc: 'Инжир, грецкий орех, карамель, ганаш Guanaja 70%. На 6–8 персон.', weight: '1.1 кг', price: 580000, badge: null, bg: 'linear-gradient(160deg,#2A1808,#3D2410)' },
+        { name: 'Чизкейк «Жасмин»', desc: 'Мусс из жасминового чая, зеркальная глазурь. На 6 персон.', weight: '1.0 кг', price: 520000, badge: null, bg: 'linear-gradient(160deg,#1A1A2A,#282838)' },
+        { name: 'Торт «Фисташка-Клубника»', desc: 'Фисташковый бисквит, клубничное компоте, Ivoire. На 6 персон.', weight: '1.15 кг', price: 600000, badge: null, bg: 'linear-gradient(160deg,#1A2A14,#243C1C)' },
+      ],
+      pastry: [
+        { name: 'Круассан Сливочный', desc: 'Слоёное тесто на закваске, масло Elle & Vire 84%', weight: '90 г', price: 22000, badge: null, bg: 'linear-gradient(160deg,#2A1808,#3D2810)' },
+        { name: 'Даниш Кофейный', desc: 'Слоёное тесто, кофейный крем, карамелизованный миндаль', weight: '85 г', price: 30000, badge: 'НОВИНКА', bg: 'linear-gradient(160deg,#1A1006,#2C1C0A)' },
+        { name: 'Чак-чак Modern', desc: 'Классический чак-чак с фисташкой и горным мёдом', weight: '160 г', price: 18000, badge: null, bg: 'linear-gradient(160deg,#2A1A08,#3D2810)' },
+        { name: 'Самса с тыквой', desc: 'Слоёное тесто на топлёном масле, тыква с зирой', weight: '180 г', price: 16000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#283C0E)' },
+        { name: 'Бриошь с корицей', desc: 'Воздушное бриошное тесто, сливочная корица, глазурь', weight: '120 г', price: 26000, badge: null, bg: 'linear-gradient(160deg,#2A1008,#3D1C0E)' },
+      ],
+      breakfast: [
+        { name: 'Яйца Бенедикт', desc: '2 яйца пашот, бекон Black Forest, голландский соус', weight: '280 г', price: 55000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
+        { name: 'Авокадо-тост', desc: 'Хлеб на закваске, гуакамоле, яйцо пашот, микрогрин', weight: '250 г', price: 48000, badge: 'ХИТ', bg: 'linear-gradient(160deg,#0A1A0A,#142A12)' },
+        { name: 'Овсянка Премиум', desc: 'Scottish oats, кокосовое молоко, клубника, малина', weight: '320 г', price: 35000, badge: null, bg: 'linear-gradient(160deg,#1A1A0A,#282812)' },
+        { name: 'Сырники Фермерские', desc: 'Творог 9%, ваниль, сметана, варенье из инжира', weight: '300 г', price: 42000, badge: null, bg: 'linear-gradient(160deg,#2A0A0A,#3D1212)' },
+        { name: 'Шакшука', desc: 'Яйца в томатном соусе, фета, зелень, свежий хлеб', weight: '350 г', price: 45000, badge: 'НОВИНКА', bg: 'linear-gradient(160deg,#2A0A06,#3D1408)' },
+      ],
+      cold: [
+        { name: 'Матча Фраппе', desc: 'Церемониальная матча, молоко, лёд, ванильный сироп', weight: '400 мл', price: 32000, badge: null, bg: 'linear-gradient(160deg,#0A1A06,#142A0A)' },
+        { name: 'Лимонад «Жасмин-Личи»', desc: 'Концентрат жасмина, личи, лайм, мята, Perrier', weight: '400 мл', price: 26000, badge: 'ХИТ', bg: 'linear-gradient(160deg,#1A1A2A,#28283C)' },
+        { name: 'Смузи «Зелёный»', desc: 'Шпинат, банан, яблоко, имбирь, кокосовая вода', weight: '350 мл', price: 30000, badge: null, bg: 'linear-gradient(160deg,#0A1A0A,#142614)' },
+        { name: 'Айс Брю-Кофе', desc: 'Холодная экстракция 12 часов, арабика, подаётся со льдом', weight: '350 мл', price: 28000, badge: null, bg: 'linear-gradient(160deg,#0A0806,#14100A)' },
+        { name: 'Ледяной чай Роза', desc: 'Настой розы и гибискуса, лайм, агава, лепестки', weight: '400 мл', price: 24000, badge: null, bg: 'linear-gradient(160deg,#2A0A18,#3D1224)' },
+      ],
+      newItems: [
+        { name: 'Фисташковый Раф', desc: 'Фисташковая паста Bronte, сливки, ваниль, двойной эспрессо', weight: '300 мл', price: 35000, badge: 'НОВИНКА', bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
+        { name: 'Даниш Кофейный', desc: 'Слоёное тесто, кофейный крем, карамелизованный миндаль', weight: '85 г', price: 30000, badge: 'НОВИНКА', bg: 'linear-gradient(160deg,#1A1006,#2C1C0A)' },
+        { name: 'Чизкейк «Жасмин»', desc: 'Мусс из жасминового чая, зеркальная глазурь', weight: '1.0 кг', price: 520000, badge: 'НОВИНКА', bg: 'linear-gradient(160deg,#1A1A2A,#282838)' },
+        { name: 'Шакшука', desc: 'Яйца в томатном соусе, фета, зелень, свежий хлеб', weight: '350 г', price: 45000, badge: 'НОВИНКА', bg: 'linear-gradient(160deg,#2A0A06,#3D1408)' },
+      ]
+    };
+
+    const ICONS = {
+      coffee: `<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,239,217,0.3)" stroke-width="1"><path d="M17 8h1a4 4 0 010 8h-1"/><path d="M3 8h14v9a4 4 0 01-4 4H7a4 4 0 01-4-4V8z"/></svg>`,
+      dessert: `<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,239,217,0.3)" stroke-width="1"><circle cx="12" cy="12" r="9"/></svg>`,
+      leaf: `<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,239,217,0.3)" stroke-width="1"><path d="M2 22c0 0 6-10 18-10 0 8-6 10-18 10z"/><path d="M2 22L12 12"/></svg>`,
+      star: `<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(247,170,79,0.3)" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`,
+    };
+
+    function getIcon(bg) {
+      if (bg.includes('1A2A10') || bg.includes('0A1A06')) return ICONS.leaf;
+      if (bg.includes('1A1A2A') || bg.includes('4A1828')) return ICONS.dessert;
+      if (bg.includes('НОВИНКА') || true) return ICONS.star;
+      return ICONS.coffee;
+    }
+
+    function card(item) {
+      const badge = item.badge
+        ? `<span class="p-badge ${item.badge === 'ХИТ' ? 'badge-hit' : 'badge-new'}">${item.badge}</span>` : '';
+      return `<div class="p-card rv">
+    <div class="p-img-wrap">
+      <div class="p-img-inner" style="background:${item.bg}">
+        ${badge}
+        <svg class="prod-illu" width="64" height="64" viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="45" fill="none" stroke="rgba(247,170,79,0.2)" stroke-width="0.8"/>
+          <g transform="translate(50,50)">
+            <ellipse cx="0" cy="-20" rx="4" ry="9" fill="rgba(255,239,217,0.25)" transform="rotate(0)"/>
+            <ellipse cx="0" cy="-20" rx="4" ry="9" fill="rgba(255,239,217,0.2)" transform="rotate(60)"/>
+            <ellipse cx="0" cy="-20" rx="4" ry="9" fill="rgba(255,239,217,0.25)" transform="rotate(120)"/>
+            <ellipse cx="0" cy="-20" rx="4" ry="9" fill="rgba(255,239,217,0.2)" transform="rotate(180)"/>
+            <ellipse cx="0" cy="-20" rx="4" ry="9" fill="rgba(255,239,217,0.25)" transform="rotate(240)"/>
+            <ellipse cx="0" cy="-20" rx="4" ry="9" fill="rgba(255,239,217,0.2)" transform="rotate(300)"/>
+            <circle cx="0" cy="0" r="7" fill="rgba(247,170,79,0.5)"/>
+            <circle cx="0" cy="0" r="3" fill="rgba(237,208,112,0.6)"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+    <div class="p-body">
+      <h3 class="p-name">${item.name}</h3>
+      <p class="p-desc">${item.desc}</p>
+      <div class="p-foot">
+        <span class="p-weight">${item.weight}</span>
+        <span class="p-price">${item.price.toLocaleString('ru')} сум</span>
+      </div>
+      <button class="btn-cart" onclick="addToCart('${item.name.replace(/'/g, "\\'")}',${item.price},this)">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        В корзину
+      </button>
+    </div>
+  </div>`;
+    }
+
+    Object.keys(MENU).forEach(tab => {
+      const el = document.getElementById('grid-' + tab);
+      if (el) el.innerHTML = MENU[tab].map(card).join('');
+    });
+
+    function showToast(name, price) {
+      const tc = document.getElementById('toast-container');
+      const t = document.createElement('div');
+      t.className = 'toast';
+      t.innerHTML = `
+    <div class="toast-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+    <div class="toast-body">
+      <div class="toast-title">Добавлено в корзину</div>
+      <div class="toast-sub">${name} · ${price.toLocaleString('ru')} сум</div>
+    </div>`;
+      tc.appendChild(t);
+      setTimeout(() => { t.classList.add('out'); setTimeout(() => t.remove(), 400); }, 3000);
+    }
+
+    let cart = [];
+    try { cart = JSON.parse(localStorage.getItem('jh_cart2') || '[]'); } catch (e) { }
+    function save() { try { localStorage.setItem('jh_cart2', JSON.stringify(cart)); } catch (e) { } }
+
+    function addToCart(name, price, btn) {
+      const ex = cart.find(i => i.name === name);
+      if (ex) ex.qty++; else cart.push({ name, price, qty: 1 });
+      save(); renderCart();
+      showToast(name, price);
+      const c = document.getElementById('cartCount');
+      c.classList.remove('bump');
+      void c.offsetWidth;
+      c.classList.add('bump');
+      if (btn) {
+        btn.innerHTML = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Добавлено`;
+        btn.style.background = 'rgba(247,170,79,0.2)';
+        btn.style.borderColor = 'rgba(247,170,79,0.4)';
+        setTimeout(() => {
+          btn.innerHTML = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>В корзину`;
+          btn.style.background = ''; btn.style.borderColor = '';
+        }, 2000);
+      }
+    }
+    function removeItem(name) { cart = cart.filter(i => i.name !== name); save(); renderCart(); }
+    function chQty(name, d) {
+      const i = cart.find(x => x.name === name);
+      if (!i) return; i.qty += d;
+      if (i.qty <= 0) removeItem(name); else { save(); renderCart(); }
+    }
+
+    function renderCart() {
+      const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+      const count = cart.reduce((s, i) => s + i.qty, 0);
+      const countEl = document.getElementById('cartCount');
+      if (countEl) { countEl.textContent = count || 0; countEl.classList.toggle('show', count > 0); }
+      document.getElementById('cartEmpty').style.display = cart.length ? 'none' : 'flex';
+      document.getElementById('cartFoot').style.display = cart.length ? 'block' : 'none';
+      document.getElementById('cartTotal').textContent = total.toLocaleString('ru') + ' сум';
+      document.getElementById('cartItems').innerHTML = cart.map(i => `
+    <div class="cart-item">
+      <div class="ci-info">
+        <div class="ci-name">${i.name}</div>
+        <div class="ci-price">${(i.price * i.qty).toLocaleString('ru')} сум</div>
+      </div>
+      <div class="ci-controls">
+        <button onclick="chQty('${i.name.replace(/'/g, "\\'")}', -1)">−</button>
+        <span>${i.qty}</span>
+        <button onclick="chQty('${i.name.replace(/'/g, "\\'")}', 1)">+</button>
+      </div>
+      <button class="ci-remove" onclick="removeItem('${i.name.replace(/'/g, "\\'")}')">✕</button>
+    </div>`).join('');
+    }
+
+    function clearCart() { cart = []; save(); renderCart(); }
+    function openCart() { document.getElementById('cartDrawer').classList.add('open'); document.getElementById('cartOverlay').classList.add('open'); }
+    function closeCart() { document.getElementById('cartDrawer').classList.remove('open'); document.getElementById('cartOverlay').classList.remove('open'); }
+
+    document.getElementById('cartClose').onclick = closeCart;
+    document.getElementById('cartOverlay').onclick = closeCart;
+    renderCart();
+
+    document.querySelectorAll('.cat-tile').forEach(tile => {
+      tile.addEventListener('click', () => {
+        const tab = tile.dataset.tab;
+        document.querySelectorAll('.cat-tile').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.menu-panel').forEach(p => p.classList.remove('active'));
+        tile.classList.add('active');
+        document.querySelector(`[data-panel="${tab}"]`)?.classList.add('active');
+        requestAnimationFrame(() => observeCards());
+      });
+    });
+
+    const cur = document.getElementById('cur'), curR = document.getElementById('cur-r');
+    const isTouch = matchMedia('(hover: none) and (pointer: coarse)').matches;
+    if (isTouch) {
+      cur.style.display = 'none'; curR.style.display = 'none';
+      document.body.style.cursor = 'auto';
+    } else {
+      let mx = 0, my = 0, rx = 0, ry = 0;
+      document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cur.style.transform = `translate(${mx - 11}px,${my - 11}px)`; }, { passive: true });
+      (function loop() { rx += (mx - rx) * .11; ry += (my - ry) * .11; curR.style.transform = `translate(${rx - 18}px,${ry - 18}px)`; requestAnimationFrame(loop); })();
+      document.body.addEventListener('mouseenter', e => {
+        if (e.target.closest('a,button,.cat-tile,.p-card,.soc-btn')) document.body.classList.add('hover-mode');
+      }, true);
+      document.body.addEventListener('mouseleave', e => {
+        if (e.target.closest('a,button,.cat-tile,.p-card,.soc-btn')) document.body.classList.remove('hover-mode');
+      }, true);
+    }
+
+    function observeCards() {
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } });
+      }, { threshold: .06, rootMargin: '0px 0px -28px 0px' });
+      document.querySelectorAll('.rv,.rv-l,.rv-r,.rv-s').forEach(el => { if (!el.classList.contains('on')) io.observe(el); });
+    }
+    observeCards();
+
+    const I18N = {
+      ru: {
+        nav_menu: 'Меню', nav_about: 'О нас', nav_locations: 'Локации',
+        cat_label: 'Выберите категорию',
+        cat_title: 'Наши <em style="color:var(--burg)">категории</em>',
+        cat_coffee: 'Кофе', cat_tea: 'Чай & Матча', cat_desserts: 'Десерты',
+        cat_cakes: 'Торты', cat_pastry: 'Выпечка', cat_breakfast: 'Завтраки',
+        cat_cold: 'Холодные', cat_new: 'Новинки ✦',
+        menu_label: 'Меню', menu_title: 'Откройте <em>вкус</em>',
+        cart_title: 'Корзина', cart_empty: 'Корзина пуста', cart_go_menu: 'Перейти в меню',
+        cart_total: 'Итого', cart_checkout: 'Оформить заказ', cart_clear: 'Очистить',
+        mob_home: 'Главная', mob_addr: 'Адреса',
+        menu_back: 'Главная',
+        ft_atm: 'Атмосфера',
+      },
+      uz: {
+        nav_menu: 'Menyu', nav_about: 'Biz haqimizda', nav_locations: 'Manzillar',
+        cat_label: 'Kategoriyani tanlang',
+        cat_title: 'Bizning <em style="color:var(--burg)">kategoriyalar</em>',
+        cat_coffee: 'Qahva', cat_tea: 'Choy & Matcha', cat_desserts: 'Desertlar',
+        cat_cakes: 'Tortlar', cat_pastry: 'Pishiriqlar', cat_breakfast: 'Nonushta',
+        cat_cold: 'Sovuq ichimliklar', cat_new: 'Yangiliklar ✦',
+        menu_label: 'Menyu', menu_title: 'Ta\'mni <em>kashf eting</em>',
+        cart_title: 'Savat', cart_empty: 'Savat bo\'sh', cart_go_menu: 'Menyuga o\'tish',
+        cart_total: 'Jami', cart_checkout: 'Buyurtma berish', cart_clear: 'Tozalash',
+        mob_home: 'Bosh sahifa', mob_addr: 'Manzillar',
+        menu_back: 'Bosh sahifa',
+        ft_atm: 'Muhit',
+      },
+      en: {
+        nav_menu: 'Menu', nav_about: 'About', nav_locations: 'Locations',
+        cat_label: 'Choose a category',
+        cat_title: 'Our <em style="color:var(--burg)">categories</em>',
+        cat_coffee: 'Coffee', cat_tea: 'Tea & Matcha', cat_desserts: 'Desserts',
+        cat_cakes: 'Cakes', cat_pastry: 'Pastry', cat_breakfast: 'Breakfast',
+        cat_cold: 'Cold drinks', cat_new: 'New items ✦',
+        menu_label: 'Menu', menu_title: 'Discover <em>flavour</em>',
+        cart_title: 'Cart', cart_empty: 'Cart is empty', cart_go_menu: 'Go to menu',
+        cart_total: 'Total', cart_checkout: 'Place order', cart_clear: 'Clear',
+        mob_home: 'Home', mob_addr: 'Addresses',
+        menu_back: 'Home',
+        ft_atm: 'Atmosphere',
+      }
+    };
+
+    let currentLang = localStorage.getItem('jb_lang') || 'ru';
+    const i18nEls = document.querySelectorAll('[data-i18n]');
+    const langBtns = document.querySelectorAll('.lang-btn');
+
+    function setLang(lang) {
+      currentLang = lang;
+      localStorage.setItem('jb_lang', lang);
+      document.documentElement.lang = lang === 'uz' ? 'uz' : lang === 'en' ? 'en' : 'ru';
+      const dict = I18N[lang];
+      i18nEls.forEach(el => {
+        const v = dict[el.dataset.i18n];
+        if (v !== undefined) {
+          if (el.dataset.i18nHtml) el.innerHTML = v; else el.textContent = v;
+        }
+      });
+      langBtns.forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+    }
+
+    document.getElementById('langSwitch').addEventListener('click', e => {
+      const btn = e.target.closest('.lang-btn');
+      if (btn) setLang(btn.dataset.lang);
+    });
+
+    if (currentLang !== 'ru') setLang(currentLang);
+  </script>
+</body>
+
+</html>
