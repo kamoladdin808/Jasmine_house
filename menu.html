@@ -57,7 +57,7 @@
       background: var(--void);
       color: var(--cream);
       overflow-x: hidden;
-      cursor: none
+      cursor: auto
     }
 
     a {
@@ -66,7 +66,7 @@
     }
 
     button {
-      cursor: none;
+      cursor: pointer;
       border: none;
       background: none;
       font-family: 'Montserrat', sans-serif
@@ -516,7 +516,7 @@
       font-weight: 600;
       letter-spacing: .35em;
       text-transform: uppercase;
-      cursor: none;
+      cursor: auto;
       transition: all .28s var(--ease-smooth);
       position: relative;
       overflow: hidden
@@ -608,36 +608,41 @@
     }
 
     .cats-grid {
-      display: grid;
-      grid-template-columns: repeat(8, 1fr);
-      gap: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
       position: relative
     }
 
     @media(max-width:900px) {
       .cats-grid {
-        grid-template-columns: repeat(4, 1fr)
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        padding-bottom: 8px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin
       }
     }
 
     @media(max-width:480px) {
       .cats-grid {
-        grid-template-columns: repeat(4, 1fr);
-        gap: 8px
+        gap: 6px
       }
     }
 
     .cat-tile {
-      display: flex;
-      flex-direction: column;
+      display: inline-flex;
       align-items: center;
-      gap: 12px;
-      padding: 26px 10px 22px;
+      gap: 6px;
+      padding: 10px 16px;
+      flex-shrink: 0;
       background: rgba(255, 239, 217, .07);
       border: 1px solid rgba(255, 239, 217, .1);
       border-radius: 4px;
       color: var(--cream);
-      cursor: none;
+      cursor: auto;
       transition: all .3s var(--ease-spring);
       position: relative;
       overflow: hidden;
@@ -656,8 +661,8 @@
 
     .cat-tile:hover,
     .cat-tile.active {
-      transform: translateY(-4px);
-      box-shadow: 0 16px 40px rgba(138, 42, 41, .25);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(138, 42, 41, .25);
       border-color: transparent
     }
 
@@ -677,18 +682,12 @@
     }
 
     .cat-icon {
-      width: 40px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      z-index: 1
+      display: none
     }
 
     .cat-icon svg {
-      width: 28px;
-      height: 28px;
+      width: 20px;
+      height: 20px;
       stroke: rgba(255, 239, 217, .5);
       fill: none;
       stroke-width: 1.5;
@@ -698,7 +697,7 @@
     }
 
     .cat-tile span {
-      font-size: 9px;
+      font-size: 11px;
       font-weight: 600;
       letter-spacing: .14em;
       text-transform: uppercase;
@@ -756,7 +755,7 @@
     .p-card {
       background: var(--maroon);
       overflow: hidden;
-      cursor: none;
+      cursor: auto;
       transition: transform .35s var(--ease-spring), box-shadow .35s;
       position: relative;
     }
@@ -891,7 +890,7 @@
       gap: 10px;
       border: 1px solid rgba(247, 170, 79, .18);
       transition: all .28s var(--ease-smooth);
-      cursor: none;
+      cursor: auto;
     }
 
     .cart-overlay {
@@ -956,7 +955,7 @@
       justify-content: center;
       border: 1px solid rgba(255, 239, 217, .1);
       color: rgba(255, 239, 217, .45);
-      cursor: none;
+      cursor: auto;
       transition: all .22s;
       font-size: 13px;
     }
@@ -1044,7 +1043,7 @@
       align-items: center;
       justify-content: center;
       font-size: 16px;
-      cursor: none;
+      cursor: auto;
       transition: all .2s;
     }
 
@@ -1069,7 +1068,7 @@
       justify-content: center;
       color: rgba(255, 239, 217, .18);
       font-size: 14px;
-      cursor: none;
+      cursor: auto;
       transition: color .2s;
       flex-shrink: 0
     }
@@ -1172,65 +1171,6 @@
       color: rgba(255, 239, 217, .45)
     }
 
-    #cur,
-    #cur-r {
-      position: fixed;
-      top: 0;
-      left: 0;
-      pointer-events: none;
-      z-index: 8999;
-      will-change: transform
-    }
-
-    #cur {
-      width: 22px;
-      height: 22px;
-      filter: drop-shadow(0 0 6px rgba(247,170,79,.5));
-      transition: transform .1s, width .25s, height .25s, opacity .25s;
-    }
-
-    #cur svg {
-      width: 100%;
-      height: 100%;
-      transition: transform .3s var(--ease-spring);
-    }
-
-    #cur-r {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      border: 1px dashed rgba(247,170,79,.3);
-      transition: transform .5s var(--ease-spring), width .3s, height .3s, border-color .3s, opacity .3s;
-      animation: curSpin 8s linear infinite;
-    }
-
-    @keyframes curSpin {
-      to { rotate: 360deg }
-    }
-
-    @media(max-width:1023px) {
-      #cur, #cur-r { display: none !important }
-      *, *::before, *::after { cursor: auto !important }
-    }
-
-    body.hover-mode #cur {
-      width: 32px;
-      height: 32px;
-      filter: drop-shadow(0 0 12px rgba(247,170,79,.6));
-    }
-
-    body.hover-mode #cur svg {
-      transform: rotate(45deg) scale(1.1);
-    }
-
-    body.hover-mode #cur-r {
-      width: 52px;
-      height: 52px;
-      border-color: rgba(247,170,79,.5);
-      border-style: solid;
-      animation-duration: 4s;
-    }
-
     .prod-illu {
       position: relative;
       z-index: 2;
@@ -1268,7 +1208,7 @@
       text-transform: uppercase;
       color: rgba(255, 239, 217, .5);
       transition: color .22s;
-      cursor: none;
+      cursor: auto;
       background: none;
       font-family: 'Montserrat', sans-serif;
     }
@@ -1299,7 +1239,7 @@
       border: 1px solid rgba(255, 239, 217, .12);
       border-radius: 50%;
       color: rgba(255, 239, 217, .5);
-      cursor: none;
+      cursor: auto;
       transition: all .25s;
       background: none;
     }
@@ -1460,27 +1400,12 @@
     }
 
     @media(max-width:480px) {
-      .cats-grid {
-        grid-template-columns: repeat(3, 1fr)
-      }
-
       .cat-tile {
-        padding: 18px 8px 16px;
-        gap: 8px
-      }
-
-      .cat-icon {
-        width: 32px;
-        height: 32px
-      }
-
-      .cat-icon svg {
-        width: 22px;
-        height: 22px
+        padding: 8px 12px
       }
 
       .cat-tile span {
-        font-size: 8px
+        font-size: 10px
       }
     }
 
@@ -1606,21 +1531,6 @@
 
   <div id="toast-container"></div>
 
-  <div id="cur">
-    <svg viewBox="0 0 24 24" fill="none">
-      <circle cx="12" cy="12" r="2.5" fill="#F7AA4F"/>
-      <ellipse cx="12" cy="5.5" rx="2.8" ry="4.5" fill="#F7AA4F" opacity=".85"/>
-      <ellipse cx="12" cy="18.5" rx="2.8" ry="4.5" fill="#F7AA4F" opacity=".85"/>
-      <ellipse cx="5.5" cy="12" rx="4.5" ry="2.8" fill="#F7AA4F" opacity=".85"/>
-      <ellipse cx="18.5" cy="12" rx="4.5" ry="2.8" fill="#F7AA4F" opacity=".85"/>
-      <ellipse cx="7.4" cy="7.4" rx="2.8" ry="4.5" transform="rotate(45 7.4 7.4)" fill="#F7AA4F" opacity=".7"/>
-      <ellipse cx="16.6" cy="16.6" rx="2.8" ry="4.5" transform="rotate(45 16.6 16.6)" fill="#F7AA4F" opacity=".7"/>
-      <ellipse cx="16.6" cy="7.4" rx="2.8" ry="4.5" transform="rotate(-45 16.6 7.4)" fill="#F7AA4F" opacity=".7"/>
-      <ellipse cx="7.4" cy="16.6" rx="2.8" ry="4.5" transform="rotate(-45 7.4 16.6)" fill="#F7AA4F" opacity=".7"/>
-    </svg>
-  </div>
-  <div id="cur-r"></div>
-
   <div class="cart-overlay" id="cartOverlay"></div>
   <div class="cart-drawer" id="cartDrawer">
     <div class="cart-head">
@@ -1692,92 +1602,212 @@
       <p class="sec-label rv" data-i18n="menu_label">Меню</p>
       <h2 class="sec-title rv" data-i18n="menu_title" data-i18n-html="1">Откройте <em>вкус</em></h2>
       <div class="cats-grid" style="margin:40px 0 56px">
-        <div class="cat-tile rv" data-tab="coffee">
+        <div class="cat-tile rv active" data-tab="zavtrak">
           <div class="cat-icon"><svg viewBox="0 0 24 24">
-              <path d="M17 8h1a4 4 0 010 8h-1" />
-              <path d="M3 8h14v9a4 4 0 01-4 4H7a4 4 0 01-4-4V8z" />
-              <line x1="6" y1="2" x2="6" y2="4" />
-              <line x1="10" y1="2" x2="10" y2="4" />
-              <line x1="14" y1="2" x2="14" y2="4" />
-            </svg></div><span data-i18n="cat_coffee">Кофе</span>
+              <path d="M12 2L2 7l10 5 10-5-10-5z" />
+              <path d="M2 17l10 5 10-5" />
+            </svg></div><span data-i18n="cat_zavtrak">Завтрак</span>
         </div>
-        <div class="cat-tile rv d1" data-tab="tea">
+        <div class="cat-tile rv" data-tab="burger">
           <div class="cat-icon"><svg viewBox="0 0 24 24">
-              <path d="M4 4h16v2a8 8 0 01-16 0V4z" />
-              <path d="M8 4V2m4 2V2m4 2V2" />
-              <path d="M4 18h16M6 21h12" />
-            </svg></div><span data-i18n="cat_tea">Чай & Матча</span>
+              <path d="M12 2L2 7l10 5 10-5-10-5z" />
+              <path d="M2 17l10 5 10-5" />
+            </svg></div><span data-i18n="cat_burger">Бургер</span>
         </div>
-        <div class="cat-tile rv d2" data-tab="desserts">
+        <div class="cat-tile rv" data-tab="pizza">
           <div class="cat-icon"><svg viewBox="0 0 24 24">
-              <circle cx="12" cy="13" r="8" />
-              <path d="M12 5V3M5 13H3M21 13h-2M12 21v-2" />
+              <path d="M12 2L2 7l10 5 10-5-10-5z" />
+              <path d="M2 17l10 5 10-5" />
+            </svg></div><span data-i18n="cat_pizza">Пицца</span>
+        </div>
+        <div class="cat-tile rv" data-tab="salaty">
+          <div class="cat-icon"><svg viewBox="0 0 24 24">
+              <path d="M12 2L2 7l10 5 10-5-10-5z" />
+              <path d="M2 17l10 5 10-5" />
+            </svg></div><span data-i18n="cat_salaty">Салаты</span>
+        </div>
+        <div class="cat-tile rv" data-tab="supy">
+          <div class="cat-icon"><svg viewBox="0 0 24 24">
+              <path d="M12 2L2 7l10 5 10-5-10-5z" />
+              <path d="M2 17l10 5 10-5" />
+            </svg></div><span data-i18n="cat_supy">Супы</span>
+        </div>
+        <div class="cat-tile rv" data-tab="pasta">
+          <div class="cat-icon"><svg viewBox="0 0 24 24">
+              <path d="M12 2L2 7l10 5 10-5-10-5z" />
+              <path d="M2 17l10 5 10-5" />
+            </svg></div><span data-i18n="cat_pasta">Паста</span>
+        </div>
+        <div class="cat-tile rv d1" data-tab="sushi">
+          <div class="cat-icon"><svg viewBox="0 0 24 24">
+              <path d="M12 2L2 7l10 5 10-5-10-5z" />
+              <path d="M2 17l10 5 10-5" />
+            </svg></div><span data-i18n="cat_sushi">Суши</span>
+        </div>
+        <div class="cat-tile rv d2" data-tab="tea">
+          <div class="cat-icon"><svg viewBox="0 0 24 24">
+              <path d="M12 2L2 7l10 5 10-5-10-5z" />
+              <path d="M2 17l10 5 10-5" />
+            </svg></div><span data-i18n="cat_tea">Чайная карта</span>
+        </div>
+        <div class="cat-tile rv d3" data-tab="smoothie">
+          <div class="cat-icon"><svg viewBox="0 0 24 24">
+              <path d="M12 2L2 7l10 5 10-5-10-5z" />
+              <path d="M2 17l10 5 10-5" />
+            </svg></div><span data-i18n="cat_smoothie">Смузи</span>
+        </div>
+        <div class="cat-tile rv d4" data-tab="milkshake">
+          <div class="cat-icon"><svg viewBox="0 0 24 24">
+              <path d="M12 2L2 7l10 5 10-5-10-5z" />
+              <path d="M2 17l10 5 10-5" />
+            </svg></div><span data-i18n="cat_milkshake">Милкшейк</span>
+        </div>
+        <div class="cat-tile rv d5" data-tab="fresh">
+          <div class="cat-icon"><svg viewBox="0 0 24 24">
+              <path d="M12 2L2 7l10 5 10-5-10-5z" />
+              <path d="M2 17l10 5 10-5" />
+            </svg></div><span data-i18n="cat_fresh">Фреш напитки</span>
+        </div>
+        <div class="cat-tile rv d5" data-tab="sauce">
+          <div class="cat-icon"><svg viewBox="0 0 24 24">
+              <path d="M12 2L2 7l10 5 10-5-10-5z" />
+              <path d="M2 17l10 5 10-5" />
+            </svg></div><span data-i18n="cat_sauce">Соус</span>
+        </div>
+        <div class="cat-tile rv d5" data-tab="gelato">
+          <div class="cat-icon"><svg viewBox="0 0 24 24">
+              <path d="M12 2L2 7l10 5 10-5-10-5z" />
+              <path d="M2 17l10 5 10-5" />
+            </svg></div><span data-i18n="cat_gelato">Гилатто морожни</span>
+        </div>
+        <div class="cat-tile rv d5" data-tab="firmTea">
+          <div class="cat-icon"><svg viewBox="0 0 24 24">
+              <path d="M12 2L2 7l10 5 10-5-10-5z" />
+              <path d="M2 17l10 5 10-5" />
+            </svg></div><span data-i18n="cat_firmTea">Фирменные чай</span>
+        </div>
+        <div class="cat-tile rv d5" data-tab="hot">
+          <div class="cat-icon"><svg viewBox="0 0 24 24">
+              <path d="M12 2L2 7l10 5 10-5-10-5z" />
+              <path d="M2 17l10 5 10-5" />
+            </svg></div><span data-i18n="cat_hot">Горячие блюда</span>
+        </div>
+        <div class="cat-tile rv d5" data-tab="coffee">
+          <div class="cat-icon"><svg viewBox="0 0 24 24">
+              <path d="M12 2L2 7l10 5 10-5-10-5z" />
+              <path d="M2 17l10 5 10-5" />
+            </svg></div><span data-i18n="cat_coffee">Кофе бар</span>
+        </div>
+        <div class="cat-tile rv d5" data-tab="lepeshka">
+          <div class="cat-icon"><svg viewBox="0 0 24 24">
+              <path d="M12 2L2 7l10 5 10-5-10-5z" />
+              <path d="M2 17l10 5 10-5" />
+            </svg></div><span data-i18n="cat_lepeshka">Лепёшка</span>
+        </div>
+        <div class="cat-tile rv d5" data-tab="bar">
+          <div class="cat-icon"><svg viewBox="0 0 24 24">
+              <path d="M12 2L2 7l10 5 10-5-10-5z" />
+              <path d="M2 17l10 5 10-5" />
+            </svg></div><span data-i18n="cat_bar">Бар напитки</span>
+        </div>
+        <div class="cat-tile rv d5" data-tab="mojito">
+          <div class="cat-icon"><svg viewBox="0 0 24 24">
+              <path d="M12 2L2 7l10 5 10-5-10-5z" />
+              <path d="M2 17l10 5 10-5" />
+            </svg></div><span data-i18n="cat_mojito">Мохито бар</span>
+        </div>
+        <div class="cat-tile rv d5" data-tab="kids">
+          <div class="cat-icon"><svg viewBox="0 0 24 24">
+              <path d="M12 2L2 7l10 5 10-5-10-5z" />
+              <path d="M2 17l10 5 10-5" />
+            </svg></div><span data-i18n="cat_kids">Детский меню</span>
+        </div>
+        <div class="cat-tile rv d5" data-tab="waffles">
+          <div class="cat-icon"><svg viewBox="0 0 24 24">
+              <path d="M12 2L2 7l10 5 10-5-10-5z" />
+              <path d="M2 17l10 5 10-5" />
+            </svg></div><span data-i18n="cat_waffles">Гилатто вафли</span>
+        </div>
+        <div class="cat-tile rv d5" data-tab="shirinliklar">
+          <div class="cat-icon"><svg viewBox="0 0 24 24">
+              <path d="M12 2L2 7l10 5 10-5-10-5z" />
+              <path d="M2 17l10 5 10-5" />
             </svg></div><span data-i18n="cat_desserts">Десерты</span>
-        </div>
-        <div class="cat-tile rv d3" data-tab="cakes">
-          <div class="cat-icon"><svg viewBox="0 0 24 24">
-              <path d="M20 21v-8a2 2 0 00-2-2H6a2 2 0 00-2 2v8" />
-              <path d="M4 21h16" />
-              <path d="M8 11V7a4 4 0 018 0v4" />
-              <line x1="4" y1="15" x2="20" y2="15" />
-            </svg></div><span data-i18n="cat_cakes">Торты</span>
-        </div>
-        <div class="cat-tile rv d4" data-tab="pastry">
-          <div class="cat-icon"><svg viewBox="0 0 24 24">
-              <path d="M3 11l19-9-9 19-2-8-8-2z" />
-            </svg></div><span data-i18n="cat_pastry">Выпечка</span>
-        </div>
-        <div class="cat-tile rv d5" data-tab="breakfast">
-          <div class="cat-icon"><svg viewBox="0 0 24 24">
-              <circle cx="12" cy="12" r="9" />
-              <path d="M12 8v4l3 3" />
-            </svg></div><span data-i18n="cat_breakfast">Завтраки</span>
-        </div>
-        <div class="cat-tile rv d4" data-tab="cold">
-          <div class="cat-icon"><svg viewBox="0 0 24 24">
-              <path d="M7 2h10l-1 14H8L7 2z" />
-              <path d="M5 7h14" />
-              <line x1="12" y1="16" x2="12" y2="22" />
-              <line x1="9" y1="22" x2="15" y2="22" />
-            </svg></div><span data-i18n="cat_cold">Холодные</span>
-        </div>
-        <div class="cat-tile rv d5" data-tab="newItems">
-          <div class="cat-icon"><svg viewBox="0 0 24 24">
-              <polygon
-                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-            </svg></div><span data-i18n="cat_new">Новинки ✦</span>
         </div>
       </div>
       <div id="menuPanels">
-        <div class="menu-panel active" data-panel="coffee">
-          <div class="products-grid" id="grid-coffee"></div>
+        <div class="menu-panel active" data-panel="zavtrak">
+          <div class="products-grid" id="grid-zavtrak"></div>
+        </div>
+        <div class="menu-panel" data-panel="burger">
+          <div class="products-grid" id="grid-burger"></div>
+        </div>
+        <div class="menu-panel" data-panel="pizza">
+          <div class="products-grid" id="grid-pizza"></div>
+        </div>
+        <div class="menu-panel" data-panel="salaty">
+          <div class="products-grid" id="grid-salaty"></div>
+        </div>
+        <div class="menu-panel" data-panel="supy">
+          <div class="products-grid" id="grid-supy"></div>
+        </div>
+        <div class="menu-panel" data-panel="pasta">
+          <div class="products-grid" id="grid-pasta"></div>
+        </div>
+        <div class="menu-panel" data-panel="sushi">
+          <div class="products-grid" id="grid-sushi"></div>
         </div>
         <div class="menu-panel" data-panel="tea">
           <div class="products-grid" id="grid-tea"></div>
         </div>
-        <div class="menu-panel" data-panel="desserts">
-          <div class="products-grid" id="grid-desserts"></div>
+        <div class="menu-panel" data-panel="smoothie">
+          <div class="products-grid" id="grid-smoothie"></div>
         </div>
-        <div class="menu-panel" data-panel="cakes">
-          <div class="products-grid" id="grid-cakes"></div>
+        <div class="menu-panel" data-panel="milkshake">
+          <div class="products-grid" id="grid-milkshake"></div>
         </div>
-        <div class="menu-panel" data-panel="pastry">
-          <div class="products-grid" id="grid-pastry"></div>
+        <div class="menu-panel" data-panel="fresh">
+          <div class="products-grid" id="grid-fresh"></div>
         </div>
-        <div class="menu-panel" data-panel="breakfast">
-          <div class="products-grid" id="grid-breakfast"></div>
+        <div class="menu-panel" data-panel="sauce">
+          <div class="products-grid" id="grid-sauce"></div>
         </div>
-        <div class="menu-panel" data-panel="cold">
-          <div class="products-grid" id="grid-cold"></div>
+        <div class="menu-panel" data-panel="gelato">
+          <div class="products-grid" id="grid-gelato"></div>
         </div>
-        <div class="menu-panel" data-panel="newItems">
-          <div class="products-grid" id="grid-newItems"></div>
+        <div class="menu-panel" data-panel="firmTea">
+          <div class="products-grid" id="grid-firmTea"></div>
+        </div>
+        <div class="menu-panel" data-panel="hot">
+          <div class="products-grid" id="grid-hot"></div>
+        </div>
+        <div class="menu-panel" data-panel="coffee">
+          <div class="products-grid" id="grid-coffee"></div>
+        </div>
+        <div class="menu-panel" data-panel="lepeshka">
+          <div class="products-grid" id="grid-lepeshka"></div>
+        </div>
+        <div class="menu-panel" data-panel="bar">
+          <div class="products-grid" id="grid-bar"></div>
+        </div>
+        <div class="menu-panel" data-panel="mojito">
+          <div class="products-grid" id="grid-mojito"></div>
+        </div>
+        <div class="menu-panel" data-panel="kids">
+          <div class="products-grid" id="grid-kids"></div>
+        </div>
+        <div class="menu-panel" data-panel="waffles">
+          <div class="products-grid" id="grid-waffles"></div>
+        </div>
+        <div class="menu-panel" data-panel="shirinliklar">
+          <div class="products-grid" id="grid-shirinliklar"></div>
         </div>
       </div>
     </div>
   </section>
 
 
+  <script src="menu.js"></script>
   <script>
     document.body.classList.add('loading');
 
@@ -1819,63 +1849,415 @@
       window.addEventListener('load', () => { setTimeout(tick, 200) });
     })();
 
+    let currentLang = localStorage.getItem('jb_lang') || 'ru';
+
     const MENU = {
-      coffee: [
-        { name: 'Эспрессо', desc: 'Моносорт, 100% арабика Эфиопия Иергачеффе', weight: '60 мл', price: 18000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
-        { name: 'Капучино «Жасмин»', desc: 'Сироп жасмина ручной работы, велюровая молочная пена', weight: '250 мл', price: 28000, badge: 'ХИТ', bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
-        { name: 'Раф «Шёлковый путь»', desc: 'Сливки 20%, кардамон, сушёная роза, фирменный купаж', weight: '300 мл', price: 32000, badge: 'ХИТ', bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
-        { name: 'Флэт Уайт', desc: 'Двойной рестретто, лёгкая микропена, молоко 3.5%', weight: '160 мл', price: 26000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
-        { name: 'Фисташковый Раф', desc: 'Фисташковая паста Bronte, сливки 33%, ваниль Бурбон', weight: '300 мл', price: 35000, badge: 'НОВИНКА', bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
-        { name: 'Матча Латте', desc: 'Церемониальная матча Grade A, овсяное молоко Oatly', weight: '300 мл', price: 30000, badge: null, bg: 'linear-gradient(160deg,#0E1A0A,#1A2C10)' },
+      zavtrak: [
+        { name: 'ЗАВТРАК ПО ТУРЕТСКЫЙ', desc: '', weight: '416 г', price: 60000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
+        { name: 'ЯИЧНИЦА С КОЛБАСОЙ', desc: '', weight: '149 г', price: 20000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
+        { name: 'ШАКУШКА', desc: '', weight: '321 г', price: 40000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
+        { name: 'ОМЛЕТ', desc: '', weight: '340 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
+      ],
+      burger: [
+        { name: 'БИГБУРГЕР', desc: '', weight: '340 г', price: 55000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
+        { name: 'ЧИКЕН БУРГЕР', desc: '', weight: '200 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
+        { name: 'СТРИПСЫ 5ШТ', desc: '', weight: '310 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
+        { name: 'КЛАБ СЭНДВИЧ', desc: '', weight: '290 г', price: 35000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
+        { name: 'ХАМБУРГЕР', desc: '', weight: '215 г', price: 35000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
+        { name: 'ТВИСТЕР', desc: '', weight: '275 г', price: 18000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
+        { name: 'КФС БУРГЕР', desc: '', weight: '305 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
+        { name: 'СТРИПСЫ 7ШТ', desc: '', weight: '390 г', price: 35000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
+        { name: 'ЧИЗБУРГЕР', desc: '', weight: '230 г', price: 37000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
+        { name: 'ДУРУМ ШАВЕРМА', desc: '', weight: '290 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
+        { name: 'ХАГГИ', desc: '', weight: '175 г', price: 20000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
+        { name: 'КУРИНЫЕ КРЫЛЬЯ 5ШТ', desc: '', weight: '410 г', price: 35000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
+        { name: 'КУРИНЫЕ КРЫЛЬЯ 7ШТ', desc: '', weight: '530 г', price: 45000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
+      ],
+      pizza: [
+        { name: 'ПИДЕ С МЯСОМ', desc: '', weight: '387 г', price: 55000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
+        { name: 'АССОРТИ ПИЦЦА', desc: '', weight: '665 г', price: 79000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
+        { name: 'ВЕТЧИНА С ГРИБАМИ', desc: '', weight: '615 г', price: 70000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
+        { name: 'МИНИ ПИЦЦА МЯСНОЙ', desc: '', weight: '245 г', price: 29000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
+        { name: 'МИНИ ПИЦЦА МАРГАРИТА', desc: '', weight: '235 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
+        { name: 'МИНИ ПИЦЦА ПЕППЕРОНИ', desc: '', weight: '235 г', price: 29000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
+        { name: 'ЦЕЗАРЬ ПИЦЦА', desc: '', weight: '695 г', price: 75000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
+        { name: 'МАРГАРИТА ПИЦЦА', desc: '', weight: '585 г', price: 50000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
+        { name: 'ПИЦЦА ФРУКТОВЫЙ', desc: '', weight: '652 г', price: 59000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
+        { name: 'С ГОВЯЖИМ ФАРШЕМ ПИЦЦА', desc: '', weight: '677 г', price: 69000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
+        { name: 'ПЕППЕРОНЫ ПИЦЦА', desc: '', weight: '600 г', price: 75000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
+        { name: 'МИНИ ПИЦЦА АССОРТИ', desc: '', weight: '265 г', price: 29000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
+        { name: 'ПИЦЦА КЛУБНИКА БАНАН', desc: '', weight: '650 г', price: 59000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
+        { name: 'МИНИ ПИЦЦА ВЕТЧИНА С ГРИБАМИ', desc: '', weight: '250 г', price: 29000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
+        { name: 'МЯСНОЙ ПЕППЕРОНИ ПИЦЦА', desc: '', weight: '650 г', price: 80000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
+        { name: 'МЯСНОЙ ПИЦЦА', desc: '', weight: '625 г', price: 85000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
+        { name: 'ПИДЕ С СЫРОМ', desc: '', weight: '387 г', price: 45000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
+        { name: 'МЕКСИКАНСКАЯ', desc: '', weight: '717 г', price: 69000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
+        { name: 'ПИДЕ С МЯСОМ И СЫРОМ', desc: '', weight: '387 г', price: 50000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
+        { name: 'МИНИ ПИЦЦА ЦЕЗАРЬ', desc: '', weight: '297 г', price: 29000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
+      ],
+      salaty: [
+        { name: 'МУЖСКОЙ КАПРИЗ САЛАТ', desc: '', weight: '264 г', price: 55000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
+        { name: 'ВИНЕГРЕТ САЛАТ', desc: '', weight: '284 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
+        { name: 'ФРАНЦУЗКИЙ САЛАТ', desc: '', weight: '224 г', price: 35000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
+        { name: 'ЦЕЗАРЬ САЛАТ', desc: '', weight: '252 г', price: 38000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
+        { name: 'ЛОБИО САЛАТ', desc: '', weight: '232 г', price: 30000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
+        { name: 'ЯПОНСКИЙ САЛАТ', desc: '', weight: '294 г', price: 45000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
+        { name: 'БАКЛАЖАН САЛАТ', desc: '', weight: '364 г', price: 43000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
+        { name: 'ГРЕЧЕСКИЙ САЛАТ', desc: '', weight: '297 г', price: 42000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
+        { name: 'ПТИЧЬЕ ГНЕЗДО САЛАТ', desc: '', weight: '294.2 г', price: 28000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
+        { name: 'ОВОЩНОЙ САЛАТ', desc: '', weight: '256 г', price: 20000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
+        { name: 'БАКЛАЖАН С КУРИЦЕЙ САЛАТ', desc: '', weight: '429 г', price: 40000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
+      ],
+      supy: [
+        { name: 'ТОМ ЯМ СУПЫ', desc: '', weight: '454 г', price: 45000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
+        { name: 'ФРИКАДЕЛЬКАМИ СУПЫ', desc: '', weight: '522 г', price: 39000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
+        { name: 'ЧЕЧЕВИЧНЫЙ СУПЫ', desc: '', weight: '354 г', price: 29000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
+      ],
+      pasta: [
+        { name: 'СПАГЕТТИ БОЛОНЬЕЗ', desc: '', weight: '427 г', price: 40000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
+        { name: 'ПЕННЕ АЛЬ АРАБЬЯТА', desc: '', weight: '382 г', price: 30000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
+        { name: 'ФЕТТУЧИНИ АЛФРЕДО', desc: '', weight: '295 г', price: 55000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
+      ],
+      sushi: [
+        { name: 'СЕТУН', desc: '', weight: '410 г', price: 69000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
+        { name: 'МИНИ АССОРТИ РОЛЛ', desc: '', weight: '734 г', price: 99000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
+        { name: 'МИНИ РОЛЛ С ТУНЦОМ', desc: '', weight: '180 г', price: 29000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
+        { name: 'ЗАПЕЧЕННЫЙ ТУНЕЦ', desc: '', weight: '350 г', price: 49000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
+        { name: 'ПОМИ ТОРИ', desc: '', weight: '340 г', price: 45000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
+        { name: 'ТАКЕШИ', desc: '', weight: '390 г', price: 51000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
+        { name: 'МОНОЛОГ', desc: '', weight: '360 г', price: 69000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
+        { name: 'ФИЛАДЕЛЬФИЯ', desc: '', weight: '340 г', price: 71000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
+        { name: 'МИНИ РОЛЛ С УГРЕМ', desc: '', weight: '192 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
+        { name: 'МИХ РОЛЛ', desc: '', weight: '317 г', price: 69000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
+        { name: 'АЙС ЧИКЕН', desc: '', weight: '362 г', price: 45000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
+        { name: 'ЖЕРЕННЫЙ МАКС', desc: '', weight: '377 г', price: 75000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
+        { name: 'МИНИ РОЛЛ С ОГУРЦАМИ', desc: '', weight: '182 г', price: 15000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
+        { name: 'ЗАПЕЧЕНАЯ КУРИЦА', desc: '', weight: '332 г', price: 49000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
+        { name: 'ЗАПЕЧЕННЫЙ УГОРЬ', desc: '', weight: '342 г', price: 59000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
+        { name: 'ЗАПЕЧЕННЫЙ ЛОСОСЬ', desc: '', weight: '345 г', price: 59000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
+        { name: 'ЧИЛИ ЧИКЕН РОЛЛ', desc: '', weight: '355 г', price: 40000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
+        { name: 'КАНАДСКИЙ РОЛЛ', desc: '', weight: '322 г', price: 59000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
+        { name: 'ФРУКТОВЫЙ РОЛЛ', desc: '', weight: '134 г', price: 45000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
+        { name: 'МИНИ РОЛЛ С ЛОСОСЕМ', desc: '', weight: '180 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
       ],
       tea: [
-        { name: 'Чай с жасмином', desc: 'Белый китайский чай, живые бутоны жасмина, первый сбор', weight: '400 мл', price: 20000, badge: 'ХИТ', bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
-        { name: 'Масала', desc: 'Имбирь, кардамон, корица, гвоздика, Ассам, молоко', weight: '300 мл', price: 24000, badge: null, bg: 'linear-gradient(160deg,#3A1808,#5A2810)' },
-        { name: 'Матча Церемониальная', desc: 'Прямая поставка из Удзи, взбитается венчиком', weight: '200 мл', price: 28000, badge: null, bg: 'linear-gradient(160deg,#0A1A06,#142A0A)' },
-        { name: 'Ройбуш Апельсин', desc: 'Южноафриканский ройбуш, цедра апельсина, манго', weight: '400 мл', price: 22000, badge: null, bg: 'linear-gradient(160deg,#2A1606,#3D2008)' },
-        { name: 'Чай Хорезмский', desc: 'Зелёный чай, шиповник и местные травы, горный мёд', weight: '400 мл', price: 20000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
+        { name: 'ЧАЙ ЖАСМИН', desc: '', weight: '740 г', price: 10000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
+        { name: 'ЧАЙ С ЛИМОНОМ ЧЁРНЫМ 0,5', desc: '', weight: '435 г', price: 9000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
+        { name: 'ЧАЙ ЧЁРНЫЙ', desc: '', weight: '740 г', price: 8000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
+        { name: 'ДОБАВКА К ЧАЙ', desc: '', weight: '', price: 10000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
+        { name: 'ЧАЙ БАРДАК 1 СТ', desc: '', weight: '122 г', price: 2000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
+        { name: 'ЧАЙ БАРДАК ЧАЙНИК', desc: '', weight: '3090 г', price: 20000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
+        { name: 'ЧАЙ ЗЕЛЁНЫЙ', desc: '', weight: '740 г', price: 8000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
+        { name: 'ЧАЙ ЧЁРНЫЙ 0,5', desc: '', weight: '360 г', price: 4000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
+        { name: 'ЧАЙ С ЛИМОНОМ ЧЁРНЫМ', desc: '', weight: '870 г', price: 17000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
+        { name: 'ЧАЙ С ЛИМОНОМ ЗЕЛЁНЫЙ 0,5', desc: '', weight: '430 г', price: 8000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
+        { name: 'ЧАЙ ЗЕЛЁНЫЙ 0,5', desc: '', weight: '360 г', price: 4000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
+        { name: 'ЧАЙ С ЛИМОНОМ ЗЕЛЁНЫЙ', desc: '', weight: '870 г', price: 15000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
       ],
-      desserts: [
-        { name: 'Тарт Жасминовый', desc: 'Лимонный крем патисьер, жасминовый ганаш Valrhona', weight: '130 г', price: 24000, badge: 'ХИТ', bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
-        { name: 'Эклер Карамель-Пекан', desc: 'Заварное тесто, карамельный крем, орехи пекан в тоффи', weight: '110 г', price: 20000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
-        { name: 'Макарон Ваниль-Роза', desc: 'Ганаш Бурбон и лепестков розы, миндальный дакуаз', weight: '45 г', price: 15000, badge: null, bg: 'linear-gradient(160deg,#4A1828,#6B2A3D)' },
-        { name: 'Панна-котта Жасмин', desc: 'Сливки 33%, настой жасминового чая, малиновое кули', weight: '180 г', price: 28000, badge: null, bg: 'linear-gradient(160deg,#1A1A2A,#2A2A3D)' },
-        { name: 'Тирамису Классик', desc: 'Маскарпоне Galbani, кофе Диемме, дамские пальчики', weight: '220 г', price: 32000, badge: null, bg: 'linear-gradient(160deg,#1A0E08,#2C1A10)' },
-        { name: 'Чизкейк Нью-Йорк', desc: 'Сыр Philadelphia, ваниль, сметанный корж, ягодный соус', weight: '200 г', price: 30000, badge: 'НОВИНКА', bg: 'linear-gradient(160deg,#2A1A10,#3D2A18)' },
+      smoothie: [
+        { name: 'ЯГОДНЫЙ СМУЗИ', desc: '', weight: '395 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
+        { name: 'АПЕЛЬСИН СМУЗИ', desc: '', weight: '505 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
+        { name: 'АНАНАСОВЫЙ СМУЗИ', desc: '', weight: '395 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
+        { name: 'КИВИ СМУЗИ', desc: '', weight: '435 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
+        { name: 'БАНАНОВЫЙ СМУЗИ', desc: '', weight: '455 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
       ],
-      cakes: [
-        { name: 'Торт «Хорезм»', desc: 'Фисташковый дакуаз, мусс из розы, малиновое конфи. На 8–10 персон.', weight: '1.4 кг', price: 640000, badge: 'ХИТ', bg: 'linear-gradient(160deg,#1A2A10,#2C4020)' },
-        { name: 'Торт «Шёлковый путь»', desc: 'Инжир, грецкий орех, карамель, ганаш Guanaja 70%. На 6–8 персон.', weight: '1.1 кг', price: 580000, badge: null, bg: 'linear-gradient(160deg,#2A1808,#3D2410)' },
-        { name: 'Чизкейк «Жасмин»', desc: 'Мусс из жасминового чая, зеркальная глазурь. На 6 персон.', weight: '1.0 кг', price: 520000, badge: null, bg: 'linear-gradient(160deg,#1A1A2A,#282838)' },
-        { name: 'Торт «Фисташка-Клубника»', desc: 'Фисташковый бисквит, клубничное компоте, Ivoire. На 6 персон.', weight: '1.15 кг', price: 600000, badge: null, bg: 'linear-gradient(160deg,#1A2A14,#243C1C)' },
+      milkshake: [
+        { name: 'ТИРАМИСУ ШЕЙК', desc: '', weight: '247.282703 г', price: 28000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
+        { name: 'БАНАНОВЫЙ ШЕЙК', desc: '', weight: '495 г', price: 30000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
+        { name: 'ШОКОЛОДНЫЙ ШЕЙК', desc: '', weight: '380 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
+        { name: 'ЯГОДНЫЙ ШЕЙК', desc: '', weight: '400 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
+        { name: 'КЛУБНИКА БАНАН ШЕЙК', desc: '', weight: '560 г', price: 50000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
+        { name: 'БАНАН ШОКОЛАД ШЕЙК', desc: '', weight: '357.256006 г', price: 35000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
+        { name: 'ВАНИЛЬНЫЙ ШЕЙК', desc: '', weight: '375 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
+        { name: 'КЛУБНИКА ШЕЙК', desc: '', weight: '435 г', price: 49000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
+        { name: 'ОРЕО ШЕЙК', desc: '', weight: '425 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
       ],
-      pastry: [
-        { name: 'Круассан Сливочный', desc: 'Слоёное тесто на закваске, масло Elle & Vire 84%', weight: '90 г', price: 22000, badge: null, bg: 'linear-gradient(160deg,#2A1808,#3D2810)' },
-        { name: 'Даниш Кофейный', desc: 'Слоёное тесто, кофейный крем, карамелизованный миндаль', weight: '85 г', price: 30000, badge: 'НОВИНКА', bg: 'linear-gradient(160deg,#1A1006,#2C1C0A)' },
-        { name: 'Чак-чак Modern', desc: 'Классический чак-чак с фисташкой и горным мёдом', weight: '160 г', price: 18000, badge: null, bg: 'linear-gradient(160deg,#2A1A08,#3D2810)' },
-        { name: 'Самса с тыквой', desc: 'Слоёное тесто на топлёном масле, тыква с зирой', weight: '180 г', price: 16000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#283C0E)' },
-        { name: 'Бриошь с корицей', desc: 'Воздушное бриошное тесто, сливочная корица, глазурь', weight: '120 г', price: 26000, badge: null, bg: 'linear-gradient(160deg,#2A1008,#3D1C0E)' },
+      fresh: [
+        { name: 'ЯБЛОЧНЫЙ ФРЕШ', desc: '', weight: '1600 г', price: 30000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
+        { name: 'АПЕЛЬСИНОВЫЙ ФРЕШ', desc: '', weight: '850 г', price: 55000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
       ],
-      breakfast: [
-        { name: 'Яйца Бенедикт', desc: '2 яйца пашот, бекон Black Forest, голландский соус', weight: '280 г', price: 55000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
-        { name: 'Авокадо-тост', desc: 'Хлеб на закваске, гуакамоле, яйцо пашот, микрогрин', weight: '250 г', price: 48000, badge: 'ХИТ', bg: 'linear-gradient(160deg,#0A1A0A,#142A12)' },
-        { name: 'Овсянка Премиум', desc: 'Scottish oats, кокосовое молоко, клубника, малина', weight: '320 г', price: 35000, badge: null, bg: 'linear-gradient(160deg,#1A1A0A,#282812)' },
-        { name: 'Сырники Фермерские', desc: 'Творог 9%, ваниль, сметана, варенье из инжира', weight: '300 г', price: 42000, badge: null, bg: 'linear-gradient(160deg,#2A0A0A,#3D1212)' },
-        { name: 'Шакшука', desc: 'Яйца в томатном соусе, фета, зелень, свежий хлеб', weight: '350 г', price: 45000, badge: 'НОВИНКА', bg: 'linear-gradient(160deg,#2A0A06,#3D1408)' },
+      sauce: [
+        { name: 'СОУС СЫРНИЙ', desc: '', weight: '30 г', price: 3000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
+        { name: 'ЧЕСНОЧНЫЙ СОУС', desc: '', weight: '30 г', price: 3000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
+        { name: 'КЕТЧУП', desc: '', weight: '30 г', price: 3000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
+        { name: 'МАЙОНЕЗ', desc: '', weight: '30 г', price: 3000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
+        { name: 'СОУС ТОМАТНЫЙ', desc: '', weight: '30 г', price: 3000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
+        { name: 'СОУС ЧИЛИ АЧЧИК', desc: '', weight: '1000 г', price: 3000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
       ],
-      cold: [
-        { name: 'Матча Фраппе', desc: 'Церемониальная матча, молоко, лёд, ванильный сироп', weight: '400 мл', price: 32000, badge: null, bg: 'linear-gradient(160deg,#0A1A06,#142A0A)' },
-        { name: 'Лимонад «Жасмин-Личи»', desc: 'Концентрат жасмина, личи, лайм, мята, Perrier', weight: '400 мл', price: 26000, badge: 'ХИТ', bg: 'linear-gradient(160deg,#1A1A2A,#28283C)' },
-        { name: 'Смузи «Зелёный»', desc: 'Шпинат, банан, яблоко, имбирь, кокосовая вода', weight: '350 мл', price: 30000, badge: null, bg: 'linear-gradient(160deg,#0A1A0A,#142614)' },
-        { name: 'Айс Брю-Кофе', desc: 'Холодная экстракция 12 часов, арабика, подаётся со льдом', weight: '350 мл', price: 28000, badge: null, bg: 'linear-gradient(160deg,#0A0806,#14100A)' },
-        { name: 'Ледяной чай Роза', desc: 'Настой розы и гибискуса, лайм, агава, лепестки', weight: '400 мл', price: 24000, badge: null, bg: 'linear-gradient(160deg,#2A0A18,#3D1224)' },
+      gelato: [
+        { name: 'G БАУНТИ', desc: '', weight: '60 г', price: 10000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
+        { name: 'G ТИРАМИСУ', desc: '', weight: '60.135135 г', price: 10000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
+        { name: 'G ФУНДУК', desc: '', weight: '60.36036 г', price: 10000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
+        { name: 'G БАНАН', desc: '', weight: '60.06006 г', price: 10000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
+        { name: 'G ОРЕО', desc: '', weight: '64.414414 г', price: 10000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
+        { name: 'G ЛЕСНЫЕ ЯГОДЫ', desc: '', weight: '60.06006 г', price: 10000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
+        { name: 'G КИВИ', desc: '', weight: '60.06006 г', price: 10000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
+        { name: 'G КЛУБНИКА', desc: '', weight: '57.057057 г', price: 10000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
+        { name: 'G ПЛОМБИР', desc: '', weight: '60.06006 г', price: 10000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
+        { name: 'G ЙОГУРТ С ВИШНЕЙ', desc: '', weight: '63.813814 г', price: 10000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
+        { name: 'G ФЕРРЕРО РОШЕ', desc: '', weight: '64.414414 г', price: 10000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
+        { name: 'G ФИСТАШКА', desc: '', weight: '60.15015 г', price: 12000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
+        { name: 'G ВАНИЛЬ  ТОФИПЕКАН', desc: '', weight: '63.963964 г', price: 10000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
+        { name: 'G МАНГО', desc: '', weight: '60.06006 г', price: 10000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
+        { name: 'G МОЛОЧНЫЙ ШОКОЛАД', desc: '', weight: '61.291291 г', price: 10000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
+        { name: 'G ГОРЬКИЙ ШОКОЛАД', desc: '', weight: '60.761622 г', price: 10000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
+        { name: 'G ПЕЧЕНЬЕ НУТЕЛЛА', desc: '', weight: '63.813814 г', price: 10000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
+        { name: 'G РАФАЕЛЛО', desc: '', weight: '64.414414 г', price: 10000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
+        { name: 'G АПЕЛЬСИН', desc: '', weight: '60.06006 г', price: 10000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
       ],
-      newItems: [
-        { name: 'Фисташковый Раф', desc: 'Фисташковая паста Bronte, сливки, ваниль, двойной эспрессо', weight: '300 мл', price: 35000, badge: 'НОВИНКА', bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
-        { name: 'Даниш Кофейный', desc: 'Слоёное тесто, кофейный крем, карамелизованный миндаль', weight: '85 г', price: 30000, badge: 'НОВИНКА', bg: 'linear-gradient(160deg,#1A1006,#2C1C0A)' },
-        { name: 'Чизкейк «Жасмин»', desc: 'Мусс из жасминового чая, зеркальная глазурь', weight: '1.0 кг', price: 520000, badge: 'НОВИНКА', bg: 'linear-gradient(160deg,#1A1A2A,#282838)' },
-        { name: 'Шакшука', desc: 'Яйца в томатном соусе, фета, зелень, свежий хлеб', weight: '350 г', price: 45000, badge: 'НОВИНКА', bg: 'linear-gradient(160deg,#2A0A06,#3D1408)' },
-      ]
+      firmTea: [
+        { name: 'ПЕРСИК-МАНГО', desc: '', weight: '1100 г', price: 30000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
+        { name: 'ЯГОДНЫЙ ЧАЙ', desc: '', weight: '1398 г', price: 30000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
+        { name: 'ИМБИРНЫЙ', desc: '', weight: '1368.92 г', price: 30000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
+        { name: 'ФРУКТОВЫЙ', desc: '', weight: '408.74 г', price: 32000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
+        { name: 'ОБЛЕПИХОВЫЙ', desc: '', weight: '1548 г', price: 35000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
+        { name: 'АНГЛИЙСКИЙ', desc: '', weight: '1225 г', price: 30000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
+        { name: 'ЧАЙ С КИВИ', desc: '', weight: '1510 г', price: 30000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
+        { name: 'МАРОККАНСКИЙ', desc: '', weight: '1357 г', price: 35000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
+      ],
+      hot: [
+        { name: 'КЕБАБЧИКИ ИЗ КУРИЦЫ ИГОВЯДИНЫ', desc: '', weight: '529 г', price: 50000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
+        { name: 'КОЗОН КЕБАБ', desc: '', weight: '516 г', price: 77000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
+        { name: 'ТЕФТЕЛИ С КАРТОФИЛЬНЕЙ ПЮРЕ', desc: '', weight: '509 г', price: 55000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
+        { name: 'САЙ С БАРАНИНОЙ', desc: '', weight: '407 г', price: 70000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
+        { name: 'КОФТЕ С СЫРОМ', desc: '', weight: '487 г', price: 60000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
+        { name: 'ФРИ', desc: '', weight: '137 г', price: 15000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
+        { name: 'ТУШЕНКА ИЗ ГОВЯДИНЫ', desc: '', weight: '444 г', price: 70000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
+        { name: 'САЙ С ГОВЯДИНОЙ', desc: '', weight: '246.5 г', price: 70000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
+        { name: 'КОФТЕ', desc: '', weight: '360 г', price: 50000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
+        { name: 'АЙДАХО', desc: '', weight: '140 г', price: 15000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
+        { name: 'САЙ С КУРИЦОЙ', desc: '', weight: '511 г', price: 38000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
+        { name: 'КАРТОФЕЛЬНОЕ ПЮРЕ', desc: '', weight: '152 г', price: 10000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
+        { name: 'ФИЛЕ КУРИНОЕ ВСЛИВКАХ', desc: '', weight: '331 г', price: 50000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
+        { name: 'БОН ФИЛЕ 100ГР', desc: '', weight: '303 г', price: 50000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
+      ],
+      coffee: [
+        { name: 'АЙС АМЕРИКАНО', desc: '', weight: '260 г', price: 16000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
+        { name: 'ГОРЯЧИЙ ШОКОЛАД', desc: '', weight: '186 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
+        { name: 'АМЕРИКАНО', desc: '', weight: '212 г', price: 16000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
+        { name: 'ГЛЯСЕ', desc: '', weight: '1000 г', price: 18000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
+        { name: 'АМЕРИКАНО ДАБЛ', desc: '', weight: '308 г', price: 21000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
+        { name: 'КАПУЧИНО', desc: '', weight: '262 г', price: 20000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
+        { name: 'КАПУЧИНО ДАБЛ', desc: '', weight: '1000 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
+        { name: 'РАФ', desc: '', weight: '210 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
+        { name: 'ЭСПРЕССО ДАБЛ', desc: '', weight: '1000 г', price: 17000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
+        { name: 'АЙС ЛАТТЕ', desc: '', weight: '410 г', price: 20000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
+        { name: 'ФРАПУЧИНО', desc: '', weight: '1000 г', price: 28000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
+        { name: 'РАФ С СВЕЖИЙ КЛУБНИКАМИ', desc: '', weight: '222 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
+        { name: 'РАФ МЕДОВЫЙ', desc: '', weight: '210 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
+        { name: 'АЙС КАПУЧИНО', desc: '', weight: '430 г', price: 20000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
+        { name: 'ФЛЭТ УАЙТ', desc: '', weight: '298 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
+        { name: 'ДОП СИРОПЫ НА ВЫБОР', desc: '', weight: '1000 г', price: 7000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
+        { name: 'ЭСПРЕССО', desc: '', weight: '266 г', price: 14000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
+        { name: 'МОККО', desc: '', weight: '210 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
+        { name: 'КАКАО', desc: '', weight: '166 г', price: 30000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
+        { name: 'ЛАТТЕ МАКИЯТО', desc: '', weight: '348 г', price: 18000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
+      ],
+      lepeshka: [
+        { name: 'ЛЕПЁШКА', desc: '', weight: '152 г', price: 5500, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
+        { name: 'ТОСТ ДЛЯ САНДВИЧ', desc: '', weight: '', price: 3000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
+        { name: 'ЯПОНСКИЙ ХЛЕБ', desc: '', weight: '30 г', price: 5000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
+      ],
+      bar: [
+        { name: 'COCA COLA 1', desc: '', weight: '', price: 15000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
+        { name: 'FANTA 1', desc: '', weight: '', price: 15000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
+        { name: 'СОК СОЧНАЯ ДОЛИНА 200гр', desc: '', weight: '', price: 5000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
+        { name: 'SPRITE 1', desc: '', weight: '1000 г', price: 15000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
+        { name: 'FANTA 0.5', desc: '', weight: '', price: 10000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
+        { name: 'NESTLE SANTAL 1.5', desc: '', weight: '', price: 8000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
+        { name: 'SPRITE 0.5', desc: '', weight: '', price: 10000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
+        { name: 'BONAQUA 0.5', desc: '', weight: '', price: 5000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
+        { name: 'COCA COLA 0.5', desc: '', weight: '', price: 10000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
+        { name: 'NESTLE SANTAL 0.5', desc: '', weight: '', price: 5000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
+      ],
+      mojito: [
+        { name: 'АПЕЛЬСИНОВЫЙ МОХИТО 1', desc: '', weight: '535 г', price: 55000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
+        { name: 'КЛУБНИЧНЫЙ МОХИТО 0,5', desc: '', weight: '290 г', price: 30000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
+        { name: 'ЯГОДНЫЙ ЛИМОНАДЫ 0,5', desc: '', weight: '260 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
+        { name: 'АПЕЛЬСИНОВЫЙ МОХИТО 0,5', desc: '', weight: '287 г', price: 30000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
+        { name: 'АЙС ТИ МАНГО МАРАКУЯ 0,5', desc: '', weight: '344 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
+        { name: 'ТАРХУН ЯБЛОКО', desc: '', weight: '267 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
+        { name: 'АЙС ТИ ЯГОДНЫЙ 0,5', desc: '', weight: '397 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
+        { name: 'ЦИТРУСОВЫЙС ЛИМОНАД 0,5', desc: '', weight: '318 г', price: 28000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
+        { name: 'ЯГОДНЫЙ ЛИМОНАДЫ 1', desc: '', weight: '625 г', price: 55000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
+        { name: 'КЛАССИЧЕСКИЙ МОХИТО 1', desc: '', weight: '535 г', price: 55000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
+        { name: 'КЛУБНИЧНЫЙ МОХИТО 1', desc: '', weight: '545 г', price: 55000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
+        { name: 'КЛАССИЧЕСКИЙ МОХИТО  0,5', desc: '', weight: '322 г', price: 30000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
+      ],
+      kids: [
+        { name: 'САЛАТ РАТАТУЙ', desc: '', weight: '179 г', price: 15000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
+        { name: 'СЫРНЫЕ ПАДУШКИ', desc: '', weight: '150 г', price: 20000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
+        { name: 'САЛАТ ЗАЙЧИК', desc: '', weight: '209 г', price: 15000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
+        { name: 'СМАЙЛИКИ', desc: '', weight: '170 г', price: 15000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
+        { name: 'МИНИ ЛАВАШ', desc: '', weight: '220 г', price: 20000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
+        { name: 'ОСЬМИНОЖКИ', desc: '', weight: '137 г', price: 15000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
+        { name: 'МИНИ БУРГЕР', desc: '', weight: '145 г', price: 15000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
+        { name: 'САЛАТ МОЗАИКА', desc: '', weight: '165 г', price: 15000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
+        { name: 'НАГГЕТСЫ', desc: '', weight: '151 г', price: 15000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
+        { name: 'ПИЦЦА ЛЕВ', desc: '', weight: '250 г', price: 20000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
+      ],
+      waffles: [
+        { name: 'ФОНДЮ МИКС', desc: '', weight: '608 г', price: 120000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
+        { name: 'ВАФЛИ НУТЕЛЛА', desc: '', weight: '268 г', price: 45000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
+        { name: 'ФОНДЮ КЛУБ БАНАН', desc: '', weight: '708 г', price: 150000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
+        { name: 'ФОНДЮ КЛУБНИКА', desc: '', weight: '708 г', price: 150000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
+        { name: 'ВАФЛИ БАНАН', desc: '', weight: '490 г', price: 50000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
+        { name: 'НУТЕЛЛА ДОП', desc: '', weight: '50 г', price: 10000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
+        { name: 'ВАФЛИ КЛУБ БАНАН', desc: '', weight: '470 г', price: 75000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
+        { name: 'ВАФЛИ КЛУБНИКА', desc: '', weight: '420 г', price: 70000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
+      ],
+      shirinliklar: [
+        { name: 'СОСИСКАЛИ БУЛОЧКА', desc: '', weight: '114.129412 г', price: 6000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
+        { name: 'МИНДАЛЬ КРУГ ФИСТАШКОВЫЙ', desc: '', weight: '262.033334 г', price: 19000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
+        { name: 'МИШКА', desc: '', weight: '498.125 г', price: 19000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
+        { name: 'ТВОРОЖНОЕ ПИРОГ БИЗЕЛИ', desc: '', weight: '253.241667 г', price: 8000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
+        { name: 'СНИКЕРС ПИРОЖНОЕ', desc: '', weight: '425 г', price: 27000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
+        { name: 'СЛ.КРУАССАН БЕЗ НАЧИНКИ', desc: '', weight: '163.333333 г', price: 20000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
+        { name: 'РУЛЕТ МОЛОЧНЫЙ', desc: '', weight: '326.083333 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
+        { name: 'МЕДОВИК АПЕЛСИНОВЫЙ', desc: '', weight: '387.333333 г', price: 26000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
+        { name: 'ПАХЛАВА БЕЗЕЛИ', desc: '', weight: '', price: 9000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
+        { name: 'СНИКЕРС ТОЗА ПИСТА', desc: '', weight: '', price: 18000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
+        { name: 'ПОНЧИК', desc: '', weight: '', price: 15000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
+        { name: 'ОК МЕДОВИК', desc: '', weight: '417.5 г', price: 21000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
+        { name: 'ФИСТАШКОВЫЙ МЕРЕНГА', desc: '', weight: '65.825 г', price: 11000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
+        { name: 'РУЛЕТ ЯГОДНЫЙ', desc: '', weight: '319.416667 г', price: 21000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
+        { name: 'МЕДОВИК КОФЕЙНЫЙ', desc: '', weight: '359.916667 г', price: 21000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
+        { name: 'МЕРЕНГА БЕЛЫЙ КЛУБНИЧНЫЙ', desc: '', weight: '135.108333 г', price: 17000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
+        { name: 'БЕНТО ТОРТ Клуб конф- 3 кат', desc: '', weight: '', price: 160000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
+        { name: 'МИНДАЛЬ КРУГ', desc: '', weight: '259.533334 г', price: 16000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
+        { name: 'ЛАСТОЧКА', desc: '', weight: '90.8625 г', price: 4000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
+        { name: 'желейка', desc: '', weight: '75 г', price: 10000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
+        { name: 'ЛИМОНЛИ ПИРОЖНОЕ', desc: '', weight: '306.266667 г', price: 18000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
+        { name: 'Пахлава АЗЕРБАЙЖАН', desc: '', weight: '', price: 7000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
+        { name: 'ТРУБОЧКАЛИ КОНТЕЙНЕР 400 ГР', desc: '', weight: '1529.222222 г', price: 29000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
+        { name: 'АФГАНСКОЕ ПИРОЖНОЕ', desc: '', weight: '462.625 г', price: 24000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
+        { name: 'РОБИЯ', desc: '', weight: '1000 г', price: 97000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
+        { name: 'ЧОККО НАПАЛЁН', desc: '', weight: '253.266667 г', price: 16000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
+        { name: 'ЧИЗ КЕЙК КЛАССИЧЕСКИЙ', desc: '', weight: '', price: 21000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
+        { name: 'РУЛЕТ ШОКОЛАДНЫЙ', desc: '', weight: '1218.25 г', price: 17000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
+        { name: 'КРУАССАН ОБИЧНЫЙ', desc: '', weight: '1000 г', price: 4000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
+        { name: 'МАТИЛДА МИНИ', desc: '', weight: '', price: 109000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
+        { name: 'ТУРЕЦКИЙ ЧАК ЧАК', desc: '', weight: '414.791667 г', price: 23000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
+        { name: 'ВИШНЕВАЯ МИЛКА', desc: '', weight: '', price: 28000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
+        { name: 'ЖАСМИН 2 КАТ', desc: '', weight: '2645 г', price: 120000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
+        { name: 'МЕВАЛИ ПИРОЖНОЕ КАКАО', desc: '', weight: '1380.571428 г', price: 31000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
+        { name: 'КЛУБНИЧНЫЙ СЛАЙС', desc: '', weight: '327.211111 г', price: 15000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
+        { name: 'ОДДИЙ РУЛЕТ', desc: '', weight: '1154.947917 г', price: 13000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
+        { name: 'ЧЕРНЫЙ ПРИНЦ', desc: '', weight: '186.177083 г', price: 13000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
+        { name: 'ТРИ ШОКОЛАДА', desc: '', weight: '310.861111 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
+        { name: 'БЕЗЕ ПАКЕТЛИ', desc: '', weight: '80 г', price: 14000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
+        { name: 'ТВОРОЖНИК', desc: '', weight: '387.430556 г', price: 21000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
+        { name: 'ОРЕХИВЫЙ ШОКОЛАД МИНИ', desc: '', weight: '', price: 7000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
+        { name: 'МАКЛИ РУЛЕТ', desc: '', weight: '240.208333 г', price: 19000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
+        { name: 'КРАСНЫЙ БАРХАТ 2 КАТ', desc: '', weight: '1128 г', price: 10000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
+        { name: 'ЧИЗ КЕЙК САН СЕБАСТИАН', desc: '', weight: '389.2 г', price: 41000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
+        { name: 'ТОРТ СРЕДНИ 3 КАТ', desc: '', weight: '1000 г', price: 160000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
+        { name: 'СЕТ 156', desc: '', weight: '2081.048888 г', price: 156000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
+        { name: 'НАПАЛЕОН ФЕРРЕРО РОШЕ', desc: '', weight: '245.461111 г', price: 15000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
+        { name: 'СЕТ 222', desc: '', weight: '4034.346984 г', price: 222000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
+        { name: 'КОФЕ ЧИЯ ДУМАЛОК 3 КАТ', desc: '', weight: '251.693333 г', price: 17000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
+        { name: 'ПРАГА ШОКОЛАДНОЕ', desc: '', weight: '326.633333 г', price: 29000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
+        { name: 'КОРА МЕДОВИК', desc: '', weight: '432.375 г', price: 26000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
+        { name: 'АФГАНСКИЙ НАПОЛЁН', desc: '', weight: '309.611111 г', price: 13000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
+        { name: 'ПАХЛАВА', desc: '', weight: '203.055556 г', price: 11000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
+        { name: 'МИНИ ТВОРОГ', desc: '', weight: '1134.375 г', price: 11000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
+        { name: 'БУМЕР2 КАТ', desc: '', weight: '6017.916667 г', price: 22000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
+        { name: 'РУЛЕТ ФИСТАШКОВЫЙ', desc: '', weight: '194.833333 г', price: 20000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
+        { name: 'МЕДОВИК', desc: '', weight: '220.902778 г', price: 11000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
+        { name: 'БАУНТИ', desc: '', weight: '374.513889 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
+        { name: 'ВИШНЁВОЕ ПИРОЖНОЕ', desc: '', weight: '', price: 35000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
+        { name: 'ТВОРОЖНИК 2 КАТ', desc: '', weight: '3666.25 г', price: 193000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
+        { name: 'ПРЕЛЕСТЬ', desc: '', weight: '312.788889 г', price: 17000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
+        { name: 'ДУБАЙСКИЙ НАПАЛЕОН', desc: '', weight: '274.738889 г', price: 24000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
+        { name: 'НЕЖНЫЙ КУСОК', desc: '', weight: '', price: 22000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
+        { name: 'МЕДОВИК Ф', desc: '', weight: '', price: 19000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
+        { name: 'СНИКЕРСЛИ МУС', desc: '', weight: '328.828 г', price: 33000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
+        { name: 'МОККО НАПАЛЁН', desc: '', weight: '294.181667 г', price: 14000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
+        { name: 'МЕДОВИК 4 КАТ', desc: '', weight: '205.863095 г', price: 11000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
+        { name: 'ЛОТУС МУСЛИ', desc: '', weight: '307.5 г', price: 35000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
+        { name: 'ОРЕХОВЫЙ ВУЛКАН', desc: '', weight: '1000 г', price: 39000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
+        { name: 'ЖАСМИН', desc: '', weight: '440.069445 г', price: 23000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
+        { name: 'УЛИТКА', desc: '', weight: '290.7125 г', price: 18000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
+        { name: 'ПИРОЖНОЕ БАНАН', desc: '', weight: '202.722222 г', price: 12000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
+        { name: 'СЕТ 139', desc: '', weight: '3376.763889 г', price: 139000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
+        { name: 'ЛИМОНЛИ ПИРОЖНОЕ 3 КАТ', desc: '', weight: '1165.85 г', price: 21000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
+        { name: 'КОРОЛЕВСКИЙ ГУЗЛИ', desc: '', weight: '334.258333 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
+        { name: 'ОПЕРА', desc: '', weight: '141.758333 г', price: 13000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
+        { name: 'ФИСТАШКОВЫЙ САН СЕБАСТИАН', desc: '', weight: '513.5 г', price: 44000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
+        { name: 'ЗАВАРНОЙ МИНИ КОНТ', desc: '', weight: '1445.545455 г', price: 37000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
+        { name: 'БЕЗЕ КОНТЕЙНЕР', desc: '', weight: '80 г', price: 15000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
+        { name: 'ТВОРОГЛИ ПИРОГ', desc: '', weight: '204.1 г', price: 8000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
+        { name: 'МАЛИНАЛИ ТРУФЕЛ', desc: '', weight: '276.25 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
+        { name: 'СНИКЕРС РУЛЕТ', desc: '', weight: '307.592592 г', price: 21000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
+        { name: 'СНИКЕРС КВАДРАТ', desc: '', weight: '339.074074 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
+        { name: 'МЕРЕНГАЛИ ТВОРОГ ПИРОЖНИ', desc: '', weight: '295.15625 г', price: 22000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
+        { name: 'БАНАНОВЫЙ ТРУФЕЛЬ', desc: '', weight: '', price: 33000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
+        { name: 'АПЕЛЬСИНОВЫЙ ВАНИЛ', desc: '', weight: '', price: 23000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
+        { name: 'АПЕЛСИН МУС ПИРОГ', desc: '', weight: '86.477778 г', price: 12000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
+        { name: 'ЧИЗ КЕЙК ОРЕО', desc: '', weight: '111.5 г', price: 14000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
+        { name: 'МОРКОВНОЕ ПИРОЖНОЕ', desc: '', weight: '552.7 г', price: 33000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
+        { name: 'МЕВАЛИ ПИРОЖНОЕ ОК', desc: '', weight: '1407.833334 г', price: 31000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
+        { name: 'ПИРОЖНОЕ ЧИЯ', desc: '', weight: '207.888889 г', price: 12000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
+        { name: 'НУТЕЛЛА (РОМАШКА)', desc: '', weight: '257.25 г', price: 20000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
+        { name: 'ЧИЗ КЕЙК ЛОТУС', desc: '', weight: '91.454167 г', price: 11000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
+        { name: 'ГЕНЕРАЛ', desc: '', weight: '', price: 17000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
+        { name: 'ДОЛЛАР', desc: '', weight: '', price: 37000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
+        { name: 'ЧИЗ КЕЙК МАЛИНА', desc: '', weight: '340.277778 г', price: 27000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
+        { name: 'ЧИЗ КЕЙК МУС ЛИСТЛИ', desc: '', weight: '122.722222 г', price: 17000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
+        { name: 'МИНИ РАФАЕЛЛО', desc: '', weight: '', price: 12000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
+        { name: 'ТВОРОГЛИ ВАРТУШКА БУЛОЧКА', desc: '', weight: '169.206349 г', price: 9000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
+        { name: 'ЧИЗ КЕЙК МАНГО МАРАКУЯ', desc: '', weight: '82.788889 г', price: 10000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
+        { name: 'ФИСТАШКОВЫЙ ВАНИЛ', desc: '', weight: '210 г', price: 23000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
+        { name: 'КОРА ПРИЧУДА 4 КАТ', desc: '', weight: '3740.177778 г', price: 170000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
+        { name: 'ТРУФЕЛ', desc: '', weight: '498.861111 г', price: 35000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
+        { name: 'ГЕНЕРАЛ ПРЯМОУГОЛНЫЕ', desc: '', weight: '', price: 22000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
+        { name: 'БУМЕР', desc: '', weight: '', price: 28000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
+        { name: 'РУЛЕТ СКАЗКА', desc: '', weight: '1222.833333 г', price: 21000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
+        { name: 'БАНАНЗА', desc: '', weight: '6835 г', price: 26000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
+        { name: 'МАТИЛДА СРЕДНИЙ', desc: '', weight: '3095.8 г', price: 199000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
+        { name: 'СЛ.ДУБАЙСКИЙ КРУАССАН', desc: '', weight: '1262.6 г', price: 55000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
+        { name: 'ГЕНЕРАЛ 2 КАТЛИ', desc: '', weight: '', price: 13000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
+        { name: 'КУШ ТИЛИ', desc: '', weight: '147.666667 г', price: 4000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
+        { name: 'НУТЕЛЛА ОК 2 КАТ', desc: '', weight: '183.373333 г', price: 12000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
+        { name: 'ТЕРАМИСУ КРУГ', desc: '', weight: '301.25 г', price: 27000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
+        { name: 'МЕДОВИК ОРЕХОВЫЙ', desc: '', weight: '301.269841 г', price: 15000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
+        { name: 'ТРУФЕЛ КИЧИК', desc: '', weight: '273.005903 г', price: 26000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
+        { name: 'МЕДОВИК ОРЕХОВЫЙ 4 КАТ', desc: '', weight: '241.746032 г', price: 12000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
+        { name: 'МАТИЛДА КУСОК', desc: '', weight: '214.58 г', price: 20000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
+        { name: 'ВИШНОВИЙ ПИРОЖНИЙ 2 КАТЛИ', desc: '', weight: '', price: 15000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
+        { name: 'ТОРТ МИНИ 3 КАТ', desc: '', weight: '1000 г', price: 160000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
+        { name: 'СТАКАН ТРАЙФЛЕ', desc: '', weight: '1279.85 г', price: 33000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
+        { name: 'ЛАСТОЧКА ШАРИК', desc: '', weight: '114.768571 г', price: 8500, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
+        { name: 'КОФЕ ЧИЯ КВАДРАТ', desc: '', weight: '488.18 г', price: 27000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
+        { name: 'МЕРЕНГА РУЛЕТ МИНИ', desc: '', weight: '181.96 г', price: 13000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
+        { name: 'СЛ.КРУАССАН КЛУБ.ИЛИ ШОК.', desc: '', weight: '1280.633333 г', price: 33000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
+        { name: 'МЕРЕНГАЛИ РУЛЕТ', desc: '', weight: '327.777778 г', price: 21000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
+        { name: 'ЛИМОНЛИ ПИРОЖНОЕ 2 КАТ', desc: '', weight: '169.451389 г', price: 10000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
+        { name: 'СПАРТАК', desc: '', weight: '385.604166 г', price: 21000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
+        { name: 'МИЛКА', desc: '', weight: '364.5 г', price: 33000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
+        { name: 'СТАКАН ПАНЧО', desc: '', weight: '1119.720526 г', price: 9000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
+        { name: 'КАРАМЕЛЬНЫЙ МЕДАВИК', desc: '', weight: '', price: 14000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
+        { name: 'КЛУБНИЧНАЯ СИМФОНИЯ', desc: '', weight: '267.047619 г', price: 37000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
+        { name: 'ПЕСОЧНЫЙ БАНАН', desc: '', weight: '1000 г', price: 60000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
+        { name: 'ЧИЗ КЕЙК ЯГОДНЫЙ', desc: '', weight: '', price: 13000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
+        { name: 'ВИШНЯ ШОКОЛАД', desc: '', weight: '', price: 33000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
+        { name: 'КОРА ПРИЧУДА', desc: '', weight: '390.993334 г', price: 21000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
+        { name: 'ПИРАМИДА', desc: '', weight: '1175 г', price: 11000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
+        { name: 'ТРУФЕЛ 2 КАТ', desc: '', weight: '252.625 г', price: 19000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
+        { name: 'НАПАЛЁН ПРЕЗИДЕНТ', desc: '', weight: '327.256667 г', price: 19000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
+        { name: 'ЗАВАРНОЙ КИЧИК', desc: '', weight: '81.7125 г', price: 5000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
+        { name: 'ЧИЗ КЕЙК ШОКОЛАД ДУБАЙСКИЙ', desc: '', weight: '370.75 г', price: 43000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
+        { name: 'НУТЕЛЛА ОКИ', desc: '', weight: '262.736111 г', price: 19000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
+        { name: 'РАФАЕЛЛО', desc: '', weight: '321.5 г', price: 20000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
+        { name: 'КОМБО РУЛЕТ', desc: '', weight: '1251.895714 г', price: 33000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
+        { name: 'ЧИЗ КЕЙК ШОКОЛАД', desc: '', weight: '306.416666 г', price: 27000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
+        { name: 'МАЛИНА МУС', desc: '', weight: '266.25 г', price: 34000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
+        { name: 'СТАКАН ЧИЯ', desc: '', weight: '1144.526786 г', price: 17000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
+        { name: 'КОФЕ ЧИЯ ДУМАЛОК', desc: '', weight: '316.693333 г', price: 21000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
+        { name: 'ПЕСОЧНЫЙ ШАКАРЛИ', desc: '', weight: '1000 г', price: 59000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
+        { name: 'МИНИ ТВОРОГ 3 КАТ', desc: '', weight: '1188.119266 г', price: 15000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
+        { name: 'КРАСНИЙ БАРХАТ 3 КАТ', desc: '', weight: '1201.564286 г', price: 19000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
+      ],
     };
 
     const ICONS = {
@@ -1890,6 +2272,12 @@
       if (bg.includes('1A1A2A') || bg.includes('4A1828')) return ICONS.dessert;
       if (bg.includes('НОВИНКА') || true) return ICONS.star;
       return ICONS.coffee;
+    }
+
+    function formatWeight(w) {
+      if (!w || typeof w !== 'string') return w || '';
+      const m = w.match(/(\d+(?:[.,]\d+)?)\s*г/);
+      return m ? Math.round(parseFloat(m[1].replace(',', '.'))) + ' г' : w;
     }
 
     function card(item) {
@@ -1915,15 +2303,15 @@
       </div>
     </div>
     <div class="p-body">
-      <h3 class="p-name">${item.name}</h3>
-      <p class="p-desc">${item.desc}</p>
+      <h3 class="p-name">${getDishName(item.name, currentLang)}</h3>
+      ${item.desc ? `<p class="p-desc">${item.desc}</p>` : ''}
       <div class="p-foot">
-        <span class="p-weight">${item.weight}</span>
-        <span class="p-price">${item.price.toLocaleString('ru')} сум</span>
+        <span class="p-weight">${formatWeight(item.weight)}</span>
+        <span class="p-price">${item.price.toLocaleString('ru')} ${I18N[currentLang].currency}</span>
       </div>
       <button class="btn-cart" onclick="addToCart('${item.name.replace(/'/g, "\\'")}',${item.price},this)">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-        В корзину
+        ${I18N[currentLang].btn_cart}
       </button>
     </div>
   </div>`;
@@ -1941,8 +2329,8 @@
       t.innerHTML = `
     <div class="toast-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
     <div class="toast-body">
-      <div class="toast-title">Добавлено в корзину</div>
-      <div class="toast-sub">${name} · ${price.toLocaleString('ru')} сум</div>
+      <div class="toast-title">${I18N[currentLang].toast_added}</div>
+      <div class="toast-sub">${getDishName(name, currentLang)} · ${price.toLocaleString('ru')} ${I18N[currentLang].currency}</div>
     </div>`;
       tc.appendChild(t);
       setTimeout(() => { t.classList.add('out'); setTimeout(() => t.remove(), 400); }, 3000);
@@ -1962,11 +2350,11 @@
       void c.offsetWidth;
       c.classList.add('bump');
       if (btn) {
-        btn.innerHTML = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Добавлено`;
+        btn.innerHTML = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>${I18N[currentLang].btn_added}`;
         btn.style.background = 'rgba(247,170,79,0.2)';
         btn.style.borderColor = 'rgba(247,170,79,0.4)';
         setTimeout(() => {
-          btn.innerHTML = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>В корзину`;
+          btn.innerHTML = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>${I18N[currentLang].btn_cart}`;
           btn.style.background = ''; btn.style.borderColor = '';
         }, 2000);
       }
@@ -1985,12 +2373,12 @@
       if (countEl) { countEl.textContent = count || 0; countEl.classList.toggle('show', count > 0); }
       document.getElementById('cartEmpty').style.display = cart.length ? 'none' : 'flex';
       document.getElementById('cartFoot').style.display = cart.length ? 'block' : 'none';
-      document.getElementById('cartTotal').textContent = total.toLocaleString('ru') + ' сум';
+      document.getElementById('cartTotal').textContent = total.toLocaleString('ru') + ' ' + I18N[currentLang].currency;
       document.getElementById('cartItems').innerHTML = cart.map(i => `
     <div class="cart-item">
       <div class="ci-info">
-        <div class="ci-name">${i.name}</div>
-        <div class="ci-price">${(i.price * i.qty).toLocaleString('ru')} сум</div>
+        <div class="ci-name">${getDishName(i.name, currentLang)}</div>
+        <div class="ci-price">${(i.price * i.qty).toLocaleString('ru')} ${I18N[currentLang].currency}</div>
       </div>
       <div class="ci-controls">
         <button onclick="chQty('${i.name.replace(/'/g, "\\'")}', -1)">−</button>
@@ -2020,23 +2408,6 @@
       });
     });
 
-    const cur = document.getElementById('cur'), curR = document.getElementById('cur-r');
-    const isTouch = matchMedia('(hover: none) and (pointer: coarse)').matches;
-    if (isTouch) {
-      cur.style.display = 'none'; curR.style.display = 'none';
-      document.body.style.cursor = 'auto';
-    } else {
-      let mx = 0, my = 0, rx = 0, ry = 0;
-      document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cur.style.transform = `translate(${mx - 11}px,${my - 11}px)`; }, { passive: true });
-      (function loop() { rx += (mx - rx) * .11; ry += (my - ry) * .11; curR.style.transform = `translate(${rx - 18}px,${ry - 18}px)`; requestAnimationFrame(loop); })();
-      document.body.addEventListener('mouseenter', e => {
-        if (e.target.closest('a,button,.cat-tile,.p-card,.soc-btn')) document.body.classList.add('hover-mode');
-      }, true);
-      document.body.addEventListener('mouseleave', e => {
-        if (e.target.closest('a,button,.cat-tile,.p-card,.soc-btn')) document.body.classList.remove('hover-mode');
-      }, true);
-    }
-
     function observeCards() {
       const io = new IntersectionObserver(entries => {
         entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } });
@@ -2045,52 +2416,6 @@
     }
     observeCards();
 
-    const I18N = {
-      ru: {
-        nav_menu: 'Меню', nav_about: 'О нас', nav_locations: 'Локации',
-        cat_label: 'Выберите категорию',
-        cat_title: 'Наши <em style="color:var(--burg)">категории</em>',
-        cat_coffee: 'Кофе', cat_tea: 'Чай & Матча', cat_desserts: 'Десерты',
-        cat_cakes: 'Торты', cat_pastry: 'Выпечка', cat_breakfast: 'Завтраки',
-        cat_cold: 'Холодные', cat_new: 'Новинки ✦',
-        menu_label: 'Меню', menu_title: 'Откройте <em>вкус</em>',
-        cart_title: 'Корзина', cart_empty: 'Корзина пуста', cart_go_menu: 'Перейти в меню',
-        cart_total: 'Итого', cart_checkout: 'Оформить заказ', cart_clear: 'Очистить',
-        mob_home: 'Главная', mob_addr: 'Адреса',
-        menu_back: 'Главная',
-        ft_atm: 'Атмосфера',
-      },
-      uz: {
-        nav_menu: 'Menyu', nav_about: 'Biz haqimizda', nav_locations: 'Manzillar',
-        cat_label: 'Kategoriyani tanlang',
-        cat_title: 'Bizning <em style="color:var(--burg)">kategoriyalar</em>',
-        cat_coffee: 'Qahva', cat_tea: 'Choy & Matcha', cat_desserts: 'Desertlar',
-        cat_cakes: 'Tortlar', cat_pastry: 'Pishiriqlar', cat_breakfast: 'Nonushta',
-        cat_cold: 'Sovuq ichimliklar', cat_new: 'Yangiliklar ✦',
-        menu_label: 'Menyu', menu_title: 'Ta\'mni <em>kashf eting</em>',
-        cart_title: 'Savat', cart_empty: 'Savat bo\'sh', cart_go_menu: 'Menyuga o\'tish',
-        cart_total: 'Jami', cart_checkout: 'Buyurtma berish', cart_clear: 'Tozalash',
-        mob_home: 'Bosh sahifa', mob_addr: 'Manzillar',
-        menu_back: 'Bosh sahifa',
-        ft_atm: 'Muhit',
-      },
-      en: {
-        nav_menu: 'Menu', nav_about: 'About', nav_locations: 'Locations',
-        cat_label: 'Choose a category',
-        cat_title: 'Our <em style="color:var(--burg)">categories</em>',
-        cat_coffee: 'Coffee', cat_tea: 'Tea & Matcha', cat_desserts: 'Desserts',
-        cat_cakes: 'Cakes', cat_pastry: 'Pastry', cat_breakfast: 'Breakfast',
-        cat_cold: 'Cold drinks', cat_new: 'New items ✦',
-        menu_label: 'Menu', menu_title: 'Discover <em>flavour</em>',
-        cart_title: 'Cart', cart_empty: 'Cart is empty', cart_go_menu: 'Go to menu',
-        cart_total: 'Total', cart_checkout: 'Place order', cart_clear: 'Clear',
-        mob_home: 'Home', mob_addr: 'Addresses',
-        menu_back: 'Home',
-        ft_atm: 'Atmosphere',
-      }
-    };
-
-    let currentLang = localStorage.getItem('jb_lang') || 'ru';
     const i18nEls = document.querySelectorAll('[data-i18n]');
     const langBtns = document.querySelectorAll('.lang-btn');
 
@@ -2106,6 +2431,12 @@
         }
       });
       langBtns.forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+      Object.keys(MENU).forEach(tab => {
+        const el = document.getElementById('grid-' + tab);
+        if (el) el.innerHTML = MENU[tab].map(card).join('');
+      });
+      requestAnimationFrame(() => observeCards());
+      renderCart();
     }
 
     document.getElementById('langSwitch').addEventListener('click', e => {
