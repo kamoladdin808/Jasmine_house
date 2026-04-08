@@ -507,6 +507,46 @@
       max-width: 480px
     }
 
+    .food-card-bg {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: 
+        radial-gradient(ellipse 60% 50% at 50% 30%, rgba(247, 170, 79, .12) 0%, transparent 60%),
+        repeating-linear-gradient(90deg, transparent 0px, transparent 3px, rgba(60, 30, 15, .4) 3px, rgba(60, 30, 15, .4) 4px),
+        linear-gradient(180deg, #1a0d08 0%, #2d1810 50%, #1a0d08 100%);
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .food-card-bg::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 20%, rgba(247, 170, 79, .25) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .food-card-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, transparent 40%, rgba(13, 3, 3, .7) 100%);
+      pointer-events: none;
+    }
+
+    .food-card-bg .food-image {
+      position: relative;
+      z-index: 1;
+      max-width: 65%;
+      max-height: 75%;
+      object-fit: contain;
+      filter: drop-shadow(0 20px 30px rgba(0, 0, 0, .6));
+    }
+
     .btn {
       display: inline-flex;
       align-items: center;
@@ -607,28 +647,114 @@
       background: rgba(247, 170, 79, .1)
     }
 
-    .cats-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      justify-content: center;
-      position: relative
+    .cats-wrapper {
+      position: sticky;
+      top: 89px;
+      z-index: 400;
+      background: rgba(30, 8, 8, 0.85);
+      /* Matched to --deep */
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
+      padding: 16px 0;
+      margin: 24px -64px 40px;
     }
 
-    @media(max-width:900px) {
-      .cats-grid {
-        overflow-x: auto;
-        flex-wrap: nowrap;
-        justify-content: flex-start;
-        padding-bottom: 8px;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: thin
+    @media(max-width:768px) {
+      .cats-wrapper {
+        top: 76px;
+        margin: 24px -24px 32px;
+        padding: 12px 0;
       }
     }
 
     @media(max-width:480px) {
-      .cats-grid {
-        gap: 6px
+      .cats-wrapper {
+        top: 56px;
+      }
+    }
+
+    @media(max-width:360px) {
+      .cats-wrapper {
+        margin-left: -16px;
+        margin-right: -16px;
+      }
+    }
+
+    .cats-slider-inner {
+      position: relative;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 64px;
+    }
+
+    @media(max-width:768px) {
+      .cats-slider-inner {
+        padding: 0 24px;
+      }
+    }
+
+    @media(max-width:360px) {
+      .cats-slider-inner {
+        padding: 0 16px;
+      }
+    }
+
+    .cats-grid {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 10px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      align-items: center;
+    }
+
+    .cats-grid::-webkit-scrollbar {
+      display: none;
+    }
+
+    .cats-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 36px;
+      height: 36px;
+      border-radius: 18px;
+      background: var(--deep);
+      border: 1px solid rgba(247, 170, 79, 0.15);
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(30, 8, 8, 0.8);
+      transition: all 0.2s;
+    }
+
+    .cats-arrow:hover {
+      background: var(--gold);
+      color: var(--void);
+      border-color: var(--gold);
+    }
+
+    .cats-arrow:disabled {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .cats-prev {
+      left: 16px;
+    }
+
+    .cats-next {
+      right: 16px;
+    }
+
+    @media(max-width: 900px) {
+      .cats-arrow {
+        display: none;
       }
     }
 
@@ -640,12 +766,13 @@
       flex-shrink: 0;
       background: rgba(255, 239, 217, .07);
       border: 1px solid rgba(255, 239, 217, .1);
-      border-radius: 4px;
+      border-radius: 30px;
       color: var(--cream);
       cursor: auto;
       transition: all .3s var(--ease-spring);
       position: relative;
       overflow: hidden;
+      white-space: nowrap;
       -webkit-backdrop-filter: blur(10px);
       backdrop-filter: blur(10px);
     }
@@ -781,6 +908,32 @@
       position: relative
     }
 
+    .p-card.wide-format .p-img-wrap {
+      aspect-ratio: 16 / 9;
+      height: auto;
+    }
+
+    .p-card.wide-format .p-img-inner {
+      background: 
+        radial-gradient(ellipse 60% 50% at 50% 30%, rgba(247, 170, 79, .12) 0%, transparent 60%),
+        repeating-linear-gradient(90deg, transparent 0px, transparent 3px, rgba(60, 30, 15, .4) 3px, rgba(60, 30, 15, .4) 4px),
+        linear-gradient(180deg, #1a0d08 0%, #2d1810 50%, #1a0d08 100%);
+      background-color: #1a0d08;
+    }
+
+    .p-card.wide-format .p-img-inner::before {
+      background: radial-gradient(ellipse 80% 60% at 50% 20%, rgba(247, 170, 79, .25) 0%, transparent 50%);
+    }
+
+    .p-card.wide-format .p-img-inner::after {
+      background: radial-gradient(circle at center, transparent 40%, rgba(13, 3, 3, .85) 100%);
+      opacity: 1 !important;
+    }
+
+    .p-card.wide-format .p-photo {
+      filter: drop-shadow(0 15px 25px rgba(0, 0, 0, .65));
+    }
+
     .p-img-inner {
       height: 100%;
       width: 100%;
@@ -789,6 +942,19 @@
       justify-content: center;
       transition: transform .5s var(--ease-smooth);
       position: relative;
+    }
+
+    .p-img-inner .p-photo {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    .p-img-inner.has-photo .prod-illu {
+      display: none;
     }
 
     .p-img-inner::after {
@@ -1178,10 +1344,196 @@
       filter: drop-shadow(0 4px 16px rgba(0, 0, 0, .4))
     }
 
+    .co-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 720;
+      background: rgba(0, 0, 0, .78);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .3s;
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
+    }
+
+    .co-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .co-modal {
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -46%) scale(.97);
+      width: 440px;
+      max-width: calc(100% - 28px);
+      max-height: min(90vh, 640px);
+      overflow-y: auto;
+      z-index: 721;
+      background: linear-gradient(165deg, var(--deep) 0%, var(--void) 100%);
+      border: 1px solid rgba(247, 170, 79, .18);
+      padding: 24px 22px 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .3s, transform .35s var(--ease-spring);
+      box-shadow: 0 28px 80px rgba(0, 0, 0, .65);
+    }
+
+    .co-modal.open {
+      opacity: 1;
+      pointer-events: all;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .co-modal h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--cream);
+      margin: 0 0 6px;
+    }
+
+    .co-sub {
+      font-size: 11px;
+      color: rgba(255, 239, 217, .4);
+      margin-bottom: 16px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .co-lines {
+      font-size: 12px;
+      color: rgba(255, 239, 217, .7);
+      margin-bottom: 12px;
+      max-height: 160px;
+      overflow-y: auto;
+      border: 1px solid rgba(255, 239, 217, .08);
+      border-radius: 4px;
+      padding: 10px 12px;
+    }
+
+    .co-line {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 6px 0;
+      border-bottom: 1px solid rgba(255, 239, 217, .06);
+    }
+
+    .co-line:last-child {
+      border-bottom: none;
+    }
+
+    .co-total {
+      font-weight: 600;
+      color: var(--gold);
+      margin-bottom: 18px;
+      font-size: 15px;
+    }
+
+    .co-field {
+      margin-bottom: 12px;
+    }
+
+    .co-field label {
+      display: block;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: rgba(255, 239, 217, .35);
+      margin-bottom: 6px;
+    }
+
+    .co-field input,
+    .co-field textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid rgba(255, 239, 217, .12);
+      background: rgba(0, 0, 0, .25);
+      color: var(--cream);
+      font-family: inherit;
+      font-size: 14px;
+      border-radius: 2px;
+    }
+
+    .co-field textarea {
+      min-height: 72px;
+      resize: vertical;
+    }
+
+    .co-field input:focus,
+    .co-field textarea:focus {
+      outline: none;
+      border-color: rgba(247, 170, 79, .4);
+    }
+
+    .co-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .co-actions .btn-gold {
+      justify-content: center;
+    }
+
+    .co-err {
+      color: #e88;
+      font-size: 12px;
+      min-height: 1.2em;
+      margin-top: 6px;
+    }
+
+    .co-geo-link {
+      display: none;
+      margin-top: 8px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      padding: 0;
+      font-family: inherit;
+    }
+
+    .co-geo-link:hover {
+      color: var(--gold-lt);
+    }
+
+    .co-success {
+      display: none;
+      text-align: center;
+      padding: 8px 0 4px;
+    }
+
+    .co-success.show {
+      display: block;
+    }
+
+    .co-success p {
+      font-size: 14px;
+      line-height: 1.55;
+      color: rgba(255, 239, 217, .82);
+      margin-bottom: 16px;
+    }
+
+    .co-form-wrap.hide {
+      display: none;
+    }
+
     .menu-page-head {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 12px;
       padding: 24px 64px;
       background: rgba(30, 8, 8, .92);
       -webkit-backdrop-filter: blur(16px);
@@ -1190,6 +1542,16 @@
       position: sticky;
       top: 0;
       z-index: 500;
+    }
+
+    .menu-page-head-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      min-width: 0;
+      flex: 1;
     }
 
     @media(max-width:768px) {
@@ -1275,6 +1637,297 @@
       transform: scale(1);
     }
 
+    .jb-acc-btn {
+      cursor: pointer;
+    }
+
+    .jb-acc-btn.jb-acc-in {
+      border-color: rgba(247, 170, 79, .35);
+      color: var(--gold);
+      background: rgba(247, 170, 79, .1);
+    }
+
+    .jb-staff-link {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-decoration: none;
+      padding: 8px 10px;
+      border: 1px solid rgba(247, 170, 79, .22);
+      border-radius: 999px;
+      transition: border-color .22s, background .22s;
+      display: none;
+      white-space: nowrap;
+    }
+
+    .jb-staff-link:hover {
+      border-color: var(--gold);
+      background: rgba(247, 170, 79, .08);
+    }
+
+    .jb-staff-link.show {
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .jb-auth-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 700;
+      background: rgba(0, 0, 0, .72);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .35s;
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
+    }
+
+    .jb-auth-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .jb-auth-modal {
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -48%) scale(.96);
+      width: 400px;
+      max-width: calc(100% - 32px);
+      max-height: calc(100vh - 48px);
+      overflow: auto;
+      z-index: 701;
+      background: linear-gradient(165deg, var(--deep) 0%, var(--void) 100%);
+      border: 1px solid rgba(247, 170, 79, .15);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, .65);
+      padding: 28px 26px 24px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .35s, transform .35s var(--ease-spring);
+    }
+
+    .jb-auth-modal.open {
+      opacity: 1;
+      pointer-events: all;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .jb-auth-modal h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--cream);
+      margin: 0 0 18px;
+    }
+
+    .jb-auth-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .jb-auth-tabs button {
+      flex: 1;
+      padding: 10px;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      border: 1px solid rgba(255, 239, 217, .12);
+      background: transparent;
+      color: rgba(255, 239, 217, .45);
+      cursor: pointer;
+      transition: all .22s;
+    }
+
+    .jb-auth-tabs button.active {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: rgba(247, 170, 79, .08);
+    }
+
+    .jb-auth-field {
+      margin-bottom: 12px;
+    }
+
+    .jb-auth-field label {
+      display: block;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: rgba(255, 239, 217, .35);
+      margin-bottom: 6px;
+    }
+
+    .jb-auth-field input {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid rgba(255, 239, 217, .12);
+      background: rgba(0, 0, 0, .25);
+      color: var(--cream);
+      font-family: inherit;
+      font-size: 14px;
+      border-radius: 2px;
+    }
+
+    .jb-auth-field input:focus {
+      outline: none;
+      border-color: rgba(247, 170, 79, .4);
+    }
+
+    .jb-auth-pass-wrap {
+      position: relative;
+      width: 100%;
+    }
+
+    .jb-auth-pass-wrap input {
+      padding-right: 46px;
+    }
+
+    .jb-auth-pass-toggle {
+      position: absolute;
+      right: 4px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      border: none;
+      background: transparent;
+      color: rgba(255, 239, 217, .42);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 4px;
+      transition: color .2s, background .2s;
+    }
+
+    .jb-auth-pass-toggle:hover {
+      color: var(--gold);
+      background: rgba(247, 170, 79, .08);
+    }
+
+    .jb-auth-pass-toggle:focus-visible {
+      outline: 2px solid rgba(247, 170, 79, .5);
+      outline-offset: 2px;
+    }
+
+    .jb-auth-pass-toggle .jb-eye-off {
+      display: none;
+    }
+
+    .jb-auth-pass-wrap.jb-pass-visible .jb-eye-open {
+      display: none;
+    }
+
+    .jb-auth-pass-wrap.jb-pass-visible .jb-eye-off {
+      display: block;
+    }
+
+    .jb-auth-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .jb-auth-actions .btn-gold {
+      justify-content: center;
+    }
+
+    .jb-auth-err {
+      font-size: 12px;
+      color: #e88;
+      margin-top: 10px;
+      min-height: 1.2em;
+    }
+
+    .jb-auth-ok {
+      font-size: 12px;
+      color: #8c8;
+      margin-top: 10px;
+    }
+
+    .jb-auth-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 32px;
+      height: 32px;
+      border: 1px solid rgba(255, 239, 217, .1);
+      background: transparent;
+      color: rgba(255, 239, 217, .5);
+      cursor: pointer;
+      font-size: 16px;
+      line-height: 1;
+    }
+
+    .jb-auth-close:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .jb-session-info {
+      font-size: 13px;
+      color: rgba(255, 239, 217, .75);
+      line-height: 1.6;
+    }
+
+    .jb-session-info strong {
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    .jb-api-hint {
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255, 239, 217, .06);
+      font-size: 10px;
+      color: rgba(255, 239, 217, .28);
+      line-height: 1.5;
+    }
+
+    .jb-api-hint input {
+      width: 100%;
+      margin-top: 8px;
+      padding: 8px 10px;
+      font-size: 12px;
+      border: 1px solid rgba(255, 239, 217, .1);
+      background: rgba(0, 0, 0, .2);
+      color: var(--cream);
+    }
+
+    .jb-stub-note {
+      margin-top: 14px;
+      padding: 12px 14px;
+      font-size: 11px;
+      line-height: 1.5;
+      color: rgba(247, 170, 79, .88);
+      background: rgba(247, 170, 79, .08);
+      border: 1px solid rgba(247, 170, 79, .2);
+      border-radius: 4px;
+    }
+
+    .jb-menu-pres {
+      display: none;
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid rgba(247, 170, 79, .35);
+      padding: 5px 9px;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    .jb-menu-pres.on {
+      display: inline-block;
+    }
+
     /* ═══════════════════════════════════
    RESPONSIVE
 ═══════════════════════════════════ */
@@ -1339,6 +1992,30 @@
 
       .ld-pct {
         margin-top: 20px
+      }
+    }
+
+    @media(max-width:560px) {
+      .menu-page-head {
+        flex-wrap: wrap;
+        align-items: flex-start
+      }
+
+      .menu-page-head-actions {
+        flex: 1 1 100%;
+        justify-content: flex-start;
+        gap: 8px;
+        row-gap: 8px
+      }
+
+      .jb-menu-pres.on {
+        order: -1;
+        flex: 0 0 auto
+      }
+
+      .jb-staff-link {
+        font-size: 9px;
+        letter-spacing: .08em
       }
     }
 
@@ -1555,7 +2232,7 @@
         <span class="cart-total-val" id="cartTotal">0 сум</span>
       </div>
       <div style="display:flex;gap:10px">
-        <button class="btn btn-gold" style="flex:1;padding:16px">
+        <button type="button" class="btn btn-gold" id="cartCheckoutBtn" style="flex:1;padding:16px">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <polyline points="20 6 9 17 4 12" />
           </svg>
@@ -1572,6 +2249,39 @@
     </div>
   </div>
 
+  <div class="co-overlay" id="coOverlay"></div>
+  <div class="co-modal" id="coModal" role="dialog" aria-modal="true" aria-labelledby="coTitle">
+    <h3 id="coTitle" data-i18n="co_title">Оформление заказа</h3>
+    <p class="co-sub" data-i18n="co_summary">Состав заказа</p>
+    <div class="co-lines" id="coLines"></div>
+    <div class="co-total" id="coTotal"></div>
+    <div class="co-form-wrap" id="coFormWrap">
+      <div class="co-field">
+        <label for="coName" data-i18n="co_name">Имя</label>
+        <input type="text" id="coName" autocomplete="name" />
+      </div>
+      <div class="co-field">
+        <label for="coPhone" data-i18n="co_phone">Телефон</label>
+        <input type="tel" id="coPhone" autocomplete="tel" />
+      </div>
+      <div class="co-field">
+        <label for="coAddr" data-i18n="co_address">Адрес доставки</label>
+        <textarea id="coAddr" rows="2" autocomplete="street-address"></textarea>
+        <button type="button" class="co-geo-link" id="coGeoFill" data-i18n="co_geo_fill">Подставить из геолокации</button>
+      </div>
+      <p class="co-err" id="coErr"></p>
+      <div class="co-actions">
+        <button type="button" class="btn btn-gold" id="coSubmit" style="width:100%;padding:14px" data-i18n="co_submit">Отправить заказ</button>
+        <button type="button" class="btn btn-outline" id="coCancel" style="width:100%;padding:14px" data-i18n="co_cancel">Отмена</button>
+      </div>
+    </div>
+    <div class="co-success" id="coSuccess">
+      <p data-i18n="co_ok">Заказ принят!</p>
+      <a href="staff.html" class="btn btn-gold" style="display:inline-flex;padding:14px 24px;text-decoration:none;margin-bottom:10px" data-i18n="co_open_staff">Панель персонала</a>
+      <button type="button" class="btn btn-outline" id="coCloseOk" style="width:100%;padding:14px" data-i18n="co_close">Закрыть</button>
+    </div>
+  </div>
+
   <div class="menu-page-head">
     <a class="menu-page-back" href="index.html">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1579,7 +2289,15 @@
       </svg>
       <span data-i18n="menu_back">Главная</span>
     </a>
-    <div style="display:flex;align-items:center;gap:16px">
+    <div class="menu-page-head-actions">
+      <span class="jb-menu-pres" id="jbMenuPres" aria-hidden="true">Показ</span>
+      <a href="staff.html" class="jb-staff-link" id="jbStaffLink" data-i18n="auth_staff">Заказы (staff)</a>
+      <button type="button" class="header-cart-btn jb-acc-btn" id="jbOpenAuth" aria-label="Account" title="Аккаунт">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+          <circle cx="12" cy="7" r="4" />
+        </svg>
+      </button>
       <div class="lang-switch" id="langSwitch">
         <button class="lang-btn active" data-lang="ru">RU</button>
         <button class="lang-btn" data-lang="uz">UZ</button>
@@ -1601,138 +2319,152 @@
     <div class="wrap" style="position:relative;z-index:1">
       <p class="sec-label rv" data-i18n="menu_label">Меню</p>
       <h2 class="sec-title rv" data-i18n="menu_title" data-i18n-html="1">Откройте <em>вкус</em></h2>
-      <div class="cats-grid" style="margin:40px 0 56px">
-        <div class="cat-tile rv active" data-tab="zavtrak">
-          <div class="cat-icon"><svg viewBox="0 0 24 24">
-              <path d="M12 2L2 7l10 5 10-5-10-5z" />
-              <path d="M2 17l10 5 10-5" />
-            </svg></div><span data-i18n="cat_zavtrak">Завтрак</span>
-        </div>
-        <div class="cat-tile rv" data-tab="burger">
-          <div class="cat-icon"><svg viewBox="0 0 24 24">
-              <path d="M12 2L2 7l10 5 10-5-10-5z" />
-              <path d="M2 17l10 5 10-5" />
-            </svg></div><span data-i18n="cat_burger">Бургер</span>
-        </div>
-        <div class="cat-tile rv" data-tab="pizza">
-          <div class="cat-icon"><svg viewBox="0 0 24 24">
-              <path d="M12 2L2 7l10 5 10-5-10-5z" />
-              <path d="M2 17l10 5 10-5" />
-            </svg></div><span data-i18n="cat_pizza">Пицца</span>
-        </div>
-        <div class="cat-tile rv" data-tab="salaty">
-          <div class="cat-icon"><svg viewBox="0 0 24 24">
-              <path d="M12 2L2 7l10 5 10-5-10-5z" />
-              <path d="M2 17l10 5 10-5" />
-            </svg></div><span data-i18n="cat_salaty">Салаты</span>
-        </div>
-        <div class="cat-tile rv" data-tab="supy">
-          <div class="cat-icon"><svg viewBox="0 0 24 24">
-              <path d="M12 2L2 7l10 5 10-5-10-5z" />
-              <path d="M2 17l10 5 10-5" />
-            </svg></div><span data-i18n="cat_supy">Супы</span>
-        </div>
-        <div class="cat-tile rv" data-tab="pasta">
-          <div class="cat-icon"><svg viewBox="0 0 24 24">
-              <path d="M12 2L2 7l10 5 10-5-10-5z" />
-              <path d="M2 17l10 5 10-5" />
-            </svg></div><span data-i18n="cat_pasta">Паста</span>
-        </div>
-        <div class="cat-tile rv d1" data-tab="sushi">
-          <div class="cat-icon"><svg viewBox="0 0 24 24">
-              <path d="M12 2L2 7l10 5 10-5-10-5z" />
-              <path d="M2 17l10 5 10-5" />
-            </svg></div><span data-i18n="cat_sushi">Суши</span>
-        </div>
-        <div class="cat-tile rv d2" data-tab="tea">
-          <div class="cat-icon"><svg viewBox="0 0 24 24">
-              <path d="M12 2L2 7l10 5 10-5-10-5z" />
-              <path d="M2 17l10 5 10-5" />
-            </svg></div><span data-i18n="cat_tea">Чайная карта</span>
-        </div>
-        <div class="cat-tile rv d3" data-tab="smoothie">
-          <div class="cat-icon"><svg viewBox="0 0 24 24">
-              <path d="M12 2L2 7l10 5 10-5-10-5z" />
-              <path d="M2 17l10 5 10-5" />
-            </svg></div><span data-i18n="cat_smoothie">Смузи</span>
-        </div>
-        <div class="cat-tile rv d4" data-tab="milkshake">
-          <div class="cat-icon"><svg viewBox="0 0 24 24">
-              <path d="M12 2L2 7l10 5 10-5-10-5z" />
-              <path d="M2 17l10 5 10-5" />
-            </svg></div><span data-i18n="cat_milkshake">Милкшейк</span>
-        </div>
-        <div class="cat-tile rv d5" data-tab="fresh">
-          <div class="cat-icon"><svg viewBox="0 0 24 24">
-              <path d="M12 2L2 7l10 5 10-5-10-5z" />
-              <path d="M2 17l10 5 10-5" />
-            </svg></div><span data-i18n="cat_fresh">Фреш напитки</span>
-        </div>
-        <div class="cat-tile rv d5" data-tab="sauce">
-          <div class="cat-icon"><svg viewBox="0 0 24 24">
-              <path d="M12 2L2 7l10 5 10-5-10-5z" />
-              <path d="M2 17l10 5 10-5" />
-            </svg></div><span data-i18n="cat_sauce">Соус</span>
-        </div>
-        <div class="cat-tile rv d5" data-tab="gelato">
-          <div class="cat-icon"><svg viewBox="0 0 24 24">
-              <path d="M12 2L2 7l10 5 10-5-10-5z" />
-              <path d="M2 17l10 5 10-5" />
-            </svg></div><span data-i18n="cat_gelato">Гилатто морожни</span>
-        </div>
-        <div class="cat-tile rv d5" data-tab="firmTea">
-          <div class="cat-icon"><svg viewBox="0 0 24 24">
-              <path d="M12 2L2 7l10 5 10-5-10-5z" />
-              <path d="M2 17l10 5 10-5" />
-            </svg></div><span data-i18n="cat_firmTea">Фирменные чай</span>
-        </div>
-        <div class="cat-tile rv d5" data-tab="hot">
-          <div class="cat-icon"><svg viewBox="0 0 24 24">
-              <path d="M12 2L2 7l10 5 10-5-10-5z" />
-              <path d="M2 17l10 5 10-5" />
-            </svg></div><span data-i18n="cat_hot">Горячие блюда</span>
-        </div>
-        <div class="cat-tile rv d5" data-tab="coffee">
-          <div class="cat-icon"><svg viewBox="0 0 24 24">
-              <path d="M12 2L2 7l10 5 10-5-10-5z" />
-              <path d="M2 17l10 5 10-5" />
-            </svg></div><span data-i18n="cat_coffee">Кофе бар</span>
-        </div>
-        <div class="cat-tile rv d5" data-tab="lepeshka">
-          <div class="cat-icon"><svg viewBox="0 0 24 24">
-              <path d="M12 2L2 7l10 5 10-5-10-5z" />
-              <path d="M2 17l10 5 10-5" />
-            </svg></div><span data-i18n="cat_lepeshka">Лепёшка</span>
-        </div>
-        <div class="cat-tile rv d5" data-tab="bar">
-          <div class="cat-icon"><svg viewBox="0 0 24 24">
-              <path d="M12 2L2 7l10 5 10-5-10-5z" />
-              <path d="M2 17l10 5 10-5" />
-            </svg></div><span data-i18n="cat_bar">Бар напитки</span>
-        </div>
-        <div class="cat-tile rv d5" data-tab="mojito">
-          <div class="cat-icon"><svg viewBox="0 0 24 24">
-              <path d="M12 2L2 7l10 5 10-5-10-5z" />
-              <path d="M2 17l10 5 10-5" />
-            </svg></div><span data-i18n="cat_mojito">Мохито бар</span>
-        </div>
-        <div class="cat-tile rv d5" data-tab="kids">
-          <div class="cat-icon"><svg viewBox="0 0 24 24">
-              <path d="M12 2L2 7l10 5 10-5-10-5z" />
-              <path d="M2 17l10 5 10-5" />
-            </svg></div><span data-i18n="cat_kids">Детский меню</span>
-        </div>
-        <div class="cat-tile rv d5" data-tab="waffles">
-          <div class="cat-icon"><svg viewBox="0 0 24 24">
-              <path d="M12 2L2 7l10 5 10-5-10-5z" />
-              <path d="M2 17l10 5 10-5" />
-            </svg></div><span data-i18n="cat_waffles">Гилатто вафли</span>
-        </div>
-        <div class="cat-tile rv d5" data-tab="shirinliklar">
-          <div class="cat-icon"><svg viewBox="0 0 24 24">
-              <path d="M12 2L2 7l10 5 10-5-10-5z" />
-              <path d="M2 17l10 5 10-5" />
-            </svg></div><span data-i18n="cat_desserts">Десерты</span>
+      <div class="cats-wrapper rv">
+        <div class="cats-slider-inner">
+          <button class="cats-arrow cats-prev" id="catsPrev">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="15 18 9 12 15 6" />
+            </svg>
+          </button>
+          <button class="cats-arrow cats-next" id="catsNext">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+          </button>
+          <div class="cats-grid" id="catsGrid">
+            <div class="cat-tile rv active" data-tab="zavtrak">
+              <div class="cat-icon"><svg viewBox="0 0 24 24">
+                  <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                  <path d="M2 17l10 5 10-5" />
+                </svg></div><span data-i18n="cat_zavtrak">Завтрак</span>
+            </div>
+            <div class="cat-tile rv" data-tab="burger">
+              <div class="cat-icon"><svg viewBox="0 0 24 24">
+                  <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                  <path d="M2 17l10 5 10-5" />
+                </svg></div><span data-i18n="cat_burger">Бургер</span>
+            </div>
+            <div class="cat-tile rv" data-tab="pizza">
+              <div class="cat-icon"><svg viewBox="0 0 24 24">
+                  <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                  <path d="M2 17l10 5 10-5" />
+                </svg></div><span data-i18n="cat_pizza">Пицца</span>
+            </div>
+            <div class="cat-tile rv" data-tab="salaty">
+              <div class="cat-icon"><svg viewBox="0 0 24 24">
+                  <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                  <path d="M2 17l10 5 10-5" />
+                </svg></div><span data-i18n="cat_salaty">Салаты</span>
+            </div>
+            <div class="cat-tile rv" data-tab="supy">
+              <div class="cat-icon"><svg viewBox="0 0 24 24">
+                  <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                  <path d="M2 17l10 5 10-5" />
+                </svg></div><span data-i18n="cat_supy">Супы</span>
+            </div>
+            <div class="cat-tile rv" data-tab="pasta">
+              <div class="cat-icon"><svg viewBox="0 0 24 24">
+                  <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                  <path d="M2 17l10 5 10-5" />
+                </svg></div><span data-i18n="cat_pasta">Паста</span>
+            </div>
+            <div class="cat-tile rv d1" data-tab="sushi">
+              <div class="cat-icon"><svg viewBox="0 0 24 24">
+                  <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                  <path d="M2 17l10 5 10-5" />
+                </svg></div><span data-i18n="cat_sushi">Суши</span>
+            </div>
+            <div class="cat-tile rv d2" data-tab="tea">
+              <div class="cat-icon"><svg viewBox="0 0 24 24">
+                  <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                  <path d="M2 17l10 5 10-5" />
+                </svg></div><span data-i18n="cat_tea">Чайная карта</span>
+            </div>
+            <div class="cat-tile rv d3" data-tab="smoothie">
+              <div class="cat-icon"><svg viewBox="0 0 24 24">
+                  <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                  <path d="M2 17l10 5 10-5" />
+                </svg></div><span data-i18n="cat_smoothie">Смузи</span>
+            </div>
+            <div class="cat-tile rv d4" data-tab="milkshake">
+              <div class="cat-icon"><svg viewBox="0 0 24 24">
+                  <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                  <path d="M2 17l10 5 10-5" />
+                </svg></div><span data-i18n="cat_milkshake">Милкшейк</span>
+            </div>
+            <div class="cat-tile rv d5" data-tab="fresh">
+              <div class="cat-icon"><svg viewBox="0 0 24 24">
+                  <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                  <path d="M2 17l10 5 10-5" />
+                </svg></div><span data-i18n="cat_fresh">Фреш напитки</span>
+            </div>
+            <div class="cat-tile rv d5" data-tab="sauce">
+              <div class="cat-icon"><svg viewBox="0 0 24 24">
+                  <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                  <path d="M2 17l10 5 10-5" />
+                </svg></div><span data-i18n="cat_sauce">Соус</span>
+            </div>
+            <div class="cat-tile rv d5" data-tab="gelato">
+              <div class="cat-icon"><svg viewBox="0 0 24 24">
+                  <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                  <path d="M2 17l10 5 10-5" />
+                </svg></div><span data-i18n="cat_gelato">Гилатто морожни</span>
+            </div>
+            <div class="cat-tile rv d5" data-tab="firmTea">
+              <div class="cat-icon"><svg viewBox="0 0 24 24">
+                  <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                  <path d="M2 17l10 5 10-5" />
+                </svg></div><span data-i18n="cat_firmTea">Фирменные чай</span>
+            </div>
+            <div class="cat-tile rv d5" data-tab="hot">
+              <div class="cat-icon"><svg viewBox="0 0 24 24">
+                  <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                  <path d="M2 17l10 5 10-5" />
+                </svg></div><span data-i18n="cat_hot">Горячие блюда</span>
+            </div>
+            <div class="cat-tile rv d5" data-tab="coffee">
+              <div class="cat-icon"><svg viewBox="0 0 24 24">
+                  <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                  <path d="M2 17l10 5 10-5" />
+                </svg></div><span data-i18n="cat_coffee">Кофе бар</span>
+            </div>
+            <div class="cat-tile rv d5" data-tab="lepeshka">
+              <div class="cat-icon"><svg viewBox="0 0 24 24">
+                  <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                  <path d="M2 17l10 5 10-5" />
+                </svg></div><span data-i18n="cat_lepeshka">Лепёшка</span>
+            </div>
+            <div class="cat-tile rv d5" data-tab="bar">
+              <div class="cat-icon"><svg viewBox="0 0 24 24">
+                  <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                  <path d="M2 17l10 5 10-5" />
+                </svg></div><span data-i18n="cat_bar">Бар напитки</span>
+            </div>
+            <div class="cat-tile rv d5" data-tab="mojito">
+              <div class="cat-icon"><svg viewBox="0 0 24 24">
+                  <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                  <path d="M2 17l10 5 10-5" />
+                </svg></div><span data-i18n="cat_mojito">Мохито бар</span>
+            </div>
+            <div class="cat-tile rv d5" data-tab="kids">
+              <div class="cat-icon"><svg viewBox="0 0 24 24">
+                  <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                  <path d="M2 17l10 5 10-5" />
+                </svg></div><span data-i18n="cat_kids">Детский меню</span>
+            </div>
+            <div class="cat-tile rv d5" data-tab="waffles">
+              <div class="cat-icon"><svg viewBox="0 0 24 24">
+                  <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                  <path d="M2 17l10 5 10-5" />
+                </svg></div><span data-i18n="cat_waffles">Гилатто вафли</span>
+            </div>
+            <div class="cat-tile rv d5" data-tab="shirinliklar">
+              <div class="cat-icon"><svg viewBox="0 0 24 24">
+                  <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                  <path d="M2 17l10 5 10-5" />
+                </svg></div><span data-i18n="cat_desserts">Десерты</span>
+            </div>
+          </div>
         </div>
       </div>
       <div id="menuPanels">
@@ -1806,8 +2538,109 @@
     </div>
   </section>
 
+  <div class="jb-auth-overlay" id="jbAuthOverlay"></div>
+  <div class="jb-auth-modal" id="jbAuthModal" role="dialog" aria-modal="true" aria-labelledby="jbAuthTitle">
+    <button type="button" class="jb-auth-close" id="jbAuthClose" aria-label="Close">✕</button>
+    <h3 id="jbAuthTitle" data-i18n="auth_title">Вход и регистрация</h3>
 
+    <div id="jbAuthGuest">
+      <div class="jb-auth-tabs" role="tablist">
+        <button type="button" class="active" id="jbTabIn" data-i18n="auth_tab_in">Вход</button>
+        <button type="button" id="jbTabReg" data-i18n="auth_tab_reg">Регистрация</button>
+      </div>
+      <form id="jbFormLogin" autocomplete="on">
+        <div class="jb-auth-field">
+          <label for="jbInEmail" data-i18n="auth_email">Email</label>
+          <input type="email" id="jbInEmail" name="email" required />
+        </div>
+        <div class="jb-auth-field">
+          <label for="jbInPass" data-i18n="auth_password">Пароль</label>
+          <div class="jb-auth-pass-wrap">
+            <input type="password" id="jbInPass" name="password" required autocomplete="current-password" />
+            <button type="button" class="jb-auth-pass-toggle" aria-pressed="false" aria-label="Показать пароль">
+              <svg class="jb-eye-open" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                <circle cx="12" cy="12" r="3" />
+              </svg>
+              <svg class="jb-eye-off" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path
+                  d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 0-4.24-4.24" />
+                <line x1="1" y1="1" x2="23" y2="23" />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="jb-auth-actions">
+          <button type="submit" class="btn btn-gold" style="width:100%;padding:14px"
+            data-i18n="auth_submit_in">Войти</button>
+        </div>
+      </form>
+      <form id="jbFormReg" autocomplete="on" style="display:none">
+        <div class="jb-auth-field">
+          <label for="jbRegName" data-i18n="auth_name">Имя</label>
+          <input type="text" id="jbRegName" name="name" required />
+        </div>
+        <div class="jb-auth-field">
+          <label for="jbRegEmail" data-i18n="auth_email">Email</label>
+          <input type="email" id="jbRegEmail" name="email" required />
+        </div>
+        <div class="jb-auth-field">
+          <label for="jbRegPhone" data-i18n="auth_phone">Телефон</label>
+          <input type="tel" id="jbRegPhone" name="phone" required />
+        </div>
+        <div class="jb-auth-field">
+          <label for="jbRegPass" data-i18n="auth_password">Пароль</label>
+          <div class="jb-auth-pass-wrap">
+            <input type="password" id="jbRegPass" name="password" required minlength="8" autocomplete="new-password" />
+            <button type="button" class="jb-auth-pass-toggle" aria-pressed="false" aria-label="Показать пароль">
+              <svg class="jb-eye-open" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                <circle cx="12" cy="12" r="3" />
+              </svg>
+              <svg class="jb-eye-off" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path
+                  d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 0-4.24-4.24" />
+                <line x1="1" y1="1" x2="23" y2="23" />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="jb-auth-actions">
+          <button type="submit" class="btn btn-gold" style="width:100%;padding:14px"
+            data-i18n="auth_submit_reg">Зарегистрироваться</button>
+        </div>
+      </form>
+    </div>
+
+    <div id="jbAuthSession" style="display:none">
+      <p class="jb-session-info" id="jbSessionText"></p>
+      <div class="jb-auth-actions">
+        <a href="staff.html" class="btn btn-gold"
+          style="width:100%;padding:14px;text-align:center;text-decoration:none;display:none" id="jbStaffBtn"
+          data-i18n="auth_staff">Заказы (staff)</a>
+        <button type="button" class="btn btn-outline" style="width:100%;padding:14px" id="jbLogoutBtn"
+          data-i18n="auth_logout">Выйти</button>
+      </div>
+    </div>
+
+    <p class="jb-auth-err" id="jbAuthErr"></p>
+    <p class="jb-auth-ok" id="jbAuthOk"></p>
+    <p class="jb-stub-note" id="jbStubNote" style="display:none" data-i18n="auth_stub_hint"></p>
+    <div class="jb-api-hint" id="jbApiHintWrap">
+      API base URL
+      <input type="url" id="jbApiBaseInput" placeholder="http://localhost:8080" />
+    </div>
+  </div>
+
+  <script src="jb-config.js"></script>
   <script src="menu.js"></script>
+  <script src="jb-auth.js"></script>
+  <script src="jb-orders.js"></script>
+  <script src="jb-geolocation.js"></script>
   <script>
     document.body.classList.add('loading');
 
@@ -1853,32 +2686,32 @@
 
     const MENU = {
       zavtrak: [
-        { name: 'ЗАВТРАК ПО ТУРЕТСКЫЙ', desc: '', weight: '416 г', price: 60000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
-        { name: 'ЯИЧНИЦА С КОЛБАСОЙ', desc: '', weight: '149 г', price: 20000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
-        { name: 'ШАКУШКА', desc: '', weight: '321 г', price: 40000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
-        { name: 'ОМЛЕТ', desc: '', weight: '340 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
+        { name: 'ЗАВТРАК ПО-ТУРЕЦКИ', desc: '', weight: '416 г', price: 60000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)', img: 'jasmin_menu/zavtrak_po_turetski.webp' },
+        { name: 'ЯИЧНИЦА С КОЛБАСОЙ', desc: '', weight: '149 г', price: 20000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)', img: 'jasmin_menu/yaitsnitsa_s_kolbasoy.webp' },
+        { name: 'ШАКУШКА', desc: '', weight: '321 г', price: 40000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)', img: 'jasmin_menu/shakushka.webp' },
+        { name: 'ОМЛЕТ', desc: '', weight: '340 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)', img: 'jasmin_menu/omlet.webp' },
       ],
       burger: [
-        { name: 'БИГБУРГЕР', desc: '', weight: '340 г', price: 55000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
-        { name: 'ЧИКЕН БУРГЕР', desc: '', weight: '200 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
-        { name: 'СТРИПСЫ 5ШТ', desc: '', weight: '310 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
-        { name: 'КЛАБ СЭНДВИЧ', desc: '', weight: '290 г', price: 35000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
-        { name: 'ХАМБУРГЕР', desc: '', weight: '215 г', price: 35000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
-        { name: 'ТВИСТЕР', desc: '', weight: '275 г', price: 18000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
-        { name: 'КФС БУРГЕР', desc: '', weight: '305 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
-        { name: 'СТРИПСЫ 7ШТ', desc: '', weight: '390 г', price: 35000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
-        { name: 'ЧИЗБУРГЕР', desc: '', weight: '230 г', price: 37000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
-        { name: 'ДУРУМ ШАВЕРМА', desc: '', weight: '290 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
-        { name: 'ХАГГИ', desc: '', weight: '175 г', price: 20000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
-        { name: 'КУРИНЫЕ КРЫЛЬЯ 5ШТ', desc: '', weight: '410 г', price: 35000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
-        { name: 'КУРИНЫЕ КРЫЛЬЯ 7ШТ', desc: '', weight: '530 г', price: 45000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
+        { name: 'БИГБУРГЕР', desc: '', weight: '340 г', price: 55000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)', img: 'jasmin_menu/big_burger.webp' },
+        { name: 'ЧИКЕН БУРГЕР', desc: '', weight: '200 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)', img: 'jasmin_menu/chicken_burger.webp' },
+        { name: 'СТРИПСЫ 5ШТ', desc: '', weight: '310 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)', img: 'jasmin_menu/stripsi.webp' },
+        { name: 'КЛАБ СЭНДВИЧ', desc: '', weight: '290 г', price: 35000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)', img: 'jasmin_menu/klab_sandwich.webp' },
+        { name: 'ХАМБУРГЕР', desc: '', weight: '215 г', price: 35000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)', img: 'jasmin_menu/hamburger.webp' },
+        { name: 'ТВИСТЕР', desc: '', weight: '275 г', price: 18000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)', img: 'jasmin_menu/twister.webp' },
+        { name: 'КФС БУРГЕР', desc: '', weight: '305 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)', img: 'jasmin_menu/kfc_burger.webp' },
+        { name: 'СТРИПСЫ 7ШТ', desc: '', weight: '390 г', price: 35000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)', img: 'jasmin_menu/stripsi.webp' },
+        { name: 'ЧИЗБУРГЕР', desc: '', weight: '230 г', price: 37000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)', img: 'jasmin_menu/chizburger.webp' },
+        { name: 'ДУРУМ ШАВЕРМА', desc: '', weight: '290 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)', img: 'jasmin_menu/durum_shawerma.webp' },
+        { name: 'ХАГГИ', desc: '', weight: '175 г', price: 20000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)', img: 'jasmin_menu/xaggi.webp' },
+        { name: 'КУРИНЫЕ КРЫЛЬЯ 5ШТ', desc: '', weight: '410 г', price: 35000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)', img: 'jasmin_menu/kurinie_krilishki.webp' },
+        { name: 'КУРИНЫЕ КРЫЛЬЯ 7ШТ', desc: '', weight: '530 г', price: 45000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)', img: 'jasmin_menu/kurinie_krilishki.webp' },
       ],
       pizza: [
         { name: 'ПИДЕ С МЯСОМ', desc: '', weight: '387 г', price: 55000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
-        { name: 'АССОРТИ ПИЦЦА', desc: '', weight: '665 г', price: 79000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
-        { name: 'ВЕТЧИНА С ГРИБАМИ', desc: '', weight: '615 г', price: 70000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
-        { name: 'МИНИ ПИЦЦА МЯСНОЙ', desc: '', weight: '245 г', price: 29000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
-        { name: 'МИНИ ПИЦЦА МАРГАРИТА', desc: '', weight: '235 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
+        { name: 'АССОРТИ ПИЦЦА', desc: '', weight: '665 г', price: 79000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)', img: 'jasmin_menu/asorti_pizza.webp' },
+        { name: 'ВЕТЧИНА С ГРИБАМИ', desc: '', weight: '615 г', price: 70000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)', img: 'jasmin_menu/vetchina_s_gribami.webp' },
+        { name: 'МИНИ ПИЦЦА МЯСНОЙ', desc: '', weight: '245 г', price: 29000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)', img: 'jasmin_menu/mini_pizza_myasnoy.webp' },
+        { name: 'МИНИ ПИЦЦА МАРГАРИТА', desc: '', weight: '235 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)', img: 'jasmin_menu/mini_pizza_margarita.webp' },
         { name: 'МИНИ ПИЦЦА ПЕППЕРОНИ', desc: '', weight: '235 г', price: 29000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
         { name: 'ЦЕЗАРЬ ПИЦЦА', desc: '', weight: '695 г', price: 75000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
         { name: 'МАРГАРИТА ПИЦЦА', desc: '', weight: '585 г', price: 50000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
@@ -1904,7 +2737,7 @@
         { name: 'ЯПОНСКИЙ САЛАТ', desc: '', weight: '294 г', price: 45000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
         { name: 'БАКЛАЖАН САЛАТ', desc: '', weight: '364 г', price: 43000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
         { name: 'ГРЕЧЕСКИЙ САЛАТ', desc: '', weight: '297 г', price: 42000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
-        { name: 'ПТИЧЬЕ ГНЕЗДО САЛАТ', desc: '', weight: '294.2 г', price: 28000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
+        { name: 'ПТИЧЬЕ ГНЕЗДО САЛАТ', desc: '', weight: '294 г', price: 28000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
         { name: 'ОВОЩНОЙ САЛАТ', desc: '', weight: '256 г', price: 20000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
         { name: 'БАКЛАЖАН С КУРИЦЕЙ САЛАТ', desc: '', weight: '429 г', price: 40000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
       ],
@@ -1962,12 +2795,12 @@
         { name: 'БАНАНОВЫЙ СМУЗИ', desc: '', weight: '455 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
       ],
       milkshake: [
-        { name: 'ТИРАМИСУ ШЕЙК', desc: '', weight: '247.282703 г', price: 28000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
+        { name: 'ТИРАМИСУ ШЕЙК', desc: '', weight: '247 г', price: 28000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
         { name: 'БАНАНОВЫЙ ШЕЙК', desc: '', weight: '495 г', price: 30000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
         { name: 'ШОКОЛОДНЫЙ ШЕЙК', desc: '', weight: '380 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
         { name: 'ЯГОДНЫЙ ШЕЙК', desc: '', weight: '400 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
         { name: 'КЛУБНИКА БАНАН ШЕЙК', desc: '', weight: '560 г', price: 50000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
-        { name: 'БАНАН ШОКОЛАД ШЕЙК', desc: '', weight: '357.256006 г', price: 35000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
+        { name: 'БАНАН ШОКОЛАД ШЕЙК', desc: '', weight: '357 г', price: 35000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
         { name: 'ВАНИЛЬНЫЙ ШЕЙК', desc: '', weight: '375 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
         { name: 'КЛУБНИКА ШЕЙК', desc: '', weight: '435 г', price: 49000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
         { name: 'ОРЕО ШЕЙК', desc: '', weight: '425 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
@@ -1986,30 +2819,30 @@
       ],
       gelato: [
         { name: 'G БАУНТИ', desc: '', weight: '60 г', price: 10000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
-        { name: 'G ТИРАМИСУ', desc: '', weight: '60.135135 г', price: 10000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
-        { name: 'G ФУНДУК', desc: '', weight: '60.36036 г', price: 10000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
-        { name: 'G БАНАН', desc: '', weight: '60.06006 г', price: 10000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
-        { name: 'G ОРЕО', desc: '', weight: '64.414414 г', price: 10000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
-        { name: 'G ЛЕСНЫЕ ЯГОДЫ', desc: '', weight: '60.06006 г', price: 10000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
-        { name: 'G КИВИ', desc: '', weight: '60.06006 г', price: 10000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
-        { name: 'G КЛУБНИКА', desc: '', weight: '57.057057 г', price: 10000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
-        { name: 'G ПЛОМБИР', desc: '', weight: '60.06006 г', price: 10000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
-        { name: 'G ЙОГУРТ С ВИШНЕЙ', desc: '', weight: '63.813814 г', price: 10000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
-        { name: 'G ФЕРРЕРО РОШЕ', desc: '', weight: '64.414414 г', price: 10000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
-        { name: 'G ФИСТАШКА', desc: '', weight: '60.15015 г', price: 12000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
-        { name: 'G ВАНИЛЬ  ТОФИПЕКАН', desc: '', weight: '63.963964 г', price: 10000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
-        { name: 'G МАНГО', desc: '', weight: '60.06006 г', price: 10000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
-        { name: 'G МОЛОЧНЫЙ ШОКОЛАД', desc: '', weight: '61.291291 г', price: 10000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
-        { name: 'G ГОРЬКИЙ ШОКОЛАД', desc: '', weight: '60.761622 г', price: 10000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
-        { name: 'G ПЕЧЕНЬЕ НУТЕЛЛА', desc: '', weight: '63.813814 г', price: 10000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
-        { name: 'G РАФАЕЛЛО', desc: '', weight: '64.414414 г', price: 10000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
-        { name: 'G АПЕЛЬСИН', desc: '', weight: '60.06006 г', price: 10000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
+        { name: 'G ТИРАМИСУ', desc: '', weight: '60 г', price: 10000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
+        { name: 'G ФУНДУК', desc: '', weight: '60 г', price: 10000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
+        { name: 'G БАНАН', desc: '', weight: '60 г', price: 10000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
+        { name: 'G ОРЕО', desc: '', weight: '64 г', price: 10000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
+        { name: 'G ЛЕСНЫЕ ЯГОДЫ', desc: '', weight: '60 г', price: 10000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
+        { name: 'G КИВИ', desc: '', weight: '60 г', price: 10000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
+        { name: 'G КЛУБНИКА', desc: '', weight: '57 г', price: 10000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
+        { name: 'G ПЛОМБИР', desc: '', weight: '60 г', price: 10000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
+        { name: 'G ЙОГУРТ С ВИШНЕЙ', desc: '', weight: '64 г', price: 10000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
+        { name: 'G ФЕРРЕРО РОШЕ', desc: '', weight: '64 г', price: 10000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
+        { name: 'G ФИСТАШКА', desc: '', weight: '60 г', price: 12000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
+        { name: 'G ВАНИЛЬ  ТОФИПЕКАН', desc: '', weight: '64 г', price: 10000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
+        { name: 'G МАНГО', desc: '', weight: '60 г', price: 10000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
+        { name: 'G МОЛОЧНЫЙ ШОКОЛАД', desc: '', weight: '61 г', price: 10000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
+        { name: 'G ГОРЬКИЙ ШОКОЛАД', desc: '', weight: '61 г', price: 10000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
+        { name: 'G ПЕЧЕНЬЕ НУТЕЛЛА', desc: '', weight: '64 г', price: 10000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
+        { name: 'G РАФАЕЛЛО', desc: '', weight: '64 г', price: 10000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
+        { name: 'G АПЕЛЬСИН', desc: '', weight: '60 г', price: 10000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
       ],
       firmTea: [
         { name: 'ПЕРСИК-МАНГО', desc: '', weight: '1100 г', price: 30000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
         { name: 'ЯГОДНЫЙ ЧАЙ', desc: '', weight: '1398 г', price: 30000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
-        { name: 'ИМБИРНЫЙ', desc: '', weight: '1368.92 г', price: 30000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
-        { name: 'ФРУКТОВЫЙ', desc: '', weight: '408.74 г', price: 32000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
+        { name: 'ИМБИРНЫЙ', desc: '', weight: '1369 г', price: 30000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
+        { name: 'ФРУКТОВЫЙ', desc: '', weight: '409 г', price: 32000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
         { name: 'ОБЛЕПИХОВЫЙ', desc: '', weight: '1548 г', price: 35000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
         { name: 'АНГЛИЙСКИЙ', desc: '', weight: '1225 г', price: 30000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
         { name: 'ЧАЙ С КИВИ', desc: '', weight: '1510 г', price: 30000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
@@ -2023,7 +2856,7 @@
         { name: 'КОФТЕ С СЫРОМ', desc: '', weight: '487 г', price: 60000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
         { name: 'ФРИ', desc: '', weight: '137 г', price: 15000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
         { name: 'ТУШЕНКА ИЗ ГОВЯДИНЫ', desc: '', weight: '444 г', price: 70000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
-        { name: 'САЙ С ГОВЯДИНОЙ', desc: '', weight: '246.5 г', price: 70000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
+        { name: 'САЙ С ГОВЯДИНОЙ', desc: '', weight: '247 г', price: 70000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
         { name: 'КОФТЕ', desc: '', weight: '360 г', price: 50000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
         { name: 'АЙДАХО', desc: '', weight: '140 г', price: 15000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
         { name: 'САЙ С КУРИЦОЙ', desc: '', weight: '511 г', price: 38000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
@@ -2107,156 +2940,156 @@
         { name: 'ВАФЛИ КЛУБНИКА', desc: '', weight: '420 г', price: 70000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
       ],
       shirinliklar: [
-        { name: 'СОСИСКАЛИ БУЛОЧКА', desc: '', weight: '114.129412 г', price: 6000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
-        { name: 'МИНДАЛЬ КРУГ ФИСТАШКОВЫЙ', desc: '', weight: '262.033334 г', price: 19000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
-        { name: 'МИШКА', desc: '', weight: '498.125 г', price: 19000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
-        { name: 'ТВОРОЖНОЕ ПИРОГ БИЗЕЛИ', desc: '', weight: '253.241667 г', price: 8000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
+        { name: 'СОСИСКАЛИ БУЛОЧКА', desc: '', weight: '114 г', price: 6000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
+        { name: 'МИНДАЛЬ КРУГ ФИСТАШКОВЫЙ', desc: '', weight: '262 г', price: 19000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
+        { name: 'МИШКА', desc: '', weight: '498 г', price: 19000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
+        { name: 'ТВОРОЖНОЕ ПИРОГ БИЗЕЛИ', desc: '', weight: '253 г', price: 8000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
         { name: 'СНИКЕРС ПИРОЖНОЕ', desc: '', weight: '425 г', price: 27000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
-        { name: 'СЛ.КРУАССАН БЕЗ НАЧИНКИ', desc: '', weight: '163.333333 г', price: 20000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
-        { name: 'РУЛЕТ МОЛОЧНЫЙ', desc: '', weight: '326.083333 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
-        { name: 'МЕДОВИК АПЕЛСИНОВЫЙ', desc: '', weight: '387.333333 г', price: 26000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
+        { name: 'СЛ.КРУАССАН БЕЗ НАЧИНКИ', desc: '', weight: '163 г', price: 20000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
+        { name: 'РУЛЕТ МОЛОЧНЫЙ', desc: '', weight: '326 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
+        { name: 'МЕДОВИК АПЕЛСИНОВЫЙ', desc: '', weight: '387 г', price: 26000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
         { name: 'ПАХЛАВА БЕЗЕЛИ', desc: '', weight: '', price: 9000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
         { name: 'СНИКЕРС ТОЗА ПИСТА', desc: '', weight: '', price: 18000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
         { name: 'ПОНЧИК', desc: '', weight: '', price: 15000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
-        { name: 'ОК МЕДОВИК', desc: '', weight: '417.5 г', price: 21000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
-        { name: 'ФИСТАШКОВЫЙ МЕРЕНГА', desc: '', weight: '65.825 г', price: 11000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
-        { name: 'РУЛЕТ ЯГОДНЫЙ', desc: '', weight: '319.416667 г', price: 21000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
-        { name: 'МЕДОВИК КОФЕЙНЫЙ', desc: '', weight: '359.916667 г', price: 21000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
-        { name: 'МЕРЕНГА БЕЛЫЙ КЛУБНИЧНЫЙ', desc: '', weight: '135.108333 г', price: 17000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
+        { name: 'ОК МЕДОВИК', desc: '', weight: '418 г', price: 21000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
+        { name: 'ФИСТАШКОВЫЙ МЕРЕНГА', desc: '', weight: '66 г', price: 11000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
+        { name: 'РУЛЕТ ЯГОДНЫЙ', desc: '', weight: '319 г', price: 21000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
+        { name: 'МЕДОВИК КОФЕЙНЫЙ', desc: '', weight: '360 г', price: 21000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
+        { name: 'МЕРЕНГА БЕЛЫЙ КЛУБНИЧНЫЙ', desc: '', weight: '135 г', price: 17000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
         { name: 'БЕНТО ТОРТ Клуб конф- 3 кат', desc: '', weight: '', price: 160000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
-        { name: 'МИНДАЛЬ КРУГ', desc: '', weight: '259.533334 г', price: 16000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
-        { name: 'ЛАСТОЧКА', desc: '', weight: '90.8625 г', price: 4000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
+        { name: 'МИНДАЛЬ КРУГ', desc: '', weight: '260 г', price: 16000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
+        { name: 'ЛАСТОЧКА', desc: '', weight: '91 г', price: 4000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
         { name: 'желейка', desc: '', weight: '75 г', price: 10000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
-        { name: 'ЛИМОНЛИ ПИРОЖНОЕ', desc: '', weight: '306.266667 г', price: 18000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
+        { name: 'ЛИМОНЛИ ПИРОЖНОЕ', desc: '', weight: '306 г', price: 18000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
         { name: 'Пахлава АЗЕРБАЙЖАН', desc: '', weight: '', price: 7000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
-        { name: 'ТРУБОЧКАЛИ КОНТЕЙНЕР 400 ГР', desc: '', weight: '1529.222222 г', price: 29000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
-        { name: 'АФГАНСКОЕ ПИРОЖНОЕ', desc: '', weight: '462.625 г', price: 24000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
+        { name: 'ТРУБОЧКАЛИ КОНТЕЙНЕР 400 ГР', desc: '', weight: '1529 г', price: 29000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
+        { name: 'АФГАНСКОЕ ПИРОЖНОЕ', desc: '', weight: '463 г', price: 24000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
         { name: 'РОБИЯ', desc: '', weight: '1000 г', price: 97000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
-        { name: 'ЧОККО НАПАЛЁН', desc: '', weight: '253.266667 г', price: 16000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
+        { name: 'ЧОККО НАПАЛЁН', desc: '', weight: '253 г', price: 16000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
         { name: 'ЧИЗ КЕЙК КЛАССИЧЕСКИЙ', desc: '', weight: '', price: 21000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
-        { name: 'РУЛЕТ ШОКОЛАДНЫЙ', desc: '', weight: '1218.25 г', price: 17000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
+        { name: 'РУЛЕТ ШОКОЛАДНЫЙ', desc: '', weight: '1218 г', price: 17000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
         { name: 'КРУАССАН ОБИЧНЫЙ', desc: '', weight: '1000 г', price: 4000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
         { name: 'МАТИЛДА МИНИ', desc: '', weight: '', price: 109000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
-        { name: 'ТУРЕЦКИЙ ЧАК ЧАК', desc: '', weight: '414.791667 г', price: 23000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
+        { name: 'ТУРЕЦКИЙ ЧАК ЧАК', desc: '', weight: '415 г', price: 23000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
         { name: 'ВИШНЕВАЯ МИЛКА', desc: '', weight: '', price: 28000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
         { name: 'ЖАСМИН 2 КАТ', desc: '', weight: '2645 г', price: 120000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
-        { name: 'МЕВАЛИ ПИРОЖНОЕ КАКАО', desc: '', weight: '1380.571428 г', price: 31000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
-        { name: 'КЛУБНИЧНЫЙ СЛАЙС', desc: '', weight: '327.211111 г', price: 15000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
-        { name: 'ОДДИЙ РУЛЕТ', desc: '', weight: '1154.947917 г', price: 13000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
-        { name: 'ЧЕРНЫЙ ПРИНЦ', desc: '', weight: '186.177083 г', price: 13000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
-        { name: 'ТРИ ШОКОЛАДА', desc: '', weight: '310.861111 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
+        { name: 'МЕВАЛИ ПИРОЖНОЕ КАКАО', desc: '', weight: '1381 г', price: 31000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
+        { name: 'КЛУБНИЧНЫЙ СЛАЙС', desc: '', weight: '327 г', price: 15000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
+        { name: 'ОДДИЙ РУЛЕТ', desc: '', weight: '1155 г', price: 13000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
+        { name: 'ЧЕРНЫЙ ПРИНЦ', desc: '', weight: '186 г', price: 13000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
+        { name: 'ТРИ ШОКОЛАДА', desc: '', weight: '311 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
         { name: 'БЕЗЕ ПАКЕТЛИ', desc: '', weight: '80 г', price: 14000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
-        { name: 'ТВОРОЖНИК', desc: '', weight: '387.430556 г', price: 21000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
+        { name: 'ТВОРОЖНИК', desc: '', weight: '387 г', price: 21000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
         { name: 'ОРЕХИВЫЙ ШОКОЛАД МИНИ', desc: '', weight: '', price: 7000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
-        { name: 'МАКЛИ РУЛЕТ', desc: '', weight: '240.208333 г', price: 19000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
+        { name: 'МАКЛИ РУЛЕТ', desc: '', weight: '240 г', price: 19000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
         { name: 'КРАСНЫЙ БАРХАТ 2 КАТ', desc: '', weight: '1128 г', price: 10000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
-        { name: 'ЧИЗ КЕЙК САН СЕБАСТИАН', desc: '', weight: '389.2 г', price: 41000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
+        { name: 'ЧИЗ КЕЙК САН СЕБАСТИАН', desc: '', weight: '389 г', price: 41000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
         { name: 'ТОРТ СРЕДНИ 3 КАТ', desc: '', weight: '1000 г', price: 160000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
-        { name: 'СЕТ 156', desc: '', weight: '2081.048888 г', price: 156000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
-        { name: 'НАПАЛЕОН ФЕРРЕРО РОШЕ', desc: '', weight: '245.461111 г', price: 15000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
-        { name: 'СЕТ 222', desc: '', weight: '4034.346984 г', price: 222000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
-        { name: 'КОФЕ ЧИЯ ДУМАЛОК 3 КАТ', desc: '', weight: '251.693333 г', price: 17000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
-        { name: 'ПРАГА ШОКОЛАДНОЕ', desc: '', weight: '326.633333 г', price: 29000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
-        { name: 'КОРА МЕДОВИК', desc: '', weight: '432.375 г', price: 26000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
-        { name: 'АФГАНСКИЙ НАПОЛЁН', desc: '', weight: '309.611111 г', price: 13000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
-        { name: 'ПАХЛАВА', desc: '', weight: '203.055556 г', price: 11000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
-        { name: 'МИНИ ТВОРОГ', desc: '', weight: '1134.375 г', price: 11000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
-        { name: 'БУМЕР2 КАТ', desc: '', weight: '6017.916667 г', price: 22000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
-        { name: 'РУЛЕТ ФИСТАШКОВЫЙ', desc: '', weight: '194.833333 г', price: 20000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
-        { name: 'МЕДОВИК', desc: '', weight: '220.902778 г', price: 11000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
-        { name: 'БАУНТИ', desc: '', weight: '374.513889 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
+        { name: 'СЕТ 156', desc: '', weight: '2081 г', price: 156000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
+        { name: 'НАПАЛЕОН ФЕРРЕРО РОШЕ', desc: '', weight: '245 г', price: 15000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
+        { name: 'СЕТ 222', desc: '', weight: '4034 г', price: 222000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
+        { name: 'КОФЕ ЧИЯ ДУМАЛОК 3 КАТ', desc: '', weight: '252 г', price: 17000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
+        { name: 'ПРАГА ШОКОЛАДНОЕ', desc: '', weight: '327 г', price: 29000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
+        { name: 'КОРА МЕДОВИК', desc: '', weight: '432 г', price: 26000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
+        { name: 'АФГАНСКИЙ НАПОЛЁН', desc: '', weight: '310 г', price: 13000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
+        { name: 'ПАХЛАВА', desc: '', weight: '203 г', price: 11000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
+        { name: 'МИНИ ТВОРОГ', desc: '', weight: '1134 г', price: 11000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
+        { name: 'БУМЕР2 КАТ', desc: '', weight: '6018 г', price: 22000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
+        { name: 'РУЛЕТ ФИСТАШКОВЫЙ', desc: '', weight: '195 г', price: 20000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
+        { name: 'МЕДОВИК', desc: '', weight: '221 г', price: 11000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
+        { name: 'БАУНТИ', desc: '', weight: '375 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
         { name: 'ВИШНЁВОЕ ПИРОЖНОЕ', desc: '', weight: '', price: 35000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
-        { name: 'ТВОРОЖНИК 2 КАТ', desc: '', weight: '3666.25 г', price: 193000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
-        { name: 'ПРЕЛЕСТЬ', desc: '', weight: '312.788889 г', price: 17000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
-        { name: 'ДУБАЙСКИЙ НАПАЛЕОН', desc: '', weight: '274.738889 г', price: 24000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
+        { name: 'ТВОРОЖНИК 2 КАТ', desc: '', weight: '3666 г', price: 193000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
+        { name: 'ПРЕЛЕСТЬ', desc: '', weight: '313 г', price: 17000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
+        { name: 'ДУБАЙСКИЙ НАПАЛЕОН', desc: '', weight: '275 г', price: 24000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
         { name: 'НЕЖНЫЙ КУСОК', desc: '', weight: '', price: 22000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
         { name: 'МЕДОВИК Ф', desc: '', weight: '', price: 19000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
-        { name: 'СНИКЕРСЛИ МУС', desc: '', weight: '328.828 г', price: 33000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
-        { name: 'МОККО НАПАЛЁН', desc: '', weight: '294.181667 г', price: 14000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
-        { name: 'МЕДОВИК 4 КАТ', desc: '', weight: '205.863095 г', price: 11000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
-        { name: 'ЛОТУС МУСЛИ', desc: '', weight: '307.5 г', price: 35000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
+        { name: 'СНИКЕРСЛИ МУС', desc: '', weight: '329 г', price: 33000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
+        { name: 'МОККО НАПАЛЁН', desc: '', weight: '294 г', price: 14000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
+        { name: 'МЕДОВИК 4 КАТ', desc: '', weight: '206 г', price: 11000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
+        { name: 'ЛОТУС МУСЛИ', desc: '', weight: '308 г', price: 35000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
         { name: 'ОРЕХОВЫЙ ВУЛКАН', desc: '', weight: '1000 г', price: 39000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
-        { name: 'ЖАСМИН', desc: '', weight: '440.069445 г', price: 23000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
-        { name: 'УЛИТКА', desc: '', weight: '290.7125 г', price: 18000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
-        { name: 'ПИРОЖНОЕ БАНАН', desc: '', weight: '202.722222 г', price: 12000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
-        { name: 'СЕТ 139', desc: '', weight: '3376.763889 г', price: 139000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
-        { name: 'ЛИМОНЛИ ПИРОЖНОЕ 3 КАТ', desc: '', weight: '1165.85 г', price: 21000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
-        { name: 'КОРОЛЕВСКИЙ ГУЗЛИ', desc: '', weight: '334.258333 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
-        { name: 'ОПЕРА', desc: '', weight: '141.758333 г', price: 13000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
-        { name: 'ФИСТАШКОВЫЙ САН СЕБАСТИАН', desc: '', weight: '513.5 г', price: 44000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
-        { name: 'ЗАВАРНОЙ МИНИ КОНТ', desc: '', weight: '1445.545455 г', price: 37000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
+        { name: 'ЖАСМИН', desc: '', weight: '440 г', price: 23000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
+        { name: 'УЛИТКА', desc: '', weight: '291 г', price: 18000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
+        { name: 'ПИРОЖНОЕ БАНАН', desc: '', weight: '203 г', price: 12000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
+        { name: 'СЕТ 139', desc: '', weight: '3377 г', price: 139000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
+        { name: 'ЛИМОНЛИ ПИРОЖНОЕ 3 КАТ', desc: '', weight: '1166 г', price: 21000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
+        { name: 'КОРОЛЕВСКИЙ ГУЗЛИ', desc: '', weight: '334 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
+        { name: 'ОПЕРА', desc: '', weight: '142 г', price: 13000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
+        { name: 'ФИСТАШКОВЫЙ САН СЕБАСТИАН', desc: '', weight: '514 г', price: 44000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
+        { name: 'ЗАВАРНОЙ МИНИ КОНТ', desc: '', weight: '1446 г', price: 37000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
         { name: 'БЕЗЕ КОНТЕЙНЕР', desc: '', weight: '80 г', price: 15000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
-        { name: 'ТВОРОГЛИ ПИРОГ', desc: '', weight: '204.1 г', price: 8000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
-        { name: 'МАЛИНАЛИ ТРУФЕЛ', desc: '', weight: '276.25 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
-        { name: 'СНИКЕРС РУЛЕТ', desc: '', weight: '307.592592 г', price: 21000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
-        { name: 'СНИКЕРС КВАДРАТ', desc: '', weight: '339.074074 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
-        { name: 'МЕРЕНГАЛИ ТВОРОГ ПИРОЖНИ', desc: '', weight: '295.15625 г', price: 22000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
+        { name: 'ТВОРОГЛИ ПИРОГ', desc: '', weight: '204 г', price: 8000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
+        { name: 'МАЛИНАЛИ ТРУФЕЛ', desc: '', weight: '276 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
+        { name: 'СНИКЕРС РУЛЕТ', desc: '', weight: '308 г', price: 21000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
+        { name: 'СНИКЕРС КВАДРАТ', desc: '', weight: '339 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
+        { name: 'МЕРЕНГАЛИ ТВОРОГ ПИРОЖНИ', desc: '', weight: '295 г', price: 22000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
         { name: 'БАНАНОВЫЙ ТРУФЕЛЬ', desc: '', weight: '', price: 33000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
         { name: 'АПЕЛЬСИНОВЫЙ ВАНИЛ', desc: '', weight: '', price: 23000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
-        { name: 'АПЕЛСИН МУС ПИРОГ', desc: '', weight: '86.477778 г', price: 12000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
-        { name: 'ЧИЗ КЕЙК ОРЕО', desc: '', weight: '111.5 г', price: 14000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
-        { name: 'МОРКОВНОЕ ПИРОЖНОЕ', desc: '', weight: '552.7 г', price: 33000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
-        { name: 'МЕВАЛИ ПИРОЖНОЕ ОК', desc: '', weight: '1407.833334 г', price: 31000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
-        { name: 'ПИРОЖНОЕ ЧИЯ', desc: '', weight: '207.888889 г', price: 12000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
-        { name: 'НУТЕЛЛА (РОМАШКА)', desc: '', weight: '257.25 г', price: 20000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
-        { name: 'ЧИЗ КЕЙК ЛОТУС', desc: '', weight: '91.454167 г', price: 11000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
+        { name: 'АПЕЛСИН МУС ПИРОГ', desc: '', weight: '86 г', price: 12000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
+        { name: 'ЧИЗ КЕЙК ОРЕО', desc: '', weight: '112 г', price: 14000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
+        { name: 'МОРКОВНОЕ ПИРОЖНОЕ', desc: '', weight: '553 г', price: 33000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
+        { name: 'МЕВАЛИ ПИРОЖНОЕ ОК', desc: '', weight: '1408 г', price: 31000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
+        { name: 'ПИРОЖНОЕ ЧИЯ', desc: '', weight: '208 г', price: 12000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
+        { name: 'НУТЕЛЛА (РОМАШКА)', desc: '', weight: '257 г', price: 20000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
+        { name: 'ЧИЗ КЕЙК ЛОТУС', desc: '', weight: '91 г', price: 11000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
         { name: 'ГЕНЕРАЛ', desc: '', weight: '', price: 17000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
         { name: 'ДОЛЛАР', desc: '', weight: '', price: 37000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
-        { name: 'ЧИЗ КЕЙК МАЛИНА', desc: '', weight: '340.277778 г', price: 27000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
-        { name: 'ЧИЗ КЕЙК МУС ЛИСТЛИ', desc: '', weight: '122.722222 г', price: 17000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
+        { name: 'ЧИЗ КЕЙК МАЛИНА', desc: '', weight: '340 г', price: 27000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
+        { name: 'ЧИЗ КЕЙК МУС ЛИСТЛИ', desc: '', weight: '123 г', price: 17000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
         { name: 'МИНИ РАФАЕЛЛО', desc: '', weight: '', price: 12000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
-        { name: 'ТВОРОГЛИ ВАРТУШКА БУЛОЧКА', desc: '', weight: '169.206349 г', price: 9000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
-        { name: 'ЧИЗ КЕЙК МАНГО МАРАКУЯ', desc: '', weight: '82.788889 г', price: 10000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
+        { name: 'ТВОРОГЛИ ВАРТУШКА БУЛОЧКА', desc: '', weight: '169 г', price: 9000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
+        { name: 'ЧИЗ КЕЙК МАНГО МАРАКУЯ', desc: '', weight: '83 г', price: 10000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
         { name: 'ФИСТАШКОВЫЙ ВАНИЛ', desc: '', weight: '210 г', price: 23000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
-        { name: 'КОРА ПРИЧУДА 4 КАТ', desc: '', weight: '3740.177778 г', price: 170000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
-        { name: 'ТРУФЕЛ', desc: '', weight: '498.861111 г', price: 35000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
+        { name: 'КОРА ПРИЧУДА 4 КАТ', desc: '', weight: '3740 г', price: 170000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
+        { name: 'ТРУФЕЛ', desc: '', weight: '499 г', price: 35000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
         { name: 'ГЕНЕРАЛ ПРЯМОУГОЛНЫЕ', desc: '', weight: '', price: 22000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
         { name: 'БУМЕР', desc: '', weight: '', price: 28000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
-        { name: 'РУЛЕТ СКАЗКА', desc: '', weight: '1222.833333 г', price: 21000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
+        { name: 'РУЛЕТ СКАЗКА', desc: '', weight: '1223 г', price: 21000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
         { name: 'БАНАНЗА', desc: '', weight: '6835 г', price: 26000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
-        { name: 'МАТИЛДА СРЕДНИЙ', desc: '', weight: '3095.8 г', price: 199000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
-        { name: 'СЛ.ДУБАЙСКИЙ КРУАССАН', desc: '', weight: '1262.6 г', price: 55000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
+        { name: 'МАТИЛДА СРЕДНИЙ', desc: '', weight: '3096 г', price: 199000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
+        { name: 'СЛ.ДУБАЙСКИЙ КРУАССАН', desc: '', weight: '1263 г', price: 55000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
         { name: 'ГЕНЕРАЛ 2 КАТЛИ', desc: '', weight: '', price: 13000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
-        { name: 'КУШ ТИЛИ', desc: '', weight: '147.666667 г', price: 4000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
-        { name: 'НУТЕЛЛА ОК 2 КАТ', desc: '', weight: '183.373333 г', price: 12000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
-        { name: 'ТЕРАМИСУ КРУГ', desc: '', weight: '301.25 г', price: 27000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
-        { name: 'МЕДОВИК ОРЕХОВЫЙ', desc: '', weight: '301.269841 г', price: 15000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
-        { name: 'ТРУФЕЛ КИЧИК', desc: '', weight: '273.005903 г', price: 26000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
-        { name: 'МЕДОВИК ОРЕХОВЫЙ 4 КАТ', desc: '', weight: '241.746032 г', price: 12000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
-        { name: 'МАТИЛДА КУСОК', desc: '', weight: '214.58 г', price: 20000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
+        { name: 'КУШ ТИЛИ', desc: '', weight: '148 г', price: 4000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
+        { name: 'НУТЕЛЛА ОК 2 КАТ', desc: '', weight: '183 г', price: 12000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
+        { name: 'ТЕРАМИСУ КРУГ', desc: '', weight: '301 г', price: 27000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
+        { name: 'МЕДОВИК ОРЕХОВЫЙ', desc: '', weight: '301 г', price: 15000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
+        { name: 'ТРУФЕЛ КИЧИК', desc: '', weight: '273 г', price: 26000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
+        { name: 'МЕДОВИК ОРЕХОВЫЙ 4 КАТ', desc: '', weight: '242 г', price: 12000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
+        { name: 'МАТИЛДА КУСОК', desc: '', weight: '215 г', price: 20000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
         { name: 'ВИШНОВИЙ ПИРОЖНИЙ 2 КАТЛИ', desc: '', weight: '', price: 15000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
         { name: 'ТОРТ МИНИ 3 КАТ', desc: '', weight: '1000 г', price: 160000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
-        { name: 'СТАКАН ТРАЙФЛЕ', desc: '', weight: '1279.85 г', price: 33000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
-        { name: 'ЛАСТОЧКА ШАРИК', desc: '', weight: '114.768571 г', price: 8500, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
-        { name: 'КОФЕ ЧИЯ КВАДРАТ', desc: '', weight: '488.18 г', price: 27000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
-        { name: 'МЕРЕНГА РУЛЕТ МИНИ', desc: '', weight: '181.96 г', price: 13000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
-        { name: 'СЛ.КРУАССАН КЛУБ.ИЛИ ШОК.', desc: '', weight: '1280.633333 г', price: 33000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
-        { name: 'МЕРЕНГАЛИ РУЛЕТ', desc: '', weight: '327.777778 г', price: 21000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
-        { name: 'ЛИМОНЛИ ПИРОЖНОЕ 2 КАТ', desc: '', weight: '169.451389 г', price: 10000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
-        { name: 'СПАРТАК', desc: '', weight: '385.604166 г', price: 21000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
-        { name: 'МИЛКА', desc: '', weight: '364.5 г', price: 33000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
-        { name: 'СТАКАН ПАНЧО', desc: '', weight: '1119.720526 г', price: 9000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
+        { name: 'СТАКАН ТРАЙФЛЕ', desc: '', weight: '1280 г', price: 33000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
+        { name: 'ЛАСТОЧКА ШАРИК', desc: '', weight: '115 г', price: 8500, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
+        { name: 'КОФЕ ЧИЯ КВАДРАТ', desc: '', weight: '488 г', price: 27000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
+        { name: 'МЕРЕНГА РУЛЕТ МИНИ', desc: '', weight: '182 г', price: 13000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
+        { name: 'СЛ.КРУАССАН КЛУБ.ИЛИ ШОК.', desc: '', weight: '1281 г', price: 33000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
+        { name: 'МЕРЕНГАЛИ РУЛЕТ', desc: '', weight: '328 г', price: 21000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
+        { name: 'ЛИМОНЛИ ПИРОЖНОЕ 2 КАТ', desc: '', weight: '169 г', price: 10000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
+        { name: 'СПАРТАК', desc: '', weight: '386 г', price: 21000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
+        { name: 'МИЛКА', desc: '', weight: '365 г', price: 33000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
+        { name: 'СТАКАН ПАНЧО', desc: '', weight: '1120 г', price: 9000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
         { name: 'КАРАМЕЛЬНЫЙ МЕДАВИК', desc: '', weight: '', price: 14000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
-        { name: 'КЛУБНИЧНАЯ СИМФОНИЯ', desc: '', weight: '267.047619 г', price: 37000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
+        { name: 'КЛУБНИЧНАЯ СИМФОНИЯ', desc: '', weight: '267 г', price: 37000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
         { name: 'ПЕСОЧНЫЙ БАНАН', desc: '', weight: '1000 г', price: 60000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
         { name: 'ЧИЗ КЕЙК ЯГОДНЫЙ', desc: '', weight: '', price: 13000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
         { name: 'ВИШНЯ ШОКОЛАД', desc: '', weight: '', price: 33000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
-        { name: 'КОРА ПРИЧУДА', desc: '', weight: '390.993334 г', price: 21000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
+        { name: 'КОРА ПРИЧУДА', desc: '', weight: '391 г', price: 21000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
         { name: 'ПИРАМИДА', desc: '', weight: '1175 г', price: 11000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
-        { name: 'ТРУФЕЛ 2 КАТ', desc: '', weight: '252.625 г', price: 19000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
-        { name: 'НАПАЛЁН ПРЕЗИДЕНТ', desc: '', weight: '327.256667 г', price: 19000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
-        { name: 'ЗАВАРНОЙ КИЧИК', desc: '', weight: '81.7125 г', price: 5000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
-        { name: 'ЧИЗ КЕЙК ШОКОЛАД ДУБАЙСКИЙ', desc: '', weight: '370.75 г', price: 43000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
-        { name: 'НУТЕЛЛА ОКИ', desc: '', weight: '262.736111 г', price: 19000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
-        { name: 'РАФАЕЛЛО', desc: '', weight: '321.5 г', price: 20000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
-        { name: 'КОМБО РУЛЕТ', desc: '', weight: '1251.895714 г', price: 33000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
-        { name: 'ЧИЗ КЕЙК ШОКОЛАД', desc: '', weight: '306.416666 г', price: 27000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
-        { name: 'МАЛИНА МУС', desc: '', weight: '266.25 г', price: 34000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
-        { name: 'СТАКАН ЧИЯ', desc: '', weight: '1144.526786 г', price: 17000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
-        { name: 'КОФЕ ЧИЯ ДУМАЛОК', desc: '', weight: '316.693333 г', price: 21000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
+        { name: 'ТРУФЕЛ 2 КАТ', desc: '', weight: '253 г', price: 19000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
+        { name: 'НАПАЛЁН ПРЕЗИДЕНТ', desc: '', weight: '327 г', price: 19000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
+        { name: 'ЗАВАРНОЙ КИЧИК', desc: '', weight: '82 г', price: 5000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
+        { name: 'ЧИЗ КЕЙК ШОКОЛАД ДУБАЙСКИЙ', desc: '', weight: '371 г', price: 43000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
+        { name: 'НУТЕЛЛА ОКИ', desc: '', weight: '263 г', price: 19000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
+        { name: 'РАФАЕЛЛО', desc: '', weight: '322 г', price: 20000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
+        { name: 'КОМБО РУЛЕТ', desc: '', weight: '1252 г', price: 33000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
+        { name: 'ЧИЗ КЕЙК ШОКОЛАД', desc: '', weight: '306 г', price: 27000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)' },
+        { name: 'МАЛИНА МУС', desc: '', weight: '266 г', price: 34000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
+        { name: 'СТАКАН ЧИЯ', desc: '', weight: '1145 г', price: 17000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)' },
+        { name: 'КОФЕ ЧИЯ ДУМАЛОК', desc: '', weight: '317 г', price: 21000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
         { name: 'ПЕСОЧНЫЙ ШАКАРЛИ', desc: '', weight: '1000 г', price: 59000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
-        { name: 'МИНИ ТВОРОГ 3 КАТ', desc: '', weight: '1188.119266 г', price: 15000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
-        { name: 'КРАСНИЙ БАРХАТ 3 КАТ', desc: '', weight: '1201.564286 г', price: 19000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
+        { name: 'МИНИ ТВОРОГ 3 КАТ', desc: '', weight: '1188 г', price: 15000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
+        { name: 'КРАСНИЙ БАРХАТ 3 КАТ', desc: '', weight: '1202 г', price: 19000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
       ],
     };
 
@@ -2283,9 +3116,16 @@
     function card(item) {
       const badge = item.badge
         ? `<span class="p-badge ${item.badge === 'ХИТ' ? 'badge-hit' : 'badge-new'}">${item.badge}</span>` : '';
+      const imgSrc = item.img ? String(item.img).replace(/"/g, '&quot;') : '';
+      const dishLabel = String(getDishName(item.name, currentLang)).replace(/"/g, '&quot;');
+      const photo = imgSrc
+        ? `<img class="p-photo" src="${imgSrc}" alt="${dishLabel}" loading="lazy" decoding="async">`
+        : '';
+      const innerCls = imgSrc ? 'p-img-inner has-photo' : 'p-img-inner';
       return `<div class="p-card rv">
     <div class="p-img-wrap">
-      <div class="p-img-inner" style="background:${item.bg}">
+      <div class="${innerCls}" style="background:${item.bg}">
+        ${photo}
         ${badge}
         <svg class="prod-illu" width="64" height="64" viewBox="0 0 100 100">
           <circle cx="50" cy="50" r="45" fill="none" stroke="rgba(247,170,79,0.2)" stroke-width="0.8"/>
@@ -2397,6 +3237,302 @@
     document.getElementById('cartOverlay').onclick = closeCart;
     renderCart();
 
+    (function checkoutUi() {
+      const coOverlay = document.getElementById('coOverlay');
+      const coModal = document.getElementById('coModal');
+      const coLines = document.getElementById('coLines');
+      const coTotal = document.getElementById('coTotal');
+      const coFormWrap = document.getElementById('coFormWrap');
+      const coSuccess = document.getElementById('coSuccess');
+      const coErr = document.getElementById('coErr');
+      const coName = document.getElementById('coName');
+      const coPhone = document.getElementById('coPhone');
+      const coAddr = document.getElementById('coAddr');
+      const coGeoFill = document.getElementById('coGeoFill');
+
+      function refreshCoGeoFillBtn() {
+        if (!coGeoFill) return;
+        const has = typeof JBGeo !== 'undefined' && JBGeo.load() && JBGeo.load().lat != null;
+        coGeoFill.style.display = has ? 'block' : 'none';
+      }
+
+      if (typeof JBGeo !== 'undefined') {
+        window.addEventListener(JBGeo.EVENT, refreshCoGeoFillBtn);
+      }
+
+      coGeoFill.addEventListener('click', () => {
+        coErr.textContent = '';
+        if (typeof JBGeo === 'undefined' || !JBGeo.load() || JBGeo.load().lat == null) {
+          coErr.textContent = I18N[currentLang].co_geo_none;
+          return;
+        }
+        const g = JBGeo.load();
+        coAddr.value = g.label || g.lat.toFixed(4) + ', ' + g.lng.toFixed(4);
+      });
+
+      function openCo() {
+        if (!cart.length) return;
+        coErr.textContent = '';
+        refreshCoGeoFillBtn();
+        if (typeof JBGeo !== 'undefined') {
+          const g = JBGeo.load();
+          if (g && (g.label || (g.lat != null && g.lng != null))) {
+            const line = g.label || g.lat.toFixed(4) + ', ' + g.lng.toFixed(4);
+            if (!coAddr.value.trim()) coAddr.value = line;
+          }
+        }
+        coFormWrap.classList.remove('hide');
+        coSuccess.classList.remove('show');
+        let html = '';
+        let sum = 0;
+        cart.forEach((i) => {
+          sum += i.price * i.qty;
+          html +=
+            '<div class="co-line"><span>' +
+            getDishName(i.name, currentLang) +
+            ' × ' +
+            i.qty +
+            '</span><span>' +
+            (i.price * i.qty).toLocaleString('ru') +
+            ' ' +
+            I18N[currentLang].currency +
+            '</span></div>';
+        });
+        coLines.innerHTML = html;
+        coTotal.textContent =
+          I18N[currentLang].cart_total +
+          ': ' +
+          sum.toLocaleString('ru') +
+          ' ' +
+          I18N[currentLang].currency;
+        coOverlay.classList.add('open');
+        coModal.classList.add('open');
+      }
+
+      function closeCo() {
+        coOverlay.classList.remove('open');
+        coModal.classList.remove('open');
+      }
+
+      function resetCoFields() {
+        coName.value = '';
+        coPhone.value = '';
+        coAddr.value = '';
+      }
+
+      document.getElementById('cartCheckoutBtn').addEventListener('click', () => {
+        if (!cart.length) return;
+        openCo();
+      });
+      coOverlay.addEventListener('click', closeCo);
+      document.getElementById('coCancel').addEventListener('click', closeCo);
+      document.getElementById('coCloseOk').addEventListener('click', () => {
+        closeCo();
+        coFormWrap.classList.remove('hide');
+        coSuccess.classList.remove('show');
+        resetCoFields();
+      });
+      document.getElementById('coSubmit').addEventListener('click', () => {
+        coErr.textContent = '';
+        const name = coName.value.trim();
+        const phone = coPhone.value.trim();
+        if (!name || !phone) {
+          coErr.textContent = I18N[currentLang].co_required;
+          return;
+        }
+        const items = cart.map((i) => ({ name: i.name, price: i.price, qty: i.qty }));
+        const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+        JBOrders.addOrder({
+          items,
+          total,
+          currencyLabel: I18N[currentLang].currency,
+          customerName: name,
+          phone,
+          address: coAddr.value.trim(),
+        });
+        clearCart();
+        closeCart();
+        coFormWrap.classList.add('hide');
+        coSuccess.classList.add('show');
+        resetCoFields();
+      });
+    })();
+
+    (function jbAuthUi() {
+      const overlay = document.getElementById('jbAuthOverlay');
+      const modal = document.getElementById('jbAuthModal');
+      const openBtn = document.getElementById('jbOpenAuth');
+      const closeBtn = document.getElementById('jbAuthClose');
+      const guest = document.getElementById('jbAuthGuest');
+      const sessionEl = document.getElementById('jbAuthSession');
+      const sessionText = document.getElementById('jbSessionText');
+      const staffLink = document.getElementById('jbStaffLink');
+      const staffBtn = document.getElementById('jbStaffBtn');
+      const errEl = document.getElementById('jbAuthErr');
+      const okEl = document.getElementById('jbAuthOk');
+      const apiInput = document.getElementById('jbApiBaseInput');
+      const tabIn = document.getElementById('jbTabIn');
+      const tabReg = document.getElementById('jbTabReg');
+      const formLogin = document.getElementById('jbFormLogin');
+      const formReg = document.getElementById('jbFormReg');
+
+      function t(key) {
+        const d = I18N[currentLang];
+        return (d && d[key]) || key;
+      }
+
+      function clearMsgs() {
+        errEl.textContent = '';
+        okEl.textContent = '';
+      }
+
+      function refreshChrome() {
+        const presEl = document.getElementById('jbMenuPres');
+        if (presEl && globalThis.JB_PRESENTATION_MODE) {
+          presEl.classList.add('on');
+          presEl.setAttribute('aria-hidden', 'false');
+        }
+        const s = JBAuth.getSession();
+        openBtn.classList.toggle('jb-acc-in', !!s);
+        openBtn.setAttribute('aria-label', s ? t('auth_account') : t('auth_login'));
+        const staff =
+          JBAuth.usesAuthStub() || (s && JBAuth.hasAnyRole(JBAuth.STAFF_ROLES));
+        staffLink.classList.toggle('show', !!staff);
+        staffBtn.style.display = staff ? 'block' : 'none';
+      }
+
+      function syncPassToggleAria(btn) {
+        const wrap = btn.closest('.jb-auth-pass-wrap');
+        if (!wrap) return;
+        const visible = wrap.classList.contains('jb-pass-visible');
+        btn.setAttribute('aria-label', visible ? t('auth_hide_pass') : t('auth_show_pass'));
+        btn.setAttribute('aria-pressed', visible ? 'true' : 'false');
+      }
+
+      function syncAllPassToggles() {
+        document.querySelectorAll('.jb-auth-pass-toggle').forEach(syncPassToggleAria);
+      }
+
+      function resetPassVisibility() {
+        document.querySelectorAll('.jb-auth-pass-wrap').forEach((wrap) => {
+          wrap.classList.remove('jb-pass-visible');
+          const inp = wrap.querySelector('input');
+          if (inp) inp.type = 'password';
+        });
+        syncAllPassToggles();
+      }
+
+      function openModal() {
+        clearMsgs();
+        const s = JBAuth.getSession();
+        guest.style.display = s ? 'none' : 'block';
+        sessionEl.style.display = s ? 'block' : 'none';
+        if (s) {
+          sessionText.innerHTML =
+            '<strong>' + t('auth_user') + ':</strong> ' + (s.userId != null ? s.userId : '—') + '<br>' +
+            '<strong>' + t('auth_roles') + ':</strong> ' + (s.roles.length ? s.roles.join(', ') : '—');
+        }
+        apiInput.value = JBAuth.getApiBase() || '';
+        const demoUi = JBAuth.isStubMode();
+        const pres = typeof globalThis.JB_PRESENTATION_MODE !== 'undefined' && globalThis.JB_PRESENTATION_MODE;
+        const stubNote = document.getElementById('jbStubNote');
+        const apiHintWrap = document.getElementById('jbApiHintWrap');
+        if (stubNote) stubNote.style.display = JBAuth.usesAuthStub() ? 'block' : 'none';
+        if (apiHintWrap) apiHintWrap.style.display = pres || demoUi ? 'none' : 'block';
+        overlay.classList.add('open');
+        modal.classList.add('open');
+        refreshChrome();
+        syncAllPassToggles();
+      }
+
+      function closeModal() {
+        overlay.classList.remove('open');
+        modal.classList.remove('open');
+        resetPassVisibility();
+      }
+
+      openBtn.addEventListener('click', openModal);
+      closeBtn.addEventListener('click', closeModal);
+      overlay.addEventListener('click', closeModal);
+
+      document.querySelectorAll('.jb-auth-pass-toggle').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const wrap = btn.closest('.jb-auth-pass-wrap');
+          const input = wrap && wrap.querySelector('input');
+          if (!input) return;
+          const show = input.type === 'password';
+          input.type = show ? 'text' : 'password';
+          wrap.classList.toggle('jb-pass-visible', show);
+          syncPassToggleAria(btn);
+        });
+      });
+
+      apiInput.addEventListener('change', () => {
+        JBAuth.setApiBase(apiInput.value.trim());
+      });
+
+      tabIn.addEventListener('click', () => {
+        tabIn.classList.add('active');
+        tabReg.classList.remove('active');
+        formLogin.style.display = 'block';
+        formReg.style.display = 'none';
+        clearMsgs();
+      });
+      tabReg.addEventListener('click', () => {
+        tabReg.classList.add('active');
+        tabIn.classList.remove('active');
+        formReg.style.display = 'block';
+        formLogin.style.display = 'none';
+        clearMsgs();
+      });
+
+      formLogin.addEventListener('submit', (e) => {
+        e.preventDefault();
+        clearMsgs();
+        JBAuth.login(formLogin.email.value.trim(), formLogin.password.value)
+          .then(() => {
+            closeModal();
+            refreshChrome();
+          })
+          .catch((err) => {
+            const m = err && err.message ? String(err.message) : '';
+            if (m === 'Failed to fetch' || err && err.name === 'TypeError') errEl.textContent = t('auth_err_net');
+            else errEl.textContent = t('auth_err_login');
+          });
+      });
+
+      formReg.addEventListener('submit', (e) => {
+        e.preventDefault();
+        clearMsgs();
+        JBAuth.register({
+          name: document.getElementById('jbRegName').value.trim(),
+          email: document.getElementById('jbRegEmail').value.trim(),
+          phone: document.getElementById('jbRegPhone').value.trim(),
+          password: document.getElementById('jbRegPass').value,
+        })
+          .then(() => {
+            okEl.textContent = t('auth_ok_reg');
+            tabIn.click();
+            refreshChrome();
+          })
+          .catch((err) => {
+            const m = err && err.message ? String(err.message) : '';
+            errEl.textContent = m.length < 120 ? m : t('auth_err_net');
+          });
+      });
+
+      document.getElementById('jbLogoutBtn').addEventListener('click', () => {
+        JBAuth.logout();
+        closeModal();
+        refreshChrome();
+      });
+
+      refreshChrome();
+      globalThis.jbRefreshAuthChrome = refreshChrome;
+      globalThis.jbSyncAuthPassToggles = syncAllPassToggles;
+      syncAllPassToggles();
+    })();
+
     document.querySelectorAll('.cat-tile').forEach(tile => {
       tile.addEventListener('click', () => {
         const tab = tile.dataset.tab;
@@ -2405,8 +3541,42 @@
         tile.classList.add('active');
         document.querySelector(`[data-panel="${tab}"]`)?.classList.add('active');
         requestAnimationFrame(() => observeCards());
+
+        // Center the clicked tile in the slider
+        tile.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+
+        // Scroll the page up to the top of the menu panels if scrolled down
+        const panels = document.getElementById('menuPanels');
+        const wrapper = document.querySelector('.cats-wrapper');
+        if (panels && wrapper) {
+          const panelsTop = panels.getBoundingClientRect().top;
+          const wrapperBottom = wrapper.getBoundingClientRect().bottom;
+          if (panelsTop < wrapperBottom) {
+            window.scrollBy({ top: panelsTop - wrapperBottom - 20, behavior: 'smooth' });
+          }
+        }
       });
     });
+
+    const catsGrid = document.getElementById('catsGrid');
+    const catsPrev = document.getElementById('catsPrev');
+    const catsNext = document.getElementById('catsNext');
+    if (catsGrid && catsPrev && catsNext) {
+      const updateArrows = () => {
+        catsPrev.disabled = catsGrid.scrollLeft <= 5;
+        catsNext.disabled = catsGrid.scrollLeft >= catsGrid.scrollWidth - catsGrid.clientWidth - 5;
+      };
+      catsGrid.addEventListener('scroll', updateArrows);
+      window.addEventListener('resize', updateArrows);
+      setTimeout(updateArrows, 100);
+
+      catsPrev.addEventListener('click', () => {
+        catsGrid.scrollBy({ left: -400, behavior: 'smooth' });
+      });
+      catsNext.addEventListener('click', () => {
+        catsGrid.scrollBy({ left: 400, behavior: 'smooth' });
+      });
+    }
 
     function observeCards() {
       const io = new IntersectionObserver(entries => {
@@ -2437,6 +3607,8 @@
       });
       requestAnimationFrame(() => observeCards());
       renderCart();
+      if (typeof globalThis.jbRefreshAuthChrome === 'function') globalThis.jbRefreshAuthChrome();
+      if (typeof globalThis.jbSyncAuthPassToggles === 'function') globalThis.jbSyncAuthPassToggles();
     }
 
     document.getElementById('langSwitch').addEventListener('click', e => {

@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0D0303">
+  <title>Jasmin Bakery — Staff</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --void: #0D0303;
+      --deep: #1E0808;
+      --gold: #F7AA4F;
+      --cream: #FFEFD9;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--void);
+      color: var(--cream);
+      min-height: 100vh;
+      padding: 32px 20px;
+    }
+
+    .wrap {
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    a.back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: rgba(255, 239, 217, .55);
+      text-decoration: none;
+      font-size: 12px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+
+    a.back:hover {
+      color: var(--gold);
+    }
+
+    h1 {
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    h1 em {
+      color: var(--gold);
+      font-style: italic;
+    }
+
+    p.lead {
+      font-size: 14px;
+      line-height: 1.65;
+      color: rgba(255, 239, 217, .72);
+      margin-bottom: 20px;
+    }
+
+    .banner {
+      padding: 14px 16px;
+      border-radius: 4px;
+      font-size: 13px;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    .banner.warn {
+      border: 1px solid rgba(232, 136, 136, .35);
+      background: rgba(80, 20, 20, .25);
+      color: #ebb;
+    }
+
+    .banner.ok {
+      border: 1px solid rgba(247, 170, 79, .25);
+      background: rgba(247, 170, 79, .06);
+      color: rgba(255, 239, 217, .88);
+    }
+
+    .fineprint {
+      font-size: 12px;
+      color: rgba(255, 239, 217, .38);
+      margin-top: 24px;
+    }
+
+    .stub-block {
+      display: none;
+      margin-top: 8px;
+    }
+
+    .stub-block.visible {
+      display: block;
+    }
+
+    .stub-block h2 {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: rgba(247, 170, 79, .65);
+      margin-bottom: 14px;
+    }
+
+    .order-card {
+      border: 1px solid rgba(247, 170, 79, .12);
+      background: rgba(30, 8, 8, .5);
+      padding: 14px 16px;
+      margin-bottom: 10px;
+      border-radius: 4px;
+    }
+
+    .order-card .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 8px;
+    }
+
+    .order-card .id {
+      font-weight: 600;
+      color: var(--gold);
+      font-size: 13px;
+    }
+
+    .order-card .st {
+      font-size: 10px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: rgba(255, 239, 217, .45);
+    }
+
+    .order-card .meta {
+      font-size: 12px;
+      color: rgba(255, 239, 217, .55);
+      line-height: 1.5;
+    }
+
+    .stub-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+
+    .stub-actions button {
+      font-family: inherit;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      padding: 8px 12px;
+      border: 1px solid rgba(247, 170, 79, .25);
+      background: rgba(247, 170, 79, .1);
+      color: var(--gold);
+      cursor: pointer;
+      border-radius: 2px;
+    }
+
+    .stub-actions button:hover {
+      background: rgba(247, 170, 79, .18);
+    }
+
+    .order-lines {
+      font-size: 12px;
+      line-height: 1.5;
+      color: rgba(255, 239, 217, .55);
+      margin: 8px 0;
+      padding-left: 0;
+      list-style: none;
+    }
+
+    .order-lines li {
+      padding: 2px 0;
+    }
+
+    .stub-actions button:not(:disabled) {
+      cursor: pointer;
+    }
+
+    .stub-actions button:disabled {
+      opacity: .35;
+      cursor: default;
+    }
+  </style>
+  <script src="jb-config.js"></script>
+  <script src="jb-auth.js"></script>
+  <script src="jb-orders.js"></script>
+</head>
+
+<body>
+  <div class="wrap">
+    <a class="back" href="menu.html">← Меню</a>
+    <h1>Панель <em>персонала</em></h1>
+    <p class="lead">Режим <strong style="color:var(--gold)">показа</strong>: без сервера и базы. Заказы из меню
+      подгружаются из памяти браузера; кнопки статусов — только для демонстрации сценария.</p>
+
+    <div class="banner" id="jbStaffBanner" role="status">…</div>
+
+    <section class="stub-block visible" id="jbLiveOrdersBlock" aria-label="Заказы с меню">
+      <h2>Заказы с сайта</h2>
+      <p class="lead" style="font-size:12px;margin-top:-8px;margin-bottom:14px">Сохраняются в браузере (localStorage)
+        — демо, пока нет бэка.</p>
+      <div id="jbLiveOrdersList"></div>
+    </section>
+
+    <section class="stub-block" id="jbDemoSamples" aria-label="Примеры вёрстки">
+      <h2>Примеры статусов</h2>
+      <div class="order-card">
+        <div class="top">
+          <span class="id">#1001</span>
+          <span class="st">Новый</span>
+        </div>
+        <div class="meta">Пример карточки</div>
+        <div class="stub-actions">
+          <button type="button" disabled>Демо</button>
+        </div>
+      </div>
+      <div class="order-card">
+        <div class="top">
+          <span class="id">#1002</span>
+          <span class="st">Готовится</span>
+        </div>
+        <div class="meta">Пример</div>
+        <div class="stub-actions">
+          <button type="button" disabled>Демо</button>
+        </div>
+      </div>
+      <div class="order-card">
+        <div class="top">
+          <span class="id">#1003</span>
+          <span class="st">В пути</span>
+        </div>
+        <div class="meta">Пример</div>
+        <div class="stub-actions">
+          <button type="button" disabled>Демо</button>
+        </div>
+      </div>
+    </section>
+
+    <p class="fineprint">Для реального запуска отключите <code style="font-size:11px;color:var(--gold)">JB_PRESENTATION_MODE</code>
+      в jb-config.js и подключите API. В демо роли и заказы нельзя считать защитой.</p>
+  </div>
+  <script>
+    (function () {
+      var ST = { new: 'Новый', preparing: 'Готовится', delivery: 'В пути', done: 'Выполнен' };
+
+      function esc(s) {
+        return String(s == null ? '' : s)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/"/g, '&quot;');
+      }
+
+      function renderLiveOrders() {
+        var list = JBOrders.load();
+        var host = document.getElementById('jbLiveOrdersList');
+        var samples = document.getElementById('jbDemoSamples');
+        if (!host) return;
+
+        if (!list.length) {
+          host.innerHTML =
+            '<p style="font-size:13px;color:rgba(255,239,217,.45);line-height:1.5">Пока пусто. В меню добавьте товары в корзину и нажмите «Оформить заказ» — заказ сразу появится здесь.</p>';
+        } else {
+          host.innerHTML = list
+            .map(function (o) {
+              var lines = (o.items || [])
+                .map(function (it) {
+                  return (
+                    '<li>' +
+                    esc(it.name) +
+                    ' × ' +
+                    esc(it.qty) +
+                    ' — ' +
+                    Number(it.price * it.qty).toLocaleString('ru') +
+                    ' ' +
+                    esc(o.currencyLabel || '') +
+                    '</li>'
+                  );
+                })
+                .join('');
+              var nextBtns = '';
+              if (o.status === 'new') {
+                nextBtns =
+                  '<button type="button" class="jb-next-st" data-id="' +
+                  o.id +
+                  '" data-next="preparing">Принять в работу</button>';
+              } else if (o.status === 'preparing') {
+                nextBtns =
+                  '<button type="button" class="jb-next-st" data-id="' +
+                  o.id +
+                  '" data-next="delivery">В доставку</button>';
+              } else if (o.status === 'delivery') {
+                nextBtns =
+                  '<button type="button" class="jb-next-st" data-id="' +
+                  o.id +
+                  '" data-next="done">Выполнен</button>';
+              }
+              return (
+                '<div class="order-card" data-order-id="' +
+                esc(o.id) +
+                '"><div class="top"><span class="id">#' +
+                esc(o.id) +
+                '</span><span class="st">' +
+                esc(ST[o.status] || o.status) +
+                '</span></div><div class="meta">' +
+                esc(o.customerName) +
+                ' · ' +
+                esc(o.phone) +
+                (o.address ? '<br>' + esc(o.address) : '') +
+                '</div><ul class="order-lines">' +
+                lines +
+                '</ul><div class="meta">Итого: ' +
+                Number(o.total).toLocaleString('ru') +
+                ' ' +
+                esc(o.currencyLabel || '') +
+                '</div><div class="stub-actions">' +
+                nextBtns +
+                '</div></div>'
+              );
+            })
+            .join('');
+        }
+
+        if (samples) {
+          samples.style.display =
+            JBAuth.usesAuthStub() && !list.length ? 'block' : 'none';
+        }
+
+        host.onclick = function (e) {
+          var btn = e.target.closest('.jb-next-st');
+          if (!btn) return;
+          var id = Number(btn.getAttribute('data-id'));
+          var next = btn.getAttribute('data-next');
+          if (id && next) {
+            JBOrders.updateStatus(id, next);
+            renderLiveOrders();
+          }
+        };
+      }
+
+      var banner = document.getElementById('jbStaffBanner');
+
+      if (JBAuth.usesAuthStub()) {
+        banner.className = 'banner ok';
+        banner.textContent =
+          'Режим показа: роли не проверяются. Заказы из меню (оформить заказ) сразу видны в списке ниже — всё в браузере.';
+        renderLiveOrders();
+        window.addEventListener(JBOrders.EVENT, renderLiveOrders);
+        window.addEventListener('storage', function (e) {
+          if (e.key === JBOrders.KEY) renderLiveOrders();
+        });
+        return;
+      }
+
+      var s = JBAuth.getSession();
+      if (!s) {
+        banner.className = 'banner warn';
+        banner.textContent = 'Войдите в аккаунт на странице меню (иконка пользователя).';
+        document.getElementById('jbLiveOrdersBlock').style.display = 'none';
+        return;
+      }
+      if (!JBAuth.hasAnyRole(JBAuth.STAFF_ROLES)) {
+        banner.className = 'banner warn';
+        banner.textContent =
+          'Нет роли персонала (' +
+          JBAuth.STAFF_ROLES.join(', ') +
+          '). Назначение ролей — на сервере.';
+        document.getElementById('jbLiveOrdersBlock').style.display = 'none';
+        return;
+      }
+
+      banner.className = 'banner ok';
+      banner.textContent =
+        'Сессия: роли ' +
+        s.roles.join(', ') +
+        ' · id ' +
+        s.userId +
+        '. Ниже — демо-заказы из браузера; с API список заменится.';
+      renderLiveOrders();
+      window.addEventListener(JBOrders.EVENT, renderLiveOrders);
+      window.addEventListener('storage', function (e) {
+        if (e.key === JBOrders.KEY) renderLiveOrders();
+      });
+    })();
+  </script>
+</body>
+
+</html>

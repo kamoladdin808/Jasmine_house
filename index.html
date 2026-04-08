@@ -2231,10 +2231,269 @@
                 height: 18px
             }
         }
+
+        /* Геолокация */
+        .jb-geo-badge {
+            display: none;
+            align-items: center;
+            gap: 6px;
+            max-width: 140px;
+            padding: 4px 10px;
+            border-radius: 100px;
+            border: 1px solid rgba(247, 170, 79, .22);
+            background: rgba(247, 170, 79, .08);
+            font-size: 9px;
+            font-weight: 600;
+            letter-spacing: .04em;
+            color: rgba(255, 239, 217, .75);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis
+        }
+
+        .jb-geo-badge[aria-hidden="false"] {
+            display: inline-flex;
+            cursor: pointer
+        }
+
+        .jb-geo-badge[aria-hidden="false"]:hover {
+            border-color: rgba(247, 170, 79, .4);
+            background: rgba(247, 170, 79, .12)
+        }
+
+        .jb-geo-badge svg {
+            flex-shrink: 0;
+            width: 12px;
+            height: 12px;
+            stroke: var(--gold);
+            fill: none;
+            stroke-width: 2
+        }
+
+        @media(max-width:900px) {
+            .jb-geo-badge[aria-hidden="false"] {
+                max-width: 96px;
+                padding: 4px 8px;
+                font-size: 8px
+            }
+
+            .jb-geo-badge[aria-hidden="false"] svg {
+                width: 10px;
+                height: 10px
+            }
+        }
+
+        .geo-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(13, 3, 3, .72);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 2400;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity .35s var(--ease-smooth), visibility .35s
+        }
+
+        .geo-overlay.open {
+            opacity: 1;
+            visibility: visible
+        }
+
+        .geo-modal {
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -48%) scale(.96);
+            width: calc(100% - 40px);
+            max-width: 400px;
+            padding: 28px 26px 24px;
+            background: linear-gradient(165deg, var(--deep) 0%, var(--void) 100%);
+            border: 1px solid rgba(247, 170, 79, .2);
+            border-radius: 6px;
+            box-shadow: var(--shadow);
+            z-index: 2410;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity .4s var(--ease-spring), visibility .4s, transform .4s var(--ease-spring)
+        }
+
+        .geo-modal.open {
+            opacity: 1;
+            visibility: visible;
+            transform: translate(-50%, -50%) scale(1)
+        }
+
+        .geo-modal h3 {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--cream);
+            margin-bottom: 12px;
+            letter-spacing: .02em
+        }
+
+        .geo-modal p {
+            font-size: 13px;
+            line-height: 1.6;
+            color: rgba(255, 239, 217, .62);
+            margin-bottom: 10px
+        }
+
+        .geo-modal .geo-err {
+            font-size: 12px;
+            color: #e8a0a0;
+            min-height: 1.2em;
+            margin-bottom: 14px
+        }
+
+        .geo-modal .geo-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 8px
+        }
+
+        .geo-modal .btn-geo-gold {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            padding: 14px 20px;
+            border-radius: 4px;
+            border: none;
+            background: linear-gradient(135deg, var(--gold-dk), var(--gold));
+            color: var(--void);
+            cursor: pointer;
+            transition: transform .2s, box-shadow .2s
+        }
+
+        .geo-modal .btn-geo-gold:hover:not(:disabled) {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 28px rgba(247, 170, 79, .25)
+        }
+
+        .geo-modal .btn-geo-gold:disabled {
+            opacity: .55;
+            cursor: wait
+        }
+
+        .geo-modal .btn-geo-outline {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            padding: 12px 18px;
+            border-radius: 4px;
+            border: 1px solid rgba(247, 170, 79, .35);
+            background: transparent;
+            color: var(--gold);
+            cursor: pointer;
+            transition: background .2s
+        }
+
+        .geo-modal .btn-geo-outline:hover {
+            background: rgba(247, 170, 79, .08)
+        }
+
+        .jb-pres-ribbon {
+            position: fixed;
+            top: 14px;
+            right: 16px;
+            z-index: 520;
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: .22em;
+            text-transform: uppercase;
+            padding: 7px 12px;
+            border-radius: 2px;
+            border: 1px solid rgba(247, 170, 79, .4);
+            color: var(--gold);
+            background: rgba(13, 3, 3, .9);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity .5s .8s ease
+        }
+
+        body.revealed .jb-pres-ribbon {
+            opacity: 1
+        }
+
+        /* Узкая шапка: гео + языки на отдельной строке; лента «Показ» — под ними, без перекрытия */
+        @media(max-width:900px) and (min-width:621px) {
+            .jb-pres-ribbon {
+                top: 56px;
+                right: 12px;
+                font-size: 7px;
+                padding: 5px 9px;
+                letter-spacing: .14em
+            }
+        }
+
+        @media(max-width:620px) {
+            .nav-in {
+                flex-wrap: wrap;
+                row-gap: 10px
+            }
+
+            .nav-right {
+                flex: 1 1 100%;
+                justify-content: flex-end;
+                flex-wrap: wrap;
+                gap: 10px;
+                row-gap: 8px
+            }
+
+            .jb-geo-badge[aria-hidden="false"] {
+                max-width: min(130px, 38vw);
+                min-width: 0
+            }
+
+            .jb-pres-ribbon {
+                top: 118px;
+                right: 10px;
+                font-size: 7px;
+                padding: 5px 9px;
+                letter-spacing: .14em
+            }
+        }
+
+        @media(max-width:380px) {
+
+            #nav,
+            #nav.s {
+                padding-left: 12px;
+                padding-right: 12px
+            }
+
+            .nav-right {
+                gap: 6px
+            }
+
+            .lang-btn {
+                padding: 3px 5px;
+                font-size: 9px
+            }
+
+            .jb-geo-badge[aria-hidden="false"] {
+                max-width: min(100px, 36vw);
+                font-size: 7px;
+                padding: 3px 6px
+            }
+
+            .jb-pres-ribbon {
+                top: 112px;
+                right: 8px
+            }
+        }
     </style>
+    <script src="jb-config.js"></script>
+    <script src="jb-geolocation.js"></script>
 </head>
 
 <body>
+    <div class="jb-pres-ribbon" id="jbPresRibbon" style="display:none" aria-hidden="true">Показ</div>
 
     <!-- LOADER -->
     <div id="loader">
@@ -2282,6 +2541,13 @@
                 <li><a href="#atmosphere" data-i18n="ft_atm">Атмосфера</a></li>
             </ul>
             <div class="nav-right">
+                <div class="jb-geo-badge" id="jbGeoBadge" aria-hidden="true" role="button" tabindex="-1" aria-label="">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                        <circle cx="12" cy="10" r="3" />
+                    </svg>
+                    <span id="jbGeoBadgeText"></span>
+                </div>
                 <div class="lang-switch" id="langSwitch">
                     <button class="lang-btn active" data-lang="ru">RU</button>
                     <button class="lang-btn" data-lang="uz">UZ</button>
@@ -2291,6 +2557,19 @@
             </div>
         </div>
     </nav>
+
+    <div class="geo-overlay" id="jbGeoOverlay" aria-hidden="true"></div>
+    <div class="geo-modal" id="jbGeoModal" role="dialog" aria-modal="true" aria-labelledby="jbGeoTitle">
+        <h3 id="jbGeoTitle" data-i18n="geo_title">Ваше местоположение</h3>
+        <p id="jbGeoDesc" data-i18n="geo_text">Разрешите доступ к геолокации — мы подскажем ориентир для доставки.
+            Данные хранятся
+            только в вашем браузере.</p>
+        <p class="geo-err" id="jbGeoErr" aria-live="polite"></p>
+        <div class="geo-actions">
+            <button type="button" class="btn-geo-gold" id="jbGeoAllow" data-i18n="geo_allow">Разрешить</button>
+            <button type="button" class="btn-geo-outline" id="jbGeoLater" data-i18n="geo_later">Не сейчас</button>
+        </div>
+    </div>
 
     <!-- HERO -->
     <section id="hero">
@@ -2730,6 +3009,15 @@
     </nav>
 
     <script>
+        (function jbPresRibbon() {
+            if (!window.JB_PRESENTATION_MODE) return;
+            const r = document.getElementById('jbPresRibbon');
+            if (r) {
+                r.style.display = 'block';
+                r.setAttribute('aria-hidden', 'false');
+            }
+        })();
+
         /* ═══════════════════════════════════
            NAVBAR
         ═══════════════════════════════════ */
@@ -2856,6 +3144,19 @@
                 cart_title: 'Корзина', cart_empty: 'Корзина пуста', cart_go_menu: 'Перейти в меню',
                 cart_total: 'Итого', cart_checkout: 'Оформить заказ',
                 mob_home: 'Главная', mob_addr: 'Адреса',
+                geo_title: 'Ваше местоположение',
+                geo_text: 'Разрешите доступ к геолокации — мы подскажем ориентир для доставки. Данные хранятся только в вашем браузере.',
+                geo_allow: 'Разрешить',
+                geo_later: 'Не сейчас',
+                geo_loading: 'Определяем адрес…',
+                geo_denied: 'Доступ к геолокации отклонён. Включите его в настройках браузера или нажмите «Не сейчас».',
+                geo_unavailable: 'Геолокация недоступна в этом браузере.',
+                geo_timeout: 'Не удалось получить координаты вовремя. Попробуйте ещё раз.',
+                geo_update_title: 'Обновить местоположение',
+                geo_update_text: 'Нажмите «Определить снова», чтобы заново получить координаты и адрес. Сохранённые данные заменятся.',
+                geo_update_allow: 'Определить снова',
+                geo_cancel: 'Отмена',
+                geo_badge_hint: 'Нажмите, чтобы изменить адрес по геолокации',
             },
             uz: {
                 nav_menu: 'Menyu', nav_about: 'Biz haqimizda', nav_locations: 'Manzillar',
@@ -2895,6 +3196,19 @@
                 cart_title: 'Savat', cart_empty: 'Savat bo\'sh', cart_go_menu: 'Menyuga o\'tish',
                 cart_total: 'Jami', cart_checkout: 'Buyurtma berish',
                 mob_home: 'Bosh sahifa', mob_addr: 'Manzillar',
+                geo_title: 'Joylashuvingiz',
+                geo_text: 'Geolokatsiyaga ruxsat bering — yetkazib berish uchun yo\'nalishni aniqlash osonlashadi. Ma\'lumotlar faqat brauzeringizda saqlanadi.',
+                geo_allow: 'Ruxsat berish',
+                geo_later: 'Hozir emas',
+                geo_loading: 'Manzil aniqlanmoqda…',
+                geo_denied: 'Geolokatsiya rad etildi. Brauzer sozlamalaridan yoqing yoki «Hozir emas»ni bosing.',
+                geo_unavailable: 'Bu brauzerda geolokatsiya mavjud emas.',
+                geo_timeout: 'Koordinatalar olinmadi. Qayta urinib ko\'ring.',
+                geo_update_title: 'Joylashuvni yangilash',
+                geo_update_text: '«Qayta aniqlash» tugmasini bosing — koordinata va manzil yangilanadi. Eski ma\'lumot almashtiriladi.',
+                geo_update_allow: 'Qayta aniqlash',
+                geo_cancel: 'Bekor qilish',
+                geo_badge_hint: 'Geolokatsiya bo\'yicha manzilni o\'zgartirish uchun bosing',
             },
             en: {
                 nav_menu: 'Menu', nav_about: 'About', nav_locations: 'Locations',
@@ -2934,6 +3248,19 @@
                 cart_title: 'Cart', cart_empty: 'Cart is empty', cart_go_menu: 'Go to menu',
                 cart_total: 'Total', cart_checkout: 'Place order',
                 mob_home: 'Home', mob_addr: 'Addresses',
+                geo_title: 'Your location',
+                geo_text: 'Allow location access — we\'ll suggest a delivery reference point. Data stays in your browser only.',
+                geo_allow: 'Allow',
+                geo_later: 'Not now',
+                geo_loading: 'Getting address…',
+                geo_denied: 'Location access was denied. Enable it in browser settings or tap «Not now».',
+                geo_unavailable: 'Geolocation is not available in this browser.',
+                geo_timeout: 'Could not get coordinates in time. Please try again.',
+                geo_update_title: 'Update location',
+                geo_update_text: 'Tap «Locate again» to refresh coordinates and address. Saved data will be replaced.',
+                geo_update_allow: 'Locate again',
+                geo_cancel: 'Cancel',
+                geo_badge_hint: 'Tap to change address from geolocation',
             }
         };
 
@@ -2953,6 +3280,11 @@
                 }
             });
             langBtns.forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+            const ga = document.getElementById('jbGeoAllow');
+            const gl = document.getElementById('jbGeoLater');
+            if (ga && !ga.disabled && dict.geo_allow) ga.textContent = dict.geo_allow;
+            if (gl && dict.geo_later) gl.textContent = dict.geo_later;
+            document.dispatchEvent(new CustomEvent('jb_lang_changed'));
         }
 
         document.getElementById('langSwitch').addEventListener('click', e => {
@@ -2961,6 +3293,162 @@
         });
 
         if (currentLang !== 'ru') setLang(currentLang);
+
+        (function jbGeoUi() {
+            const overlay = document.getElementById('jbGeoOverlay');
+            const modal = document.getElementById('jbGeoModal');
+            const titleEl = document.getElementById('jbGeoTitle');
+            const descEl = document.getElementById('jbGeoDesc');
+            const errEl = document.getElementById('jbGeoErr');
+            const allowBtn = document.getElementById('jbGeoAllow');
+            const laterBtn = document.getElementById('jbGeoLater');
+            const badge = document.getElementById('jbGeoBadge');
+            const badgeText = document.getElementById('jbGeoBadgeText');
+            if (!overlay || !modal || typeof JBGeo === 'undefined') return;
+
+            let modalMode = 'first';
+
+            function t(k) {
+                const d = I18N[currentLang];
+                return (d && d[k]) || '';
+            }
+
+            function applyFirstModalCopy() {
+                if (!titleEl || !descEl) return;
+                titleEl.textContent = t('geo_title');
+                descEl.textContent = t('geo_text');
+                allowBtn.textContent = t('geo_allow');
+                laterBtn.textContent = t('geo_later');
+            }
+
+            function applyUpdateModalCopy() {
+                if (!titleEl || !descEl) return;
+                titleEl.textContent = t('geo_update_title');
+                descEl.textContent = t('geo_update_text');
+                allowBtn.textContent = t('geo_update_allow');
+                laterBtn.textContent = t('geo_cancel');
+            }
+
+            function refreshGeoBadge() {
+                const g = JBGeo.load();
+                if (!g || g.lat == null || !badge || !badgeText) {
+                    if (badge) {
+                        badge.setAttribute('aria-hidden', 'true');
+                        badge.setAttribute('tabindex', '-1');
+                        badge.setAttribute('aria-label', '');
+                    }
+                    return;
+                }
+                badge.setAttribute('aria-hidden', 'false');
+                badge.setAttribute('tabindex', '0');
+                let txt = g.label || (g.lat.toFixed(4) + '°, ' + g.lng.toFixed(4) + '°');
+                if (txt.length > 36) txt = txt.slice(0, 34) + '…';
+                badgeText.textContent = txt;
+                const hint = t('geo_badge_hint');
+                badge.setAttribute('aria-label', hint + ': ' + (g.label || txt));
+                badge.title = hint;
+            }
+
+            function openGeo(isUpdate) {
+                errEl.textContent = '';
+                modalMode = isUpdate ? 'update' : 'first';
+                if (isUpdate) applyUpdateModalCopy();
+                else applyFirstModalCopy();
+                overlay.classList.add('open');
+                modal.classList.add('open');
+                overlay.setAttribute('aria-hidden', 'false');
+            }
+
+            function closeGeo() {
+                overlay.classList.remove('open');
+                modal.classList.remove('open');
+                overlay.setAttribute('aria-hidden', 'true');
+                allowBtn.disabled = false;
+                modalMode = 'first';
+                applyFirstModalCopy();
+            }
+
+            laterBtn.addEventListener('click', () => {
+                if (modalMode === 'update') {
+                    closeGeo();
+                } else {
+                    JBGeo.dismissLater(48);
+                    closeGeo();
+                }
+            });
+
+            overlay.addEventListener('click', closeGeo);
+
+            allowBtn.addEventListener('click', () => {
+                errEl.textContent = '';
+                allowBtn.disabled = true;
+                allowBtn.textContent = t('geo_loading');
+                JBGeo.request({
+                    onSuccess() {
+                        closeGeo();
+                        refreshGeoBadge();
+                    },
+                    onError(e) {
+                        allowBtn.disabled = false;
+                        allowBtn.textContent = modalMode === 'update' ? t('geo_update_allow') : t('geo_allow');
+                        if (!e || e.code === 0) {
+                            errEl.textContent = t('geo_unavailable');
+                            return;
+                        }
+                        if (e.code === 1) errEl.textContent = t('geo_denied');
+                        else errEl.textContent = t('geo_timeout');
+                    },
+                });
+            });
+
+            badge.addEventListener('click', () => {
+                if (badge.getAttribute('aria-hidden') === 'true') return;
+                openGeo(true);
+            });
+            badge.addEventListener('keydown', (e) => {
+                if (badge.getAttribute('aria-hidden') === 'true') return;
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    openGeo(true);
+                }
+            });
+
+            document.addEventListener('jb_lang_changed', () => {
+                if (modal.classList.contains('open')) {
+                    if (modalMode === 'update') applyUpdateModalCopy();
+                    else applyFirstModalCopy();
+                    if (!allowBtn.disabled) {
+                        allowBtn.textContent = modalMode === 'update' ? t('geo_update_allow') : t('geo_allow');
+                    } else {
+                        allowBtn.textContent = t('geo_loading');
+                    }
+                }
+                refreshGeoBadge();
+            });
+
+            window.addEventListener(JBGeo.EVENT, refreshGeoBadge);
+
+            function whenRevealed(cb) {
+                if (document.body.classList.contains('revealed')) {
+                    cb();
+                    return;
+                }
+                const mo = new MutationObserver(() => {
+                    if (document.body.classList.contains('revealed')) {
+                        mo.disconnect();
+                        cb();
+                    }
+                });
+                mo.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+            }
+
+            whenRevealed(() => {
+                refreshGeoBadge();
+                setTimeout(() => {
+                    if (JBGeo.shouldShowPrompt()) openGeo(false);
+                }, 800);
+            });
+        })();
     </script>
 </body>
 
