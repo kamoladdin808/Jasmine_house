@@ -2488,12 +2488,17 @@
             }
         }
     </style>
+    <style>
+        /* Скрыть ленту «Показ» и бейдж геолокации — приоритет выше любых JS/классов */
+        #jbPresRibbon,
+        #jbGeoBadge { display: none !important; }
+    </style>
     <script src="jb-config.js"></script>
     <script src="jb-geolocation.js"></script>
 </head>
 
 <body>
-    <div class="jb-pres-ribbon" id="jbPresRibbon" style="display:none" aria-hidden="true">Показ</div>
+    <div class="jb-pres-ribbon" id="jbPresRibbon" style="display:none !important" aria-hidden="true">Показ</div>
 
     <!-- LOADER -->
     <div id="loader">
@@ -2541,7 +2546,7 @@
                 <li><a href="#atmosphere" data-i18n="ft_atm">Атмосфера</a></li>
             </ul>
             <div class="nav-right">
-                <div class="jb-geo-badge" id="jbGeoBadge" aria-hidden="true" role="button" tabindex="-1" aria-label="">
+                <div class="jb-geo-badge" id="jbGeoBadge" aria-hidden="true" role="button" tabindex="-1" aria-label="" style="display:none !important">
                     <svg viewBox="0 0 24 24">
                         <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
                         <circle cx="12" cy="10" r="3" />

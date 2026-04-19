@@ -163,7 +163,8 @@
       "weight": "387 г",
       "price": 55000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#4A2010,#6B3018)"
+      "bg": "linear-gradient(160deg,#4A2010,#6B3018)",
+      "img": "jasmin_menu/pide_s_myasom.webp"
     },
     {
       "name": "АССОРТИ ПИЦЦА",
@@ -207,7 +208,8 @@
       "weight": "235 г",
       "price": 29000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#3D2010,#5A3018)"
+      "bg": "linear-gradient(160deg,#3D2010,#5A3018)",
+      "img": "jasmin_menu/mini_pizza_peperoni.webp"
     },
     {
       "name": "ЦЕЗАРЬ ПИЦЦА",
@@ -215,7 +217,8 @@
       "weight": "695 г",
       "price": 75000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#2A1608,#3D2010)"
+      "bg": "linear-gradient(160deg,#2A1608,#3D2010)",
+      "img": "jasmin_menu/tsezar_pizza.webp"
     },
     {
       "name": "МАРГАРИТА ПИЦЦА",
@@ -223,7 +226,8 @@
       "weight": "585 г",
       "price": 50000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#1A1206,#2C1E0A)"
+      "bg": "linear-gradient(160deg,#1A1206,#2C1E0A)",
+      "img": "jasmin_menu/pizza_margarita_jasmin.webp"
     },
     {
       "name": "ПИЦЦА ФРУКТОВЫЙ",
@@ -239,7 +243,8 @@
       "weight": "677 г",
       "price": 69000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#3D1A08,#5A2A12)"
+      "bg": "linear-gradient(160deg,#3D1A08,#5A2A12)",
+      "img": "jasmin_menu/pizza_s_govyajim_farshem.webp"
     },
     {
       "name": "ПЕППЕРОНЫ ПИЦЦА",
@@ -247,7 +252,8 @@
       "weight": "600 г",
       "price": 75000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#4A2010,#6B3018)"
+      "bg": "linear-gradient(160deg,#4A2010,#6B3018)",
+      "img": "jasmin_menu/pizza_peperoni_jasmin.webp"
     },
     {
       "name": "МИНИ ПИЦЦА АССОРТИ",
@@ -255,7 +261,8 @@
       "weight": "265 г",
       "price": 29000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#1E0A04,#2C1208)"
+      "bg": "linear-gradient(160deg,#1E0A04,#2C1208)",
+      "img": "jasmin_menu/mini_pizza_asorti.webp"
     },
     {
       "name": "ПИЦЦА КЛУБНИКА БАНАН",
@@ -271,7 +278,8 @@
       "weight": "250 г",
       "price": 29000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#2A1A0A,#3D2810)"
+      "bg": "linear-gradient(160deg,#2A1A0A,#3D2810)",
+      "img": "jasmin_menu/mini_pizza_vetchina_s_gribami.webp"
     },
     {
       "name": "МЯСНОЙ ПЕППЕРОНИ ПИЦЦА",
@@ -279,7 +287,8 @@
       "weight": "650 г",
       "price": 80000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#1A2A08,#243D10)"
+      "bg": "linear-gradient(160deg,#1A2A08,#243D10)",
+      "img": "jasmin_menu/myasnoy_peperoni_pizza.webp"
     },
     {
       "name": "МЯСНОЙ ПИЦЦА",
@@ -287,7 +296,8 @@
       "weight": "625 г",
       "price": 85000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#3D2010,#5A3018)"
+      "bg": "linear-gradient(160deg,#3D2010,#5A3018)",
+      "img": "jasmin_menu/myasnoy_pizza.webp"
     },
     {
       "name": "ПИДЕ С СЫРОМ",
@@ -295,7 +305,8 @@
       "weight": "387 г",
       "price": 45000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#2A1608,#3D2010)"
+      "bg": "linear-gradient(160deg,#2A1608,#3D2010)",
+      "img": "jasmin_menu/pide_s_sirom.webp"
     },
     {
       "name": "МЕКСИКАНСКАЯ",
@@ -303,7 +314,8 @@
       "weight": "717 г",
       "price": 69000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#1A1206,#2C1E0A)"
+      "bg": "linear-gradient(160deg,#1A1206,#2C1E0A)",
+      "img": "jasmin_menu/meksikanskaya_pizza.webp"
     },
     {
       "name": "ПИДЕ С МЯСОМ И СЫРОМ",
@@ -311,7 +323,8 @@
       "weight": "387 г",
       "price": 50000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#2C1A0E,#1A0A04)"
+      "bg": "linear-gradient(160deg,#2C1A0E,#1A0A04)",
+      "img": "jasmin_menu/pide_s_myasom_sirom.webp"
     },
     {
       "name": "МИНИ ПИЦЦА ЦЕЗАРЬ",
@@ -319,7 +332,8 @@
       "weight": "297 г",
       "price": 29000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#3D1A08,#5A2A12)"
+      "bg": "linear-gradient(160deg,#3D1A08,#5A2A12)",
+      "img": "jasmin_menu/mini_pizza_tsezar.webp"
     }
   ],
   "salaty": [
@@ -329,7 +343,8 @@
       "weight": "264 г",
       "price": 55000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#1E0A04,#2C1208)"
+      "bg": "linear-gradient(160deg,#1E0A04,#2C1208)",
+      "img": "jasmin_menu/mujskoy_kapriz_jasmin.webp"
     },
     {
       "name": "ВИНЕГРЕТ САЛАТ",
@@ -337,7 +352,8 @@
       "weight": "284 г",
       "price": 25000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#1A2A10,#2C4A1A)"
+      "bg": "linear-gradient(160deg,#1A2A10,#2C4A1A)",
+      "img": "jasmin_menu/vinigret_salat.webp"
     },
     {
       "name": "ФРАНЦУЗКИЙ САЛАТ",
@@ -345,7 +361,8 @@
       "weight": "224 г",
       "price": 35000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#2A1A0A,#3D2810)"
+      "bg": "linear-gradient(160deg,#2A1A0A,#3D2810)",
+      "img": "jasmin_menu/fransuski_salat.webp"
     },
     {
       "name": "ЦЕЗАРЬ САЛАТ",
@@ -353,7 +370,8 @@
       "weight": "252 г",
       "price": 38000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#1A2A08,#243D10)"
+      "bg": "linear-gradient(160deg,#1A2A08,#243D10)",
+      "img": "jasmin_menu/tsezar_salat_jasmin.webp"
     },
     {
       "name": "ЛОБИО САЛАТ",
@@ -361,7 +379,8 @@
       "weight": "232 г",
       "price": 30000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#3D2010,#5A3018)"
+      "bg": "linear-gradient(160deg,#3D2010,#5A3018)",
+      "img": "jasmin_menu/lobio_salat.webp"
     },
     {
       "name": "ЯПОНСКИЙ САЛАТ",
@@ -369,7 +388,8 @@
       "weight": "294 г",
       "price": 45000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#2A1608,#3D2010)"
+      "bg": "linear-gradient(160deg,#2A1608,#3D2010)",
+      "img": "jasmin_menu/yaponskiy_salat_jasmin.webp"
     },
     {
       "name": "БАКЛАЖАН САЛАТ",
@@ -377,7 +397,8 @@
       "weight": "364 г",
       "price": 43000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#1A1206,#2C1E0A)"
+      "bg": "linear-gradient(160deg,#1A1206,#2C1E0A)",
+      "img": "jasmin_menu/baklajan_salat.webp"
     },
     {
       "name": "ГРЕЧЕСКИЙ САЛАТ",
@@ -385,7 +406,8 @@
       "weight": "297 г",
       "price": 42000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#2C1A0E,#1A0A04)"
+      "bg": "linear-gradient(160deg,#2C1A0E,#1A0A04)",
+      "img": "jasmin_menu/grecheskiy_salat.webp"
     },
     {
       "name": "ПТИЧЬЕ ГНЕЗДО САЛАТ",
@@ -393,7 +415,8 @@
       "weight": "294 г",
       "price": 28000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#3D1A08,#5A2A12)"
+      "bg": "linear-gradient(160deg,#3D1A08,#5A2A12)",
+      "img": "jasmin_menu/ptichee_gnezdo.webp"
     },
     {
       "name": "ОВОЩНОЙ САЛАТ",
@@ -401,7 +424,8 @@
       "weight": "256 г",
       "price": 20000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#4A2010,#6B3018)"
+      "bg": "linear-gradient(160deg,#4A2010,#6B3018)",
+      "img": "jasmin_menu/ovoshnoy_salat_jasmin.webp"
     },
     {
       "name": "БАКЛАЖАН С КУРИЦЕЙ САЛАТ",
@@ -409,7 +433,8 @@
       "weight": "429 г",
       "price": 40000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#1E0A04,#2C1208)"
+      "bg": "linear-gradient(160deg,#1E0A04,#2C1208)",
+      "img": "jasmin_menu/baklajan_salat_s_kuritsey.webp"
     }
   ],
   "supy": [
@@ -419,7 +444,8 @@
       "weight": "454 г",
       "price": 45000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#1A2A10,#2C4A1A)"
+      "bg": "linear-gradient(160deg,#1A2A10,#2C4A1A)",
+      "img": "jasmin_menu/tom_yam_sup.webp"
     },
     {
       "name": "ФРИКАДЕЛЬКАМИ СУПЫ",
@@ -427,7 +453,8 @@
       "weight": "522 г",
       "price": 39000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#2A1A0A,#3D2810)"
+      "bg": "linear-gradient(160deg,#2A1A0A,#3D2810)",
+      "img": "jasmin_menu/frikadelkami_sup.webp"
     },
     {
       "name": "ЧЕЧЕВИЧНЫЙ СУПЫ",
@@ -435,7 +462,8 @@
       "weight": "354 г",
       "price": 29000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#1A2A08,#243D10)"
+      "bg": "linear-gradient(160deg,#1A2A08,#243D10)",
+      "img": "jasmin_menu/chechevichniy_sup.webp"
     }
   ],
   "pasta": [
@@ -445,7 +473,8 @@
       "weight": "427 г",
       "price": 40000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#2A1A0A,#3D2810)"
+      "bg": "linear-gradient(160deg,#2A1A0A,#3D2810)",
+      "img": "jasmin_menu/spageti_bolonyeze.webp"
     },
     {
       "name": "ПЕННЕ АЛЬ АРАБЬЯТА",
@@ -453,7 +482,8 @@
       "weight": "382 г",
       "price": 30000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#1A2A08,#243D10)"
+      "bg": "linear-gradient(160deg,#1A2A08,#243D10)",
+      "img": "jasmin_menu/penne_al_arabyata.webp"
     },
     {
       "name": "ФЕТТУЧИНИ АЛФРЕДО",
@@ -461,7 +491,8 @@
       "weight": "295 г",
       "price": 55000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#3D2010,#5A3018)"
+      "bg": "linear-gradient(160deg,#3D2010,#5A3018)",
+      "img": "jasmin_menu/fetuchini_alfredo.webp"
     }
   ],
   "sushi": [
@@ -471,7 +502,8 @@
       "weight": "410 г",
       "price": 69000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#1A2A08,#243D10)"
+      "bg": "linear-gradient(160deg,#1A2A08,#243D10)",
+      "img": "jasmin_menu/setun.webp"
     },
     {
       "name": "МИНИ АССОРТИ РОЛЛ",
@@ -479,7 +511,8 @@
       "weight": "734 г",
       "price": 99000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#3D2010,#5A3018)"
+      "bg": "linear-gradient(160deg,#3D2010,#5A3018)",
+      "img": "jasmin_menu/mini_asorti_roll.webp"
     },
     {
       "name": "МИНИ РОЛЛ С ТУНЦОМ",
@@ -487,7 +520,8 @@
       "weight": "180 г",
       "price": 29000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#2A1608,#3D2010)"
+      "bg": "linear-gradient(160deg,#2A1608,#3D2010)",
+      "img": "jasmin_menu/mini_roll_s_tuntsom.webp"
     },
     {
       "name": "ЗАПЕЧЕННЫЙ ТУНЕЦ",
@@ -495,7 +529,8 @@
       "weight": "350 г",
       "price": 49000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#1A1206,#2C1E0A)"
+      "bg": "linear-gradient(160deg,#1A1206,#2C1E0A)",
+      "img": "jasmin_menu/zapecheniy_tunets.webp"
     },
     {
       "name": "ПОМИ ТОРИ",
@@ -503,7 +538,8 @@
       "weight": "340 г",
       "price": 45000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#2C1A0E,#1A0A04)"
+      "bg": "linear-gradient(160deg,#2C1A0E,#1A0A04)",
+      "img": "jasmin_menu/pomi_tori.webp"
     },
     {
       "name": "ТАКЕШИ",
@@ -511,7 +547,8 @@
       "weight": "390 г",
       "price": 51000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#3D1A08,#5A2A12)"
+      "bg": "linear-gradient(160deg,#3D1A08,#5A2A12)",
+      "img": "jasmin_menu/takeshi.webp"
     },
     {
       "name": "МОНОЛОГ",
@@ -519,7 +556,8 @@
       "weight": "360 г",
       "price": 69000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#4A2010,#6B3018)"
+      "bg": "linear-gradient(160deg,#4A2010,#6B3018)",
+      "img": "jasmin_menu/monolog.webp"
     },
     {
       "name": "ФИЛАДЕЛЬФИЯ",
@@ -527,7 +565,8 @@
       "weight": "340 г",
       "price": 71000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#1E0A04,#2C1208)"
+      "bg": "linear-gradient(160deg,#1E0A04,#2C1208)",
+      "img": "jasmin_menu/filadelfiya_jasmin.webp"
     },
     {
       "name": "МИНИ РОЛЛ С УГРЕМ",
@@ -535,7 +574,8 @@
       "weight": "192 г",
       "price": 25000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#1A2A10,#2C4A1A)"
+      "bg": "linear-gradient(160deg,#1A2A10,#2C4A1A)",
+      "img": "jasmin_menu/mini_roll_s_ugrem.webp"
     },
     {
       "name": "МИХ РОЛЛ",
@@ -543,7 +583,8 @@
       "weight": "317 г",
       "price": 69000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#2A1A0A,#3D2810)"
+      "bg": "linear-gradient(160deg,#2A1A0A,#3D2810)",
+      "img": "jasmin_menu/mix_roll.webp"
     },
     {
       "name": "АЙС ЧИКЕН",
@@ -551,7 +592,8 @@
       "weight": "362 г",
       "price": 45000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#1A2A08,#243D10)"
+      "bg": "linear-gradient(160deg,#1A2A08,#243D10)",
+      "img": "jasmin_menu/ice_chicken.webp"
     },
     {
       "name": "ЖЕРЕННЫЙ МАКС",
@@ -559,7 +601,8 @@
       "weight": "377 г",
       "price": 75000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#3D2010,#5A3018)"
+      "bg": "linear-gradient(160deg,#3D2010,#5A3018)",
+      "img": "jasmin_menu/jarenniy_maks.webp"
     },
     {
       "name": "МИНИ РОЛЛ С ОГУРЦАМИ",
@@ -567,7 +610,8 @@
       "weight": "182 г",
       "price": 15000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#2A1608,#3D2010)"
+      "bg": "linear-gradient(160deg,#2A1608,#3D2010)",
+      "img": "jasmin_menu/mini_roll_s_ogurtsami.webp"
     },
     {
       "name": "ЗАПЕЧЕНАЯ КУРИЦА",
@@ -575,7 +619,8 @@
       "weight": "332 г",
       "price": 49000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#1A1206,#2C1E0A)"
+      "bg": "linear-gradient(160deg,#1A1206,#2C1E0A)",
+      "img": "jasmin_menu/zapechenaya_kuritsa.webp"
     },
     {
       "name": "ЗАПЕЧЕННЫЙ УГОРЬ",
@@ -583,7 +628,8 @@
       "weight": "342 г",
       "price": 59000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#2C1A0E,#1A0A04)"
+      "bg": "linear-gradient(160deg,#2C1A0E,#1A0A04)",
+      "img": "jasmin_menu/zapechenaya_ugor.webp"
     },
     {
       "name": "ЗАПЕЧЕННЫЙ ЛОСОСЬ",
@@ -591,7 +637,8 @@
       "weight": "345 г",
       "price": 59000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#3D1A08,#5A2A12)"
+      "bg": "linear-gradient(160deg,#3D1A08,#5A2A12)",
+      "img": "jasmin_menu/zapecheniy_losos.webp"
     },
     {
       "name": "ЧИЛИ ЧИКЕН РОЛЛ",
@@ -599,7 +646,8 @@
       "weight": "355 г",
       "price": 40000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#4A2010,#6B3018)"
+      "bg": "linear-gradient(160deg,#4A2010,#6B3018)",
+      "img": "jasmin_menu/chili_chicken_roll.webp"
     },
     {
       "name": "КАНАДСКИЙ РОЛЛ",
@@ -607,7 +655,8 @@
       "weight": "322 г",
       "price": 59000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#1E0A04,#2C1208)"
+      "bg": "linear-gradient(160deg,#1E0A04,#2C1208)",
+      "img": "jasmin_menu/kanadskiy_roll.webp"
     },
     {
       "name": "ФРУКТОВЫЙ РОЛЛ",
@@ -623,7 +672,8 @@
       "weight": "180 г",
       "price": 25000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#2A1A0A,#3D2810)"
+      "bg": "linear-gradient(160deg,#2A1A0A,#3D2810)",
+      "img": "jasmin_menu/mini_roll_s_lososem.webp"
     }
   ],
   "tea": [
@@ -731,7 +781,8 @@
       "weight": "395 г",
       "price": 25000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#2A1608,#3D2010)"
+      "bg": "linear-gradient(160deg,#2A1608,#3D2010)",
+      "img": "jasmin_menu/yagodniy_smuzi.webp"
     },
     {
       "name": "АПЕЛЬСИН СМУЗИ",
@@ -739,7 +790,8 @@
       "weight": "505 г",
       "price": 25000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#1A1206,#2C1E0A)"
+      "bg": "linear-gradient(160deg,#1A1206,#2C1E0A)",
+      "img": "jasmin_menu/apelsin_smuzi.webp"
     },
     {
       "name": "АНАНАСОВЫЙ СМУЗИ",
@@ -747,7 +799,8 @@
       "weight": "395 г",
       "price": 25000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#2C1A0E,#1A0A04)"
+      "bg": "linear-gradient(160deg,#2C1A0E,#1A0A04)",
+      "img": "jasmin_menu/ananas_smuzi.webp"
     },
     {
       "name": "КИВИ СМУЗИ",
@@ -755,7 +808,8 @@
       "weight": "435 г",
       "price": 25000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#3D1A08,#5A2A12)"
+      "bg": "linear-gradient(160deg,#3D1A08,#5A2A12)",
+      "img": "jasmin_menu/kiwi_smuzi.webp"
     },
     {
       "name": "БАНАНОВЫЙ СМУЗИ",
@@ -763,7 +817,8 @@
       "weight": "455 г",
       "price": 25000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#4A2010,#6B3018)"
+      "bg": "linear-gradient(160deg,#4A2010,#6B3018)",
+      "img": "jasmin_menu/banan_smuzi.webp"
     }
   ],
   "milkshake": [
@@ -773,7 +828,8 @@
       "weight": "247 г",
       "price": 28000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#1A1206,#2C1E0A)"
+      "bg": "linear-gradient(160deg,#1A1206,#2C1E0A)",
+      "img": "jasmin_menu/tiramisu_sheyk.webp"
     },
     {
       "name": "БАНАНОВЫЙ ШЕЙК",
@@ -789,7 +845,8 @@
       "weight": "380 г",
       "price": 25000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#3D1A08,#5A2A12)"
+      "bg": "linear-gradient(160deg,#3D1A08,#5A2A12)",
+      "img": "jasmin_menu/shokoladniy_sheyk.webp"
     },
     {
       "name": "ЯГОДНЫЙ ШЕЙК",
@@ -797,7 +854,8 @@
       "weight": "400 г",
       "price": 25000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#4A2010,#6B3018)"
+      "bg": "linear-gradient(160deg,#4A2010,#6B3018)",
+      "img": "jasmin_menu/yagodniy_sheyk.webp"
     },
     {
       "name": "КЛУБНИКА БАНАН ШЕЙК",
@@ -805,7 +863,8 @@
       "weight": "560 г",
       "price": 50000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#1E0A04,#2C1208)"
+      "bg": "linear-gradient(160deg,#1E0A04,#2C1208)",
+      "img": "jasmin_menu/klubnika_banan_sheyk.webp"
     },
     {
       "name": "БАНАН ШОКОЛАД ШЕЙК",
@@ -813,7 +872,8 @@
       "weight": "357 г",
       "price": 35000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#1A2A10,#2C4A1A)"
+      "bg": "linear-gradient(160deg,#1A2A10,#2C4A1A)",
+      "img": "jasmin_menu/banan_shokolad_sheyk.webp"
     },
     {
       "name": "ВАНИЛЬНЫЙ ШЕЙК",
@@ -821,7 +881,8 @@
       "weight": "375 г",
       "price": 25000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#2A1A0A,#3D2810)"
+      "bg": "linear-gradient(160deg,#2A1A0A,#3D2810)",
+      "img": "jasmin_menu/vanilniy_sheyk.webp"
     },
     {
       "name": "КЛУБНИКА ШЕЙК",
@@ -829,7 +890,8 @@
       "weight": "435 г",
       "price": 49000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#1A2A08,#243D10)"
+      "bg": "linear-gradient(160deg,#1A2A08,#243D10)",
+      "img": "jasmin_menu/klubnika_sheyk.webp"
     },
     {
       "name": "ОРЕО ШЕЙК",
@@ -837,7 +899,8 @@
       "weight": "425 г",
       "price": 25000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#3D2010,#5A3018)"
+      "bg": "linear-gradient(160deg,#3D2010,#5A3018)",
+      "img": "jasmin_menu/oreo_shake.webp"
     }
   ],
   "fresh": [
@@ -847,7 +910,8 @@
       "weight": "1600 г",
       "price": 30000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#2C1A0E,#1A0A04)"
+      "bg": "linear-gradient(160deg,#2C1A0E,#1A0A04)",
+      "img": "jasmin_menu/yablochniy_fresh.webp"
     },
     {
       "name": "АПЕЛЬСИНОВЫЙ ФРЕШ",
@@ -855,7 +919,8 @@
       "weight": "850 г",
       "price": 55000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#3D1A08,#5A2A12)"
+      "bg": "linear-gradient(160deg,#3D1A08,#5A2A12)",
+      "img": "jasmin_menu/apelsinobiy_fresh.webp"
     }
   ],
   "sauce": [
@@ -865,7 +930,8 @@
       "weight": "30 г",
       "price": 3000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#3D1A08,#5A2A12)"
+      "bg": "linear-gradient(160deg,#3D1A08,#5A2A12)",
+      "img": "jasmin_menu/sous_sirniy.webp"
     },
     {
       "name": "ЧЕСНОЧНЫЙ СОУС",
@@ -873,7 +939,8 @@
       "weight": "30 г",
       "price": 3000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#4A2010,#6B3018)"
+      "bg": "linear-gradient(160deg,#4A2010,#6B3018)",
+      "img": "jasmin_menu/chesnochniy_sous.webp"
     },
     {
       "name": "КЕТЧУП",
@@ -881,7 +948,8 @@
       "weight": "30 г",
       "price": 3000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#1E0A04,#2C1208)"
+      "bg": "linear-gradient(160deg,#1E0A04,#2C1208)",
+      "img": "jasmin_menu/ketchup_sous.webp"
     },
     {
       "name": "МАЙОНЕЗ",
@@ -889,7 +957,8 @@
       "weight": "30 г",
       "price": 3000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#1A2A10,#2C4A1A)"
+      "bg": "linear-gradient(160deg,#1A2A10,#2C4A1A)",
+      "img": "jasmin_menu/mayones_sous.webp"
     },
     {
       "name": "СОУС ТОМАТНЫЙ",
@@ -897,7 +966,8 @@
       "weight": "30 г",
       "price": 3000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#2A1A0A,#3D2810)"
+      "bg": "linear-gradient(160deg,#2A1A0A,#3D2810)",
+      "img": "jasmin_menu/tomatniy_sous.webp"
     },
     {
       "name": "СОУС ЧИЛИ АЧЧИК",
@@ -905,7 +975,8 @@
       "weight": "1000 г",
       "price": 3000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#1A2A08,#243D10)"
+      "bg": "linear-gradient(160deg,#1A2A08,#243D10)",
+      "img": "jasmin_menu/achchik_chili_sous.webp"
     }
   ],
   "gelato": [
@@ -915,7 +986,8 @@
       "weight": "60 г",
       "price": 10000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#4A2010,#6B3018)"
+      "bg": "linear-gradient(160deg,#4A2010,#6B3018)",
+      "img": "jasmin_menu/g_baunti.webp"
     },
     {
       "name": "G ТИРАМИСУ",
@@ -923,7 +995,8 @@
       "weight": "60 г",
       "price": 10000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#1E0A04,#2C1208)"
+      "bg": "linear-gradient(160deg,#1E0A04,#2C1208)",
+      "img": "jasmin_menu/g_tiramisu.webp"
     },
     {
       "name": "G ФУНДУК",
@@ -931,7 +1004,8 @@
       "weight": "60 г",
       "price": 10000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#1A2A10,#2C4A1A)"
+      "bg": "linear-gradient(160deg,#1A2A10,#2C4A1A)",
+      "img": "jasmin_menu/g_funduk.webp"
     },
     {
       "name": "G БАНАН",
@@ -939,7 +1013,8 @@
       "weight": "60 г",
       "price": 10000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#2A1A0A,#3D2810)"
+      "bg": "linear-gradient(160deg,#2A1A0A,#3D2810)",
+      "img": "jasmin_menu/g_banan.webp"
     },
     {
       "name": "G ОРЕО",
@@ -947,7 +1022,8 @@
       "weight": "64 г",
       "price": 10000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#1A2A08,#243D10)"
+      "bg": "linear-gradient(160deg,#1A2A08,#243D10)",
+      "img": "jasmin_menu/g_oreo.webp"
     },
     {
       "name": "G ЛЕСНЫЕ ЯГОДЫ",
@@ -955,7 +1031,8 @@
       "weight": "60 г",
       "price": 10000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#3D2010,#5A3018)"
+      "bg": "linear-gradient(160deg,#3D2010,#5A3018)",
+      "img": "jasmin_menu/g_lesniye_yagodi.webp"
     },
     {
       "name": "G КИВИ",
@@ -963,7 +1040,8 @@
       "weight": "60 г",
       "price": 10000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#2A1608,#3D2010)"
+      "bg": "linear-gradient(160deg,#2A1608,#3D2010)",
+      "img": "jasmin_menu/g_kiwi.webp"
     },
     {
       "name": "G КЛУБНИКА",
@@ -971,7 +1049,8 @@
       "weight": "57 г",
       "price": 10000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#1A1206,#2C1E0A)"
+      "bg": "linear-gradient(160deg,#1A1206,#2C1E0A)",
+      "img": "jasmin_menu/g_klubnika.webp"
     },
     {
       "name": "G ПЛОМБИР",
@@ -979,7 +1058,8 @@
       "weight": "60 г",
       "price": 10000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#2C1A0E,#1A0A04)"
+      "bg": "linear-gradient(160deg,#2C1A0E,#1A0A04)",
+      "img": "jasmin_menu/g_plombir.webp"
     },
     {
       "name": "G ЙОГУРТ С ВИШНЕЙ",
@@ -987,7 +1067,8 @@
       "weight": "64 г",
       "price": 10000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#3D1A08,#5A2A12)"
+      "bg": "linear-gradient(160deg,#3D1A08,#5A2A12)",
+      "img": "jasmin_menu/g_yogurt_s_vishney.webp"
     },
     {
       "name": "G ФЕРРЕРО РОШЕ",
@@ -995,7 +1076,8 @@
       "weight": "64 г",
       "price": 10000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#4A2010,#6B3018)"
+      "bg": "linear-gradient(160deg,#4A2010,#6B3018)",
+      "img": "jasmin_menu/g_ferrero_roshe.webp"
     },
     {
       "name": "G ФИСТАШКА",
@@ -1003,15 +1085,17 @@
       "weight": "60 г",
       "price": 12000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#1E0A04,#2C1208)"
+      "bg": "linear-gradient(160deg,#1E0A04,#2C1208)",
+      "img": "jasmin_menu/g_fistashka.webp"
     },
     {
-      "name": "G ВАНИЛЬ  ТОФИПЕКАН",
+      "name": "G ВАНИЛЬ ТОФИПЕКАН",
       "desc": "",
       "weight": "64 г",
       "price": 10000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#1A2A10,#2C4A1A)"
+      "bg": "linear-gradient(160deg,#1A2A10,#2C4A1A)",
+      "img": "jasmin_menu/g_vanil_tofipekan.webp"
     },
     {
       "name": "G МАНГО",
@@ -1019,7 +1103,8 @@
       "weight": "60 г",
       "price": 10000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#2A1A0A,#3D2810)"
+      "bg": "linear-gradient(160deg,#2A1A0A,#3D2810)",
+      "img": "jasmin_menu/g_mango.webp"
     },
     {
       "name": "G МОЛОЧНЫЙ ШОКОЛАД",
@@ -1027,7 +1112,8 @@
       "weight": "61 г",
       "price": 10000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#1A2A08,#243D10)"
+      "bg": "linear-gradient(160deg,#1A2A08,#243D10)",
+      "img": "jasmin_menu/g_molochniy_shokolad.webp"
     },
     {
       "name": "G ГОРЬКИЙ ШОКОЛАД",
@@ -1035,7 +1121,8 @@
       "weight": "61 г",
       "price": 10000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#3D2010,#5A3018)"
+      "bg": "linear-gradient(160deg,#3D2010,#5A3018)",
+      "img": "jasmin_menu/g_gorkiy_shokolad.webp"
     },
     {
       "name": "G ПЕЧЕНЬЕ НУТЕЛЛА",
@@ -1043,7 +1130,8 @@
       "weight": "64 г",
       "price": 10000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#2A1608,#3D2010)"
+      "bg": "linear-gradient(160deg,#2A1608,#3D2010)",
+      "img": "jasmin_menu/g_pechenye_nutella.webp"
     },
     {
       "name": "G РАФАЕЛЛО",
@@ -1051,7 +1139,8 @@
       "weight": "64 г",
       "price": 10000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#1A1206,#2C1E0A)"
+      "bg": "linear-gradient(160deg,#1A1206,#2C1E0A)",
+      "img": "jasmin_menu/g_rafaello.webp"
     },
     {
       "name": "G АПЕЛЬСИН",
@@ -1059,7 +1148,8 @@
       "weight": "60 г",
       "price": 10000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#2C1A0E,#1A0A04)"
+      "bg": "linear-gradient(160deg,#2C1A0E,#1A0A04)",
+      "img": "jasmin_menu/g_apelsin.webp"
     }
   ],
   "firmTea": [
@@ -1069,7 +1159,8 @@
       "weight": "1100 г",
       "price": 30000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#1E0A04,#2C1208)"
+      "bg": "linear-gradient(160deg,#1E0A04,#2C1208)",
+      "img": "jasmin_menu/persik_mango_chay.webp"
     },
     {
       "name": "ЯГОДНЫЙ ЧАЙ",
@@ -1077,7 +1168,8 @@
       "weight": "1398 г",
       "price": 30000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#1A2A10,#2C4A1A)"
+      "bg": "linear-gradient(160deg,#1A2A10,#2C4A1A)",
+      "img": "jasmin_menu/yagodniy_chay.webp"
     },
     {
       "name": "ИМБИРНЫЙ",
@@ -1085,7 +1177,8 @@
       "weight": "1369 г",
       "price": 30000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#2A1A0A,#3D2810)"
+      "bg": "linear-gradient(160deg,#2A1A0A,#3D2810)",
+      "img": "jasmin_menu/imbirniy_chay.webp"
     },
     {
       "name": "ФРУКТОВЫЙ",
@@ -1093,7 +1186,8 @@
       "weight": "409 г",
       "price": 32000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#1A2A08,#243D10)"
+      "bg": "linear-gradient(160deg,#1A2A08,#243D10)",
+      "img": "jasmin_menu/fruktoviy_chay.webp"
     },
     {
       "name": "ОБЛЕПИХОВЫЙ",
@@ -1135,7 +1229,8 @@
       "weight": "529 г",
       "price": 50000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#1A2A10,#2C4A1A)"
+      "bg": "linear-gradient(160deg,#1A2A10,#2C4A1A)",
+      "img": "jasmin_menu/kebabchiki_iz_kuritsi_govadini.webp"
     },
     {
       "name": "КОЗОН КЕБАБ",
@@ -1143,7 +1238,8 @@
       "weight": "516 г",
       "price": 77000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#2A1A0A,#3D2810)"
+      "bg": "linear-gradient(160deg,#2A1A0A,#3D2810)",
+      "img": "jasmin_menu/kozon_kebab.webp"
     },
     {
       "name": "ТЕФТЕЛИ С КАРТОФИЛЬНЕЙ ПЮРЕ",
@@ -1151,7 +1247,8 @@
       "weight": "509 г",
       "price": 55000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#1A2A08,#243D10)"
+      "bg": "linear-gradient(160deg,#1A2A08,#243D10)",
+      "img": "jasmin_menu/tefteli_s_kortofelnoy_pyure.webp"
     },
     {
       "name": "САЙ С БАРАНИНОЙ",
@@ -1159,7 +1256,8 @@
       "weight": "407 г",
       "price": 70000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#3D2010,#5A3018)"
+      "bg": "linear-gradient(160deg,#3D2010,#5A3018)",
+      "img": "jasmin_menu/say_s_baraninoy.webp"
     },
     {
       "name": "КОФТЕ С СЫРОМ",
@@ -1175,7 +1273,8 @@
       "weight": "137 г",
       "price": 15000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#1A1206,#2C1E0A)"
+      "bg": "linear-gradient(160deg,#1A1206,#2C1E0A)",
+      "img": "jasmin_menu/fri_jasmin.webp"
     },
     {
       "name": "ТУШЕНКА ИЗ ГОВЯДИНЫ",
@@ -1183,15 +1282,17 @@
       "weight": "444 г",
       "price": 70000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#2C1A0E,#1A0A04)"
+      "bg": "linear-gradient(160deg,#2C1A0E,#1A0A04)",
+      "img": "jasmin_menu/tushenka_iz_govadini.webp"
     },
     {
       "name": "САЙ С ГОВЯДИНОЙ",
       "desc": "",
-      "weight": "247 г",
+      "weight": "246,5 г",
       "price": 70000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#3D1A08,#5A2A12)"
+      "bg": "linear-gradient(160deg,#3D1A08,#5A2A12)",
+      "img": "jasmin_menu/say_s_baraninoy.webp"
     },
     {
       "name": "КОФТЕ",
@@ -1199,7 +1300,8 @@
       "weight": "360 г",
       "price": 50000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#4A2010,#6B3018)"
+      "bg": "linear-gradient(160deg,#4A2010,#6B3018)",
+      "img": "jasmin_menu/kefte.webp"
     },
     {
       "name": "АЙДАХО",
@@ -1207,7 +1309,8 @@
       "weight": "140 г",
       "price": 15000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#1E0A04,#2C1208)"
+      "bg": "linear-gradient(160deg,#1E0A04,#2C1208)",
+      "img": "jasmin_menu/aydaxo_jasmin.webp"
     },
     {
       "name": "САЙ С КУРИЦОЙ",
@@ -1223,7 +1326,8 @@
       "weight": "152 г",
       "price": 10000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#2A1A0A,#3D2810)"
+      "bg": "linear-gradient(160deg,#2A1A0A,#3D2810)",
+      "img": "jasmin_menu/kartofelnoye_pyure.webp"
     },
     {
       "name": "ФИЛЕ КУРИНОЕ ВСЛИВКАХ",
@@ -1231,7 +1335,8 @@
       "weight": "331 г",
       "price": 50000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#1A2A08,#243D10)"
+      "bg": "linear-gradient(160deg,#1A2A08,#243D10)",
+      "img": "jasmin_menu/file_kurinoe_v_s_slivkax.webp"
     },
     {
       "name": "БОН ФИЛЕ 100ГР",
@@ -1239,7 +1344,8 @@
       "weight": "303 г",
       "price": 50000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#3D2010,#5A3018)"
+      "bg": "linear-gradient(160deg,#3D2010,#5A3018)",
+      "img": "jasmin_menu/bon_file.webp"
     }
   ],
   "coffee": [
@@ -1249,7 +1355,8 @@
       "weight": "260 г",
       "price": 16000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#2A1A0A,#3D2810)"
+      "bg": "linear-gradient(160deg,#2A1A0A,#3D2810)",
+      "img": "jasmin_menu/ice_amerikano.webp"
     },
     {
       "name": "ГОРЯЧИЙ ШОКОЛАД",
@@ -1257,7 +1364,8 @@
       "weight": "186 г",
       "price": 25000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#1A2A08,#243D10)"
+      "bg": "linear-gradient(160deg,#1A2A08,#243D10)",
+      "img": "jasmin_menu/goryachiy_shokolad.webp"
     },
     {
       "name": "АМЕРИКАНО",
@@ -1265,15 +1373,17 @@
       "weight": "212 г",
       "price": 16000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#3D2010,#5A3018)"
+      "bg": "linear-gradient(160deg,#3D2010,#5A3018)",
+      "img": "jasmin_menu/amerikano.webp"
     },
     {
       "name": "ГЛЯСЕ",
       "desc": "",
-      "weight": "1000 г",
+      "weight": "100 г",
       "price": 18000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#2A1608,#3D2010)"
+      "bg": "linear-gradient(160deg,#2A1608,#3D2010)",
+      "img": "jasmin_menu/glyase.webp"
     },
     {
       "name": "АМЕРИКАНО ДАБЛ",
@@ -1289,7 +1399,8 @@
       "weight": "262 г",
       "price": 20000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#2C1A0E,#1A0A04)"
+      "bg": "linear-gradient(160deg,#2C1A0E,#1A0A04)",
+      "img": "jasmin_menu/kapuchino_jasmin.webp"
     },
     {
       "name": "КАПУЧИНО ДАБЛ",
@@ -1297,7 +1408,8 @@
       "weight": "1000 г",
       "price": 25000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#3D1A08,#5A2A12)"
+      "bg": "linear-gradient(160deg,#3D1A08,#5A2A12)",
+      "img": "jasmin_menu/kapuchino_dabl.webp"
     },
     {
       "name": "РАФ",
@@ -1305,7 +1417,8 @@
       "weight": "210 г",
       "price": 25000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#4A2010,#6B3018)"
+      "bg": "linear-gradient(160deg,#4A2010,#6B3018)",
+      "img": "jasmin_menu/raf.webp"
     },
     {
       "name": "ЭСПРЕССО ДАБЛ",
@@ -1321,7 +1434,8 @@
       "weight": "410 г",
       "price": 20000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#1A2A10,#2C4A1A)"
+      "bg": "linear-gradient(160deg,#1A2A10,#2C4A1A)",
+      "img": "jasmin_menu/ice_latte.webp"
     },
     {
       "name": "ФРАПУЧИНО",
@@ -1337,7 +1451,8 @@
       "weight": "222 г",
       "price": 25000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#1A2A08,#243D10)"
+      "bg": "linear-gradient(160deg,#1A2A08,#243D10)",
+      "img": "jasmin_menu/raf_svejiy_s_klubnikami.webp"
     },
     {
       "name": "РАФ МЕДОВЫЙ",
@@ -1345,7 +1460,8 @@
       "weight": "210 г",
       "price": 25000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#3D2010,#5A3018)"
+      "bg": "linear-gradient(160deg,#3D2010,#5A3018)",
+      "img": "jasmin_menu/raf_medoviy.webp"
     },
     {
       "name": "АЙС КАПУЧИНО",
@@ -1353,7 +1469,8 @@
       "weight": "430 г",
       "price": 20000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#2A1608,#3D2010)"
+      "bg": "linear-gradient(160deg,#2A1608,#3D2010)",
+      "img": "jasmin_menu/ice_kapuchino.webp"
     },
     {
       "name": "ФЛЭТ УАЙТ",
@@ -1401,7 +1518,8 @@
       "weight": "348 г",
       "price": 18000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#1A2A10,#2C4A1A)"
+      "bg": "linear-gradient(160deg,#1A2A10,#2C4A1A)",
+      "img": "jasmin_menu/latte_makiyato.webp"
     }
   ],
   "lepeshka": [
@@ -1519,7 +1637,8 @@
       "weight": "535 г",
       "price": 55000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#2A1608,#3D2010)"
+      "bg": "linear-gradient(160deg,#2A1608,#3D2010)",
+      "img": "jasmin_menu/apelsinoviy_moxito_1l.webp"
     },
     {
       "name": "КЛУБНИЧНЫЙ МОХИТО 0,5",
@@ -1551,7 +1670,8 @@
       "weight": "344 г",
       "price": 25000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#4A2010,#6B3018)"
+      "bg": "linear-gradient(160deg,#4A2010,#6B3018)",
+      "img": "jasmin_menu/ice_tea_mango_marakuya.webp"
     },
     {
       "name": "ТАРХУН ЯБЛОКО",
@@ -1567,7 +1687,8 @@
       "weight": "397 г",
       "price": 25000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#1A2A10,#2C4A1A)"
+      "bg": "linear-gradient(160deg,#1A2A10,#2C4A1A)",
+      "img": "jasmin_menu/ice_tea_yagodniy.webp"
     },
     {
       "name": "ЦИТРУСОВЫЙС ЛИМОНАД 0,5",
@@ -1591,7 +1712,8 @@
       "weight": "535 г",
       "price": 55000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#3D2010,#5A3018)"
+      "bg": "linear-gradient(160deg,#3D2010,#5A3018)",
+      "img": "jasmin_menu/klassik_moxito_1L.webp"
     },
     {
       "name": "КЛУБНИЧНЫЙ МОХИТО 1",
@@ -1607,7 +1729,8 @@
       "weight": "322 г",
       "price": 30000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#1A1206,#2C1E0A)"
+      "bg": "linear-gradient(160deg,#1A1206,#2C1E0A)",
+      "img": "jasmin_menu/klassik_moxito_05.webp"
     }
   ],
   "kids": [
@@ -1699,7 +1822,8 @@
       "weight": "608 г",
       "price": 120000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#2C1A0E,#1A0A04)"
+      "bg": "linear-gradient(160deg,#2C1A0E,#1A0A04)",
+      "img": "jasmin_menu/fondyu_miks.webp"
     },
     {
       "name": "ВАФЛИ НУТЕЛЛА",
@@ -1731,7 +1855,8 @@
       "weight": "490 г",
       "price": 50000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#1A2A10,#2C4A1A)"
+      "bg": "linear-gradient(160deg,#1A2A10,#2C4A1A)",
+      "img": "jasmin_menu/vafli_banan.webp"
     },
     {
       "name": "НУТЕЛЛА ДОП",
@@ -1742,12 +1867,13 @@
       "bg": "linear-gradient(160deg,#2A1A0A,#3D2810)"
     },
     {
-      "name": "ВАФЛИ КЛУБ БАНАН",
+      "name": "ВАФЛИ КЛУБНИКА БАНАН",
       "desc": "",
       "weight": "470 г",
       "price": 75000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#1A2A08,#243D10)"
+      "bg": "linear-gradient(160deg,#1A2A08,#243D10)",
+      "img": "jasmin_menu/vafli_klubnika_banan.webp"
     },
     {
       "name": "ВАФЛИ КЛУБНИКА",
@@ -1755,7 +1881,8 @@
       "weight": "420 г",
       "price": 70000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#3D2010,#5A3018)"
+      "bg": "linear-gradient(160deg,#3D2010,#5A3018)",
+      "img": "jasmin_menu/vafli_klubnika.webp"
     }
   ],
   "shirinliklar": [
