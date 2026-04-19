@@ -511,7 +511,7 @@
       position: relative;
       width: 100%;
       aspect-ratio: 16 / 9;
-      background: 
+      background:
         radial-gradient(ellipse 60% 50% at 50% 30%, rgba(247, 170, 79, .12) 0%, transparent 60%),
         repeating-linear-gradient(90deg, transparent 0px, transparent 3px, rgba(60, 30, 15, .4) 3px, rgba(60, 30, 15, .4) 4px),
         linear-gradient(180deg, #1a0d08 0%, #2d1810 50%, #1a0d08 100%);
@@ -931,7 +931,7 @@
     }
 
     .p-card.wide-format .p-img-inner {
-      background: 
+      background:
         radial-gradient(ellipse 60% 50% at 50% 30%, rgba(247, 170, 79, .12) 0%, transparent 60%),
         repeating-linear-gradient(90deg, transparent 0px, transparent 3px, rgba(60, 30, 15, .4) 3px, rgba(60, 30, 15, .4) 4px),
         linear-gradient(180deg, #1a0d08 0%, #2d1810 50%, #1a0d08 100%);
@@ -1947,7 +1947,9 @@
 
     #jbMenuPres,
     #jbStaffLink,
-    #jbOpenAuth { display: none !important; }
+    #jbOpenAuth {
+      display: none !important;
+    }
 
     /* ═══════════════════════════════════
    RESPONSIVE
@@ -2384,18 +2386,24 @@
       <div class="co-field">
         <label for="coAddr" data-i18n="co_address">Адрес доставки</label>
         <textarea id="coAddr" rows="2" autocomplete="street-address"></textarea>
-        <button type="button" class="co-geo-link" id="coGeoFill" data-i18n="co_geo_fill">Подставить из геолокации</button>
+        <button type="button" class="co-geo-link" id="coGeoFill" data-i18n="co_geo_fill">Подставить из
+          геолокации</button>
       </div>
       <p class="co-err" id="coErr"></p>
       <div class="co-actions">
-        <button type="button" class="btn btn-gold" id="coSubmit" style="width:100%;padding:14px" data-i18n="co_submit">Отправить заказ</button>
-        <button type="button" class="btn btn-outline" id="coCancel" style="width:100%;padding:14px" data-i18n="co_cancel">Отмена</button>
+        <button type="button" class="btn btn-gold" id="coSubmit" style="width:100%;padding:14px"
+          data-i18n="co_submit">Отправить заказ</button>
+        <button type="button" class="btn btn-outline" id="coCancel" style="width:100%;padding:14px"
+          data-i18n="co_cancel">Отмена</button>
       </div>
     </div>
     <div class="co-success" id="coSuccess">
       <p data-i18n="co_ok">Заказ принят!</p>
-      <a href="staff.html" class="btn btn-gold" style="display:inline-flex;padding:14px 24px;text-decoration:none;margin-bottom:10px" data-i18n="co_open_staff">Панель персонала</a>
-      <button type="button" class="btn btn-outline" id="coCloseOk" style="width:100%;padding:14px" data-i18n="co_close">Закрыть</button>
+      <a href="staff.html" class="btn btn-gold"
+        style="display:inline-flex;padding:14px 24px;text-decoration:none;margin-bottom:10px"
+        data-i18n="co_open_staff">Панель персонала</a>
+      <button type="button" class="btn btn-outline" id="coCloseOk" style="width:100%;padding:14px"
+        data-i18n="co_close">Закрыть</button>
     </div>
   </div>
 
@@ -2408,8 +2416,10 @@
     </a>
     <div class="menu-page-head-actions">
       <span class="jb-menu-pres" id="jbMenuPres" aria-hidden="true" style="display:none">Показ</span>
-      <a href="staff.html" class="jb-staff-link" id="jbStaffLink" data-i18n="auth_staff" style="display:none">Заказы (staff)</a>
-      <button type="button" class="header-cart-btn jb-acc-btn" id="jbOpenAuth" aria-label="Account" title="Аккаунт" style="display:none">
+      <a href="staff.html" class="jb-staff-link" id="jbStaffLink" data-i18n="auth_staff" style="display:none">Заказы
+        (staff)</a>
+      <button type="button" class="header-cart-btn jb-acc-btn" id="jbOpenAuth" aria-label="Account" title="Аккаунт"
+        style="display:none">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
           <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
           <circle cx="12" cy="7" r="4" />

@@ -746,6 +746,8 @@
         }
 
         .nav-logo-icon {
+            height: 44px;
+            width: auto;
             transition: transform .4s var(--ease-spring)
         }
 
@@ -875,15 +877,103 @@
             #nav.s {
                 padding: 14px 24px
             }
+
+            .nav-in {
+                gap: 16px
+            }
         }
 
         @media(max-width:480px) {
+            #nav {
+                padding: 14px 18px
+            }
+
+            #nav.s {
+                padding: 12px 18px
+            }
+
             .nav-logo-text {
                 font-size: 18px
             }
 
             .nav-logo-icon {
+                height: 32px
+            }
+
+            .nav-right {
+                gap: 10px
+            }
+
+            .lang-switch {
+                gap: 2px
+            }
+
+            .lang-btn {
+                font-size: 9px;
+                padding: 3px 5px
+            }
+
+            .hamburger span {
+                width: 22px
+            }
+        }
+
+        @media(max-width:380px) {
+            #nav {
+                padding: 12px 14px
+            }
+
+            #nav.s {
+                padding: 10px 14px
+            }
+
+            .nav-logo-icon {
                 height: 28px
+            }
+
+            .nav-right {
+                gap: 8px
+            }
+
+            .lang-btn {
+                font-size: 9px;
+                padding: 2px 4px;
+                letter-spacing: .03em
+            }
+
+            .lang-switch {
+                gap: 1px
+            }
+
+            .hamburger {
+                gap: 4px
+            }
+
+            .hamburger span {
+                width: 20px
+            }
+        }
+
+        @media(max-width:320px) {
+            #nav {
+                padding: 10px 10px
+            }
+
+            #nav.s {
+                padding: 9px 10px
+            }
+
+            .nav-logo-icon {
+                height: 26px
+            }
+
+            .nav-right {
+                gap: 6px
+            }
+
+            .lang-btn {
+                font-size: 8px;
+                padding: 2px 3px
             }
         }
 
@@ -2433,16 +2523,15 @@
 
         @media(max-width:620px) {
             .nav-in {
-                flex-wrap: wrap;
-                row-gap: 10px
+                flex-wrap: nowrap;
+                gap: 12px
             }
 
             .nav-right {
-                flex: 1 1 100%;
+                flex: 0 1 auto;
                 justify-content: flex-end;
-                flex-wrap: wrap;
-                gap: 10px;
-                row-gap: 8px
+                flex-wrap: nowrap;
+                gap: 10px
             }
 
             .jb-geo-badge[aria-hidden="false"] {
@@ -2491,7 +2580,8 @@
     <style>
         /* Скрыть ленту «Показ» и бейдж геолокации — приоритет выше любых JS/классов */
         #jbPresRibbon,
-        #jbGeoBadge { display: none !important; }
+        #jbGeoBadge,
+        #hamburger { display: none !important; }
     </style>
     <script src="jb-config.js"></script>
     <script src="jb-geolocation.js"></script>
@@ -2536,8 +2626,7 @@
     <nav id="nav">
         <div class="nav-in">
             <a class="nav-logo" href="#">
-                <img src="jb_logo_v1_gold.svg" alt="Jasmin Bakery" class="nav-logo-icon" style="height:44px;width:auto"
-                    decoding="async">
+                <img src="jb_logo_v1_gold.svg" alt="Jasmin Bakery" class="nav-logo-icon" decoding="async">
             </a>
             <ul class="nav-links">
                 <li><a href="menu.html" data-i18n="nav_menu">Меню</a></li>
@@ -2558,7 +2647,7 @@
                     <button class="lang-btn" data-lang="uz">UZ</button>
                     <button class="lang-btn" data-lang="en">EN</button>
                 </div>
-                <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+                <button class="hamburger" id="hamburger" style="display:none !important"><span></span><span></span><span></span></button>
             </div>
         </div>
     </nav>
