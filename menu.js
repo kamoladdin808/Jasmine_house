@@ -15,7 +15,7 @@
       cat_sauce: 'Соус', cat_gelato: 'Гилатто морожни', cat_firmTea: 'Фирменные чай',
       cat_hot: 'Горячие блюда', cat_coffee: 'Кофе бар', cat_lepeshka: 'Лепёшка',
       cat_bar: 'Бар напитки', cat_mojito: 'Мохито бар', cat_kids: 'Детский меню',
-      cat_waffles: 'Гилатто вафли', cat_desserts: 'Десерты',
+      cat_waffles: 'Гилатто вафли',
       cart_title: 'Корзина', cart_empty: 'Корзина пуста', cart_go_menu: 'Перейти в меню',
       cart_total: 'Итого', cart_checkout: 'Оформить заказ', cart_clear: 'Очистить',
       co_title: 'Оформление заказа', co_summary: 'Состав заказа', co_name: 'Имя', co_phone: 'Телефон',
@@ -47,7 +47,7 @@
       cat_sauce: 'Sous', cat_gelato: 'Gelato muzqaymoq', cat_firmTea: 'Firmaviy choy',
       cat_hot: 'Issiq taomlar', cat_coffee: 'Qahva bar', cat_lepeshka: 'Non',
       cat_bar: 'Bar ichimliklar', cat_mojito: 'Moxito bar', cat_kids: 'Bolalar menyusi',
-      cat_waffles: 'Gelato vafli', cat_desserts: 'Desertlar',
+      cat_waffles: 'Gelato vafli',
       cart_title: 'Savat', cart_empty: "Savat bo'sh", cart_go_menu: "Menyuga o'tish",
       cart_total: 'Jami', cart_checkout: 'Buyurtma berish', cart_clear: 'Tozalash',
       co_title: 'Buyurtmani rasmiylashtirish', co_summary: 'Tarkib', co_name: 'Ism', co_phone: 'Telefon',
@@ -79,7 +79,7 @@
       cat_sauce: 'Sauce', cat_gelato: 'Gelato ice cream', cat_firmTea: 'Signature tea',
       cat_hot: 'Hot dishes', cat_coffee: 'Coffee bar', cat_lepeshka: 'Flatbread',
       cat_bar: 'Bar drinks', cat_mojito: 'Mojito bar', cat_kids: 'Kids menu',
-      cat_waffles: 'Gelato waffles', cat_desserts: 'Desserts',
+      cat_waffles: 'Gelato waffles',
       cart_title: 'Cart', cart_empty: 'Cart is empty', cart_go_menu: 'Go to menu',
       cart_total: 'Total', cart_checkout: 'Place order', cart_clear: 'Clear',
       co_title: 'Checkout', co_summary: 'Your order', co_name: 'Name', co_phone: 'Phone',
@@ -135,7 +135,7 @@ if (typeof module !== 'undefined' && module.exports) {
       'СОУС': 'sauce', 'ГИЛАТТО МОРОЖНИ': 'gelato', 'ФИРМЕННЫЕ ЧАЙ': 'firmTea',
       'ГОРЯЧИЕ БЛЮДА': 'hot', 'КОФЕ БАР': 'coffee', 'ЛЕПЁШКА': 'lepeshka',
       'БАР НАПИТКИ': 'bar', 'МОХИТО БАР': 'mojito', 'ДЕТСКИЙ МЕНЮ': 'kids',
-      'ГИЛАТТО ВАФЛИ': 'waffles', 'ТАЙЁР ШИРИНЛИКЛАР': 'shirinliklar'
+      'ГИЛАТТО ВАФЛИ': 'waffles'
     };
     const MENU = {};
     const bgs = [
