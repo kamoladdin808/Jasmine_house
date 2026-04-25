@@ -1856,6 +1856,7 @@
             border: 0;
             filter: saturate(.85) contrast(1.1);
             transition: filter .3s;
+            pointer-events: none;
         }
 
         .loc-map:hover iframe {
@@ -2572,8 +2573,6 @@
     <style>
         /* Скрыть ленту «Показ» и бейдж геолокации — приоритет выше любых JS/классов */
         #jbPresRibbon,
-        #jbGeoBadge,
-        #hamburger,
         #promo {
             display: none !important;
         }
@@ -2630,8 +2629,7 @@
                 <li><a href="#atmosphere" data-i18n="ft_atm">Атмосфера</a></li>
             </ul>
             <div class="nav-right">
-                <div class="jb-geo-badge" id="jbGeoBadge" aria-hidden="true" role="button" tabindex="-1" aria-label=""
-                    style="display:none !important">
+                <div class="jb-geo-badge" id="jbGeoBadge" aria-hidden="true" role="button" tabindex="-1" aria-label="">
                     <svg viewBox="0 0 24 24">
                         <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
                         <circle cx="12" cy="10" r="3" />
@@ -2643,8 +2641,7 @@
                     <button class="lang-btn" data-lang="uz">UZ</button>
                     <button class="lang-btn" data-lang="en">EN</button>
                 </div>
-                <button class="hamburger" id="hamburger"
-                    style="display:none !important"><span></span><span></span><span></span></button>
+                <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
             </div>
         </div>
     </nav>
@@ -2742,7 +2739,7 @@
                             сум</em></h3>
                     <p class="promo-text" data-i18n="promo3_text">Быстрая доставка по Ургенчу. Горячий кофе и свежие
                         десерты — прямо к вашей двери.</p>
-                    <a href="tel:+998919131111" class="btn btn-gold">+99891 913 11 11</a>
+                    <a href="menu.html" class="btn btn-gold" data-i18n="promo3_btn">Заказать доставку</a>
                 </div>
                 <div class="promo-big">0 сум</div>
             </div>
@@ -2851,12 +2848,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="loc-map">
+                    <a href="https://yandex.ru/maps/-/CDuWjFmQ" target="_blank" rel="noopener" class="loc-map" style="display:block">
                         <iframe
                             src="https://www.google.com/maps?q=Jasminhouse.uz%20%4041.5588782%2C60.6214587&z=19&output=embed"
                             allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
                             title="Jasmin Bakery — Ургенч"></iframe>
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -3096,6 +3093,7 @@
                 promo3_eye: 'Доставка · Ургенч',
                 promo3_title: 'Бесплатно<br><em>от 150 000 сум</em>',
                 promo3_text: 'Быстрая доставка по Ургенчу. Горячий кофе и свежие десерты — прямо к вашей двери.',
+                promo3_btn: 'Заказать доставку',
                 about_label: 'О нас',
                 about_title: 'История <em style="color:var(--burg);font-style:italic">Jasmin</em>',
                 about_text: 'Jasmin Bakery ведёт свою историю с 2016 года — тогда мы начинали как «Milliy shirinliklari». Сегодня мы — современная пекарня и кондитерская с узбекским сердцем и международным качеством.<br><br>Наши кондитеры создают торты, пирожные и восточные сладости, которые удивляют вкусом и остаются в памяти. Каждый десерт — авторский. Каждый рецепт — с душой.',
@@ -3148,7 +3146,8 @@
                 promo2_btn: 'Qo\'ng\'iroq qilish',
                 promo3_eye: 'Yetkazib berish · Urganch',
                 promo3_title: 'Bepul<br><em>150 000 so\'mdan</em>',
-                promo3_text: 'Urganch bo\'ylab tez yetkazib berish. Issiq qahva va yangi desertlar — eshigingizgacha.',
+                promo3_text: 'Urganch bo\'ylab tez yetkazib berish. Issiq qahva va yangi desertlar — to\'g\'ridan-to\'g\'ri eshagingizgacha.',
+                promo3_btn: 'Yetkazib berishni buyurtma qilish',
                 about_label: 'Biz haqimizda',
                 about_title: '<em style="color:var(--burg);font-style:italic">Jasmin</em> tarixi',
                 about_text: 'Jasmin Bakery o\'z tarixini 2016-yildan boshlaydi — o\'shanda biz «Milliy shirinliklari» sifatida ishni boshlagandik. Bugungi kunda biz — o\'zbek ruhi va xalqaro sifatga ega zamonaviy novvoyxona va qandolatxonamiz.<br><br>Bizning qandolatchilarimiz tortlar, pirojniylar va sharq shirinliklarini yaratishadi — ta\'mi hayratga soladi va xotirada qoladi. Har bir desert — mualliflik. Har bir retsept — jon bilan.',
@@ -3201,7 +3200,8 @@
                 promo2_btn: 'Call us',
                 promo3_eye: 'Delivery · Urgench',
                 promo3_title: 'Free delivery<br><em>from 150,000 sum</em>',
-                promo3_text: 'Fast delivery across Urgench. Hot coffee and fresh desserts — right to your door.',
+                promo3_text: 'Fast delivery across Urgench. Hot coffee and fresh desserts — straight to your door.',
+                promo3_btn: 'Order delivery',
                 about_label: 'About us',
                 about_title: 'The story of <em style="color:var(--burg);font-style:italic">Jasmin</em>',
                 about_text: 'Jasmin Bakery traces its history back to 2016 — we started as "Milliy shirinliklari". Today we are a modern bakery and confectionery with an Uzbek heart and international quality.<br><br>Our pastry chefs create cakes, pastries and oriental sweets that amaze with taste and stay in memory. Every dessert is original. Every recipe is made with soul.',

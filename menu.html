@@ -2399,9 +2399,7 @@
     </div>
     <div class="co-success" id="coSuccess">
       <p data-i18n="co_ok">Заказ принят!</p>
-      <a href="staff.html" class="btn btn-gold"
-        style="display:inline-flex;padding:14px 24px;text-decoration:none;margin-bottom:10px"
-        data-i18n="co_open_staff">Панель персонала</a>
+
       <button type="button" class="btn btn-outline" id="coCloseOk" style="width:100%;padding:14px"
         data-i18n="co_close">Закрыть</button>
     </div>
@@ -2662,7 +2660,7 @@
       <form id="jbFormLogin" autocomplete="on">
         <div class="jb-auth-field">
           <label for="jbInEmail" data-i18n="auth_email">Email</label>
-          <input type="email" id="jbInEmail" name="email" required />
+          <input type="email" id="jbInEmail" name="email" autocomplete="email" required />
         </div>
         <div class="jb-auth-field">
           <label for="jbInPass" data-i18n="auth_password">Пароль</label>
@@ -2695,7 +2693,7 @@
         </div>
         <div class="jb-auth-field">
           <label for="jbRegEmail" data-i18n="auth_email">Email</label>
-          <input type="email" id="jbRegEmail" name="email" required />
+          <input type="email" id="jbRegEmail" name="email" autocomplete="email" required />
         </div>
         <div class="jb-auth-field">
           <label for="jbRegPhone" data-i18n="auth_phone">Телефон</label>
@@ -2908,7 +2906,7 @@
       milkshake: [
         { name: 'ТИРАМИСУ ШЕЙК', desc: '', weight: '247 г', price: 28000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)', img: 'jasmin_menu/tiramisu_sheyk.webp' },
         { name: 'БАНАНОВЫЙ ШЕЙК', desc: '', weight: '495 г', price: 30000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
-        { name: 'ШОКОЛОДНЫЙ ШЕЙК', desc: '', weight: '380 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)', img: 'jasmin_menu/shokoladniy_sheyk.webp' },
+        { name: 'ШОКОЛАДНЫЙ ШЕЙК', desc: '', weight: '380 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)', img: 'jasmin_menu/shokoladniy_sheyk.webp' },
         { name: 'ЯГОДНЫЙ ШЕЙК', desc: '', weight: '400 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)', img: 'jasmin_menu/yagodniy_sheyk.webp' },
         { name: 'КЛУБНИКА БАНАН ШЕЙК', desc: '', weight: '560 г', price: 50000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)', img: 'jasmin_menu/klubnika_banan_sheyk.webp' },
         { name: 'БАНАН ШОКОЛАД ШЕЙК', desc: '', weight: '357 г', price: 35000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)', img: 'jasmin_menu/banan_shokolad_sheyk.webp' },
@@ -2926,7 +2924,7 @@
         { name: 'КЕТЧУП', desc: '', weight: '30 г', price: 3000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)', img: 'jasmin_menu/ketchup_sous.webp' },
         { name: 'МАЙОНЕЗ', desc: '', weight: '30 г', price: 3000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)', img: 'jasmin_menu/mayones_sous.webp' },
         { name: 'СОУС ТОМАТНЫЙ', desc: '', weight: '30 г', price: 3000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)', img: 'jasmin_menu/tomatniy_sous.webp' },
-        { name: 'СОУС ЧИЛИ АЧЧИК', desc: '', weight: '1000 г', price: 3000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)', img: 'jasmin_menu/achchik_chili_sous.webp' },
+        { name: 'СОУС ЧИЛИ АЧЧИК', desc: '', weight: '', price: 3000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)', img: 'jasmin_menu/achchik_chili_sous.webp' },
       ],
       gelato: [
         { name: 'G БАУНТИ', desc: '', weight: '60 г', price: 10000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)', img: 'jasmin_menu/g_baunti.webp' },
@@ -2962,7 +2960,7 @@
       hot: [
         { name: 'КЕБАБЧИКИ ИЗ КУРИЦЫ ИГОВЯДИНЫ', desc: '', weight: '529 г', price: 50000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)', img: 'jasmin_menu/kebabchiki_iz_kuritsi_govadini.webp' },
         { name: 'КОЗОН КЕБАБ', desc: '', weight: '516 г', price: 77000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)', img: 'jasmin_menu/kozon_kebab.webp' },
-        { name: 'ТЕФТЕЛИ С КАРТОФИЛЬНЕЙ ПЮРЕ', desc: '', weight: '509 г', price: 55000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)', img: 'jasmin_menu/tefteli_s_kortofelnoy_pyure.webp' },
+        { name: 'ТЕФТЕЛИ С КАРТОФЕЛЬНЫМ ПЮРЕ', desc: '', weight: '509 г', price: 55000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)', img: 'jasmin_menu/tefteli_s_kortofelnoy_pyure.webp' },
         { name: 'САЙ С БАРАНИНОЙ', desc: '', weight: '407 г', price: 70000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)', img: 'jasmin_menu/say_s_baraninoy.webp' },
         { name: 'КОФТЕ С СЫРОМ', desc: '', weight: '487 г', price: 60000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
         { name: 'ФРИ', desc: '', weight: '137 г', price: 15000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)', img: 'jasmin_menu/fri_jasmin.webp' },
@@ -2982,16 +2980,16 @@
         { name: 'ГЛЯСЕ', desc: '', weight: '100 г', price: 18000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)', img: 'jasmin_menu/glyase.webp' },
         { name: 'АМЕРИКАНО ДАБЛ', desc: '', weight: '308 г', price: 21000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
         { name: 'КАПУЧИНО', desc: '', weight: '262 г', price: 20000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)', img: 'jasmin_menu/kapuchino_jasmin.webp' },
-        { name: 'КАПУЧИНО ДАБЛ', desc: '', weight: '1000 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)', img: 'jasmin_menu/kapuchino_dabl.webp' },
+        { name: 'КАПУЧИНО ДАБЛ', desc: '', weight: '', price: 25000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)', img: 'jasmin_menu/kapuchino_dabl.webp' },
         { name: 'РАФ', desc: '', weight: '210 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)', img: 'jasmin_menu/raf.webp' },
-        { name: 'ЭСПРЕССО ДАБЛ', desc: '', weight: '1000 г', price: 17000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
+        { name: 'ЭСПРЕССО ДАБЛ', desc: '', weight: '', price: 17000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
         { name: 'АЙС ЛАТТЕ', desc: '', weight: '410 г', price: 20000, badge: null, bg: 'linear-gradient(160deg,#1A2A10,#2C4A1A)', img: 'jasmin_menu/ice_latte.webp' },
-        { name: 'ФРАПУЧИНО', desc: '', weight: '1000 г', price: 28000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
+        { name: 'ФРАПУЧИНО', desc: '', weight: '', price: 28000, badge: null, bg: 'linear-gradient(160deg,#2A1A0A,#3D2810)' },
         { name: 'РАФ С СВЕЖИЙ КЛУБНИКАМИ', desc: '', weight: '222 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#1A2A08,#243D10)', img: 'jasmin_menu/raf_svejiy_s_klubnikami.webp' },
         { name: 'РАФ МЕДОВЫЙ', desc: '', weight: '210 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)', img: 'jasmin_menu/raf_medoviy.webp' },
         { name: 'АЙС КАПУЧИНО', desc: '', weight: '430 г', price: 20000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)', img: 'jasmin_menu/ice_kapuchino.webp' },
         { name: 'ФЛЭТ УАЙТ', desc: '', weight: '298 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
-        { name: 'ДОП СИРОПЫ НА ВЫБОР', desc: '', weight: '1000 г', price: 7000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
+        { name: 'ДОП СИРОПЫ НА ВЫБОР', desc: '', weight: '', price: 7000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
         { name: 'ЭСПРЕССО', desc: '', weight: '266 г', price: 14000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
         { name: 'МОККО', desc: '', weight: '210 г', price: 25000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
         { name: 'КАКАО', desc: '', weight: '166 г', price: 30000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
@@ -3006,7 +3004,7 @@
         { name: 'COCA COLA 1', desc: '', weight: '', price: 15000, badge: null, bg: 'linear-gradient(160deg,#3D2010,#5A3018)' },
         { name: 'FANTA 1', desc: '', weight: '', price: 15000, badge: null, bg: 'linear-gradient(160deg,#2A1608,#3D2010)' },
         { name: 'СОК СОЧНАЯ ДОЛИНА 200гр', desc: '', weight: '', price: 5000, badge: null, bg: 'linear-gradient(160deg,#1A1206,#2C1E0A)' },
-        { name: 'SPRITE 1', desc: '', weight: '1000 г', price: 15000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
+        { name: 'SPRITE 1', desc: '', weight: '', price: 15000, badge: null, bg: 'linear-gradient(160deg,#2C1A0E,#1A0A04)' },
         { name: 'FANTA 0.5', desc: '', weight: '', price: 10000, badge: null, bg: 'linear-gradient(160deg,#3D1A08,#5A2A12)' },
         { name: 'NESTLE SANTAL 1.5', desc: '', weight: '', price: 8000, badge: null, bg: 'linear-gradient(160deg,#4A2010,#6B3018)' },
         { name: 'SPRITE 0.5', desc: '', weight: '', price: 10000, badge: null, bg: 'linear-gradient(160deg,#1E0A04,#2C1208)' },
@@ -3059,13 +3057,6 @@
       leaf: `<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,239,217,0.3)" stroke-width="1"><path d="M2 22c0 0 6-10 18-10 0 8-6 10-18 10z"/><path d="M2 22L12 12"/></svg>`,
       star: `<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(247,170,79,0.3)" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`,
     };
-
-    function getIcon(bg) {
-      if (bg.includes('1A2A10') || bg.includes('0A1A06')) return ICONS.leaf;
-      if (bg.includes('1A1A2A') || bg.includes('4A1828')) return ICONS.dessert;
-      if (bg.includes('НОВИНКА') || true) return ICONS.star;
-      return ICONS.coffee;
-    }
 
     function formatWeight(w) {
       if (!w || typeof w !== 'string') return w || '';

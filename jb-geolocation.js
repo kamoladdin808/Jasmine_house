@@ -122,7 +122,10 @@
       encodeURIComponent(lng);
     fetch(q, {
       method: 'GET',
-      headers: { 'Accept-Language': 'ru,uz,en' },
+      headers: {
+        'Accept-Language': 'ru,uz,en',
+        'User-Agent': 'JasminHouse/1.0 (contact@jasminhouse.uz)'
+      },
       mode: 'cors',
     })
       .then(function (r) {
