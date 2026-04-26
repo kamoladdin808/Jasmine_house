@@ -683,7 +683,8 @@
       "weight": "740 г",
       "price": 10000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#3D2010,#5A3018)"
+      "bg": "linear-gradient(160deg,#3D2010,#5A3018)",
+      "img": "jasmin_menu/jasmin_chay.webp"
     },
     {
       "name": "ЧАЙ С ЛИМОНОМ ЧЁРНЫМ 0,5",
@@ -691,7 +692,8 @@
       "weight": "435 г",
       "price": 9000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#2A1608,#3D2010)"
+      "bg": "linear-gradient(160deg,#2A1608,#3D2010)",
+      "img": "jasmin_menu/chay_chorniy_s_lemonom.webp"
     },
     {
       "name": "ЧАЙ ЧЁРНЫЙ",
@@ -699,7 +701,8 @@
       "weight": "740 г",
       "price": 8000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#1A1206,#2C1E0A)"
+      "bg": "linear-gradient(160deg,#1A1206,#2C1E0A)",
+      "img": "jasmin_menu/chay_chorniy.webp"
     },
     {
       "name": "ДОБАВКА К ЧАЙ",
@@ -715,7 +718,8 @@
       "weight": "122 г",
       "price": 2000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#3D1A08,#5A2A12)"
+      "bg": "linear-gradient(160deg,#3D1A08,#5A2A12)",
+      "img": "jasmin_menu/chay_bardak_1st.webp"
     },
     {
       "name": "ЧАЙ БАРДАК ЧАЙНИК",
@@ -723,7 +727,8 @@
       "weight": "3090 г",
       "price": 20000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#4A2010,#6B3018)"
+      "bg": "linear-gradient(160deg,#4A2010,#6B3018)",
+      "img": "jasmin_menu/bardak_chay_chaynik.webp"
     },
     {
       "name": "ЧАЙ ЗЕЛЁНЫЙ",
@@ -731,7 +736,8 @@
       "weight": "740 г",
       "price": 8000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#1E0A04,#2C1208)"
+      "bg": "linear-gradient(160deg,#1E0A04,#2C1208)",
+      "img": "jasmin_menu/chay_zeleniy.webp"
     },
     {
       "name": "ЧАЙ ЧЁРНЫЙ 0,5",
@@ -739,7 +745,8 @@
       "weight": "360 г",
       "price": 4000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#1A2A10,#2C4A1A)"
+      "bg": "linear-gradient(160deg,#1A2A10,#2C4A1A)",
+      "img": "jasmin_menu/chay_chorniy.webp"
     },
     {
       "name": "ЧАЙ С ЛИМОНОМ ЧЁРНЫМ",
@@ -747,7 +754,8 @@
       "weight": "870 г",
       "price": 17000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#2A1A0A,#3D2810)"
+      "bg": "linear-gradient(160deg,#2A1A0A,#3D2810)",
+      "img": "jasmin_menu/chay_chorniy_s_lemonom.webp"
     },
     {
       "name": "ЧАЙ С ЛИМОНОМ ЗЕЛЁНЫЙ 0,5",
@@ -755,7 +763,8 @@
       "weight": "430 г",
       "price": 8000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#1A2A08,#243D10)"
+      "bg": "linear-gradient(160deg,#1A2A08,#243D10)",
+      "img": "jasmin_menu/zeleniy_lemon.webp"
     },
     {
       "name": "ЧАЙ ЗЕЛЁНЫЙ 0,5",
@@ -763,7 +772,8 @@
       "weight": "360 г",
       "price": 4000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#3D2010,#5A3018)"
+      "bg": "linear-gradient(160deg,#3D2010,#5A3018)",
+      "img": "jasmin_menu/chay_zeleniy.webp"
     },
     {
       "name": "ЧАЙ С ЛИМОНОМ ЗЕЛЁНЫЙ",
@@ -771,7 +781,8 @@
       "weight": "870 г",
       "price": 15000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#2A1608,#3D2010)"
+      "bg": "linear-gradient(160deg,#2A1608,#3D2010)",
+      "img": "jasmin_menu/zeleniy_lemon.webp"
     }
   ],
   "smoothie": [
@@ -1260,12 +1271,13 @@
       "img": "jasmin_menu/say_s_baraninoy.webp"
     },
     {
-      "name": "КОФТЕ С СЫРОМ",
+      "name": "КЕФТЕ С СЫРОМ",
       "desc": "",
       "weight": "487 г",
       "price": 60000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#2A1608,#3D2010)"
+      "bg": "linear-gradient(160deg,#2A1608,#3D2010)",
+      "img": "jasmin_menu/kefte_s_sirom.webp"
     },
     {
       "name": "ФРИ",
@@ -1295,7 +1307,7 @@
       "img": "jasmin_menu/say_s_baraninoy.webp"
     },
     {
-      "name": "КОФТЕ",
+      "name": "КЕФТЕ",
       "desc": "",
       "weight": "360 г",
       "price": 50000,
@@ -1313,12 +1325,13 @@
       "img": "jasmin_menu/aydaxo_jasmin.webp"
     },
     {
-      "name": "САЙ С КУРИЦОЙ",
+      "name": "САЙ С КУРИЦЕЙ",
       "desc": "",
       "weight": "511 г",
       "price": 38000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#1A2A10,#2C4A1A)"
+      "bg": "linear-gradient(160deg,#1A2A10,#2C4A1A)",
+      "img": "jasmin_menu/say_s_kuritsey.webp"
     },
     {
       "name": "КАРТОФЕЛЬНОЕ ПЮРЕ",
@@ -1426,7 +1439,8 @@
       "weight": "1000 г",
       "price": 17000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#1E0A04,#2C1208)"
+      "bg": "linear-gradient(160deg,#1E0A04,#2C1208)",
+      "img": "jasmin_menu/espresso_dabl.webp"
     },
     {
       "name": "АЙС ЛАТТЕ",
@@ -1443,7 +1457,8 @@
       "weight": "1000 г",
       "price": 28000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#2A1A0A,#3D2810)"
+      "bg": "linear-gradient(160deg,#2A1A0A,#3D2810)",
+      "img": "jasmin_menu/frapuchino.webp"
     },
     {
       "name": "РАФ С СВЕЖИЙ КЛУБНИКАМИ",
@@ -1494,7 +1509,8 @@
       "weight": "266 г",
       "price": 14000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#3D1A08,#5A2A12)"
+      "bg": "linear-gradient(160deg,#3D1A08,#5A2A12)",
+      "img": "jasmin_menu/espresso.webp"
     },
     {
       "name": "МОККО",
@@ -1502,7 +1518,8 @@
       "weight": "210 г",
       "price": 25000,
       "badge": null,
-      "bg": "linear-gradient(160deg,#4A2010,#6B3018)"
+      "bg": "linear-gradient(160deg,#4A2010,#6B3018)",
+      "img": "jasmin_menu/mokko.webp"
     },
     {
       "name": "КАКАО",

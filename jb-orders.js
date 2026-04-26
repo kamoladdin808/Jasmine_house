@@ -1,80 +1,64 @@
 /**
- * Демо-очередь заказов (localStorage) — общая для menu.html и staff.html, пока нет бэка.
+ * Заказы через API бэка Jasmin.
  */
 (function (global) {
   'use strict';
 
-  var KEY = 'jh_demo_orders';
   var EVT = 'jh_orders_updated';
-
-  function load() {
-    try {
-      var raw = localStorage.getItem(KEY);
-      var arr = raw ? JSON.parse(raw) : [];
-      return Array.isArray(arr) ? arr : [];
-    } catch (e) {
-      return [];
-    }
-  }
-
-  function save(orders) {
-    try {
-      localStorage.setItem(KEY, JSON.stringify(orders));
-    } catch (e) {}
-    try {
-      global.dispatchEvent(new Event(EVT));
-    } catch (e2) {}
-  }
-
-  function nextId() {
-    var orders = load();
-    var max = 1000;
-    for (var i = 0; i < orders.length; i++) {
-      var id = Number(orders[i].id);
-      if (!isNaN(id) && id > max) max = id;
-    }
-    return max + 1;
-  }
 
   /**
    * @param {object} payload — items[], total, currencyLabel, customerName, phone, address
    */
   function addOrder(payload) {
-    var orders = load();
-    var row = {
-      id: nextId(),
-      status: 'new',
-      createdAt: Date.now(),
-      items: payload.items || [],
-      total: payload.total || 0,
-      currencyLabel: payload.currencyLabel || '',
-      customerName: String(payload.customerName || '').trim(),
-      phone: String(payload.phone || '').trim(),
-      address: String(payload.address || '').trim(),
-    };
-    orders.unshift(row);
-    save(orders);
-    return row.id;
+    if (!global.JBAuth || !global.JBAuth.getApiBase || !global.JBAuth.getApiBase()) {
+      return Promise.reject(new Error('no_api_base'));
+    }
+    var url = global.JBAuth.apiUrl('/orders');
+    return fetch(url, {
+      method: 'POST',
+      headers: Object.assign({ 'Content-Type': 'application/json' }, global.JBAuth.authHeaders()),
+      body: JSON.stringify(payload || {}),
+    })
+      .then(function (res) {
+        if (!res.ok) {
+          return res.text().then(function (t) {
+            throw new Error(t || 'order_failed');
+          });
+        }
+        return res.json();
+      })
+      .then(function (data) {
+        try {
+          global.dispatchEvent(new Event(EVT));
+        } catch (e) {}
+        return data;
+      });
   }
 
   function updateStatus(id, status) {
-    var orders = load();
-    var n = Number(id);
-    for (var i = 0; i < orders.length; i++) {
-      if (Number(orders[i].id) === n) {
-        orders[i].status = status;
-        save(orders);
-        return true;
-      }
+    if (!global.JBAuth || !global.JBAuth.getApiBase || !global.JBAuth.getApiBase()) {
+      return Promise.reject(new Error('no_api_base'));
     }
-    return false;
+    var url = global.JBAuth.apiUrl('/orders/' + encodeURIComponent(String(id)) + '/status');
+    return fetch(url, {
+      method: 'POST',
+      headers: Object.assign({ 'Content-Type': 'application/json' }, global.JBAuth.authHeaders()),
+      body: JSON.stringify({ status: status }),
+    }).then(function (res) {
+      if (!res.ok) {
+        return res.text().then(function (t) {
+          throw new Error(t || 'order_status_failed');
+        });
+      }
+      try {
+        global.dispatchEvent(new Event(EVT));
+      } catch (e) {}
+      return true;
+    });
   }
 
   global.JBOrders = {
-    KEY: KEY,
     EVENT: EVT,
-    load: load,
-    save: save,
     addOrder: addOrder,
     updateStatus: updateStatus,
   };

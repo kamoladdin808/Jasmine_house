@@ -8,8 +8,7 @@
   <title>Jasmin Bakery — Staff</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;1,400&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
   <style>
     :root {
       --void: #0D0303;
@@ -31,12 +30,21 @@
       background: var(--void);
       color: var(--cream);
       min-height: 100vh;
-      padding: 32px 20px;
+      padding: 26px 18px;
     }
 
     .wrap {
-      max-width: 640px;
+      max-width: 860px;
       margin: 0 auto;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
     }
 
     a.back {
@@ -48,7 +56,6 @@
       font-size: 12px;
       letter-spacing: .08em;
       text-transform: uppercase;
-      margin-bottom: 28px;
     }
 
     a.back:hover {
@@ -58,7 +65,7 @@
     h1 {
       font-size: 22px;
       font-weight: 600;
-      margin-bottom: 12px;
+      margin-bottom: 8px;
     }
 
     h1 em {
@@ -67,18 +74,18 @@
     }
 
     p.lead {
-      font-size: 14px;
+      font-size: 13px;
       line-height: 1.65;
       color: rgba(255, 239, 217, .72);
-      margin-bottom: 20px;
+      margin-bottom: 14px;
     }
 
     .banner {
-      padding: 14px 16px;
+      padding: 12px 14px;
       border-radius: 4px;
       font-size: 13px;
       line-height: 1.5;
-      margin-bottom: 20px;
+      margin-bottom: 14px;
     }
 
     .banner.warn {
@@ -93,28 +100,67 @@
       color: rgba(255, 239, 217, .88);
     }
 
-    .fineprint {
-      font-size: 12px;
-      color: rgba(255, 239, 217, .38);
-      margin-top: 24px;
+    .controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin: 16px 0 12px;
     }
 
-    .stub-block {
-      display: none;
-      margin-top: 8px;
+    .filters {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
     }
 
-    .stub-block.visible {
-      display: block;
-    }
-
-    .stub-block h2 {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: .2em;
+    .fbtn {
+      border: 1px solid rgba(247, 170, 79, .22);
+      background: rgba(247, 170, 79, .08);
+      color: rgba(255, 239, 217, .8);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .14em;
       text-transform: uppercase;
-      color: rgba(247, 170, 79, .65);
-      margin-bottom: 14px;
+      padding: 9px 12px;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    .fbtn:hover {
+      background: rgba(247, 170, 79, .14);
+      color: var(--gold);
+    }
+
+    .fbtn.active {
+      background: linear-gradient(135deg, rgba(247, 170, 79, .9), rgba(247, 170, 79, .55));
+      color: var(--void);
+      border-color: transparent;
+    }
+
+    .logout {
+      border: 1px solid rgba(255, 239, 217, .14);
+      background: rgba(255, 239, 217, .06);
+      color: rgba(255, 239, 217, .78);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      padding: 9px 12px;
+      border-radius: 3px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .logout:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: rgba(247, 170, 79, .08);
+    }
+
+    .list {
+      margin-top: 10px;
     }
 
     .order-card {
@@ -129,13 +175,15 @@
       display: flex;
       justify-content: space-between;
       align-items: baseline;
+      gap: 10px;
       margin-bottom: 8px;
     }
 
     .order-card .id {
-      font-weight: 600;
+      font-weight: 700;
       color: var(--gold);
       font-size: 13px;
+      letter-spacing: .04em;
     }
 
     .order-card .st {
@@ -143,44 +191,20 @@
       letter-spacing: .12em;
       text-transform: uppercase;
       color: rgba(255, 239, 217, .45);
+      white-space: nowrap;
     }
 
-    .order-card .meta {
+    .meta {
       font-size: 12px;
       color: rgba(255, 239, 217, .55);
-      line-height: 1.5;
-    }
-
-    .stub-actions {
-      display: flex;
-      gap: 8px;
-      margin-top: 10px;
-      flex-wrap: wrap;
-    }
-
-    .stub-actions button {
-      font-family: inherit;
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      padding: 8px 12px;
-      border: 1px solid rgba(247, 170, 79, .25);
-      background: rgba(247, 170, 79, .1);
-      color: var(--gold);
-      cursor: pointer;
-      border-radius: 2px;
-    }
-
-    .stub-actions button:hover {
-      background: rgba(247, 170, 79, .18);
+      line-height: 1.55;
     }
 
     .order-lines {
       font-size: 12px;
       line-height: 1.5;
       color: rgba(255, 239, 217, .55);
-      margin: 8px 0;
+      margin: 10px 0 8px;
       padding-left: 0;
       list-style: none;
     }
@@ -189,76 +213,110 @@
       padding: 2px 0;
     }
 
-    .stub-actions button:not(:disabled) {
-      cursor: pointer;
+    .actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+      flex-wrap: wrap;
     }
 
-    .stub-actions button:disabled {
+    .actions button {
+      font-family: inherit;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      padding: 9px 12px;
+      border: 1px solid rgba(247, 170, 79, .25);
+      background: rgba(247, 170, 79, .1);
+      color: var(--gold);
+      cursor: pointer;
+      border-radius: 2px;
+    }
+
+    .actions button:hover {
+      background: rgba(247, 170, 79, .18);
+    }
+
+    .actions button:disabled {
       opacity: .35;
       cursor: default;
     }
+
+    @media(max-width:520px) {
+      body {
+        padding: 20px 14px;
+      }
+
+      .order-card {
+        padding: 12px 12px;
+      }
+    }
   </style>
-  <script src="jb-config.js"></script>
-  <script src="jb-auth.js"></script>
-  <script src="jb-orders.js"></script>
 </head>
 
 <body>
   <div class="wrap">
-    <a class="back" href="menu.html">← Меню</a>
+    <div class="topbar">
+      <a class="back" href="menu.html">← Меню</a>
+      <button type="button" class="logout" id="jbLogoutBtn">Выйти</button>
+    </div>
+
     <h1>Панель <em>персонала</em></h1>
-    <p class="lead">Режим <strong style="color:var(--gold)">показа</strong>: без сервера и базы. Заказы из меню
-      подгружаются из памяти браузера; кнопки статусов — только для демонстрации сценария.</p>
+    <p class="lead">Доступ только для персонала. Заказы загружаются с сервера.</p>
 
-    <div class="banner" id="jbStaffBanner" role="status">…</div>
+    <div class="banner" id="jbBanner" role="status">Загрузка…</div>
 
-    <section class="stub-block visible" id="jbLiveOrdersBlock" aria-label="Заказы с меню">
-      <h2>Заказы с сайта</h2>
-      <p class="lead" style="font-size:12px;margin-top:-8px;margin-bottom:14px">Сохраняются в браузере (localStorage)
-        — демо, пока нет бэка.</p>
-      <div id="jbLiveOrdersList"></div>
-    </section>
-
-    <section class="stub-block" id="jbDemoSamples" aria-label="Примеры вёрстки">
-      <h2>Примеры статусов</h2>
-      <div class="order-card">
-        <div class="top">
-          <span class="id">#1001</span>
-          <span class="st">Новый</span>
-        </div>
-        <div class="meta">Пример карточки</div>
-        <div class="stub-actions">
-          <button type="button" disabled>Демо</button>
-        </div>
+    <div class="controls" aria-label="Фильтры">
+      <div class="filters" id="jbFilters">
+        <button type="button" class="fbtn" data-st="all">Все</button>
+        <button type="button" class="fbtn" data-st="new">Новые</button>
+        <button type="button" class="fbtn" data-st="preparing">Готовятся</button>
+        <button type="button" class="fbtn" data-st="delivery">В пути</button>
+        <button type="button" class="fbtn" data-st="done">Выполнены</button>
       </div>
-      <div class="order-card">
-        <div class="top">
-          <span class="id">#1002</span>
-          <span class="st">Готовится</span>
-        </div>
-        <div class="meta">Пример</div>
-        <div class="stub-actions">
-          <button type="button" disabled>Демо</button>
-        </div>
-      </div>
-      <div class="order-card">
-        <div class="top">
-          <span class="id">#1003</span>
-          <span class="st">В пути</span>
-        </div>
-        <div class="meta">Пример</div>
-        <div class="stub-actions">
-          <button type="button" disabled>Демо</button>
-        </div>
-      </div>
-    </section>
+    </div>
 
-    <p class="fineprint">Для реального запуска отключите <code style="font-size:11px;color:var(--gold)">JB_PRESENTATION_MODE</code>
-      в jb-config.js и подключите API. В демо роли и заказы нельзя считать защитой.</p>
+    <div class="list" id="jbOrders"></div>
   </div>
+
   <script>
     (function () {
-      var ST = { new: 'Новый', preparing: 'Готовится', delivery: 'В пути', done: 'Выполнен' };
+      'use strict';
+
+      var API_BASE = ''; // сюда вставить URL бэкенда
+      var TOKEN_KEY = 'jh_jwt';
+      var STAFF_ROLES = ['admin', 'manager', 'kitchen', 'staff', 'courier'];
+
+      var POLL_MS = 30000;
+      var timer = null;
+
+      var banner = document.getElementById('jbBanner');
+      var listEl = document.getElementById('jbOrders');
+      var logoutBtn = document.getElementById('jbLogoutBtn');
+      var filtersEl = document.getElementById('jbFilters');
+
+      var activeFilter = 'default';
+      var cache = [];
+
+      function apiUrl(path) {
+        var base = String(API_BASE || '').replace(/\/$/, '');
+        if (!base) return path;
+        if (path.charAt(0) !== '/') path = '/' + path;
+        return base + path;
+      }
+
+      function setBannerOk(text) {
+        if (!banner) return;
+        banner.className = 'banner ok';
+        banner.textContent = text;
+      }
+
+      function setBannerWarn(text) {
+        if (!banner) return;
+        banner.className = 'banner warn';
+        banner.textContent = text;
+      }
 
       function esc(s) {
         return String(s == null ? '' : s)
@@ -267,136 +325,335 @@
           .replace(/"/g, '&quot;');
       }
 
-      function renderLiveOrders() {
-        var list = JBOrders.load();
-        var host = document.getElementById('jbLiveOrdersList');
-        var samples = document.getElementById('jbDemoSamples');
-        if (!host) return;
-
-        if (!list.length) {
-          host.innerHTML =
-            '<p style="font-size:13px;color:rgba(255,239,217,.45);line-height:1.5">Пока пусто. В меню добавьте товары в корзину и нажмите «Оформить заказ» — заказ сразу появится здесь.</p>';
-        } else {
-          host.innerHTML = list
-            .map(function (o) {
-              var lines = (o.items || [])
-                .map(function (it) {
-                  return (
-                    '<li>' +
-                    esc(it.name) +
-                    ' × ' +
-                    esc(it.qty) +
-                    ' — ' +
-                    Number(it.price * it.qty).toLocaleString('ru') +
-                    ' ' +
-                    esc(o.currencyLabel || '') +
-                    '</li>'
-                  );
-                })
-                .join('');
-              var nextBtns = '';
-              if (o.status === 'new') {
-                nextBtns =
-                  '<button type="button" class="jb-next-st" data-id="' +
-                  o.id +
-                  '" data-next="preparing">Принять в работу</button>';
-              } else if (o.status === 'preparing') {
-                nextBtns =
-                  '<button type="button" class="jb-next-st" data-id="' +
-                  o.id +
-                  '" data-next="delivery">В доставку</button>';
-              } else if (o.status === 'delivery') {
-                nextBtns =
-                  '<button type="button" class="jb-next-st" data-id="' +
-                  o.id +
-                  '" data-next="done">Выполнен</button>';
-              }
-              return (
-                '<div class="order-card" data-order-id="' +
-                esc(o.id) +
-                '"><div class="top"><span class="id">#' +
-                esc(o.id) +
-                '</span><span class="st">' +
-                esc(ST[o.status] || o.status) +
-                '</span></div><div class="meta">' +
-                esc(o.customerName) +
-                ' · ' +
-                esc(o.phone) +
-                (o.address ? '<br>' + esc(o.address) : '') +
-                '</div><ul class="order-lines">' +
-                lines +
-                '</ul><div class="meta">Итого: ' +
-                Number(o.total).toLocaleString('ru') +
-                ' ' +
-                esc(o.currencyLabel || '') +
-                '</div><div class="stub-actions">' +
-                nextBtns +
-                '</div></div>'
-              );
-            })
-            .join('');
+      function getToken() {
+        try {
+          return localStorage.getItem(TOKEN_KEY) || '';
+        } catch (e) {
+          return '';
         }
+      }
 
-        if (samples) {
-          samples.style.display =
-            JBAuth.usesAuthStub() && !list.length ? 'block' : 'none';
+      function clearToken() {
+        try {
+          localStorage.removeItem(TOKEN_KEY);
+        } catch (e) { }
+      }
+
+      function parseJwtPayload(token) {
+        if (!token || typeof token !== 'string') return null;
+        var parts = token.split('.');
+        if (parts.length < 2) return null;
+        try {
+          var s = parts[1].replace(/-/g, '+').replace(/_/g, '/');
+          while (s.length % 4) s += '=';
+          var json = decodeURIComponent(
+            Array.prototype.map
+              .call(atob(s), function (c) {
+                return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+              })
+              .join('')
+          );
+          return JSON.parse(json);
+        } catch (e) {
+          return null;
         }
+      }
 
-        host.onclick = function (e) {
-          var btn = e.target.closest('.jb-next-st');
-          if (!btn) return;
-          var id = Number(btn.getAttribute('data-id'));
-          var next = btn.getAttribute('data-next');
-          if (id && next) {
-            JBOrders.updateStatus(id, next);
-            renderLiveOrders();
+      function normalizeRoles(payload) {
+        if (!payload) return [];
+        var r = payload.roles;
+        if (typeof r === 'string') {
+          return r
+            .split(',')
+            .map(function (x) { return x.trim(); })
+            .filter(Boolean);
+        }
+        if (Array.isArray(r)) return r.map(String);
+        return [];
+      }
+
+      function hasAnyRole(roles, allow) {
+        if (!allow || !allow.length) return false;
+        for (var i = 0; i < allow.length; i++) {
+          if (roles.indexOf(allow[i]) !== -1) return true;
+        }
+        return false;
+      }
+
+      function redirectToMenu() {
+        location.href = 'menu.html';
+      }
+
+      function ensureAccess() {
+        var t = getToken();
+        if (!t) return false;
+        var p = parseJwtPayload(t);
+        if (!p) return false;
+        if (p.exp != null && Date.now() / 1000 > Number(p.exp)) return false;
+        var roles = normalizeRoles(p);
+        return hasAnyRole(roles, STAFF_ROLES);
+      }
+
+      function fmtDate(ts) {
+        var n = Number(ts);
+        if (!n) return '—';
+        try {
+          return new Date(n).toLocaleString('ru');
+        } catch (e) {
+          return '—';
+        }
+      }
+
+      function statusLabel(st) {
+        if (st === 'new') return 'Новый';
+        if (st === 'preparing') return 'Готовится';
+        if (st === 'delivery') return 'В пути';
+        if (st === 'done') return 'Выполнен';
+        return String(st || '—');
+      }
+
+      function itemLine(it, currency) {
+        var name = it && (it.name || it.title || it.product_name);
+        var qty = it && (it.qty || it.quantity || it.count);
+        var price = it && (it.price || it.unit_price);
+        var sum = 0;
+        try {
+          sum = Number(price || 0) * Number(qty || 0);
+        } catch (e) { }
+        return (
+          '<li>' +
+          esc(name) +
+          ' × ' +
+          esc(qty) +
+          ' — ' +
+          Number(sum || 0).toLocaleString('ru') +
+          (currency ? ' ' + esc(currency) : '') +
+          '</li>'
+        );
+      }
+
+      function nextActionForStatus(st) {
+        if (st === 'new') return { next: 'preparing', text: 'Принять в работу' };
+        if (st === 'preparing') return { next: 'delivery', text: 'В доставку' };
+        if (st === 'delivery') return { next: 'done', text: 'Выполнен' };
+        return null;
+      }
+
+      function renderOrders(list) {
+        if (!listEl) return;
+
+        var filtered = [];
+        for (var i = 0; i < list.length; i++) {
+          var o = list[i];
+          var st = (o && (o.status || o.state)) || '';
+
+          if (activeFilter === 'default') {
+            if (String(st) === 'done') continue;
+            filtered.push(o);
+            continue;
           }
+
+          if (activeFilter === 'all') {
+            filtered.push(o);
+            continue;
+          }
+
+          if (String(st) === String(activeFilter)) filtered.push(o);
+        }
+
+        if (!filtered.length) {
+          listEl.innerHTML =
+            '<p class="meta" style="padding:10px 2px">Пока нет заказов по выбранному фильтру.</p>';
+          return;
+        }
+
+        listEl.innerHTML = filtered
+          .map(function (o) {
+            var id = o && (o.id || o.order_id || o.number);
+            var st = (o && (o.status || o.state)) || '';
+            var created = o && (o.createdAt || o.created_at || o.created);
+            var customerName = o && (o.customerName || o.customer_name || (o.customer && o.customer.name));
+            var phone = o && (o.phone || o.customerPhone || o.customer_phone || (o.customer && o.customer.phone));
+            var address = o && (o.address || o.deliveryAddress || o.delivery_address);
+            var items = (o && (o.items || o.lines || o.positions)) || [];
+            var total = o && (o.total || o.amount || o.sum);
+            var currency = o && (o.currencyLabel || o.currency || o.currency_label);
+
+            var linesHtml = Array.isArray(items)
+              ? items.map(function (it) { return itemLine(it, currency); }).join('')
+              : '';
+
+            var next = nextActionForStatus(String(st));
+            var actionBtn = '';
+            if (next) {
+              actionBtn =
+                '<button type="button" class="jb-next" data-id="' + esc(id) + '" data-next="' + esc(next.next) + '">' +
+                esc(next.text) +
+                '</button>';
+            }
+
+            return (
+              '<div class="order-card" data-order-id="' + esc(id) + '">' +
+              '<div class="top">' +
+              '<span class="id">#' + esc(id) + '</span>' +
+              '<span class="st">' + esc(statusLabel(String(st))) + '</span>' +
+              '</div>' +
+              '<div class="meta">' +
+              esc(customerName) +
+              (phone ? ' · ' + esc(phone) : '') +
+              (address ? '<br>' + esc(address) : '') +
+              '</div>' +
+              (linesHtml ? '<ul class="order-lines">' + linesHtml + '</ul>' : '') +
+              '<div class="meta">Итого: ' + Number(total || 0).toLocaleString('ru') + (currency ? ' ' + esc(currency) : '') + '</div>' +
+              '<div class="meta" style="margin-top:6px">Создан: ' + esc(fmtDate(created)) + '</div>' +
+              '<div class="actions">' + actionBtn + '</div>' +
+              '</div>'
+            );
+          })
+          .join('');
+      }
+
+      function fetchOrders() {
+        var t = getToken();
+        if (!t) {
+          setBannerWarn('Нет токена. Войдите в аккаунт.');
+          redirectToMenu();
+          return Promise.reject(new Error('no_token'));
+        }
+        if (!API_BASE) {
+          setBannerWarn('Не задан API_BASE. Укажите URL бэкенда в staff.html.');
+          return Promise.reject(new Error('no_api_base'));
+        }
+
+        return fetch(apiUrl('/orders'), {
+          method: 'GET',
+          headers: { Authorization: 'Bearer ' + t },
+        })
+          .then(function (res) {
+            if (!res.ok) {
+              return res.text().then(function (txt) {
+                throw new Error(txt || 'orders_failed');
+              });
+            }
+            return res.json();
+          })
+          .then(function (data) {
+            var arr = data;
+            if (data && Array.isArray(data.orders)) arr = data.orders;
+            if (data && Array.isArray(data.items)) arr = data.items;
+            if (!Array.isArray(arr)) arr = [];
+            cache = arr;
+            setBannerOk('Заказы: ' + String(arr.length));
+            renderOrders(cache);
+            return arr;
+          })
+          .catch(function (err) {
+            setBannerWarn('Ошибка загрузки заказов: ' + (err && err.message ? err.message : String(err)));
+            return [];
+          });
+      }
+
+      function patchStatus(id, nextStatus, btn) {
+        var t = getToken();
+        if (!t) {
+          redirectToMenu();
+          return;
+        }
+        if (!API_BASE) {
+          setBannerWarn('Не задан API_BASE.');
+          return;
+        }
+
+        if (btn) btn.disabled = true;
+
+        fetch(apiUrl('/orders/' + encodeURIComponent(String(id))), {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + t,
+          },
+          body: JSON.stringify({ status: nextStatus }),
+        })
+          .then(function (res) {
+            if (!res.ok) {
+              return res.text().then(function (txt) {
+                throw new Error(txt || 'status_failed');
+              });
+            }
+            return res.json();
+          })
+          .then(function () {
+            for (var i = 0; i < cache.length; i++) {
+              var o = cache[i];
+              var oid = o && (o.id || o.order_id || o.number);
+              if (String(oid) === String(id)) {
+                if (o.status != null) o.status = nextStatus;
+                else o.state = nextStatus;
+                break;
+              }
+            }
+            renderOrders(cache);
+            setBannerOk('Статус обновлён: #' + String(id) + ' → ' + statusLabel(nextStatus));
+          })
+          .catch(function (err) {
+            setBannerWarn('Ошибка обновления статуса: ' + (err && err.message ? err.message : String(err)));
+          })
+          .finally(function () {
+            if (btn) btn.disabled = false;
+          });
+      }
+
+      function setFilter(st) {
+        activeFilter = st;
+        if (filtersEl) {
+          var btns = filtersEl.querySelectorAll('.fbtn');
+          for (var i = 0; i < btns.length; i++) {
+            btns[i].classList.toggle('active', btns[i].getAttribute('data-st') === st);
+          }
+        }
+        renderOrders(cache);
+      }
+
+      function startPolling() {
+        if (timer) clearInterval(timer);
+        timer = setInterval(fetchOrders, POLL_MS);
+      }
+
+      if (!ensureAccess()) {
+        redirectToMenu();
+        return;
+      }
+
+      setFilter('default');
+      fetchOrders();
+      startPolling();
+
+      if (logoutBtn) {
+        logoutBtn.onclick = function () {
+          clearToken();
+          redirectToMenu();
         };
       }
 
-      var banner = document.getElementById('jbStaffBanner');
-
-      if (JBAuth.usesAuthStub()) {
-        banner.className = 'banner ok';
-        banner.textContent =
-          'Режим показа: роли не проверяются. Заказы из меню (оформить заказ) сразу видны в списке ниже — всё в браузере.';
-        renderLiveOrders();
-        window.addEventListener(JBOrders.EVENT, renderLiveOrders);
-        window.addEventListener('storage', function (e) {
-          if (e.key === JBOrders.KEY) renderLiveOrders();
-        });
-        return;
+      if (filtersEl) {
+        filtersEl.onclick = function (e) {
+          var btn = e.target.closest('.fbtn');
+          if (!btn) return;
+          var st = btn.getAttribute('data-st');
+          if (st) setFilter(st);
+        };
       }
 
-      var s = JBAuth.getSession();
-      if (!s) {
-        banner.className = 'banner warn';
-        banner.textContent = 'Войдите в аккаунт на странице меню (иконка пользователя).';
-        document.getElementById('jbLiveOrdersBlock').style.display = 'none';
-        return;
+      if (listEl) {
+        listEl.onclick = function (e) {
+          var btn = e.target.closest('.jb-next');
+          if (!btn) return;
+          var id = btn.getAttribute('data-id');
+          var next = btn.getAttribute('data-next');
+          if (!id || !next) return;
+          patchStatus(id, next, btn);
+        };
       }
-      if (!JBAuth.hasAnyRole(JBAuth.STAFF_ROLES)) {
-        banner.className = 'banner warn';
-        banner.textContent =
-          'Нет роли персонала (' +
-          JBAuth.STAFF_ROLES.join(', ') +
-          '). Назначение ролей — на сервере.';
-        document.getElementById('jbLiveOrdersBlock').style.display = 'none';
-        return;
-      }
-
-      banner.className = 'banner ok';
-      banner.textContent =
-        'Сессия: роли ' +
-        s.roles.join(', ') +
-        ' · id ' +
-        s.userId +
-        '. Ниже — демо-заказы из браузера; с API список заменится.';
-      renderLiveOrders();
-      window.addEventListener(JBOrders.EVENT, renderLiveOrders);
-      window.addEventListener('storage', function (e) {
-        if (e.key === JBOrders.KEY) renderLiveOrders();
-      });
     })();
   </script>
 </body>

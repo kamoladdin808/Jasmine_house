@@ -847,28 +847,9 @@
             }
         }
 
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            padding: 4px
-        }
-
-        .hamburger span {
-            display: block;
-            width: 24px;
-            height: 1px;
-            background: var(--cream);
-            transition: all .35s var(--ease-spring)
-        }
-
         @media(max-width:900px) {
             .nav-links {
                 display: none
-            }
-
-            .hamburger {
-                display: flex
             }
 
             #nav {
@@ -915,9 +896,6 @@
                 padding: 3px 5px
             }
 
-            .hamburger span {
-                width: 22px
-            }
         }
 
         @media(max-width:380px) {
@@ -948,13 +926,6 @@
                 gap: 1px
             }
 
-            .hamburger {
-                gap: 4px
-            }
-
-            .hamburger span {
-                width: 20px
-            }
         }
 
         @media(max-width:320px) {
@@ -978,69 +949,6 @@
             .lang-btn {
                 font-size: 8px;
                 padding: 2px 3px
-            }
-        }
-
-        /* mobile menu */
-        .mob-menu {
-            position: fixed;
-            inset: 0;
-            z-index: 490;
-            background: rgba(13, 3, 3, .96);
-            -webkit-backdrop-filter: blur(20px);
-            backdrop-filter: blur(20px);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 36px;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity .4s;
-        }
-
-        .mob-menu.open {
-            opacity: 1;
-            pointer-events: all
-        }
-
-        .mob-menu a {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 32px;
-            font-weight: 600;
-            color: rgba(255, 239, 217, .7);
-            letter-spacing: .04em;
-            transition: all .25s;
-            position: relative;
-        }
-
-        .mob-menu a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: var(--gold);
-            transform: scaleX(0);
-            transition: transform .3s
-        }
-
-        .mob-menu a:hover {
-            color: var(--gold)
-        }
-
-        .mob-menu a:hover::after {
-            transform: scaleX(1)
-        }
-
-        @media(max-width:480px) {
-            .mob-menu {
-                gap: 28px
-            }
-
-            .mob-menu a {
-                font-size: 24px
             }
         }
 
@@ -2571,8 +2479,7 @@
         }
     </style>
     <style>
-        /* Скрыть ленту «Показ» и бейдж геолокации — приоритет выше любых JS/классов */
-        #jbPresRibbon,
+        /* Скрыть бейдж геолокации — приоритет выше любых JS/классов */
         #promo {
             display: none !important;
         }
@@ -2582,8 +2489,6 @@
 </head>
 
 <body>
-    <div class="jb-pres-ribbon" id="jbPresRibbon" style="display:none !important" aria-hidden="true">Показ</div>
-
     <!-- LOADER -->
     <div id="loader">
         <div class="ld-curtain-l"></div>
@@ -2606,14 +2511,6 @@
             </div>
             <p class="ld-pct"><span id="ldPct">0</span> %</p>
         </div>
-    </div>
-
-    <!-- MOBILE MENU -->
-    <div class="mob-menu" id="mobMenu">
-        <a href="menu.html" onclick="closeMob()" data-i18n="nav_menu">Меню</a>
-        <a href="#about" onclick="closeMob()" data-i18n="nav_about">О нас</a>
-        <a href="#locations" onclick="closeMob()" data-i18n="nav_locations">Локации</a>
-        <a href="#atmosphere" onclick="closeMob()" data-i18n="ft_atm">Атмосфера</a>
     </div>
 
     <!-- NAV -->
@@ -2641,7 +2538,6 @@
                     <button class="lang-btn" data-lang="uz">UZ</button>
                     <button class="lang-btn" data-lang="en">EN</button>
                 </div>
-                <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
             </div>
         </div>
     </nav>
@@ -2974,15 +2870,6 @@
     </nav>
 
     <script>
-        (function jbPresRibbon() {
-            if (!window.JB_PRESENTATION_MODE) return;
-            const r = document.getElementById('jbPresRibbon');
-            if (r) {
-                r.style.display = 'block';
-                r.setAttribute('aria-hidden', 'false');
-            }
-        })();
-
         /* ═══════════════════════════════════
            NAVBAR
         ═══════════════════════════════════ */
@@ -2994,15 +2881,7 @@
                 scrollTicking = true;
             }
         }, { passive: true });
-        const ham = document.getElementById('hamburger'), mob = document.getElementById('mobMenu');
-        let mobOpen = false;
-        function closeMob() { mob.classList.remove('open'); mobOpen = false; ham.querySelector('span:nth-child(1)').style.transform = ''; ham.querySelector('span:nth-child(2)').style.opacity = '1'; ham.querySelector('span:nth-child(3)').style.transform = ''; }
-        ham.onclick = () => {
-            mobOpen = !mobOpen; mob.classList.toggle('open', mobOpen);
-            ham.querySelector('span:nth-child(1)').style.transform = mobOpen ? 'rotate(45deg) translateY(7px)' : '';
-            ham.querySelector('span:nth-child(2)').style.opacity = mobOpen ? '0' : '1';
-            ham.querySelector('span:nth-child(3)').style.transform = mobOpen ? 'rotate(-45deg) translateY(-7px)' : '';
-        };
+ 
 
         /* ═══════════════════════════════════
            PROMO
@@ -3423,4 +3302,5 @@
     </script>
 </body>
 
+</html>
 </html>

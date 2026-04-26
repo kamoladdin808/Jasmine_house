@@ -13,28 +13,6 @@
   /** Роли, при которых показываем ссылку «персонал» (подстройте под свой бэк). */
   var STAFF_ROLES = ['admin', 'manager', 'kitchen', 'staff', 'courier'];
 
-  function isStubMode() {
-    if (global.JB_PRESENTATION_MODE === true) return true;
-    if (global.JB_AUTH_STUB === false) return false;
-    try {
-      var v = localStorage.getItem(STUB_LS_KEY);
-      if (v === '0') return false;
-      if (v === '1') return true;
-    } catch (e) { }
-    return global.JB_AUTH_STUB !== false;
-  }
-
-  function setStubMode(on) {
-    try {
-      localStorage.setItem(STUB_LS_KEY, on ? '1' : '0');
-    } catch (e) { }
-  }
-
-  /** Демо-вход: явный stub ИЛИ нет базового URL (чтобы не требовать API). */
-  function usesAuthStub() {
-    return isStubMode() || !getApiBase();
-  }
-
   function getApiBase() {
     var fromLs = '';
     try {
@@ -66,41 +44,6 @@
     } catch (e) { }
   }
 
-  function utf8ToB64Url(str) {
-    return btoa(unescape(encodeURIComponent(str)))
-      .replace(/\+/g, '-')
-      .replace(/\//g, '_')
-      .replace(/=+$/g, '');
-  }
-
-  function cheapUserId(email) {
-    var s = String(email || 'guest');
-    var h = 0;
-    for (var i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) | 0;
-    return Math.abs(h) % 899999 + 1;
-  }
-
-  /** Для демо: подстроки в email → роли (только показ, не безопасность). */
-  function stubRolesForEmail(email) {
-    var e = String(email || '').toLowerCase();
-    if (e.indexOf('admin') !== -1) return ['admin', 'client'];
-    if (e.indexOf('manager') !== -1) return ['manager', 'client'];
-    if (e.indexOf('kitchen') !== -1) return ['kitchen', 'client'];
-    return ['client'];
-  }
-
-  function makeStubToken(email) {
-    var header = utf8ToB64Url(JSON.stringify({ alg: 'none', typ: 'JWT' }));
-    var payload = utf8ToB64Url(
-      JSON.stringify({
-        user_id: cheapUserId(email),
-        roles: stubRolesForEmail(email),
-        exp: Math.floor(Date.now() / 1000) + 86400 * 7,
-        stub: true,
-      })
-    );
-    return header + '.' + payload + '.stub';
-  }
 
   function parseJwtPayload(token) {
     if (!token || typeof token !== 'string') return null;
@@ -187,20 +130,7 @@
   }
 
   function login(email, password) {
-    if (usesAuthStub()) {
-      return new Promise(function (resolve, reject) {
-        if (!String(email || '').trim()) {
-          reject(new Error('login_failed'));
-          return;
-        }
-        if (!String(password || '').trim()) {
-          reject(new Error('login_failed'));
-          return;
-        }
-        setToken(makeStubToken(email.trim()));
-        resolve(getSession());
-      });
-    }
+    if (!getApiBase()) return Promise.reject(new Error('no_api_base'));
 
     return fetch(apiUrl('/auth/login'), {
       method: 'POST',
@@ -223,19 +153,7 @@
   }
 
   function register(payload) {
-    if (usesAuthStub()) {
-      return new Promise(function (resolve, reject) {
-        var email = String((payload && payload.email) || '').trim();
-        if (!email) {
-          reject(new Error('register_failed'));
-          return;
-        }
-        if (global.JB_PRESENTATION_MODE === true) {
-          setToken(makeStubToken(email));
-        }
-        resolve(true);
-      });
-    }
+    if (!getApiBase()) return Promise.reject(new Error('no_api_base'));
 
     return fetch(apiUrl('/auth/register'), {
       method: 'POST',
@@ -261,9 +179,6 @@
     API_KEY: API_KEY,
     STUB_LS_KEY: STUB_LS_KEY,
     STAFF_ROLES: STAFF_ROLES,
-    isStubMode: isStubMode,
-    setStubMode: setStubMode,
-    usesAuthStub: usesAuthStub,
     getApiBase: getApiBase,
     setApiBase: setApiBase,
     getToken: getToken,

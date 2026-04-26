@@ -5,14 +5,7 @@
  */
 (function (global) {
   'use strict';
-  global.JB_PRESENTATION_MODE = true;
-  global.JB_AUTH_STUB = true;
-  global.JB_BACKEND_LIVE = false;
-
-  if (global.JB_PRESENTATION_MODE) {
-    try {
-      localStorage.setItem('jh_auth_stub', '1');
-      localStorage.removeItem('jh_api_base');
-    } catch (e) {}
-  }
+  global.JB_PRESENTATION_MODE = false;
+  global.JB_AUTH_STUB = false;
+  global.JB_BACKEND_LIVE = true;
 })(typeof window !== 'undefined' ? window : this);
