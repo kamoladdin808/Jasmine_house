@@ -115,6 +115,10 @@
   }
 
   function reverseGeocode(lat, lng, cb) {
+    if (global.JB_GEO_REVERSE === false) {
+      cb(null);
+      return;
+    }
     var q =
       'https://nominatim.openstreetmap.org/reverse?format=jsonv2&addressdetails=1&zoom=18&lat=' +
       encodeURIComponent(lat) +
@@ -124,7 +128,6 @@
       method: 'GET',
       headers: {
         'Accept-Language': 'ru,uz,en',
-        'User-Agent': 'JasminHouse/1.0 (contact@jasminhouse.uz)'
       },
       mode: 'cors',
     })

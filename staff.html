@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; script-src 'self' 'unsafe-inline'; connect-src 'self'; form-action 'self'">
   <meta name="theme-color" content="#0D0303">
   <title>Jasmin Bakery — Staff</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -531,9 +532,7 @@
         })
           .then(function (res) {
             if (!res.ok) {
-              return res.text().then(function (txt) {
-                throw new Error(txt || 'orders_failed');
-              });
+              throw new Error('orders_failed');
             }
             return res.json();
           })
@@ -547,8 +546,8 @@
             renderOrders(cache);
             return arr;
           })
-          .catch(function (err) {
-            setBannerWarn('Ошибка загрузки заказов: ' + (err && err.message ? err.message : String(err)));
+          .catch(function () {
+            setBannerWarn('Ошибка загрузки заказов. Проверьте соединение и повторите ещё раз.');
             return [];
           });
       }
@@ -576,9 +575,7 @@
         })
           .then(function (res) {
             if (!res.ok) {
-              return res.text().then(function (txt) {
-                throw new Error(txt || 'status_failed');
-              });
+              throw new Error('status_failed');
             }
             return res.json();
           })
@@ -595,8 +592,8 @@
             renderOrders(cache);
             setBannerOk('Статус обновлён: #' + String(id) + ' → ' + statusLabel(nextStatus));
           })
-          .catch(function (err) {
-            setBannerWarn('Ошибка обновления статуса: ' + (err && err.message ? err.message : String(err)));
+          .catch(function () {
+            setBannerWarn('Ошибка обновления статуса. Повторите ещё раз.');
           })
           .finally(function () {
             if (btn) btn.disabled = false;
@@ -630,7 +627,17 @@
 
       if (logoutBtn) {
         logoutBtn.onclick = function () {
+          var t = getToken();
           clearToken();
+          if (t && API_BASE) {
+            try {
+              fetch(apiUrl('/auth/logout'), {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + t },
+                body: '{}',
+              }).catch(function () { });
+            } catch (e) { }
+          }
           redirectToMenu();
         };
       }

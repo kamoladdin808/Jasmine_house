@@ -7,26 +7,14 @@
   'use strict';
 
   var TOKEN_KEY = 'jh_jwt';
-  var API_KEY = 'jh_api_base';
   var STUB_LS_KEY = 'jh_auth_stub';
 
   /** Роли, при которых показываем ссылку «персонал» (подстройте под свой бэк). */
   var STAFF_ROLES = ['admin', 'manager', 'kitchen', 'staff', 'courier'];
 
   function getApiBase() {
-    var fromLs = '';
-    try {
-      fromLs = localStorage.getItem(API_KEY) || '';
-    } catch (e) { }
-    var b = (global.JB_API_BASE || fromLs || '').replace(/\/$/, '');
+    var b = (global.JB_API_BASE || '').replace(/\/$/, '');
     return b;
-  }
-
-  function setApiBase(url) {
-    try {
-      if (url) localStorage.setItem(API_KEY, String(url).replace(/\/$/, ''));
-      else localStorage.removeItem(API_KEY);
-    } catch (e) { }
   }
 
   function getToken() {
@@ -126,7 +114,17 @@
   }
 
   function logout() {
+    var t = getToken();
     setToken('');
+    if (!t) return;
+    if (!getApiBase()) return;
+    try {
+      fetch(apiUrl('/auth/logout'), {
+        method: 'POST',
+        headers: Object.assign({ 'Content-Type': 'application/json' }, authHeaders()),
+        body: '{}',
+      }).catch(function () { });
+    } catch (e) { }
   }
 
   function login(email, password) {
@@ -176,11 +174,9 @@
 
   global.JBAuth = {
     TOKEN_KEY: TOKEN_KEY,
-    API_KEY: API_KEY,
     STUB_LS_KEY: STUB_LS_KEY,
     STAFF_ROLES: STAFF_ROLES,
     getApiBase: getApiBase,
-    setApiBase: setApiBase,
     getToken: getToken,
     setToken: setToken,
     parseJwtPayload: parseJwtPayload,

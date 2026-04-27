@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; script-src 'self' 'unsafe-inline'; connect-src 'self'; form-action 'self'">
   <meta name="description" content="Меню Jasmin Bakery — кофе, чай, десерты, торты, выпечка, завтраки. Ургенч.">
   <meta name="theme-color" content="#0D0303">
   <title>Jasmin Bakery — Меню</title>
@@ -3335,6 +3336,9 @@
       const coPhone = document.getElementById('coPhone');
       const coAddr = document.getElementById('coAddr');
       const coGeoFill = document.getElementById('coGeoFill');
+      const coSubmitBtn = document.getElementById('coSubmit');
+
+      let isSubmitting = false;
 
       function refreshCoGeoFillBtn() {
         if (!coGeoFill) return;
@@ -3428,8 +3432,21 @@
         coSuccess.classList.remove('show');
         resetCoFields();
       });
-      document.getElementById('coSubmit').addEventListener('click', () => {
+      coSubmitBtn.addEventListener('click', () => {
         coErr.textContent = '';
+        if (isSubmitting) return;
+
+        var session = JBAuth.getSession();
+        if (!session) {
+          closeCo();
+          closeCart();
+          if (typeof globalThis.jbOpenAuthModal === 'function') globalThis.jbOpenAuthModal();
+          else {
+            document.getElementById('jbAuthOverlay').classList.add('open');
+            document.getElementById('jbAuthModal').classList.add('open');
+          }
+          return;
+        }
         const name = coName.value.trim();
         const phone = coPhone.value.trim();
         if (!name || !phone) {
@@ -3438,6 +3455,9 @@
         }
         const items = cart.map((i) => ({ name: i.name, price: i.price, qty: i.qty }));
         const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+
+        isSubmitting = true;
+        coSubmitBtn.disabled = true;
         JBOrders.addOrder({
           items,
           total,
@@ -3445,12 +3465,24 @@
           customerName: name,
           phone,
           address: coAddr.value.trim(),
-        });
-        clearCart();
-        closeCart();
-        coFormWrap.classList.add('hide');
-        coSuccess.classList.add('show');
-        resetCoFields();
+        })
+          .then(() => {
+            clearCart();
+            closeCart();
+            coFormWrap.classList.add('hide');
+            coSuccess.classList.add('show');
+            resetCoFields();
+          })
+          .catch((err) => {
+            var m = err && err.message ? String(err.message) : '';
+            if (m === 'no_api_base') coErr.textContent = 'Сервер недоступен';
+            else if (m === 'Failed to fetch' || (err && err.name === 'TypeError')) coErr.textContent = 'Ошибка сети. Повторите ещё раз.';
+            else coErr.textContent = 'Не удалось оформить заказ. Попробуйте ещё раз.';
+          })
+          .finally(() => {
+            isSubmitting = false;
+            coSubmitBtn.disabled = false;
+          });
       });
     })();
 
@@ -3471,6 +3503,8 @@
       const formLogin = document.getElementById('jbFormLogin');
       const formReg = document.getElementById('jbFormReg');
 
+      let authBusy = false;
+
       function t(key) {
         const d = I18N[currentLang];
         return (d && d[key]) || key;
@@ -3489,7 +3523,7 @@
         }
         const s = JBAuth.getSession();
         openBtn.classList.toggle('jb-acc-in', !!s);
-        openBtn.setAttribute('aria-label', s ? t('auth_account') : t('auth_login'));
+        openBtn.setAttribute('aria-label', s ? 'Аккаунт' : 'Вход');
         const staff = s && JBAuth.hasAnyRole(JBAuth.STAFF_ROLES);
         staffLink.classList.toggle('show', !!staff);
         staffBtn.style.display = staff ? 'block' : 'none';
@@ -3572,10 +3606,14 @@
       formLogin.addEventListener('submit', (e) => {
         e.preventDefault();
         clearMsgs();
+        if (authBusy) return;
         if (!JBAuth.getApiBase()) {
           errEl.textContent = 'Сервер недоступен';
           return;
         }
+        authBusy = true;
+        var btn = formLogin.querySelector('button[type="submit"]');
+        if (btn) btn.disabled = true;
         JBAuth.login(formLogin.email.value.trim(), formLogin.password.value)
           .then(() => {
             closeModal();
@@ -3583,18 +3621,26 @@
           })
           .catch((err) => {
             const m = err && err.message ? String(err.message) : '';
-            if (m === 'Failed to fetch' || err && err.name === 'TypeError') errEl.textContent = t('auth_err_net');
-            else errEl.textContent = t('auth_err_login');
+            if (m === 'Failed to fetch' || (err && err.name === 'TypeError')) errEl.textContent = 'Ошибка сети. Повторите ещё раз.';
+            else errEl.textContent = 'Неверный email или пароль.';
+          })
+          .finally(() => {
+            authBusy = false;
+            if (btn) btn.disabled = false;
           });
       });
 
       formReg.addEventListener('submit', (e) => {
         e.preventDefault();
         clearMsgs();
+        if (authBusy) return;
         if (!JBAuth.getApiBase()) {
           errEl.textContent = 'Сервер недоступен';
           return;
         }
+        authBusy = true;
+        var btn = formReg.querySelector('button[type="submit"]');
+        if (btn) btn.disabled = true;
         JBAuth.register({
           name: (formReg.name && formReg.name.value ? formReg.name.value : '').trim(),
           email: (formReg.email && formReg.email.value ? formReg.email.value : '').trim(),
@@ -3602,13 +3648,18 @@
           password: formReg.password ? formReg.password.value : '',
         })
           .then(() => {
-            okEl.textContent = t('auth_ok_reg');
+            okEl.textContent = 'Регистрация успешна.';
             tabIn.click();
             refreshChrome();
           })
           .catch((err) => {
             const m = err && err.message ? String(err.message) : '';
-            errEl.textContent = m.length < 120 ? m : t('auth_err_net');
+            if (m === 'Failed to fetch' || err && err.name === 'TypeError') errEl.textContent = 'Ошибка сети. Повторите ещё раз.';
+            else errEl.textContent = 'Не удалось зарегистрироваться.';
+          })
+          .finally(() => {
+            authBusy = false;
+            if (btn) btn.disabled = false;
           });
       });
 
